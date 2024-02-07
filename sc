@@ -1,1 +1,1 @@
-<iframe src="https://turbowarp.org/editor" width="100%" height="600"></iframe>
+  <embed type="text/x-scriptlet" src="https://turbowarp.org/editor" width="640" height="480">
