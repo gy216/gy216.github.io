@@ -70,7 +70,7 @@
                         <input type="radio" name="engine" value="baidu" checked> 百度
                     </label>
                     <label>
-                        <input type="radio" name="engine" value="google"> 谷歌
+                        <input type="radio" name="engine" value="sg"> 搜狗
                     </label>
                 </div>
                 <button type="submit" class="button">搜索</button>
@@ -92,9 +92,9 @@
 
             if (engine === 'baidu') {
                 searchUrl = 'https://www.baidu.com/s?wd=' + encodeURIComponent(input);
-            } else if (engine === 'google') {
+            } else if (engine === 'sg') {
                 // 注意：这里使用的是百度的搜索URL示例，应替换为谷歌的搜索URL
-                searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(input);
+                searchUrl = 'https://www.sogou.com/web?query=' + encodeURIComponent(input);
             }
 
             window.open(searchUrl, '_blank'); // 在新标签页中打开搜索结果
