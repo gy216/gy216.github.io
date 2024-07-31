@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+        p {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>哎呀，看起来你迷路了！可能是因为网址输入错误，或者你正在寻找的页面已经不存在。</p>
+        <p>这里有一些解决办法：</p>
+        <a href="https://gy216.github.io" class="button">返回首页</a>
+        <a href="https://gy216.github.io/so" class="button">返回果园搜搜</a>
+    </div>
+</body>
+</html>
