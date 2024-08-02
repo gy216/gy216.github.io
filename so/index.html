@@ -65,9 +65,10 @@
 	<option value="https://www.google.de/search?q=">谷歌（国内无法访问）</option>  
         </select>  
         <input type="text" id="searchQuery" placeholder="请输入你的搜索内容进行搜索，用百度搜索“奥运”用惊喜哦~">  
-        <button onclick="performSearch()">果园SO一下！</button>  
+        <button onclick="performSearch()">果园SO一下！</button>
+	<button onclick="javascript:history.back(-1);">返回上一页</button>  
+
     </div>  
-  
     <script>  
         function performSearch() {  
             var baseUrl = document.getElementById('searchEngineSelector').value;  
