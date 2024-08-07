@@ -1,76 +1,99 @@
 <!DOCTYPE html>  
-<html lang="en">  
+<html lang="zh">  
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>验证后才能访问果园官网</title>  
+    <title>身份验证</title>  
     <style>  
-        /* 全局样式 */  
-        body {  
-            font-family: Arial, sans-serif;  
-            display: flex;  
-            flex-direction: column;  
-            align-items: center;  
-            height: 100vh;  
-            background-color: #f4f4f4;  
+        body, html {  
+            height: 100%;  
             margin: 0;  
-            padding: 20px;  
-            box-sizing: border-box; /* 确保padding不会增加body的宽度 */  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            flex-direction: column;  
+            background-color: #333; /* 黑灰色背景 */
+            color: #fff; /* 文字颜色改为白色 */
+            font-family: Arial, sans-serif;  
         }  
   
-        /* 验证信息和广告样式 */  
-        .content-container {  
-            background-color: #ffffff;  
-            padding: 20px;  
-            border-radius: 8px;  
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+        .loader {  
+            width: 100%;  
+            max-width: 400px;  
+            height: 20px;  
+            background: #ddd; /* 这里可以改为其他颜色以适应黑灰色背景，例如 #555 */
+            position: relative;  
+            overflow: hidden;  
+        }  
+  
+        .loader::before {  
+            content: '';  
+            position: absolute;  
+            left: 0;  
+            top: 0;  
+            height: 100%;  
+            background: orange; /* 这里可以改为其他颜色以适应黑灰色背景，例如 #FFA500 */
+            width: 0%;  
+            animation: load 5s linear forwards;  
+        }  
+  
+        @keyframes load {  
+            from { width: 0%; }  
+            to { width: 100%; }  
+        }  
+  
+        .message, .smallprint {  
             text-align: center;  
-            margin-bottom: 20px; /* 与下面的内容保持一定间距 */  
+            color: #fff; /* 文字颜色改为白色 */
         }  
   
-        .ad-container {  
-            background-color: #f0f0f0; /* 浅灰色背景 */  
-            padding: 20px;  
-            border-radius: 8px;  
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
-            text-align: center;  
+        .smallprint {  
+            font-size: 0.8em;  
+            color: #fff; /* 文字颜色改为白色 */
+            margin-top: 10px;  
         }  
   
-        .ad-title {  
-            margin-bottom: 10px; /* 标题与内容的间距 */  
-        }  
-  
-        .ad-link {  
-            color: #007BFF;  
-            text-decoration: none;  
-            font-weight: bold;  
-        }  
-  
-        .ad-link:hover {  
-            text-decoration: underline;  
+        .success-message {  
+            color: #fff; /* 成功消息文字颜色改为白色 */
+            font-size: 1.2em;  
+            margin-top: 20px;  
         }  
     </style>  
+<script src="https://www.google.com/recaptcha/api.js"></script> 
 </head>  
 <body>  
-    <div class="content-container">  
-        <h1>正在进行人机身份验证</h1>  
-        <h2>请等待5秒进行身份验证</h2>  
-        <h2>人机验证是什么，为什么要验证</h2>  
-        <p>人机验证（Captcha）是一种用于区分用户是计算机还是真人的程序。1947年阿兰·图灵首次提出了图灵测试，他认为计算机程序和人类大脑有相似之处，都可以通过回答一系列问题进行测量判定。这也是很多传统验证码的实现原理，但是这种验证方法通常操作会比较繁琐，难度较大，用户体验不够人性化。</p>  
+    <div class="loader"></div>  
+    <div class="message">  
+        <p>https://gy216.github.io/ 需要验证你的身份</p>  
+        <p class="smallprint">这是什么？<br>为了保障您的账户安全，我们需要验证您的身份。</p>  
+        <p class="smallprint">你们怎么验证<br>果园会收集一些鼠标轨迹、网络信息、浏览器信息等等，依靠后端的神经网络判断是机器还是人，绝大多数验证会一键通过，无需像传统验证码（ Geetest ）一样。</p>  
     </div>  
-  
+
+    <div class="success-message" style="display:none;">验证成功，正在跳转...</div>  
+    <!--AD代码-->
     <div class="ad-container">  
-        <h2 class="ad-title">广告：果园工作室的副站开放了！</h2>  
-        <p>欢迎访问我们的网站，了解更多精彩内容！</p>  
-        <a href="https://gzw-gy.github.io" class="ad-link" target="_blank">立即访问</a>  
-    </div>  
-  
+        <h2 class="ad-title" style="color: #fff;">广告：果园工作室的副站开放了！</h2> <!-- 广告标题文字颜色改为白色 -->
+        <p style="color: #fff;">欢迎访问我们的网站，了解更多精彩内容！</p> <!-- 广告文字颜色改为白色 -->
+        <a href="https://gzw-gy.github.io" class="ad-link" target="_blank" style="color: #fff;">立即访问</a> <!-- 广告链接文字颜色改为白色 -->
+    </div>
+    <!--AD代码-->
+
     <script>  
-        // 设置一个定时器，5000毫秒（即5秒）后执行  
         setTimeout(function() {  
-            // 跳转到指定的URL，这里使用'/home'，但请注意这通常不是标准的URL  
-            window.location.href = '/home';  
-        }, 5000);  
+            const loader = document.querySelector('.loader');  
+            const successMessage = document.querySelector('.success-message');  
+      
+            // 隐藏加载条  
+            loader.style.display = 'none';  
+      
+            // 显示成功消息  
+            successMessage.style.display = 'block';  
+      
+            // 等待1秒后跳转  
+            setTimeout(function() {  
+                window.location.href = 'https://gy216.github.io/home';   
+            }, 1000);  
+        }, 5000); // 5秒后执行  
     </script>  
 </body>  
 </html>
