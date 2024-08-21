@@ -1,157 +1,107 @@
-/*! ä¸€å¶å­¤èˆŸ | qq:28701884 | æ¬¢è¿æŒ‡æ•™ */
+/*! Ò»Ò¶¹ÂÖÛ | qq:28701884 | »¶Ó­Ö¸½Ì */
 
 var com = com||{};
 
 com.init = function (stype){
 	
-	com.nowStype= stype || com.getCookie("stype") ||"stype2";
+	com.nowStype= stype || com.getCookie("stype") ||"stype1";
 	var stype = com.stype[com.nowStype];
-	com.width			=	stype.width;		//ç”»å¸ƒå®½åº¦
-	com.height			=	stype.height; 		//ç”»å¸ƒé«˜åº¦
-	com.spaceX			=	stype.spaceX;		//ç€ç‚¹Xè·¨åº¦
-	com.spaceY			=	stype.spaceY;		//ç€ç‚¹Yè·¨åº¦
-	com.pointStartX		=	stype.pointStartX;	//ç¬¬ä¸€ä¸ªç€ç‚¹Xåæ ‡;
-	com.pointStartY		=	stype.pointStartY;	//ç¬¬ä¸€ä¸ªç€ç‚¹Yåæ ‡;
-	com.page			=	stype.page;			//å›¾ç‰‡ç›®å½•
+	com.width			=	stype.width;		//»­²¼¿í¶È
+	com.height			=	stype.height; 		//»­²¼¸ß¶È
+	com.spaceX			=	stype.spaceX;		//×ÅµãX¿ç¶È
+	com.spaceY			=	stype.spaceY;		//×ÅµãY¿ç¶È
+	com.pointStartX		=	stype.pointStartX;	//µÚÒ»¸ö×ÅµãX×ø±ê;
+	com.pointStartY		=	stype.pointStartY;	//µÚÒ»¸ö×ÅµãY×ø±ê;
+	com.page			=	stype.page;			//Í¼Æ¬Ä¿Â¼
 	
-	com.canvas			=	document.getElementById("chess"); //ç”»å¸ƒ
-	com.ct				=	com.canvas.getContext("2d") ;
+	com.get("box").style.width = com.width+130+"px";
+	
+	com.canvas			=	document.getElementById("chess"); //»­²¼
+	com.ct				=	com.canvas.getContext("2d") ; 
 	com.canvas.width	=	com.width;
 	com.canvas.height	=	com.height;
 	
 	com.childList		=	com.childList||[];
-
-
-	com.loadImages(com.page);		//è½½å…¥å›¾ç‰‡/å›¾ç‰‡ç›®å½•
+	
+	com.loadImages(com.page);		//ÔØÈëÍ¼Æ¬/Í¼Æ¬Ä¿Â¼
 	//z(com.initMap.join())
 }
 
-//æ ·å¼
+//ÑùÊ½
 com.stype = {
 	stype1:{
-		width:325,		//ç”»å¸ƒå®½åº¦
-		height:402, 		//ç”»å¸ƒé«˜åº¦
-		spaceX:35,		//ç€ç‚¹Xè·¨åº¦
-		spaceY:36,		//ç€ç‚¹Yè·¨åº¦
-		pointStartX:5,		//ç¬¬ä¸€ä¸ªç€ç‚¹Xåæ ‡;
-		pointStartY:19,		//ç¬¬ä¸€ä¸ªç€ç‚¹Yåæ ‡;
-		page:"stype_1"	//å›¾ç‰‡ç›®å½•
+		width:325,		//»­²¼¿í¶È
+		height:402, 		//»­²¼¸ß¶È
+		spaceX:35,		//×ÅµãX¿ç¶È
+		spaceY:36,		//×ÅµãY¿ç¶È
+		pointStartX:5,		//µÚÒ»¸ö×ÅµãX×ø±ê;
+		pointStartY:19,		//µÚÒ»¸ö×ÅµãY×ø±ê;
+		page:"stype_1"	//Í¼Æ¬Ä¿Â¼
 	},
 	stype2:{
-		width:523,		//ç”»å¸ƒå®½åº¦
-		height:580, 		//ç”»å¸ƒé«˜åº¦
-		spaceX:57,		//ç€ç‚¹Xè·¨åº¦
-		spaceY:57,		//ç€ç‚¹Yè·¨åº¦
-		pointStartX:3,		//ç¬¬ä¸€ä¸ªç€ç‚¹Xåæ ‡;
-		pointStartY:5,		//ç¬¬ä¸€ä¸ªç€ç‚¹Yåæ ‡;
-		page:"stype_2"	//å›¾ç‰‡ç›®å½•
-	},
-	stype3:{
-		width:530,		//ç”»å¸ƒå®½åº¦
-		height:567, 		//ç”»å¸ƒé«˜åº¦
-		spaceX:57,		//ç€ç‚¹Xè·¨åº¦
-		spaceY:57,		//ç€ç‚¹Yè·¨åº¦
-		pointStartX:-2,		//ç¬¬ä¸€ä¸ªç€ç‚¹Xåæ ‡;
-		pointStartY:0,		//ç¬¬ä¸€ä¸ªç€ç‚¹Yåæ ‡;
-		page:"stype_3"	//å›¾ç‰‡ç›®å½•
-	}
+		width:530,		//»­²¼¿í¶È
+		height:567, 		//»­²¼¸ß¶È
+		spaceX:57,		//×ÅµãX¿ç¶È
+		spaceY:57,		//×ÅµãY¿ç¶È
+		pointStartX:-2,		//µÚÒ»¸ö×ÅµãX×ø±ê;
+		pointStartY:0,		//µÚÒ»¸ö×ÅµãY×ø±ê;
+		page:"stype_2"	//Í¼Æ¬Ä¿Â¼
+	}		
 }
-//è·å–ID
+//»ñÈ¡ID
 com.get = function (id){
 	return document.getElementById(id)
 }
 
-window.onload = function(){
+window.onload = function(){  
 	com.bg=new com.class.Bg();
 	com.dot = new com.class.Dot();
 	com.pane=new com.class.Pane();
 	com.pane.isShow=false;
 	
-	com.childList=[com.bg,com.dot,com.pane];
-	com.mans	 ={};		//æ£‹å­é›†åˆ
-	//com.createMans(com.initMap)		//ç”Ÿæˆæ£‹å­
-	//com.bg.show();
+	com.childList=[com.bg,com.dot,com.pane];	
+	com.mans	 ={};		//Æå×Ó¼¯ºÏ
+	com.createMans(com.initMap)		//Éú³ÉÆå×Ó	
+	com.bg.show();
+	com.get("bnBox").style.display = "block";
 	//play.init();
-	
-	//å¼€å§‹å¯¹å¼ˆ
-	com.get("playBtn").addEventListener("click", function(e) {
-		play.isPlay=true ;
-		var depth = parseInt(getRadioValue("depth"), 10) || 3;
-
-		play.init( depth );
-		com.get("chessBox").style.display = "block";
-		com.get("menuBox").style.display = "none";
+	com.get("billBn").addEventListener("click", function(e) {
+		if (confirm("ÊÇ·ñ½áÊø¶Ô¾Ö£¬¿ªÊ¼Æå¾ÖÑĞ¾¿£¿")){
+			com.init();
+			com.get("chessRight").style.display = "block";
+			com.get("moveInfo").style.display = "none";
+			bill.init();
+		}
 	})
-	
-	//å¼€å§‹æŒ‘æˆ˜
-	com.get("clasliBtn").addEventListener("click", function(e) {
-		play.isPlay=true ;
-		var clasli = parseInt(getRadioValue("clasli"), 10) || 0;
-		play.init( 4, com.clasli[clasli].map );
-		com.get("chessBox").style.display = "block";
-		com.get("menuBox").style.display = "none";
+	com.get("superPlay").addEventListener("click", function(e) {
+		if (confirm("È·ÈÏ¿ªÊ¼´óÊ¦¼¶¶ÔŞÄ£¿")){
+			play.isPlay=true ;	
+			com.get("chessRight").style.display = "none";
+			com.get("moveInfo").style.display = "block";
+			com.get("moveInfo").innerHTML="";
+			play.depth = 4;
+			play.init();
+		}
 	})
-	
-	// æ‚”æ£‹
-	com.get("regretBtn").addEventListener("click", function(e) {
-		play.regret();
-	})
-	
-	//è¿”å›é¦–é¡µ
-	com.get("gohomeBtn").addEventListener("click", function(e) {
-		com.get("chessBox").style.display = "none";
-		com.get("menuBox").style.display = "block";
-		com.get("indexBox").style.display = "block";
-		com.get("menuQj").style.display = "none";
-		com.get("menuDy").style.display = "none";
-	})
-	
-	//è¿”å›
-	com.get("menuFh").addEventListener("click", function(e) {
-		com.get("indexBox").style.display = "block";
-		com.get("menuQj").style.display = "none";
-		com.get("menuDy").style.display = "none";
-	})
-	
-	//è¿”å›å…³é—­
-	com.get("menuGb").addEventListener("click", function(e) {
-		com.get("indexBox").style.display = "block";
-		com.get("menuQj").style.display = "none";
-		com.get("menuDy").style.display = "none";
-	})
-	
-	//é‡æ–°å¼€å§‹æ£‹å±€
-	com.get("restartBtn").addEventListener("click", function(e) {
-		if (confirm("æ˜¯å¦ç¡®å®šè¦é‡æ–°å¼€å§‹ï¼Ÿ")){
-			play.isPlay=true ;
-			play.init( play.depth,play.nowMap );
+	com.get("tyroPlay").addEventListener("click", function(e) {
+		if (confirm("È·ÈÏ¿ªÊ¼ĞÂÊÖ¼¶¶ÔŞÄ£¿")){
+			play.isPlay=true ;	
+			com.get("chessRight").style.display = "none";
+			com.get("moveInfo").style.display = "block";
+			com.get("moveInfo").innerHTML="";
+			play.depth = 3;
+			play.init();
 		}
 	})
 	
-	//äººæœºå¯¹å¼ˆ
-	com.get("indexDy").addEventListener("click", function(e) {
-		com.get("indexBox").style.display = "none";
-		com.get("menuQj").style.display = "none";
-		com.get("menuDy").style.display = "block";
-	})
-	
-	//æŒ‘æˆ˜æ£‹å±€
-	com.get("indexQj").addEventListener("click", function(e) {
-		com.get("indexBox").style.display = "none";
-		com.get("menuQj").style.display = "block";
-		com.get("menuDy").style.display = "none";
-	})
-
-	//æ¢è‚¤
-	com.get("stypeBtn").addEventListener("click", function(e) {
+	com.get("stypeBn").addEventListener("click", function(e) {
 		var stype =com.nowStype;
-		if (stype=="stype3") stype="stype2";
+		if (stype=="stype1") stype="stype2";
 		else if (stype=="stype2") stype="stype1";
-		else if (stype=="stype1") stype="stype3";
 		com.init(stype);
 		com.show();
-		//play.depth = 4;
-		//play.init();
+		play.depth = 4;
+		play.init();
 		document.cookie="stype=" +stype;
 		clearInterval(timer);
 		var i=0;
@@ -161,44 +111,36 @@ window.onload = function(){
 		},2000);
 	})
 	
-	//è·å–å•é€‰æ¡†é€‰æ‹©çš„å€¼
-	function getRadioValue (name){
-		var obj = document.getElementsByName(name);
-		//var obj = document.getElementsByTagName("input");
-		for(var i=0; i<obj.length; i ++){
-			if(obj[i].checked){
-				return obj[i].value;
-			}
-		}
-	}
-	
 	com.getData("js/gambit.all.js",
 		function(data){
 		com.gambit=data.split(" ");
 		AI.historyBill = com.gambit;
 	})
+	com.getData("js/store.js",
+		function(data){
+		com.store=data.split(" ");
+	})
 }
 
-//è½½å…¥å›¾ç‰‡
+//ÔØÈëÍ¼Æ¬
 com.loadImages = function(stype){
 	
-	//ç»˜åˆ¶æ£‹ç›˜
+	//»æÖÆÆåÅÌ
 	com.bgImg = new Image();
 	com.bgImg.src  = "img/"+stype+"/bg.png";
 	
-	//æç¤ºç‚¹
+	//ÌáÊ¾µã
 	com.dotImg = new Image();
 	com.dotImg.src  = "img/"+stype+"/dot.png";
 	
-	//æ£‹å­
+	//Æå×Ó
 	for (var i in com.args){
 		com[i] = {};
 		com[i].img = new Image();
 		com[i].img.src = "img/"+stype+"/"+ com.args[i].img +".png";
-		//com[i].img.src = "img/"+stype+"/r_m.png";
 	}
 	
-	//æ£‹å­å¤–æ¡†
+	//Æå×ÓÍâ¿ò
 	com.paneImg = new Image();
 	com.paneImg.src  = "img/"+stype+"/r_box.png";
 	
@@ -206,15 +148,15 @@ com.loadImages = function(stype){
 	
 }
 
-//æ˜¾ç¤ºåˆ—è¡¨
+//ÏÔÊ¾ÁĞ±í
 com.show = function (){
-	com.ct.clearRect(0, 0, com.width, com.height);
+	com.ct.clearRect(0, 0, com.width, com.height);  
 	for (var i=0; i<com.childList.length ; i++){
 		com.childList[i].show();
 	}
 }
 
-//æ˜¾ç¤ºç§»åŠ¨çš„æ£‹å­å¤–æ¡†
+//ÏÔÊ¾ÒÆ¶¯µÄÆå×ÓÍâ¿ò
 com.showPane  = function (x,y,newX,newY){
 	com.pane.isShow=true;
 	com.pane.x= x ;
@@ -223,7 +165,7 @@ com.showPane  = function (x,y,newX,newY){
 	com.pane.newY= newY ;
 }
 
-//ç”Ÿæˆmapé‡Œé¢æœ‰çš„æ£‹å­
+//Éú³ÉmapÀïÃæÓĞµÄÆå×Ó
 com.createMans = function(map){
 	for (var i=0; i<map.length; i++){
 		for (var n=0; n<map[i].length; n++){
@@ -251,11 +193,10 @@ com.alert = function (obj,f,n){
 	//return alert(arr.join(n||"\n\r"));
 }
 
-//com.alertçš„ç®€å†™ï¼Œè€ƒè™‘zå˜é‡åæœ€ä¸å¸¸ç”¨
+//com.alertµÄ¼òĞ´£¬¿¼ÂÇz±äÁ¿Ãû×î²»³£ÓÃ
 var z = com.alert;
-var l = console.log;
 
-//è·å–å…ƒç´ è·ç¦»é¡µé¢å·¦ä¾§çš„è·ç¦»
+//»ñÈ¡ÔªËØ¾àÀëÒ³Ãæ×ó²àµÄ¾àÀë
 com.getDomXY = function (dom){
 	var left = dom.offsetLeft;
 	var top = dom.offsetTop;
@@ -268,29 +209,29 @@ com.getDomXY = function (dom){
 	return {x:left,y:top};
 }
 
-//è·å¾—cookie
+//»ñµÃcookie
 com.getCookie = function(name){
 	if (document.cookie.length>0){
 		start=document.cookie.indexOf(name + "=")
-		if (start!=-1){
-			start=start + name.length+1
+		if (start!=-1){ 
+			start=start + name.length+1 
 			end=document.cookie.indexOf(";",start)
 		if (end==-1) end=document.cookie.length
 			return unescape(document.cookie.substring(start,end))
-		}
+		} 
 	}
 	return false;
 }
-//äºŒç»´æ•°ç»„å…‹éš†
+//¶şÎ¬Êı×é¿ËÂ¡
 com.arr2Clone = function (arr){
 	var newArr=[];
-	for (var i=0; i<arr.length ; i++){
+	for (var i=0; i<arr.length ; i++){	
 		newArr[i] = arr[i].slice();
 	}
 	return newArr;
 }
 
-//ajaxè½½å…¥æ•°æ®
+//ajaxÔØÈëÊı¾İ
 com.getData = function (url,fun){
 	var XMLHttpRequestObject=false;
 	if(window.XMLHttpRequest){
@@ -311,7 +252,7 @@ com.getData = function (url,fun){
 	}
 }
 
-//æŠŠåæ ‡ç”Ÿæˆç€æ³•
+//°Ñ×ø±êÉú³É×Å·¨
 com.createMove = function (map,x,y,newX,newY){
 	var h="";
 	var man = com.mans[map[y][x]];
@@ -319,46 +260,46 @@ com.createMove = function (map,x,y,newX,newY){
 	map[newY][newX] = map[y][x];
 	delete map[y][x];
 	if (man.my===1){
-		var mumTo=["ä¸€","äºŒ","ä¸‰","å››","äº”","å…­","ä¸ƒ","å…«","ä¹","å"];
+		var mumTo=["Ò»","¶ş","Èı","ËÄ","Îå","Áù","Æß","°Ë","¾Å","Ê®"];	
 		newX=8-newX;
 		h+= mumTo[8-x];
 		if (newY > y) {
-			h+= "é€€";
+			h+= "ÍË";
 			if (man.pater == "m" || man.pater == "s" || man.pater == "x"){
 				h+= mumTo[newX];
 			}else {
 				h+= mumTo[newY - y -1];
 			}
 		}else if (newY < y) {
-			h+= "è¿›";
+			h+= "½ø";
 			if (man.pater == "m" || man.pater == "s" || man.pater == "x"){
 				h+= mumTo[newX];
 			}else {
 				h+= mumTo[y - newY -1];
 			}
 		}else {
-			h+= "å¹³";
+			h+= "Æ½";
 			h+= mumTo[newX];
 		}
 	}else{
-		var mumTo=["ï¼‘","ï¼’","ï¼“","ï¼”","ï¼•","ï¼–","ï¼—","ï¼˜","ï¼™","10"];
+		var mumTo=["£±","£²","£³","£´","£µ","£¶","£·","£¸","£¹","10"];
 		h+= mumTo[x];
 		if (newY > y) {
-			h+= "è¿›";
+			h+= "½ø";
 			if (man.pater == "M" || man.pater == "S" || man.pater == "X"){
 				h+= mumTo[newX];
 			}else {
 				h+= mumTo[newY - y-1];
 			}
 		}else if (newY < y) {
-			h+= "é€€";
+			h+= "ÍË";
 			if (man.pater == "M" || man.pater == "S" || man.pater == "X"){
 				h+= mumTo[newX];
 			}else {
 				h+= mumTo[y - newY-1];
 			}
 		}else {
-			h+= "å¹³";
+			h+= "Æ½";
 			h+= mumTo[newX];
 		}
 	}
@@ -376,6 +317,34 @@ com.initMap = [
 	[    ,'p0',    ,    ,    ,    ,    ,'p1',    ],
 	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
 	['c0','m0','x0','s0','j0','s1','x1','m1','c1']
+];
+
+
+
+com.initMap1 = [
+	[    ,    ,    ,, "J0"   ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,"c0",    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,	  ,    ,    ,    ],
+	[    ,    ,    ,    ,"s0",    ,    ,"C0",    ],
+	[    ,    ,    ,"s1",    ,"j0",    ,    ,    ]
+];
+
+com.initMap1 = [
+	[    ,    ,    ,, "J0"   ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    , ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,"z0",    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,	  ,    ,    ,    ],
+	[    ,    ,    ,    ,    ,    ,    ,    ,    ],
+	[    ,    ,    , "j0"   ,,    ,    ,    ]
 ];
 
 com.keys = {
@@ -396,125 +365,125 @@ com.keys = {
 	"Z0":"Z","Z1":"Z","Z2":"Z","Z3":"Z","Z4":"Z","Z5":"Z",
 }
 
-//æ£‹å­èƒ½èµ°çš„ç€ç‚¹
+//Æå×ÓÄÜ×ßµÄ×Åµã
 com.bylaw ={}
-//è½¦
+//³µ
 com.bylaw.c = function (x,y,map,my){
 	var d=[];
-	//å·¦ä¾§æ£€ç´¢
+	//×ó²à¼ìË÷
 	for (var i=x-1; i>= 0; i--){
 		if (map[y][i]) {
 			if (com.mans[map[y][i]].my!=my) d.push([i,y]);
 			break
 		}else{
-			d.push([i,y])
+			d.push([i,y])	
 		}
 	}
-	//å³ä¾§æ£€ç´¢
+	//ÓÒ²à¼ìË÷
 	for (var i=x+1; i <= 8; i++){
 		if (map[y][i]) {
 			if (com.mans[map[y][i]].my!=my) d.push([i,y]);
 			break
 		}else{
-			d.push([i,y])
+			d.push([i,y])	
 		}
 	}
-	//ä¸Šæ£€ç´¢
+	//ÉÏ¼ìË÷
 	for (var i = y-1 ; i >= 0; i--){
 		if (map[i][x]) {
 			if (com.mans[map[i][x]].my!=my) d.push([x,i]);
 			break
 		}else{
-			d.push([x,i])
+			d.push([x,i])	
 		}
 	}
-	//ä¸‹æ£€ç´¢
+	//ÏÂ¼ìË÷
 	for (var i = y+1 ; i<= 9; i++){
 		if (map[i][x]) {
 			if (com.mans[map[i][x]].my!=my) d.push([x,i]);
 			break
 		}else{
-			d.push([x,i])
+			d.push([x,i])	
 		}
 	}
 	return d;
 }
 
-//é©¬
+//Âí
 com.bylaw.m = function (x,y,map,my){
 	var d=[];
-		//1ç‚¹
+		//1µã
 		if ( y-2>= 0 && x+1<= 8 && !play.map[y-1][x] &&(!com.mans[map[y-2][x+1]] || com.mans[map[y-2][x+1]].my!=my)) d.push([x+1,y-2]);
-		//2ç‚¹
+		//2µã
 		if ( y-1>= 0 && x+2<= 8 && !play.map[y][x+1] &&(!com.mans[map[y-1][x+2]] || com.mans[map[y-1][x+2]].my!=my)) d.push([x+2,y-1]);
-		//4ç‚¹
+		//4µã
 		if ( y+1<= 9 && x+2<= 8 && !play.map[y][x+1] &&(!com.mans[map[y+1][x+2]] || com.mans[map[y+1][x+2]].my!=my)) d.push([x+2,y+1]);
-		//5ç‚¹
+		//5µã
 		if ( y+2<= 9 && x+1<= 8 && !play.map[y+1][x] &&(!com.mans[map[y+2][x+1]] || com.mans[map[y+2][x+1]].my!=my)) d.push([x+1,y+2]);
-		//7ç‚¹
+		//7µã
 		if ( y+2<= 9 && x-1>= 0 && !play.map[y+1][x] &&(!com.mans[map[y+2][x-1]] || com.mans[map[y+2][x-1]].my!=my)) d.push([x-1,y+2]);
-		//8ç‚¹
+		//8µã
 		if ( y+1<= 9 && x-2>= 0 && !play.map[y][x-1] &&(!com.mans[map[y+1][x-2]] || com.mans[map[y+1][x-2]].my!=my)) d.push([x-2,y+1]);
-		//10ç‚¹
+		//10µã
 		if ( y-1>= 0 && x-2>= 0 && !play.map[y][x-1] &&(!com.mans[map[y-1][x-2]] || com.mans[map[y-1][x-2]].my!=my)) d.push([x-2,y-1]);
-		//11ç‚¹
+		//11µã
 		if ( y-2>= 0 && x-1>= 0 && !play.map[y-1][x] &&(!com.mans[map[y-2][x-1]] || com.mans[map[y-2][x-1]].my!=my)) d.push([x-1,y-2]);
 
 	return d;
 }
 
-//ç›¸
+//Ïà
 com.bylaw.x = function (x,y,map,my){
 	var d=[];
-	if (my===1){ //çº¢æ–¹
-		//4ç‚¹åŠ
+	if (my===1){ //ºì·½
+		//4µã°ë
 		if ( y+2<= 9 && x+2<= 8 && !play.map[y+1][x+1] && (!com.mans[map[y+2][x+2]] || com.mans[map[y+2][x+2]].my!=my)) d.push([x+2,y+2]);
-		//7ç‚¹åŠ
+		//7µã°ë
 		if ( y+2<= 9 && x-2>= 0 && !play.map[y+1][x-1] && (!com.mans[map[y+2][x-2]] || com.mans[map[y+2][x-2]].my!=my)) d.push([x-2,y+2]);
-		//1ç‚¹åŠ
+		//1µã°ë
 		if ( y-2>= 5 && x+2<= 8 && !play.map[y-1][x+1] && (!com.mans[map[y-2][x+2]] || com.mans[map[y-2][x+2]].my!=my)) d.push([x+2,y-2]);
-		//10ç‚¹åŠ
+		//10µã°ë
 		if ( y-2>= 5 && x-2>= 0 && !play.map[y-1][x-1] && (!com.mans[map[y-2][x-2]] || com.mans[map[y-2][x-2]].my!=my)) d.push([x-2,y-2]);
 	}else{
-		//4ç‚¹åŠ
+		//4µã°ë
 		if ( y+2<= 4 && x+2<= 8 && !play.map[y+1][x+1] && (!com.mans[map[y+2][x+2]] || com.mans[map[y+2][x+2]].my!=my)) d.push([x+2,y+2]);
-		//7ç‚¹åŠ
+		//7µã°ë
 		if ( y+2<= 4 && x-2>= 0 && !play.map[y+1][x-1] && (!com.mans[map[y+2][x-2]] || com.mans[map[y+2][x-2]].my!=my)) d.push([x-2,y+2]);
-		//1ç‚¹åŠ
+		//1µã°ë
 		if ( y-2>= 0 && x+2<= 8 && !play.map[y-1][x+1] && (!com.mans[map[y-2][x+2]] || com.mans[map[y-2][x+2]].my!=my)) d.push([x+2,y-2]);
-		//10ç‚¹åŠ
+		//10µã°ë
 		if ( y-2>= 0 && x-2>= 0 && !play.map[y-1][x-1] && (!com.mans[map[y-2][x-2]] || com.mans[map[y-2][x-2]].my!=my)) d.push([x-2,y-2]);
 	}
 	return d;
 }
 
-//å£«
+//Ê¿
 com.bylaw.s = function (x,y,map,my){
 	var d=[];
-	if (my===1){ //çº¢æ–¹
-		//4ç‚¹åŠ
+	if (my===1){ //ºì·½
+		//4µã°ë
 		if ( y+1<= 9 && x+1<= 5 && (!com.mans[map[y+1][x+1]] || com.mans[map[y+1][x+1]].my!=my)) d.push([x+1,y+1]);
-		//7ç‚¹åŠ
+		//7µã°ë
 		if ( y+1<= 9 && x-1>= 3 && (!com.mans[map[y+1][x-1]] || com.mans[map[y+1][x-1]].my!=my)) d.push([x-1,y+1]);
-		//1ç‚¹åŠ
+		//1µã°ë
 		if ( y-1>= 7 && x+1<= 5 && (!com.mans[map[y-1][x+1]] || com.mans[map[y-1][x+1]].my!=my)) d.push([x+1,y-1]);
-		//10ç‚¹åŠ
+		//10µã°ë
 		if ( y-1>= 7 && x-1>= 3 && (!com.mans[map[y-1][x-1]] || com.mans[map[y-1][x-1]].my!=my)) d.push([x-1,y-1]);
 	}else{
-		//4ç‚¹åŠ
+		//4µã°ë
 		if ( y+1<= 2 && x+1<= 5 && (!com.mans[map[y+1][x+1]] || com.mans[map[y+1][x+1]].my!=my)) d.push([x+1,y+1]);
-		//7ç‚¹åŠ
+		//7µã°ë
 		if ( y+1<= 2 && x-1>= 3 && (!com.mans[map[y+1][x-1]] || com.mans[map[y+1][x-1]].my!=my)) d.push([x-1,y+1]);
-		//1ç‚¹åŠ
+		//1µã°ë
 		if ( y-1>= 0 && x+1<= 5 && (!com.mans[map[y-1][x+1]] || com.mans[map[y-1][x+1]].my!=my)) d.push([x+1,y-1]);
-		//10ç‚¹åŠ
+		//10µã°ë
 		if ( y-1>= 0 && x-1>= 3 && (!com.mans[map[y-1][x-1]] || com.mans[map[y-1][x-1]].my!=my)) d.push([x-1,y-1]);
 	}
 	return d;
-	
+		
 }
 
-//å°†
+//½«
 com.bylaw.j = function (x,y,map,my){
 	var d=[];
 	var isNull=(function (y1,y2){
@@ -527,33 +496,33 @@ com.bylaw.j = function (x,y,map,my){
 		return true;
 	})();
 	
-	if (my===1){ //çº¢æ–¹
-		//ä¸‹
+	if (my===1){ //ºì·½
+		//ÏÂ
 		if ( y+1<= 9  && (!com.mans[map[y+1][x]] || com.mans[map[y+1][x]].my!=my)) d.push([x,y+1]);
-		//ä¸Š
+		//ÉÏ
 		if ( y-1>= 7 && (!com.mans[map[y-1][x]] || com.mans[map[y-1][x]].my!=my)) d.push([x,y-1]);
-		//è€å°†å¯¹è€å°†çš„æƒ…å†µ
+		//ÀÏ½«¶ÔÀÏ½«µÄÇé¿ö
 		if ( com.mans["j0"].x == com.mans["J0"].x &&isNull) d.push([com.mans["J0"].x,com.mans["J0"].y]);
 		
 	}else{
-		//ä¸‹
+		//ÏÂ
 		if ( y+1<= 2  && (!com.mans[map[y+1][x]] || com.mans[map[y+1][x]].my!=my)) d.push([x,y+1]);
-		//ä¸Š
+		//ÉÏ
 		if ( y-1>= 0 && (!com.mans[map[y-1][x]] || com.mans[map[y-1][x]].my!=my)) d.push([x,y-1]);
-		//è€å°†å¯¹è€å°†çš„æƒ…å†µ
+		//ÀÏ½«¶ÔÀÏ½«µÄÇé¿ö
 		if ( com.mans["j0"].x == com.mans["J0"].x &&isNull) d.push([com.mans["j0"].x,com.mans["j0"].y]);
 	}
-	//å³
+	//ÓÒ
 	if ( x+1<= 5  && (!com.mans[map[y][x+1]] || com.mans[map[y][x+1]].my!=my)) d.push([x+1,y]);
-	//å·¦
+	//×ó
 	if ( x-1>= 3 && (!com.mans[map[y][x-1]] || com.mans[map[y][x-1]].my!=my))d.push([x-1,y]);
 	return d;
 }
 
-//ç‚®
+//ÅÚ
 com.bylaw.p = function (x,y,map,my){
 	var d=[];
-	//å·¦ä¾§æ£€ç´¢
+	//×ó²à¼ìË÷
 	var n=0;
 	for (var i=x-1; i>= 0; i--){
 		if (map[y][i]) {
@@ -562,13 +531,13 @@ com.bylaw.p = function (x,y,map,my){
 				continue;
 			}else{
 				if (com.mans[map[y][i]].my!=my) d.push([i,y]);
-				break
+				break	
 			}
 		}else{
-			if(n==0) d.push([i,y])
+			if(n==0) d.push([i,y])	
 		}
 	}
-	//å³ä¾§æ£€ç´¢
+	//ÓÒ²à¼ìË÷
 	var n=0;
 	for (var i=x+1; i <= 8; i++){
 		if (map[y][i]) {
@@ -577,13 +546,13 @@ com.bylaw.p = function (x,y,map,my){
 				continue;
 			}else{
 				if (com.mans[map[y][i]].my!=my) d.push([i,y]);
-				break
+				break	
 			}
 		}else{
-			if(n==0) d.push([i,y])
+			if(n==0) d.push([i,y])	
 		}
 	}
-	//ä¸Šæ£€ç´¢
+	//ÉÏ¼ìË÷
 	var n=0;
 	for (var i = y-1 ; i >= 0; i--){
 		if (map[i][x]) {
@@ -592,13 +561,13 @@ com.bylaw.p = function (x,y,map,my){
 				continue;
 			}else{
 				if (com.mans[map[i][x]].my!=my) d.push([x,i]);
-				break
+				break	
 			}
 		}else{
-			if(n==0) d.push([x,i])
+			if(n==0) d.push([x,i])	
 		}
 	}
-	//ä¸‹æ£€ç´¢
+	//ÏÂ¼ìË÷
 	var n=0;
 	for (var i = y+1 ; i<= 9; i++){
 		if (map[i][x]) {
@@ -607,31 +576,31 @@ com.bylaw.p = function (x,y,map,my){
 				continue;
 			}else{
 				if (com.mans[map[i][x]].my!=my) d.push([x,i]);
-				break
+				break	
 			}
 		}else{
-			if(n==0) d.push([x,i])
+			if(n==0) d.push([x,i])	
 		}
 	}
 	return d;
 }
 
-//å’
+//×ä
 com.bylaw.z = function (x,y,map,my){
 	var d=[];
-	if (my===1){ //çº¢æ–¹
-		//ä¸Š
+	if (my===1){ //ºì·½
+		//ÉÏ
 		if ( y-1>= 0 && (!com.mans[map[y-1][x]] || com.mans[map[y-1][x]].my!=my)) d.push([x,y-1]);
-		//å³
+		//ÓÒ
 		if ( x+1<= 8 && y<=4  && (!com.mans[map[y][x+1]] || com.mans[map[y][x+1]].my!=my)) d.push([x+1,y]);
-		//å·¦
+		//×ó
 		if ( x-1>= 0 && y<=4 && (!com.mans[map[y][x-1]] || com.mans[map[y][x-1]].my!=my))d.push([x-1,y]);
 	}else{
-		//ä¸‹
+		//ÏÂ
 		if ( y+1<= 9  && (!com.mans[map[y+1][x]] || com.mans[map[y+1][x]].my!=my)) d.push([x,y+1]);
-		//å³
+		//ÓÒ
 		if ( x+1<= 8 && y>=6  && (!com.mans[map[y][x+1]] || com.mans[map[y][x+1]].my!=my)) d.push([x+1,y]);
-		//å·¦
+		//×ó
 		if ( x-1>= 0 && y>=6 && (!com.mans[map[y][x-1]] || com.mans[map[y][x-1]].my!=my))d.push([x-1,y]);
 	}
 	
@@ -640,7 +609,7 @@ com.bylaw.z = function (x,y,map,my){
 
 com.value = {
 	
-	//è½¦ä»·å€¼
+	//³µ¼ÛÖµ
 	c:[
 		[206, 208, 207, 213, 214, 213, 207, 208, 206],
 		[206, 212, 209, 216, 233, 216, 209, 212, 206],
@@ -655,7 +624,7 @@ com.value = {
 		[194, 206, 204, 212, 200, 212, 204, 206, 194]
 	],
 	
-	//é©¬ä»·å€¼
+	//Âí¼ÛÖµ
 	m:[
 		[90, 90, 90, 96, 90, 96, 90, 90, 90],
 		[90, 96,103, 97, 94, 97,103, 96, 90],
@@ -670,7 +639,7 @@ com.value = {
 		[88, 85, 90, 88, 90, 88, 90, 85, 88]
 	],
 	
-	//ç›¸ä»·å€¼
+	//Ïà¼ÛÖµ
 	x:[
 		[0, 0,20, 0, 0, 0,20, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -681,11 +650,11 @@ com.value = {
 		[0, 0,20, 0, 0, 0,20, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[18,0, 0, 0,23, 0, 0, 0,18],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0], 
 		[0, 0,20, 0, 0, 0,20, 0, 0]
 	],
 	
-	//å£«ä»·å€¼
+	//Ê¿¼ÛÖµ
 	s:[
 		[0, 0, 0,20, 0,20, 0, 0, 0],
 		[0, 0, 0, 0,23, 0, 0, 0, 0],
@@ -696,14 +665,14 @@ com.value = {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0,20, 0,20, 0, 0, 0],
-		[0, 0, 0, 0,23, 0, 0, 0, 0],
+		[0, 0, 0, 0,23, 0, 0, 0, 0], 
 		[0, 0, 0,20, 0,20, 0, 0, 0]
 	],
 	
-	//å¥–ä»·å€¼
+	//½±¼ÛÖµ
 	j:[
 		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0],
-		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0],
+		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0], 
 		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -711,18 +680,18 @@ com.value = {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0],
-		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0],
+		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0], 
 		[0, 0, 0, 8888, 8888, 8888, 0, 0, 0]
 	],
 	
-	//ç‚®ä»·å€¼
+	//ÅÚ¼ÛÖµ
 	p:[
 		
 		[100, 100,  96, 91,  90, 91,  96, 100, 100],
 		[ 98,  98,  96, 92,  89, 92,  96,  98,  98],
 		[ 97,  97,  96, 91,  92, 91,  96,  97,  97],
 		[ 96,  99,  99, 98, 100, 98,  99,  99,  96],
-		[ 96,  96,  96, 96, 100, 96,  96,  96,  96],
+		[ 96,  96,  96, 96, 100, 96,  96,  96,  96], 
 		
 		[ 95,  96,  99, 96, 100, 96,  99,  96,  95],
 		[ 96,  96,  96, 96,  96, 96,  96,  96,  96],
@@ -731,7 +700,7 @@ com.value = {
 		[ 96,  96,  97, 99,  99, 99,  97,  96,  96]
 	],
 	
-	//å’ä»·å€¼
+	//×ä¼ÛÖµ
 	z:[
 		[ 9,  9,  9, 11, 13, 11,  9,  9,  9],
 		[19, 24, 34, 42, 44, 42, 34, 24, 19],
@@ -740,14 +709,14 @@ com.value = {
 		[14, 18, 20, 27, 29, 27, 20, 18, 14],
 		
 		[ 7,  0, 13,  0, 16,  0, 13,  0,  7],
-		[ 7,  0,  7,  0, 15,  0,  7,  0,  7],
+		[ 7,  0,  7,  0, 15,  0,  7,  0,  7], 
 		[ 0,  0,  0,  0,  0,  0,  0,  0,  0],
 		[ 0,  0,  0,  0,  0,  0,  0,  0,  0],
 		[ 0,  0,  0,  0,  0,  0,  0,  0,  0]
 	]
 }
 
-//é»‘å­ä¸ºçº¢å­—ä»·å€¼ä½ç½®çš„å€’ç½®
+//ºÚ×ÓÎªºì×Ö¼ÛÖµÎ»ÖÃµÄµ¹ÖÃ
 com.value.C = com.arr2Clone(com.value.c).reverse();
 com.value.M = com.arr2Clone(com.value.m).reverse();
 com.value.X = com.value.x;
@@ -756,32 +725,32 @@ com.value.J = com.value.j;
 com.value.P = com.arr2Clone(com.value.p).reverse();
 com.value.Z = com.arr2Clone(com.value.z).reverse();
 
-//æ£‹å­ä»¬
+//Æå×ÓÃÇ
 com.args={
-	//çº¢å­ ä¸­æ–‡/å›¾ç‰‡åœ°å€/é˜µè¥/æƒé‡
-	'c':{text:"è½¦", img:'r_c', my:1 ,bl:"c", value:com.value.c},
-	'm':{text:"é©¬", img:'r_m', my:1 ,bl:"m", value:com.value.m},
-	'x':{text:"ç›¸", img:'r_x', my:1 ,bl:"x", value:com.value.x},
-	's':{text:"ä»•", img:'r_s', my:1 ,bl:"s", value:com.value.s},
-	'j':{text:"å°†", img:'r_j', my:1 ,bl:"j", value:com.value.j},
-	'p':{text:"ç‚®", img:'r_p', my:1 ,bl:"p", value:com.value.p},
-	'z':{text:"å…µ", img:'r_z', my:1 ,bl:"z", value:com.value.z},
+	//ºì×Ó ÖĞÎÄ/Í¼Æ¬µØÖ·/ÕóÓª/È¨ÖØ
+	'c':{text:"³µ", img:'r_c', my:1 ,bl:"c", value:com.value.c},
+	'm':{text:"Âí", img:'r_m', my:1 ,bl:"m", value:com.value.m},
+	'x':{text:"Ïà", img:'r_x', my:1 ,bl:"x", value:com.value.x},
+	's':{text:"ÊË", img:'r_s', my:1 ,bl:"s", value:com.value.s},
+	'j':{text:"½«", img:'r_j', my:1 ,bl:"j", value:com.value.j},
+	'p':{text:"ÅÚ", img:'r_p', my:1 ,bl:"p", value:com.value.p},
+	'z':{text:"±ø", img:'r_z', my:1 ,bl:"z", value:com.value.z},
 	
-	//è“å­
-	'C':{text:"ï¿½", img:'b_c', my:-1 ,bl:"c", value:com.value.C},
-	'M':{text:"ï¿½R", img:'b_m', my:-1 ,bl:"m", value:com.value.M},
-	'X':{text:"è±¡", img:'b_x', my:-1 ,bl:"x", value:com.value.X},
-	'S':{text:"å£«", img:'b_s', my:-1 ,bl:"s", value:com.value.S},
-	'J':{text:"å¸…", img:'b_j', my:-1 ,bl:"j", value:com.value.J},
-	'P':{text:"ç‚®", img:'b_p', my:-1 ,bl:"p", value:com.value.P},
-	'Z':{text:"å’", img:'b_z', my:-1 ,bl:"z", value:com.value.Z}
+	//À¶×Ó
+	'C':{text:"Ü‡", img:'b_c', my:-1 ,bl:"c", value:com.value.C},
+	'M':{text:"ñR", img:'b_m', my:-1 ,bl:"m", value:com.value.M},
+	'X':{text:"Ïó", img:'b_x', my:-1 ,bl:"x", value:com.value.X},
+	'S':{text:"Ê¿", img:'b_s', my:-1 ,bl:"s", value:com.value.S},
+	'J':{text:"Ë§", img:'b_j', my:-1 ,bl:"j", value:com.value.J},
+	'P':{text:"ÅÚ", img:'b_p', my:-1 ,bl:"p", value:com.value.P},
+	'Z':{text:"×ä", img:'b_z', my:-1 ,bl:"z", value:com.value.Z}
 };
 
-com.class = com.class || {} //ç±»
+com.class = com.class || {} //Àà
 com.class.Man = function (key, x, y){
 	this.pater = key.slice(0,1);
 	var o=com.args[this.pater]
-	this.x = x||0;
+	this.x = x||0;   
     this.y = y||0;
 	this.key = key ;
 	this.my = o.my;
@@ -789,14 +758,14 @@ com.class.Man = function (key, x, y){
 	this.value = o.value;
 	this.isShow = true;
 	this.alpha = 1;
-	this.ps = []; //ç€ç‚¹
+	this.ps = []; //×Åµã
 	
 	this.show = function (){
 		if (this.isShow) {
 			com.ct.save();
 			com.ct.globalAlpha = this.alpha;
 			com.ct.drawImage(com[this.pater].img,com.spaceX * this.x + com.pointStartX , com.spaceY *  this.y +com.pointStartY);
-			com.ct.restore();
+			com.ct.restore(); 
 		}
 	}
 	
@@ -807,7 +776,7 @@ com.class.Man = function (key, x, y){
 }
 
 com.class.Bg = function (img, x, y){
-	this.x = x||0;
+	this.x = x||0; 
     this.y = y||0;
 	this.isShow = true;
 	
@@ -816,9 +785,9 @@ com.class.Bg = function (img, x, y){
 	}
 }
 com.class.Pane = function (img, x, y){
-	this.x = x||0;
+	this.x = x||0; 
     this.y = y||0;
-	this.newX = x||0;
+	this.newX = x||0; 
     this.newY = y||0;
 	this.isShow = true;
 	
@@ -831,7 +800,7 @@ com.class.Pane = function (img, x, y){
 }
 
 com.class.Dot = function (img, x, y){
-	this.x = x||0;
+	this.x = x||0; 
     this.y = y||0;
 	this.isShow = true;
 	this.dots=[]

@@ -1,12 +1,12 @@
-/*! ä¸€å¶å­¤èˆŸ | qq:28701884 | æ¬¢è¿æŒ‡æ•™ */
+
 
 var bill = bill || {};
 
-//åˆå§‹åŒ–
+//³õÊ¼»¯
 bill.init = function (){
 	if (com.store){
 		clearInterval(bill.timer);
-		bill.setBillList(com.arr2Clone(com.initMap)); //å†™å…¥æ£‹è°±åˆ—è¡¨
+		bill.setBillList(com.arr2Clone(com.initMap)); //Ğ´ÈëÆåÆ×ÁĞ±í
 		play.isPlay=false;	
 		com.show();
 	}else {
@@ -15,12 +15,12 @@ bill.init = function (){
 }
 
 
-//æŠŠæ‰€æœ‰æ£‹è°±å†™å…¥æ£‹è°±åˆ—è¡¨
+//°ÑËùÓĞÆåÆ×Ğ´ÈëÆåÆ×ÁĞ±í
 bill.setBillList = function (map){
 	var list=com.get("billList")
 	for (var i=0; i < com.store.length ; i++){
 		var option = document.createElement('option');
-		 option.text='æ£‹è°±'+(i+1);
+		 option.text='ÆåÆ×'+(i+1);
 		 option.value=i;
 		list.add(option , null);
 	}
@@ -32,7 +32,7 @@ bill.setBillList = function (map){
 }
 
 
-//æ£‹è°±åˆ†æ å†™å…¥
+//ÆåÆ×·ÖÎö Ğ´Èë
 bill.setMove = function (bl,inx,map){
 	var map = com.arr2Clone(map);
 	for (var i=0; i<map.length; i++){
@@ -69,7 +69,7 @@ bill.setMove = function (bl,inx,map){
 	return map;
 }
 
-//å†™å…¥æ£‹è°±
+//Ğ´ÈëÆåÆ×
 bill.setBox = function (bl,initMap){
 	var map = com.arr2Clone(initMap);
 	var bl= bl.split("");
