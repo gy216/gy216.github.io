@@ -1,154 +1,150 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8"> <!-- 设置字符编码为UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 响应式布局设置 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>身份验证</title>
     <style>
-        /* 基础样式，设置页面居中显示内容，背景色等 */
         body, html {
             height: 100%;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* 水平居中 */
-            align-items: center; /* 垂直居中 */
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
-            background-color: #333; /* 背景颜色 */
-            color: #fff; /* 文字颜色 */
-            font-family: 'Arial', sans-serif; /* 字体 */
+            background-color: #333;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
         }
 
-        /* 容器样式，用于包裹主要内容和广告内容 */
         .container {
             width: 100%;
-            max-width: 800px; /* 最大宽度限制 */
+            max-width: 800px;
             display: flex;
-            flex-direction: column; /* 子元素垂直排列 */
-            align-items: center; /* 水平居中子元素 */
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* 内容区域样式 */
         .content {
-            flex: 1; /* 内容区域占据剩余空间 */
-            text-align: center; /* 文本居中 */
+            flex: 1;
+            text-align: center;
         }
 
-        /* 加载框样式 */
         .loader {
             width: 100%;
-            max-width: 400px; /* 加载框最大宽度 */
-            height: 20px; /* 高度 */
-            margin-bottom: 40px; /* 与下方内容的间距 */
-            background-color: #555; /* 背景颜色 */
-            border: 1px solid #777; /* 边框 */
+            max-width: 400px;
+            height: 20px;
+            margin-bottom: 40px;
+            background-color: #555;
+            border: 1px solid #777;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease-in;
         }
 
-        /* 加载框动画关键帧 */
         @keyframes load {
-            from { width: 0; } /* 动画开始时加载条宽度为0 */
-            to { width: 100%; } /* 动画结束时加载条宽度为100% */
+            from { width: 0; }
+            to { width: 100%; }
         }
 
-        /* 加载框动画前的样式 */
         .loader::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
             height: 100%;
-            background-color: #FFA500; /* 动画颜色 */
+            background-color: #FFA500;
             width: 0;
             border-radius: 2px;
-            animation: load 5s linear infinite; /* 应用动画 */
+            animation: load 5s linear infinite;
         }
 
-        /* 消息和小型打印文本样式 */
         .message, .smallprint {
-            margin-top: 10px; /* 与上方内容的间距 */
+            margin-top: 10px;
+            animation: fadeIn 1s ease-in;
         }
 
-        /* 小型打印文本样式 */
         .smallprint {
-            font-size: 0.8em; /* 字体大小 */
+            font-size: 0.8em;
         }
 
-        /* 成功消息样式 */
         .success-message {
-            display: none; /* 默认不显示 */
-            font-size: 1.2em; /* 字体大小 */
-            margin-top: 20px; /* 与上方内容的间距 */
+            display: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in;
         }
 
-        /* 广告容器样式 */
         .ad-container {
-            border: 2px solid #FFA500; /* 边框 */
-            padding: 20px; /* 内边距 */
-            margin-top: 30px; /* 与上方内容的间距 */
+            border: 2px solid #FFA500;
+            padding: 20px;
+            margin-top: 30px;
             width: 100%;
-            max-width: 400px; /* 最大宽度限制 */
-            background-color: rgba(255, 255, 255, 0.1); /* 背景颜色 */
-            text-align: center; /* 文本居中 */
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: slideIn 1s ease-in;
         }
 
-        /* 广告链接样式 */
         .ad-container a {
-            color: #FFA500; /* 文字颜色 */
-            text-decoration: none; /* 无下划线 */
+            color: #FFA500;
+            text-decoration: none;
         }
 
-        /* 广告链接悬停样式 */
         .ad-container a:hover {
-            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="content">
-            <!-- 加载框 -->
             <div class="loader"></div>
-            <!-- 身份验证消息 -->
             <div class="message">
                 <p>https://gy216.github.io/ 需要验证你的身份</p>
                 <p class="smallprint">这是什么？<br>为了保障您的账户安全，我们需要验证您的身份。</p>
                 <p class="smallprint">你们怎么验证<br>果园会收集一些鼠标轨迹、网络信息、浏览器信息等等，依靠后端的神经网络判断是机器还是人，绝大多数验证会一键通过，无需像传统验证码（ Geetest ）一样。</p>
                 <br>
-         <p class="smallprint">我的信息安全吗<br>当你验证完成后，我们只会把果园会收集一些鼠标轨迹、网络信息、浏览器信息等等的数据保留3天（人话：果园对你的sb数据不感兴趣，3天后删）</p>
+                <p class="smallprint">我的信息安全吗<br>当你验证完成后，我们只会把果园会收集一些鼠标轨迹、网络信息、浏览器信息等等的数据保留3天（人话：果园对你的sb数据不感兴趣，3天后删）</p>
             </div>
-            <!-- 成功消息，验证成功后显示 -->
             <div class="success-message">验证成功，正在跳转...</div>
         </div>
-        <!-- 广告区域1 -->
         <div class="ad-container">
             <div class="ad-title">广告：果园工作室的副站开放了！</div>
             <p>欢迎访问我们的副站，了解更多精彩内容！</p>
             <a href="https://gy-gzw.github.io" class="ad-link" target="_blank">立即访问</a>
         </div>
-         <!-- 广告区域2 -->
         <div class="ad-container">
             <div class="ad-title">广告：南翔的OS现已发布</div>
             <p>欢迎访问他的作品，点个赞吧</p>
             <a href="https://www.ccw.site/detail/66b0ac691387de7a013e3a52?accessKey=c808b0&inviteCode=XV6qBlOpQuFl2phM" class="ad-link" target="_blank">立即访问</a>
-       </div>     
+        </div>
         <div class="ad-container">
             <div class="ad-title">通知：果园的PYPI镜像已迁移到https://gy216.github.io/mirror</div>
             <p>PYPI的URL发生修改</p>
-
+        </div>
     </div>
 
     <script>
-        // 5秒后隐藏加载框，显示成功消息
         setTimeout(function() {
             const loader = document.querySelector('.loader');
             const successMessage = document.querySelector('.success-message');
 
-            loader.style.opacity = '0'; // 淡出加载框
-            successMessage.style.display = 'block'; // 显示成功消息
+            loader.style.opacity = '0';
+            successMessage.style.display = 'block';
+            successMessage.style.animation = 'fadeIn 1s ease-in';
 
-            // 1秒后跳转到主页
             setTimeout(function() {
                 window.location.href = 'https://gy216.github.io/home';
             }, 1000);
