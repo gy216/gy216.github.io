@@ -57,7 +57,7 @@
             background-color: #FFA500;
             width: 0;
             border-radius: 2px;
-            animation: load 5s linear infinite;
+            animation: load 5s linear forwards;
         }
 
         .message, .smallprint {
@@ -141,7 +141,7 @@
             const loader = document.querySelector('.loader');
             const successMessage = document.querySelector('.success-message');
 
-            loader.style.opacity = '0';
+            loader.style.display = 'none';
             successMessage.style.display = 'block';
             successMessage.style.animation = 'fadeIn 1s ease-in';
 
