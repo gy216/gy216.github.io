@@ -13,9 +13,11 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background-color: #333;
+            background: linear-gradient(135deg, #333, #555);
             color: #fff;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 16px; /* 设置基础字体大小 */
+            line-height: 1.5; /* 设置行高 */
         }
 
         .container {
@@ -25,6 +27,11 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            overflow-y: auto; /* 添加滚动条 */
+            max-height: 90vh; /* 设置最大高度 */
         }
 
         .content {
@@ -36,18 +43,18 @@
         .loader {
             width: 100%;
             max-width: 400px;
-            height: 20px;
-            margin-bottom: 40px;
-            background-color: #555;
-            border: 1px solid #777;
+            height: 10px;
+            margin: 20px auto; /* 居中显示 */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
             position: relative;
             overflow: hidden;
             animation: fadeIn 1s ease-in;
         }
 
         @keyframes load {
-            from { width: 0; }
-            to { width: 100%; }
+            0% { width: 0; }
+            100% { width: 100%; }
         }
 
         .loader::before {
@@ -56,19 +63,25 @@
             left: 0;
             top: 0;
             height: 100%;
-            background-color: #FFA500;
-            width: 0;
-            border-radius: 2px;
-            animation: load 5s linear forwards;
+            background: linear-gradient(90deg, #FFA500, #FFD700);
+            border-radius: 5px;
+            animation: load 5s linear forwards, pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         .message, .smallprint {
-            margin-top: 10px;
+            margin: 10px 0;
             animation: fadeIn 1s ease-in;
         }
 
         .smallprint {
-            font-size: 0.8em;
+            font-size: 0.9em;
+            color: #ccc;
         }
 
         .success-message {
@@ -84,9 +97,10 @@
             margin-top: 30px;
             width: 100%;
             max-width: 400px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             text-align: center;
-            animation: slideIn 1s ease-in;
+            border-radius: 10px;
+            animation: breathe 2s infinite;
         }
 
         .ad-container a {
@@ -103,9 +117,10 @@
             to { opacity: 1; }
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 600px) {
@@ -129,19 +144,19 @@
         <div class="content">
             <div class="loader"></div>
             <div class="message">
-                <p>https://gy216.github.io/ 需要验证你的身份</p>
+                <p>https://gy216.github.io/ 需要验证您的身份</p>
                 <p class="smallprint">这是什么？<br>为了保障您的账户安全，我们需要验证您的身份。</p>
-                <p class="smallprint">你们怎么验证<br>果园会收集一些鼠标轨迹、网络信息、浏览器信息等等，依靠后端的神经网络判断是机器还是人，绝大多数验证会一键通过，无需像传统验证码（ Geetest ）一样。</p>
+                <p class="smallprint">我们如何验证？<br>果园会收集一些鼠标轨迹、网络信息、浏览器信息等数据，依靠后端的神经网络判断是机器还是人。绝大多数验证会一键通过，无需像传统验证码（Geetest）一样繁琐。</p>
                 <br>
-                <p class="smallprint">我的信息安全吗<br>当你验证完成后，我们只会把果园会收集一些鼠标轨迹、网络信息、浏览器信息等等的数据保留3天（人话：果园对你的sb数据不感兴趣，3天后删）</p>
+                <p class="smallprint">我的信息安全吗？<br>当您验证完成后，我们只会将收集的数据保留3天。换句话说，果园对您的数据不感兴趣，3天后会自动删除。</p>
             </div>
             <div class="success-message">验证成功，正在跳转...</div>
         </div>
         <div class="ad-container">
             <div class="ad-title">公告</div>
             <p>果园更新了robot.txt</p>
-            <p>目前工作室官网只允许这些引擎访问</p>
-            <p>百度搜索引擎爬虫（Baiduspider，Bing搜索引擎爬虫（bingbot），360搜索引擎爬虫（360Spider），搜狗搜索引擎爬虫（Sogou web spider），Python爬虫，Java爬虫，C和C++爬虫，汇编爬虫，Scratch爬虫，谷歌搜索引擎爬虫（Googlebot）</p>
+            <p>目前工作室官网只允许以下搜索引擎爬虫访问：</p>
+            <p>百度搜索引擎爬虫（Baiduspider），Bing搜索引擎爬虫（bingbot），360搜索引擎爬虫（360Spider），搜狗搜索引擎爬虫（Sogou web spider），Python爬虫，Java爬虫，C和C++爬虫，汇编爬虫，Scratch爬虫，谷歌搜索引擎爬虫（Googlebot）</p>
         </div>
         <div class="ad-container">
             <div class="ad-title">广告：果园工作室的副站开放了！</div>
@@ -155,7 +170,7 @@
         </div>
         <div class="ad-container">
             <div class="ad-title">通知：果园的PYPI镜像已迁移到https://gy216.github.io/mirror</div>
-            <p>PYPI的URL发生修改</p>
+            <p>PYPI的URL已修改</p>
         </div>
     </div>
 
