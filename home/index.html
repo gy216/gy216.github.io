@@ -1,21 +1,20 @@
-<!DOCTYPE html>
-<!-- 网站用5种语言写注释 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ZH: 响应式布局设置 / US: Responsive layout setting / JP: レスポンシブレイアウト設定 / FR: Paramètre de mise en page réactive / RU: Настройка отзывчивого макета -->
+
+</html><!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="/favicon.ico" /> <!-- ZH: 网站图标 / US: Website icon / JP: サイトのアイコン / FR: Icône du site / RU: Значок сайта -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ZH: 响应式布局设置 / US: Responsive layout setting / JP: レスポンシブレイアウト設定 / FR: Paramètre de mise en page réactive / RU: Настройка отзывчивого макета -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>果园编程官方网站，用心每一作，发展每一天，一起加油！（网站有彩蛋，我的灵啊~）</title>
     <style>
-        /* ZH: 基础样式 / US: Basic styles / JP: 基本スタイル / FR: Styles de base / RU: Основные стили */
+        /* 基础样式 */
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            background-image: url('https://bing.img.run/rand_uhd.php'); /* ZH: 背景图片 / US: Background image / JP: 背景画像 / FR: Image de fond / RU: Фоновое изображение */
+            background-image: url('https://bing.img.run/rand_uhd.php');
             background-size: cover;
             background-attachment: fixed;
             animation: fadeIn 1s ease-out;
@@ -32,7 +31,7 @@
             text-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
         }
 
-        /* ZH: 动画 / US: Animation / JP: アニメーション / FR: Animation / RU: Анимация */
+        /* 动画 */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -44,7 +43,7 @@
             100% { transform: scale(1); }
         }
 
-        /* ZH: 按钮样式 / US: Button styles / JP: ボタンスタイル / FR: Styles des boutons / RU: Стили кнопок */
+        /* 按钮样式 */
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -70,7 +69,7 @@
             transition: transform 0.1s;
         }
 
-        /* ZH: 头部样式 / US: Header styles / JP: ヘッダースタイル / FR: Styles de l'en-tête / RU: Стили заголовка */
+        /* 头部样式 */
         header {
             text-align: center;
             padding: 20px 0;
@@ -84,7 +83,7 @@
             animation: pulse 2s infinite;
         }
 
-        /* ZH: 团队成员样式 / US: Team members styles / JP: チームメンバースタイル / FR: Styles des membres de l'équipe / RU: Стили участников команды */
+        /* 团队成员样式 */
         .team-members {
             display: flex;
             flex-wrap: wrap;
@@ -111,14 +110,14 @@
             transform: translateY(-10px);
         }
 
-        /* ZH: 响应式设计 / US: Responsive design / JP: レスポンシブデザイン / FR: Conception réactive / RU: Отзывчивый дизайн */
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .member {
                 flex-basis: 100%;
             }
         }
 
-        /* ZH: 页脚样式 / US: Footer styles / JP: フッタースタイル / FR: Styles du pied de page / RU: Стили подвала */
+        /* 页脚样式 */
         .footer {
             background-color: #333;
             color: white;
@@ -131,7 +130,7 @@
             margin: 8px 0;
         }
 
-        /* ZH: 语言选择样式 / US: Language selection styles / JP: 言語選択スタイル / FR: Styles de sélection de langue / RU: Стили выбора языка */
+        /* 语言选择样式 */
         .language-selector {
             text-align: right;
             padding: 10px;
@@ -148,7 +147,7 @@
 
     <header>
         <div class="logo">
-            <img src="https://gy216.github.io/logo.png" alt="无法获取果园编程的logo"> <!-- ZH: 无法获取果园编程的logo / US: Unable to fetch the logo of Guoyuan Programming / JP: 果園プログラミングのロゴを取得できません / FR: Impossible de récupérer le logo de Guoyuan Programming / RU: Не удалось получить логотип Guoyuan Programming -->
+            <img src="https://gy216.github.io/logo.png" alt="无法获取果园编程的logo">
         </div>
         <h1 id="title">果园编程（原果园工作室）</h1>
         <p id="description">果园编程是一家专注于编程的工作室，目前在CCW（共创世界）发布作品。</p>
@@ -202,26 +201,30 @@
             window.onload = fetchIP;
         </script>
         <h1></h1>
-        <div id="cloudTime"></div>
-        <script>
-            var timeElement = document.getElementById('cloudTime');
+   <script>
+        function displayTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            
+            // 格式化时间，确保分钟和秒钟始终是两位数
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+            
+            var timeString = hours + ":" + minutes + ":" + seconds;
+            document.getElementById("clock").innerText = timeString;
+        }
 
-            function updateTime() {
-                var now = new Date();
-                var hours = now.getHours();
-                var minutes = now.getMinutes();
-                var seconds = now.getSeconds();
-                
-                hours = hours < 10 ? '0' + hours : hours;
-                minutes = minutes < 10 ? '0' + minutes : minutes;
-                seconds = seconds < 10 ? '0' + seconds : seconds;
-                
-                timeElement.innerHTML ="当前的果园服务器时间:"+ hours + ':' + minutes + ':' + seconds;
-            }
-
-            setInterval(updateTime, 1000);
-            updateTime();
-        </script>
+        // 页面加载完成后立即显示时间
+        window.onload = function() {
+            displayTime();
+            // 每秒钟更新一次时间
+            setInterval(displayTime, 1000);
+        };
+    </script>
+    <h1></h1>
+    当前时间:<div id="clock"></div>
     </header>
     <section class="team-members">
         <h2 id="team-members-title">团队成员</h2>
@@ -311,7 +314,7 @@
     </section>
     <footer class="footer">
         <div>
-            <p id="footer-text">本网站的背景图片为Bing每日一图，使用Hello图床加载LOGO 站长：果园，测试：GZW 更新日期：2024年8月22日20点02分 由 果园 最后一次编写保存</p>
+            <p id="footer-text">本网站的背景图片为Bing每日一图，使用Hello图床加载LOGO 站长：果园，测试：GZW 更新日期：2024年8月22日22点25分 由 果园 最后一次编写保存</p>
             <p>果园的副站：https://gy-gzw.github.io，可能与主站更新不同步，副站管理者：GZW</p>
             <p>萌ICP备<a href="https://icp.gov.moe/?keyword=20240169" target="_blank">20240169</a>号 果园GICP备20240601号 果园 QQ号：386498317 果园编程QQ群：749914521</p>
         </div>
