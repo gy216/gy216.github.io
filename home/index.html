@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -13,14 +13,16 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            background-image: url('https://gy216.github.io/api/bingimg/1366x768_302.php');
+            background-image: url('https://bing.img.run/rand_uhd.php');
             background-size: cover;
             background-attachment: fixed;
             animation: fadeIn 1s ease-out;
         }
-
+        p,h1{
+            color: #ffffff;
+        }
         a {
-            color: #007bff;
+            color: #ff7f00;
             transition: color 0.3s, text-shadow 0.3s;
         }
 
@@ -69,8 +71,8 @@
             display: inline-block;
             padding: 10px 20px;
             margin: 5px 0;
-            background: #007bff;
-            color: white;
+            background: #ff7f00;
+            color: #000000;
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
@@ -80,21 +82,20 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .button:hover {
-            cursor: pointer;
-            transform: scale(1.05);
-        }
+            .button:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+            }
 
-        .button:active {
-            transform: scale(0.95);
-            transition: transform 0.1s;
-        }
-
+            .button:active {
+                transform: scale(0.95);
+                transition: transform 0.1s;
+            }
         /* 头部样式 */
         header {
             text-align: center;
             padding: 20px 0;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgb(0,0,0,0);
             animation: fadeIn 1s ease-out;
         }
 
@@ -111,7 +112,7 @@
             justify-content: center;
             gap: 20px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
+            background-color: rgb(0,0,0,0);
             animation: fadeIn 1s ease-out;
         }
 
@@ -126,7 +127,9 @@
             text-align: center;
             transition: transform 0.3s;
         }
-
+        .member p,.member h3 {
+            color: #000000;
+        }
         .member:hover {
             transform: translateY(-10px);
         }
@@ -162,7 +165,7 @@
 
         /* 页脚样式 */
         .footer {
-            background-color: #333;
+            background-color: #000000;
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -217,7 +220,8 @@
         <p> 每日好句API：<script src="https://api.gumengya.com/Api/YiYan?format=js" type="text/javascript"></script></p>
         <p> 果园好句API：<script src="https://api.gumengya.com/Api/WaSentence?format=js" type="text/javascript"></script></p>
         <script language="javascript">
-            var a=parseInt(Math.random()*500);
+            var a = parseInt(Math.random() * 500);
+            document.write("<style>body { color: white; }</style>");
             document.write("果园的服务器可访问性：可以访问，您当前和服务器的延迟：",a +"ms");
         </script>
         <p>你的IP为：<span id="ipDisplay">正在获取...（果园API）</span></p>
