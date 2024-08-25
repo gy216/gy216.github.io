@@ -2,11 +2,11 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>果园编程丨永远相信美好的事情即将发生丨果园编程官网丨果园的新网站</title>
+    <!-- CSS区域 -->
     <style>
-        /* 基础样式 */
         body, html {
             margin: 0;
             padding: 0;
@@ -18,55 +18,45 @@
             background-attachment: fixed;
             animation: fadeIn 1s ease-out;
         }
-        p,h1{
-            color: #FFFFFF;		/* 主颜色 */
+        p, h1 {
+            color: #FFFFFF;
         }
         a {
-            color: #FF0000;    /* 超链接颜色 */
+            color: #FF0000;
             transition: color 0.3s, text-shadow 0.3s;
         }
-
         a:hover {
             text-decoration: none;
-            color: #FFFFFF;		/* 按钮点击颜色 */
+            color: #FFFFFF;
             text-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
         }
-
-        /* 动画 */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
         @keyframes slideInFromLeft {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(0); }
         }
-
         @keyframes slideInFromRight {
             0% { transform: translateX(100%); }
             100% { transform: translateX(0); }
         }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-30px); }
             60% { transform: translateY(-15px); }
         }
-
         @keyframes cardFlip {
             0% { transform: perspective(600px) rotateY(0); }
             50% { transform: perspective(600px) rotateY(180deg); }
             100% { transform: perspective(600px) rotateY(0); }
         }
-
-        /* 按钮样式 */
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -81,31 +71,25 @@
             font-size: 16px;
             animation: fadeIn 1s ease-out;
         }
-
-            .button:hover {
-                cursor: pointer;
-                transform: scale(1.05);
-            }
-
-            .button:active {
-                transform: scale(0.95);
-                transition: transform 0.1s;
-            }
-        /* 头部样式 */
+        .button:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+        .button:active {
+            transform: scale(0.95);
+            transition: transform 0.1s;
+        }
         header {
             text-align: center;
             padding: 20px 0;
             background-color: rgb(0,0,0,0);
             animation: fadeIn 1s ease-out;
         }
-
         .logo img {
             width: 150px;
             height: auto;
             animation: pulse 2s infinite;
         }
-
-        /* 团队成员样式 */
         .team-members {
             display: flex;
             flex-wrap: wrap;
@@ -115,7 +99,6 @@
             background-color: rgb(0,0,0,0);
             animation: fadeIn 1s ease-out;
         }
-
         .member {
             flex: 0 1 240px;
             border-radius: 10px;
@@ -127,14 +110,12 @@
             text-align: center;
             transition: transform 0.3s;
         }
-        .member p,.member h3 {
+        .member p, .member h3 {
             color: #000000;
         }
         .member:hover {
             transform: translateY(-10px);
         }
-
-        /* 成员按钮样式 */
         .member .button {
             display: inline-block;
             padding: 10px 20px;
@@ -151,19 +132,14 @@
             transform-style: preserve-3d;
             perspective: 600px;
         }
-
         .member .button:hover {
             animation: cardFlip 0.5s ease-in-out forwards;
         }
-
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .member {
                 flex-basis: 100%;
             }
         }
-
-        /* 页脚样式 */
         .footer {
             background-color: #000000;
             color: white;
@@ -171,41 +147,90 @@
             padding: 20px 0;
             animation: slideInFromRight 1s ease-out;
         }
-
         .footer p {
             margin: 8px 0;
         }
-
-        /* 语言选择样式 */
         .language-selector {
             text-align: right;
             padding: 10px;
         }
-
         .language-selector select {
             padding: 5px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+        .message {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            min-width: 300px;
+            background-color: #edf2fc;
+            border: 1px solid #edf2fc;
+            padding: 16px 17px;
+            top: 25px;
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 1000;
+            animation: fadeIn 1s ease-out;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        .message.hidden {
+            opacity: 0;
+        }
+        .message > .message-close-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #c0c0c4;
+            font-size: 17px;
+            cursor: pointer;
+        }
+        .message > .message-close-btn:hover, .message > .message-close-btn:active {
+            color: #909399;
+        }
+        .message p {
+            line-height: 1;
+            font-size: 14px;
+            color: #909399;
+        }
+        .message.message-center {
+            justify-content: center;
+        }
     </style>
 </head>
-
-
-
-
-	<script>
-			//警告框
-			window.alert("果园的网站最近正在进行大更新，可能会无法访问，建议大家去guoyuansh.github.io，按确定继续浏览本网页"); //window.alert()方法可以不带window前缀。
-			//alert("成功弹出警告框！")
-		</script>
-
-
-
-
-
-
-
 <body>
+    <!-- JS区域 -->
+    <script>
+        function showNotification() {
+            var notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(function() {
+                closeNotification();
+            }, 4000);
+        }
+
+        function closeNotification() {
+            var notification = document.getElementById('notification');
+            notification.classList.add('hidden');
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 500); // 与CSS中的transition时间一致
+        }
+
+        window.onload = function() {
+            showNotification();
+        };
+    </script>
+
+    <!-- HTML区域 -->
+    <div class="message message-center" id="notification">
+        <p>果园的网站最近正在进行大更新</p>
+        <span class="message-close-btn" onclick="closeNotification()">X</span>
+    </div>
 
     <header>
         <div class="logo">
@@ -215,7 +240,7 @@
         <p id="description">果园编程是一家专注于编程的工作室，目前在CCW（共创世界）发布作品。</p>
         <p id="slogan">我们的口号是： 用心每一作，发展每一天。</p>
         <p id="notice">注意，果园的主页已迁移：https://gy216/github.io/home(就是你现在访问的网页，现在访问需通过人机验证）</p>
-        <p>果园编程主页，今已增文言文之支持，诚邀诸君共赏古韵，体验新风。（果园编程主页现已支持文言文，欢迎大家体验）<a href="https://gy216.github.io/home/wyw" target="_blank">点这里</a>
+        <p>果园编程主页，今已增文言文之支持，诚邀诸君共赏古韵，体验新风。（果园编程主页现已支持文言文，欢迎大家体验）<a href="https://gy216.github.io/home/wyw" target="_blank">点这里</a></p>
         <br>
         <a href="javascript:history.back(-1);" class="button">返回上一页</a>
         <a href="/about" class="button">关于我们</a>
@@ -238,7 +263,7 @@
         <script language="javascript">
             var a = parseInt(Math.random() * 500);
             document.write("<style>body { color: white; }</style>");
-            document.write("果园的服务器可访问性：可以访问，您当前和服务器的延迟：",a +"ms");
+            document.write("果园的服务器可访问性：可以访问，您当前和服务器的延迟：", a + "ms");
         </script>
         <p>你的IP为：<span id="ipDisplay">正在获取...（果园API）</span></p>
         <script>
@@ -255,39 +280,31 @@
                     console.error('获取IP地址时发生错误：', error);
                 }
             }
-
             function displayIP(ip) {
                 const ipDisplayElement = document.getElementById('ipDisplay');
                 ipDisplayElement.textContent = ip + ", 你与果园官网的联通性正常, 请继续访问网站";
                 console.log('IP成功获取，IP是：' + ip + '你与果园官网的联通性正常');
             }
-
             window.onload = fetchIP;
         </script>
         <h1></h1>
-   <script>
-        function displayTime() {
-            var currentTime = new Date();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var seconds = currentTime.getSeconds();
-            
-            // 格式化时间，确保分钟和秒钟始终是两位数
-            minutes = (minutes < 10 ? "0" : "") + minutes;
-            seconds = (seconds < 10 ? "0" : "") + seconds;
-            
-            var timeString = hours + ":" + minutes + ":" + seconds;
-            document.getElementById("clock").innerText = timeString;
-        }
-
-        // 页面加载完成后立即显示时间
-        window.onload = function() {
-            displayTime();
-            // 每秒钟更新一次时间
-            setInterval(displayTime, 1000);
-        };
-    </script>
-    <div id="clock" style="animation: bounce 1s infinite;"></div>
+        <script>
+            function displayTime() {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+                minutes = (minutes < 10 ? "0" : "") + minutes;
+                seconds = (seconds < 10 ? "0" : "") + seconds;
+                var timeString = hours + ":" + minutes + ":" + seconds;
+                document.getElementById("clock").innerText = timeString;
+            }
+            window.onload = function() {
+                displayTime();
+                setInterval(displayTime, 1000);
+            };
+        </script>
+        <div id="clock" style="animation: bounce 1s infinite;"></div>
     </header>
     <section class="team-members">
         <h2 id="team-members-title">团队成员</h2>
