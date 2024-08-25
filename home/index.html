@@ -5,193 +5,188 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>果园编程丨永远相信美好的事情即将发生丨果园编程官网丨果园的新网站</title>
-<style>
-    /* 基础样式 */
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background-image: url('https://api.7585.net.cn/bing/api.php');
-        background-size: cover;
-        background-attachment: fixed;
-        animation: fadeIn 1s ease-out;
-    }
-    p, h1 {
-        color: currentColor; /* 使用 currentColor 使颜色继承自父元素 */
-    }
-    a {
-        color: #FF0000;    /* 超链接颜色 */
-        transition: color 0.3s, text-shadow 0.3s;
-    }
-
-    a:hover {
-        text-decoration: none;
-        color: #FFFFFF;		/* 按钮点击颜色 */
-        text-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
-    }
-
-    /* 动画 */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-
-    @keyframes slideInFromLeft {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(0); }
-    }
-
-    @keyframes slideInFromRight {
-        0% { transform: translateX(100%); }
-        100% { transform: translateX(0); }
-    }
-
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-30px); }
-        60% { transform: translateY(-15px); }
-    }
-
-    @keyframes cardFlip {
-        0% { transform: perspective(600px) rotateY(0); }
-        50% { transform: perspective(600px) rotateY(180deg); }
-        100% { transform: perspective(600px) rotateY(0); }
-    }
-
-    /* 按钮样式 */
-    .button {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 5px 0;
-        background: #006FA4;
-        color: #000000;
-        border: none;
-        border-radius: 5px;
-        transition: transform 0.3s;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        animation: fadeIn 1s ease-out;
-    }
-
-        .button:hover {
-            cursor: pointer;
-            transform: scale(1.05);
+    <style>
+        /* 基础样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-image: url('https://api.7585.net.cn/bing/api.php');
+            background-size: cover;
+            background-attachment: fixed;
+            animation: fadeIn 1s ease-out;
+        }
+        p,h1{
+            color: #FFFFFF;		/* 主颜色 */
+        }
+        a {
+            color: #FF0000;    /* 超链接颜色 */
+            transition: color 0.3s, text-shadow 0.3s;
         }
 
-        .button:active {
-            transform: scale(0.95);
-            transition: transform 0.1s;
+        a:hover {
+            text-decoration: none;
+            color: #FFFFFF;		/* 按钮点击颜色 */
+            text-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
         }
-    /* 头部样式 */
-    header {
-        text-align: center;
-        padding: 20px 0;
-        background-color: rgb(0,0,0,0);
-        animation: fadeIn 1s ease-out;
-    }
 
-    .logo img {
-        width: 150px;
-        height: auto;
-        animation: pulse 2s infinite;
-    }
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    /* 团队成员样式 */
-    .team-members {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        padding: 40px;
-        background-color: rgb(0,0,0,0);
-        animation: fadeIn 1s ease-out;
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-    .member {
-        flex: 0 1 240px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 10px;
-        background: white;
-        animation: slideInFromLeft 1s ease-out;
-        text-align: center;
-        transition: transform 0.3s;
-    }
-    .member p, .member h3 {
-        color: currentColor; /* 使用 currentColor 使颜色继承自父元素 */
-    }
-    .member:hover {
-        transform: translateY(-10px);
-    }
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
 
-    /* 成员按钮样式 */
-    .member .button {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 5px 0;
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        transition: transform 0.3s;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        animation: fadeIn 1s ease-out;
-        transform-style: preserve-3d;
-        perspective: 600px;
-    }
+        @keyframes slideInFromRight {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(0); }
+        }
 
-    .member .button:hover {
-        animation: cardFlip 0.5s ease-in-out forwards;
-    }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
 
-    /* 响应式设计 */
-    @media (max-width: 768px) {
+        @keyframes cardFlip {
+            0% { transform: perspective(600px) rotateY(0); }
+            50% { transform: perspective(600px) rotateY(180deg); }
+            100% { transform: perspective(600px) rotateY(0); }
+        }
+
+        /* 按钮样式 */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px 0;
+            background: #006FA4;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            animation: fadeIn 1s ease-out;
+        }
+
+            .button:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+            }
+
+            .button:active {
+                transform: scale(0.95);
+                transition: transform 0.1s;
+            }
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgb(0,0,0,0);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+            animation: pulse 2s infinite;
+        }
+
+        /* 团队成员样式 */
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+            background-color: rgb(0,0,0,0);
+            animation: fadeIn 1s ease-out;
+        }
+
         .member {
-            flex-basis: 100%;
+            flex: 0 1 240px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            background: white;
+            animation: slideInFromLeft 1s ease-out;
+            text-align: center;
+            transition: transform 0.3s;
         }
-    }
+        .member p,.member h3 {
+            color: #000000;
+        }
+        .member:hover {
+            transform: translateY(-10px);
+        }
 
-    /* 页脚样式 */
-    .footer {
-        background-color: #000000;
-        color: white;
-        text-align: center;
-        padding: 20px 0;
-        animation: slideInFromRight 1s ease-out;
-    }
+        /* 成员按钮样式 */
+        .member .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            animation: fadeIn 1s ease-out;
+            transform-style: preserve-3d;
+            perspective: 600px;
+        }
 
-    .footer p {
-        margin: 8px 0;
-    }
+        .member .button:hover {
+            animation: cardFlip 0.5s ease-in-out forwards;
+        }
 
-    /* 语言选择样式 */
-    .language-selector {
-        text-align: right;
-        padding: 10px;
-    }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .member {
+                flex-basis: 100%;
+            }
+        }
 
-    .language-selector select {
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
+        /* 页脚样式 */
+        .footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            animation: slideInFromRight 1s ease-out;
+        }
 
-    /* 自动切换颜色的滤镜 */
-    .text-auto-color {
-        filter: grayscale(1) contrast(999) invert(1);
-    }
+        .footer p {
+            margin: 8px 0;
+        }
+
+        /* 语言选择样式 */
+        .language-selector {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .language-selector select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 
