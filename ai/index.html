@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>果园AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 使用min-height确保内容至少占据视口高度 */
+        }
+
+        #chat-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border-radius: 5px;
+            position: relative;
+            animation: fadeInContainer 1s ease-in-out;
+            overflow: hidden;
+        }
+
+        #input-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* 间隔 */
+        }
+
+        #input-box {
+            width: 100%; /* 与父容器同宽 */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        #input-box:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px #007BFF;
+        }
+
+        #send-button {
+            width: 100%; /* 与输入框同宽 */
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        #send-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #send-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        }
+
+        #chat-log {
+            flex-grow: 1;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-y: auto;
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #888 transparent; /* Firefox */
+            transition: all 0.3s ease-in-out;
+        }
+
+        #chat-log::-webkit-scrollbar { /* Webkit 浏览器滚动条 */
+            width: 10px;
+        }
+
+        #chat-log::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        #chat-log::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 5px;
+        }
+
+        #chat-log p {
+            margin-bottom: 10px;
+            animation: fadeInText 0.5s ease-in-out;
+            word-wrap: break-word; /* 自动换行 */
+            white-space: pre-wrap; /* 保留换行符并自动换行 */
+        }
+
+        footer {
+            margin-top: auto; /* 使用margin-top: auto让页脚顶到底部 */
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInContainer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="input-area">
+            <textarea id="input-box" placeholder="请输入您的问题..."></textarea>
+            <button id="send-button">发送给AI</button>
+        </div>
+        <div id="chat-log"></div>
+    </div>
+    <footer>
+        服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。<br>
+        AI不能记住你的对话！！！！！
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            const inputBox = document.getElementById('input-box');
+            const chatLog = document.getElementById('chat-log');
+
+            if (inputBox.value.trim() === '') return;
+
+            // 显示用户输入的问题
+            chatLog.innerHTML += `<p style="animation-delay: 0.1s;"><strong>您:</strong> ${inputBox.value}</p>`;
+
+            // 生成随机的userid
+            const userid = generateRandomNumber();
+
+            // 构造请求URL
+            const requestUrl = `https://api.sizhi.com/chat?spoken=${encodeURIComponent(inputBox.value)}&stream=false&userid=${userid}`;
+
+            // 设置超时时间
+            const timeoutId = setTimeout(() => {
+                chatLog.innerHTML += '<p style="animation-delay: 0.3s;"><strong>提示:</strong> AI正在生成，请耐心等待...</p>';
+            }, 3000); // 假设超时时间为3秒
+
+            // 发送请求到API
+            fetch(requestUrl)
+                .then(response => response.json())
+                .then(data => {
+                    clearTimeout(timeoutId); // 取消超时计时器
+
+                    if (data.status === 0 && data.data.type === 'text') {
+                        // 显示AI的回答
+                        const markdownText = data.data.info.text;
+                        const htmlText = marked.parse(markdownText);
+                        chatLog.innerHTML += `<p style="animation-delay: 0.3s;"><strong>果园AI：</strong>${htmlText}</p>`;
+                    } else {
+                        chatLog.innerHTML += '<p style="animation-delay: 0.3s;"><strong>错误:</strong> 请求失败，请稍后再试。</p>';
+                    }
+                })
+                .catch(error => {
+                    clearTimeout(timeoutId); // 取消超时计时器
+                    chatLog.innerHTML += '<p style="animation-delay: 0.3s;"><strong>错误:</strong> 请求失败，请检查网络连接。</p>';
+                });
+
+            inputBox.value = ''; // 清空输入框
+
+            // 平滑滚动到底部
+            scrollToBottom(chatLog);
+        });
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 1000000); // 生成一个随机数
+        }
+
+        function scrollToBottom(element) {
+            element.scrollTop = element.scrollHeight;
+        }
+    </script>
+</body>
+</html>
