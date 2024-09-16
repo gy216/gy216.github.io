@@ -7,43 +7,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>果园编程工作室群规</title>  
     <style>  
-        body {  
-            font-family: Arial, sans-serif;  
-            background-color: #333; /* 设定背景为黑灰色 */  
-            color: #fff; /* 设定文字颜色为白色 */  
-            margin: 0;  
-            padding: 20px;  
-            line-height: 1.6;  
-        }  
-  
-        h1, h2, h3 {  
-            color: #FFFFFF; /* 设定标题颜色为亮绿色，增加可读性 */  
-            text-align: center;  
-        }  
-  
-        .rule-list, .punishment-list {  
-            list-style-type: none;  
-            padding: 0;  
-        }  
-  
-        .rule-list li, .punishment-list li {  
-            margin-bottom: 10px;  
-            padding-left: 20px;  
-            position: relative;  
-        }  
-  
-        .rule-list li::before, .punishment-list li::before {  
-            content: "•"; /* 使用项目符号 */  
-            color: #FFFFFF; /* 设定项目符号颜色为红色 */  
-            position: absolute;  
-            left: 0;  
-        }  
-  
-        .section-title {  
-            border-bottom: 2px solid #ff0000; /* 设定标题下划线为红色 */  
-            padding-bottom: 5px;  
-            margin-bottom: 20px;  
-        }  
+<style>
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: #4169E1; /* 深海蓝 */
+    text-align: center;
+    transition: color 0.5s ease; /* 平滑过渡效果 */
+}
+
+h1:hover {
+    color: #00BFFF; /* 浅海蓝 */
+}
+
+.rule-list, .punishment-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.rule-list li, .punishment-list li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    animation: fadeIn 1s forwards;
+}
+
+.rule-list li::before, .punishment-list li::before {
+    content: "•";
+    color: #4169E1;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: bounce 0.5s infinite alternate;
+}
+
+.section-title {
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    animation: slideInFromTop 1s forwards;
+}
+
+/* 动画定义 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    from { transform: translateY(-50%) scale(1); }
+    to { transform: translateY(-50%) scale(1.2); }
+}
+
+@keyframes slideInFromTop {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* 按钮样式 */
+button {
+    background-color: #4169E1;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00BFFF;
+}
+
+</style>
+</style>
     </style>  
  
 </head>  
