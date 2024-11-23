@@ -65,13 +65,12 @@
             height: 100%;
             background: linear-gradient(90deg, #FFA500, #FFD700, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000); /* 彩色渐变 */
             border-radius: 5px;
-            animation: load 5s linear forwards, pulse 2s infinite;
+            animation: load 5s linear forwards, fadeIn 1s ease-in;
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .message, .smallprint {
@@ -110,11 +109,6 @@
 
         .ad-container a:hover {
             text-decoration: underline;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         @keyframes breathe {
@@ -169,19 +163,18 @@
         <div class="content">
             <div class="loader"></div>
             <div class="message">
-                <p>https://gy216.github.io/ 需要验证您的身份</p>
-                <p class="smallprint">这是什么？<br>为了保障您的账户安全，我们需要验证您的身份。</p>
-                <p class="smallprint">我们如何验证？<br>果园会收集一些鼠标轨迹、网络信息、浏览器信息等数据，依靠后端的神经网络判断是机器还是人。绝大多数验证会一键通过，无需像传统验证码（Geetest）一样繁琐。</p>
+                <p>果园安全防护已保护本网站，请验证您的身份。</p>
+                <p class="smallprint">这是什么？<br>这是果园的网站安全防护系统，用于防止恶意爬虫和自动化工具访问网站。</p>
+                <p class="smallprint">我要做什么？<br>你只要等待5秒，之后网站会自动跳转。</p>
+                <br>
+                <p class="smallprint">你们怎么验证？<br>我们会在后台对你的数据进行分析，如果发现异常，我们会立即封禁你的IP地址。</p>
                 <br>
                 <p class="smallprint">我的信息安全吗？<br>当您验证完成后，我们只会将收集的数据保留3天。换句话说，果园对您的数据不感兴趣，3天后会自动删除。</p>
+                <p class="smallprint">性能和安全由GuoyuanSoft提供<br>ID:42869771715878737624</p>
+                <p class="smallprint">验证功能由GZW（个人开发者）提供<br>ID:4114mbt2j168n5by106w1</p>
+                <p class="smallprint">AI后端识别由果园云、果园AI提供</p>
             </div>
             <div class="success-message">验证成功，正在跳转...</div>
-        </div>
-        <div class="ad-container">
-            <div class="ad-title">公告</div>
-            <p>果园更新了robot.txt</p>
-            <p>目前工作室官网只允许以下搜索引擎爬虫访问：</p>
-            <p>百度搜索引擎爬虫（Baiduspider），Bing搜索引擎爬虫（bingbot），360搜索引擎爬虫（360Spider），搜狗搜索引擎爬虫（Sogou web spider），Python爬虫，Java爬虫，C和C++爬虫，汇编爬虫，Scratch爬虫，谷歌搜索引擎爬虫（Googlebot）</p>
         </div>
         <div class="ad-container">
             <div class="ad-title">广告：果园工作室的副站开放了！</div>
@@ -189,9 +182,8 @@
             <a href="https://gy-gzw.github.io" class="ad-link" target="_blank">立即访问</a>
         </div>
         <div class="ad-container">
-            <div class="ad-title">广告：南翔的OS现已发布</div>
-            <p>欢迎访问他的作品，点个赞吧</p>
-            <a href="https://www.ccw.site/detail/66b0ac691387de7a013e3a52?accessKey=c808b0&inviteCode=XV6qBlOpQuFl2phM" class="ad-link" target="_blank">立即访问</a>
+            <div class="ad-title">广告：初二一班姓李的，姓袁的，姓方的，姓蒋的，姓柳的</div>
+            <p>你们废了</p>
         </div>
         <div class="ad-container">
             <div class="ad-title">通知：果园的PYPI镜像已迁移到https://gy216.github.io/mirror</div>
@@ -225,7 +217,7 @@
             }
 
             setTimeout(function() {
-                window.location.href = 'https://gy216.github.io/home';
+                window.location.replace('https://gy216.github.io/home');
             }, 1000);
         }, 10000);
     </script>
