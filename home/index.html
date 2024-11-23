@@ -420,13 +420,13 @@
         </div>
     </footer>
 
-    <script>
+     <script>
         let clickCount = 0;
         const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'];
         let resetTimer;
 
         function showNotification(message) {
-            if (!Notification.permission === 'granted') return;
+            if (Notification.permission !== 'granted') return;
             const notification = new Notification('果园编程', {
                 body: message
             });
@@ -472,6 +472,7 @@
 
         // 请求通知权限
         requestNotificationPermission();
+    </script>
     </script>
 </body>
 </html>
