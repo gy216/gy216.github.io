@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>果园AI</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif; /* 更改为更现代的字体 */
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 使用min-height确保内容至少占据视口高度 */
+        }
+
+        #chat-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            border-radius: 5px;
+            position: relative;
+            animation: fadeInContainer 1s ease-in-out;
+            overflow: hidden;
+        }
+
+        #input-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* 间隔 */
+        }
+
+        #input-box {
+            width: 100%; /* 与父容器同宽 */
+            padding: 10px;
+            font-size: 16px;
+            line-height: 1.5; /* 改善行高 */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        #input-box:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px #007BFF;
+        }
+
+        #send-button {
+            width: 100%; /* 与输入框同宽 */
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold; /* 字体加粗 */
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        #send-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #send-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        }
+
+        #clear-button {
+            width: 100%; /* 与输入框同宽 */
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold; /* 字体加粗 */
+            background-color: #ff4d4f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        #clear-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #clear-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        }
+
+        #cancel-button {
+            width: 100%; /* 与输入框同宽 */
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold; /* 字体加粗 */
+            background-color: #ffcc00;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        #cancel-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #cancel-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        }
+
+        #chat-log {
+            flex-grow: 1;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-y: auto; /* 显示滚动条 */
+            max-height: calc(100vh - 200px); /* 计算最大高度，避免滚动 */
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* 如果需要的话，增加内容之间的间隙 */
+        }
+
+        #chat-log p {
+            margin-bottom: 0; /* 移除段落底部的边距 */
+            animation: fadeInText 0.5s ease-in-out;
+            word-wrap: break-word; /* 自动换行 */
+            white-space: pre-wrap; /* 保留换行符并自动换行 */
+            font-size: 16px; /* 统一字体大小 */
+            line-height: 1.6; /* 改善行高 */
+        }
+
+        footer {
+            margin-top: auto; /* 使用margin-top: auto让页脚顶到底部 */
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+            font-size: 14px; /* 减小字体大小 */
+        }
+
+        @keyframes fadeInContainer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        #back-button {
+            width: 100%; /* 与输入框同宽 */
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold; /* 字体加粗 */
+            background-color: #007BFF; /* 使用与发送按钮相同的背景色 */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-top: 10px; /* 添加顶部间距，避免与其他按钮拥挤 */
+        }
+
+        #back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #back-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="input-area">
+            <textarea id="input-box" placeholder="请输入问题..."></textarea>
+            <button id="send-button">发送给AI</button>
+            <button id="clear-button">清空对话记录</button>
+            <button id="cancel-button">停止回答</button>
+            <button id="back-button" onclick="history.back()">返回上一页</button>
+        </div>
+        <div id="chat-log"></div>
+    </div>
+    <footer>
+        服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。				版本：1.0.2（20240920）<br>
+        AI不能记住你的对话！！！！！
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        let abortController = null;
+
+        document.getElementById('send-button').addEventListener('click', function() {
+            const inputBox = document.getElementById('input-box');
+            const chatLog = document.getElementById('chat-log');
+
+            if (inputBox.value.trim() === '') return;
+
+            // 显示用户输入的问题
+            chatLog.innerHTML += `<p style="animation-delay: 0.1s;"><strong>我:</strong> ${inputBox.value}</p>`;
+
+            // 构造请求URL
+            const requestUrl = `https://api.52vmy.cn/api/chat/glm?msg=${encodeURIComponent(inputBox.value)}`;
+
+            // 设置超时时间
+            const timeoutId = setTimeout(() => {
+                chatLog.innerHTML += '<p style="animation-delay: 0.5s;"><strong>果园AI提示:</strong> AI正在生成长文本，等待时间较长，望各位仁兄稍等下……</p>';
+            }, 3000); // 假设超时时间为3秒
+
+            // 创建AbortController实例
+            abortController = new AbortController();
+            const signal = abortController.signal;
+
+            // 发送请求到API
+            fetch(requestUrl, { signal })
+                .then(response => response.json())
+                .then(data => {
+                    clearTimeout(timeoutId); // 取消超时计时器
+
+                    if (data.code === 200 && data.msg === "成功") {
+                        // 显示AI的回答
+                        const answer = data.data.answer;
+                        chatLog.innerHTML += `<p style="animation-delay: 0.7s;"><strong>果园AI4.0：</strong>${answer}</p>`;
+
+                        // 检查用户是否已经开始手动滚动
+                        if (!chatLog.classList.contains('user-scrolling')) {
+                            scrollToBottom(chatLog);
+                        }
+                    } else {
+                        chatLog.innerHTML += '<p style="animation-delay: 0.7s;"><strong>错误:</strong> 请求失败，请稍后再试，不行找386498317</p>';
+                    }
+                })
+                .catch(error => {
+                    clearTimeout(timeoutId); // 取消超时计时器
+                    if (signal.aborted) {
+                        chatLog.innerHTML += '<p style="animation-delay: 0.7s;"><strong>果园AI提示:</strong> AI已停止请求。</p>';
+                    } else {
+                        chatLog.innerHTML += '<p style="animation-delay: 0.7s;"><strong>错误:</strong> 请求失败，请检查网络连接，不行找386498317</p>';
+                    }
+                });
+
+            inputBox.value = ''; // 清空输入框
+        });
+
+        document.getElementById('clear-button').addEventListener('click', function() {
+            const chatLog = document.getElementById('chat-log');
+            chatLog.innerHTML = ''; // 清空聊天记录
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', function() {
+            if (abortController) {
+                abortController.abort(); // 中断请求
+                abortController = null;
+            }
+        });
+
+        function scrollToBottom(element) {
+            element.scrollTop = element.scrollHeight;
+        }
+
+        // 监听滚动事件
+        document.getElementById('chat-log').addEventListener('scroll', function() {
+            this.classList.toggle('user-scrolling', this.scrollTop > 0);
+        });
+    </script>
+</body>
+</html>
