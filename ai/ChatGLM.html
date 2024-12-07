@@ -224,7 +224,7 @@
             chatLog.innerHTML += `<p style="animation-delay: 0.1s;"><strong>我:</strong> ${inputBox.value}</p>`;
 
             // 构造请求URL
-            const requestUrl = `https://api.52vmy.cn/api/chat/glm?msg=${encodeURIComponent(inputBox.value)}`;
+            const requestUrl = `wss://api.52vmy.cn/api/chat/glm?msg=${encodeURIComponent(inputBox.value)}`;
 
             // 设置超时时间
             const timeoutId = setTimeout(() => {
