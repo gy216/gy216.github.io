@@ -1,0 +1,194 @@
+@import url('https://fonts.font.im/css?family=Pacifico|Roboto');
+
+*{  
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance:none;
+}
+
+:root{
+    font-weight: bold;
+    --font: 'Roboto', sans-serif;
+    --logo-font:'Pacifico', cursive;
+    --roundness: 0.5rem;
+    --bg-color: #111;
+    --main-color: #eee;
+    --caret-color: #eee;
+    --sub-color:#444;
+    --text-color: #eee;
+}
+
+body{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font);
+    display: flex;
+    justify-content: center;
+}
+
+.textButton{
+    display: flex;
+    align-content: center;
+    color: var(--sub-color);
+    border: none;
+    border-radius: var(--roundness);
+    cursor: pointer;
+    height: min-content;
+    width: min-content;
+    text-align: center;
+    padding: .5rem;
+    font-size: 1rem;
+    transition: .125s;
+}
+
+.textButton .text{
+    margin-left: .4rem;
+}
+
+.centerContent{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 4.5rem;
+}
+
+#top{
+    display: flex;
+    flex-direction: column;
+}
+
+#top .logo{
+    display: flex;
+    align-items:center;
+    font-size: 2.5rem;
+    font-family: var(--logo-font);
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#top .logo .text{
+    position: relative;
+    margin-left: .7rem;
+}
+
+#top .logo .text .top{
+    font-size: .65rem;
+    line-height: .65rem;
+    position: absolute;
+    top: 1rem;
+    left: .3rem;
+    color: var(--sub-color);
+}
+
+#center{
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    font-family: var(--logo-font);
+    text-align: center;
+    width: 100%;
+    font-size: 10rem;
+    line-height: 10rem;
+}
+
+.score .count{
+    width: min-content;
+    transition: all .1s cubic-bezier(.5, .35, .15, 1.4);
+    transform:scale(1);
+    margin: 0 auto;
+}
+
+.score .subtitle{
+    font-size: 2rem;
+    color: var(--sub-color);
+    line-height: 2.5rem;
+}
+
+#center{
+    display: flex;
+    justify-content: center;
+}
+
+#center .woodenfish{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .1s cubic-bezier(.5, .35, .15, 1.4);
+    transform:scale(1);
+}
+
+#bottom{
+    color: var(--sub-color);
+    font-size: .9rem;
+    line-height: .9rem;
+    padding: 0 5px;
+    position: relative;
+    text-align: center;
+}
+
+#bottom .keyTips {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bottom .keyTips key{
+    color: var(--bg-color);
+    background-color: var(--sub-color);
+    margin: .3rem .45rem;
+    border-radius: .3rem;
+    padding: .2rem .5rem;
+    font-size:.7rem;
+    line-height: .7rem;
+}
+
+#bottom .leftRight,#bottom .left, #bottom .right{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#bottom .textButton:hover{
+    color: var(--text-color);
+}
+
+@media only screen and (max-width: 700px){
+    .centerContent{
+        padding: 1rem 1rem;
+    }
+
+    #top{
+        align-items: center;
+    }
+
+    #top .text{
+        font-size: 2rem;
+       
+    }
+
+    #top .logo .text .top{
+        font-size: .6rem;
+        line-height: .6rem;
+        top: .6rem;
+        left: .1rem;
+    }
+
+    .score .subtitle{
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    #bottom .leftRight{
+        margin-top: 2rem;
+    }
+}
