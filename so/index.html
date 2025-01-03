@@ -1,0 +1,95 @@
+﻿<!-- 代码由文心4.0编写！ -->
+
+
+
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>果园搜索丨开学季，一起加油！</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-image: url('https://bing.img.run/rand_uhd.php'); /* 假设这个URL提供随机高清图片 */  
+            background-size: cover;  
+            background-position: center;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            height: 100vh;  
+        }  
+  
+        .search-container {  
+            background-color: rgba(255, 255, 255, 0.8);  
+            padding: 20px;  
+            border-radius: 10px;  
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+            text-align: center;  
+        }  
+  
+        input[type="text"], select, button {  
+            padding: 20px;  
+            margin: 20x;  
+            border: 1px solid #ccc;  
+            border-radius: 1px;  
+            font-size: 16px;  
+        }  
+  
+        button {  
+            background-color: #007bff;  
+            color: white;  
+            cursor: pointer;  
+            padding: 15px 30px;  
+            font-size: 16px;  
+        }  
+  
+        button:hover {  
+            background-color: #0056b3;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="search-container">  
+        <h2>果园搜索</h2>  
+
+	<h3>本页面由文心大模型编写，更新日期：2024年8月18日</h3>  
+	<a href=http://gy216.github.io/ai>试试果园AI！</a>
+        <select id="searchEngineSelector">  
+	<option value="https://www.baidu.com/s?wd=">百度</option>  
+	<option value="https://cn.bing.com/search?q=">Bing</option>  
+	<option value="https://www.so.com/s?q=">360搜索</option>  
+	<option value="https://www.sogou.com/web?query=">搜狗</option>
+	
+	<option value="https://google.speedcloud.icu/search?q=">谷歌镜像（国内有封IP的可能）</option>  
+	<option value="https://google.com/search?q=">谷歌（国内无法访问）</option>  
+        </select>  
+        <input type="text" id="searchQuery" placeholder="请输入你的搜索内容进行搜索">  
+        <button onclick="performSearch()">果园SO一下！</button>
+	<button onclick="javascript:history.back(-1);">返回上一页</button>  
+
+    </div>  
+    <script>  
+        function performSearch() {  
+            var baseUrl = document.getElementById('searchEngineSelector').value;  
+            var searchQuery = encodeURIComponent(document.getElementById('searchQuery').value);  
+            var searchUrl = baseUrl.replace(/=\([^)]*\)$/, '=' + searchQuery);  
+  
+            // 由于URL格式可能不同，我们使用更通用的方法构建搜索URL  
+            // 假设URL的最后一个部分是查询参数，我们将其替换  
+            if (!searchUrl.endsWith('=') && !searchUrl.endsWith('&')) {  
+                // 如果URL不以'='或'&'结尾，我们添加'?'或'&'  
+                searchUrl += (searchUrl.includes('?') ? '&' : '?') + searchQuery;  
+            } else {  
+                // 如果URL以'='或'&'结尾，我们直接替换它  
+                searchUrl = searchUrl.substring(0, searchUrl.lastIndexOf('=') + 1) + searchQuery;  
+            }  
+  
+            // 在新标签页中打开搜索URL  
+            window.open(searchUrl, '_blank');  
+        }  
+    </script>  
+</body>  
+</html>

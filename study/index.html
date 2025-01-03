@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园学习 - 主页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #0069c0;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .welcome {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .courses {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .course {
+            flex: 1 1 300px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .course h3 {
+            margin-top: 0;
+        }
+        .resources {
+            margin-top: 40px;
+        }
+        .resource {
+            margin-bottom: 15px;
+        }
+        .resource a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        .resource a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>果园学习</h1>
+    </header>
+    <nav>
+		<a href="https://gy216.github.io/home">返回主站</a>
+        <a href="zaixian.html">在线资源</a>
+        <a href="ziyuan.html">资源下载</a>
+        <a href="up.html">联系我们以更新</a>
+        <a href="becode.html">我想上传资源</a>
+    </nav>
+    <div class="container">
+        <section id="home" class="welcome">
+            <h2>欢迎来到果园学习</h2>
+            <p>欢迎各位来到果园编程旗下的果园学习平台！</p>
+            <p>读书破万卷，下笔如有神。果园编程坚信：永远相信美好的事情即将发生。家明不提供的，我们提供！学校不提供的，我们提供！别的编程班不提供的，我们提供！</p>
+        </section>
+        <section id="courses">
+            <h2>最新文档（请点击“资源下载”，进行下载）</h2>
+            <div class="courses">
+                <div class="course">
+                    <h3>new《红星照耀中国》所有资料.pdf</h3>
+                    <p>最新的PDF</p>
+                </div>
+                <div class="course">
+                    <h3>《昆虫记》所有资料</h3>
+                    <p>《昆虫记》所有资料.pdf</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 果园学习. 版权所有.</p>
+    </footer>
+</body>
+</html>

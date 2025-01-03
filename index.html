@@ -1,1 +1,229 @@
+<<<<<<< HEAD
 此网站已经荒废了
+=======
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园官网-身份验证</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #333, #555);
+            color: #fff;
+            font-family: 'Arial', sans-serif; /* 使用更现代的字体 */
+            font-size: 16px; /* 设置基础字体大小 */
+            line-height: 1.5; /* 设置行高 */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            overflow-y: auto; /* 添加滚动条 */
+            max-height: 90vh; /* 设置最大高度 */
+        }
+
+        .content {
+            flex: 1;
+            text-align: center;
+            width: 100%;
+        }
+
+        .loader {
+            width: 100%;
+            max-width: 400px;
+            height: 10px;
+            margin: 20px auto; /* 居中显示 */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes load {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        .loader::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #FFA500, #FFD700, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000); /* 彩色渐变 */
+            border-radius: 5px;
+            animation: load 5s linear forwards, fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .message, .smallprint {
+            margin: 10px 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .smallprint {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .success-message {
+            display: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .ad-container {
+            border: 2px solid #FFA500;
+            padding: 20px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            border-radius: 10px;
+            animation: breathe 2s infinite;
+        }
+
+        .ad-container a {
+            color: #FFA500;
+            text-decoration: none;
+        }
+
+        .ad-container a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .loader {
+                max-width: 100%;
+            }
+
+            .ad-container {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+
+        /* 粒子效果 */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="loader"></div>
+            <div class="message">
+                <p>果园安全防护已保护本网站，请验证您的身份。</p>
+                <p class="smallprint">这是什么？<br>这是果园的网站安全防护系统，用于防止恶意爬虫和自动化工具访问网站。</p>
+                <p class="smallprint">我要做什么？<br>你只要等待5秒，之后网站会自动跳转。</p>
+                <br>
+                <p class="smallprint">你们怎么验证？<br>我们会在后台对你的数据进行分析，如果发现异常，我们会立即封禁你的IP地址。</p>
+                <br>
+                <p class="smallprint">我的信息安全吗？<br>当您验证完成后，我们只会将收集的数据保留3天。换句话说，果园对您的数据不感兴趣，3天后会自动删除。</p>
+                <p class="smallprint">性能和安全由GuoyuanSoft提供<br>ID:42869771715878737624</p>
+                <p class="smallprint">验证功能由GZW（个人开发者）提供<br>ID:4114mbt2j168n5by106w1</p>
+                <p class="smallprint">AI后端识别由果园云、果园AI提供</p>
+            </div>
+            <div class="success-message">验证成功，正在跳转...</div>
+        </div>
+        <div class="ad-container">
+            <div class="ad-title">广告：果园工作室的副站开放了！</div>
+            <p>欢迎访问我们的副站，了解更多精彩内容！</p>
+            <a href="https://gy-gzw.github.io" class="ad-link" target="_blank">立即访问</a>
+        </div>
+        <div class="ad-container">
+            <div class="ad-title">广告：初二一班姓李的，姓袁的，姓方的，姓柳的，姓田的、姓郑的</div>
+            <p>你们废了</p>
+        </div>
+        <div class="ad-container">
+            <div class="ad-title">通知：果园的PYPI镜像已迁移到https://gy216.github.io/mirror</div>
+            <p>PYPI的URL已修改</p>
+        </div>
+    </div>
+
+    <div class="particles" id="particles">
+        <!-- 粒子将在这里动态生成 -->
+    </div>
+
+    <script>
+        setTimeout(function() {
+            const loader = document.querySelector('.loader');
+            const successMessage = document.querySelector('.success-message');
+            const particlesContainer = document.getElementById('particles');
+
+            loader.style.display = 'none';
+            successMessage.style.display = 'block';
+            successMessage.style.animation = 'fadeIn 1s ease-in';
+
+            // 生成粒子效果
+            particlesContainer.style.display = 'block';
+            const loaderRect = loader.getBoundingClientRect();
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${loaderRect.left + Math.random() * loaderRect.width}px`;
+                particle.style.top = `${loaderRect.top + Math.random() * loaderRect.height}px`;
+                particlesContainer.appendChild(particle);
+            }
+
+            setTimeout(function() {
+                window.location.replace('https://gy216.github.io/home');
+            }, 1000);
+        }, 10000);
+    </script>
+</body>
+</html>
+>>>>>>> parent of 90ae096 (SB)
