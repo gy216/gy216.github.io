@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>支持果园工作室</title>
+    <style>
+        /* 基础样式 */
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f8f9fa;
+            font-family: 'Microsoft Yahei', sans-serif;
+            position: relative;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* 返回按钮新样式 */
+        .home-btn {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            background: rgba(231, 76, 60, 0.1);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e74c3c;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+
+        .home-btn:hover {
+            background: rgba(231, 76, 60, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .home-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #2d3436;
+            margin: 60px 0 25px;
+            font-size: 2.2rem;
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background: #e74c3c;
+        }
+
+        /* 文字描述 */
+        .description {
+            color: #636e72;
+            line-height: 1.8;
+            margin: 25px 0;
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 二维码容器 */
+        .qr-container {
+            margin: 35px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            display: inline-block;
+        }
+
+        /* 二维码图片 */
+        .img-code {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* 页脚文字 */
+        .footer-text {
+            color: #7f8c8d;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin-top: 70px;
+            }
+
+            .home-btn {
+                top: 15px;
+                padding: 10px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-top: 40px;
+            }
+
+            .qr-container {
+                padding: 15px;
+                margin: 25px 0;
+            }
+
+            .img-code {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .description {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 更新后的返回按钮 -->
+    <a href="https://gy216.github.io/home" class="home-btn">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        返回首页
+    </a>
+
+    <div class="container">
+        <h1>🍎 果园工作室捐助通道</h1>
+        
+        <p class="description">
+            本网站由果园独立开发完成，从服务器搭建到界面设计，<br>
+            每一行代码都凝聚着个人的心血与努力。<br>
+            如果您认可我的作品，欢迎通过微信扫码支持。
+        </p>
+
+        <div class="qr-container">
+            <img src="pay.jpg" alt="微信支付二维码" class="img-code">
+        </div>
+
+        <p class="footer-text">请使用微信扫码进行捐助支持 | 感谢您的每一份心意</p>
+    </div>
+</body>
+</html>
