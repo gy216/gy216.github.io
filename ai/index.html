@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园AI-探索无限可能，发现未知世界</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            background-color: #f5f5f5;
+        }
+
+        .chat-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 70%;
+            align-self: flex-start;
+            animation: message-fade 0.3s ease;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #e5e5e5;
+        }
+
+        .ai-message {
+            background-color: #f0f8ff;
+        }
+
+        .chat-footer {
+            background-color: #f0f0f0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .message-input:focus {
+            border-color: #4CAF50;
+        }
+
+        .message-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .message-button:hover {
+            background-color: #45a049;
+        }
+
+        .select-api {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            outline: none;
+            margin-right: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .select-api:hover {
+            border-color: #4CAF50;
+        }
+
+        .control-buttons {
+            margin-left: auto;
+            display: flex;
+        }
+
+        .control-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .control-button:hover {
+            background-color: #45a049;
+        }
+
+        .hints {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .hints div {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .hints .important {
+            color: red;
+        }
+
+        @keyframes message-fade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chat-header {
+                font-size: 18px;
+            }
+
+            .chat-message {
+                max-width: 80%;
+            }
+
+            .message-input {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            果园AI5.3-果园编程第一个支持多API切换的AIHUB
+        </div>
+        <div class="chat-body">
+            <div class="hints">
+                <div>AI不能记住你的上下文</div>
+                <div>AI有请求限制</div>
+                <div>如果迟迟不生成，AI可能正在生成长文本，请稍等~</div>
+                <div>公共API由api.52vmy.cn提供，SizhiAPI由果园编程AI发展责任有限公司（南京）分公司提供，插件由MSedge拓展商店提供</div>
+                <div>服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。</div>
+                <div class="important">AI必须要安装跨域插件后才可使用，请点击“下载插件”按钮进行下载，安装后请点击插件使插件图标变红，之后刷新页面</div>
+                <div>Hub版本：5.3.17，更新时间：2025年2月16日19点20分，最后编辑者：果园（386498317），本项目采用 Guoyuan License For Page 许可证</div>
+                <div>文心一言版本：3.5，ChatGLM版本：3.0，讯飞星火版本：6.0</div>
+                
+            </div>
+            <!-- 聊天记录将在这里显示 -->
+        </div>
+        <div class="chat-footer">
+            <select id="apiSelector" class="select-api">
+				<option value="https://api.52vmy.cn/api/chat/glm?msg=">现在是平衡模式，各家平衡负载，你也可以选择其他AI服务</option>
+                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-语文输出API</option>
+                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-能力推理API</option>
+                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-官方纯净API</option>
+                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-中文推理API</option>
+                <option value="https://api.52vmy.cn/api/chat/glm?msg=">第三方-公共-52vmy-ChatGLM-中文查询API</option>
+                <option value="https://api.52vmy.cn/api/chat/glm?msg=">第三方-公共-52vmy-ChatGLM-哲学推理API</option>
+                <option value="https://api.52vmy.cn/api/chat/glm?msg=">第三方-公共-52vmy-ChatGLM-心情咨询API</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-数学输出API</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-数学推理API</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-编程输出API</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-编程推理API</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-Free推理API</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-Free数学API</option>
+                <option value="https://api.52vmy.cn/api/chat/quark?msg=">第三方-公共-52vmy-夸克AI-夸克聊天输出API</option>
+                <option value="http://192.168.0.114/chatgpt/ai/msg?msg=">内网-公网不可用果园内网API</option>
+                <option value="https://api.sizhi.com/chat?spoken=">某熊猫API（正在测试，不可用）</option>
+            </select>
+            <input type="text" id="messageInput" class="message-input" placeholder="请输入消息...">
+            <button id="sendMessage" class="message-button">发送请求</button>
+            <div class="control-buttons">
+                <button id="stopGenerating" class="control-button">停止生成</button>
+                <button id="clearChat" class="control-button">清空聊天</button>
+                <a href="https://microsoftedge.microsoft.com/addons/detail/cors%E8%A7%A3%E9%99%A4%E5%B0%81%E9%94%81/jcpnfhmgopmjcnofcgplmhkgeicmbhli" target="_blank" class="control-button">下载插件</a>
+                <a href="https://gy216.github.io/home" target="_blank" class="control-button">返回果园编程主站</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatBody = document.querySelector('.chat-body');
+        const messageInput = document.getElementById('messageInput');
+        const apiSelector = document.getElementById('apiSelector');
+        const sendMessageButton = document.getElementById('sendMessage');
+        const stopGeneratingButton = document.getElementById('stopGenerating');
+        const clearChatButton = document.getElementById('clearChat');
+
+        sendMessageButton.addEventListener('click', () => {
+            sendMessage();
+        });
+
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        clearChatButton.addEventListener('click', () => {
+            chatBody.innerHTML = '';
+        });
+
+        function sendMessage() {
+            const userMessage = messageInput.value.trim();
+            if (!userMessage) return;
+
+            appendMessage(userMessage, 'user-message');
+
+            const selectedApi = apiSelector.value;
+            let url;
+
+            if (selectedApi === 'https://api.sizhi.com/chat?spoken=') {
+                const userId = Math.random().toString(36).substring(2) + Date.now().toString(36); // 随机生成用户ID
+                url = `${selectedApi}${encodeURIComponent(userMessage)}&stream=false&userid=${userId}`;
+            } else {
+                url = selectedApi + encodeURIComponent(userMessage);
+            }
+
+            fetch(url, { method: 'GET' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code === 200 || (data.answer && data.answer.text)) {
+                        const aiResponse = data.answer ? data.answer.text : data.data.answer;
+                        appendMessage(aiResponse, 'ai-message');
+                    } else {
+                        appendMessage('AI 调用失败', 'ai-message');
+                    }
+                })
+                .catch(() => {
+                    appendMessage('请求失败', 'ai-message');
+                });
+
+            messageInput.value = '';
+        }
+
+        function appendMessage(text, messageType) {
+            const message = document.createElement('div');
+            message.textContent = text;
+            message.className = `chat-message ${messageType}`;
+            chatBody.appendChild(message);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+</body>
+</html>
