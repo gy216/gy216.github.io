@@ -17,9 +17,9 @@
             flex-direction: column;
             background: linear-gradient(135deg, #333, #555);
             color: #fff;
-            font-family: 'Arial', sans-serif; /* 使用更现代的字体 */
-            font-size: 16px; /* 设置基础字体大小 */
-            line-height: 1.5; /* 设置行高 */
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
         }
 
         .container {
@@ -32,8 +32,8 @@
             background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            overflow-y: auto; /* 添加滚动条 */
-            max-height: 90vh; /* 设置最大高度 */
+            overflow-y: auto;
+            max-height: 90vh;
         }
 
         .content {
@@ -46,7 +46,7 @@
             width: 100%;
             max-width: 400px;
             height: 10px;
-            margin: 20px auto; /* 居中显示 */
+            margin: 20px auto;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             position: relative;
@@ -65,14 +65,9 @@
             left: 0;
             top: 0;
             height: 100%;
-            background: linear-gradient(90deg, #FFA500, #FFD700, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000); /* 彩色渐变 */
+            background: linear-gradient(90deg, #FFA500, #FFD700, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000);
             border-radius: 5px;
             animation: load 5s linear forwards, fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .message, .smallprint {
@@ -134,7 +129,6 @@
             }
         }
 
-        /* 粒子效果 */
         .particles {
             position: absolute;
             width: 100%;
@@ -207,7 +201,6 @@
             successMessage.style.display = 'block';
             successMessage.style.animation = 'fadeIn 1s ease-in';
 
-            // 生成粒子效果
             particlesContainer.style.display = 'block';
             const loaderRect = loader.getBoundingClientRect();
             for (let i = 0; i < 100; i++) {
@@ -225,4 +218,3 @@
     </script>
 </body>
 </html>
->>>>>>> parent of 90ae096 (SB)

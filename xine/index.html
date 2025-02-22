@@ -12,7 +12,7 @@
             font-family: "Poppins", sans-serif;
         }
         body {
-            background: url("https://pic2.zhimg.com/v2-32a731a74335036f010ff2a2110d4e28_r.jpg");
+            background: url("https://pic2.zhimg.com/v2-32a731a74335036f010ff2a2110d4e28_r.jpg ");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -121,22 +121,22 @@
     <div class="wrapper">
         <div class="container">
             <i class="fa-brands fa-html5"></i>
-            <span class="num" data-val="21">获取</span>
+            <span class="num" data-val="100">获取</span>
             <span class="text">主站CDN数量</span>
         </div>
         <div class="container">
             <i class="fa-brands fa-node-js"></i>
-            <span class="num" data-val="23">获取</span>
+            <span class="num" data-val="150">获取</span>
             <span class="text">副站CDN数量</span>
         </div>
         <div class="container">
             <i class="fa-brands fa-java"></i>
-            <span class="num" data-val="332">获取</span>
+            <span class="num" data-val="399">获取</span>
             <span class="text">站内数据大小（MB）</span>
         </div>
         <div class="container">
             <i class="fa-brands fa-python"></i>
-            <span class="num" data-val="120">获取</span>
+            <span class="num" data-val="240">获取</span>
             <span class="text">日志数量</span>
         </div>
     </div>
@@ -154,7 +154,7 @@
             let endValue;
             if (valueDisplay.parentElement.querySelector(".text").textContent.includes("主站CDN数量") ||
                 valueDisplay.parentElement.querySelector(".text").textContent.includes("副站CDN数量")) {
-                endValue = getRandomInt(1, 30);
+                endValue = getRandomInt(1, 400);
             } else {
                 endValue = parseInt(valueDisplay.getAttribute("data-val"));
             }
