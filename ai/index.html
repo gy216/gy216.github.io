@@ -153,41 +153,31 @@
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            果园AI5.3-果园编程第一个支持多API切换的AIHUB
+            果园AI6.0-接入DS免费用！
         </div>
         <div class="chat-body">
             <div class="hints">
                 <div>AI不能记住你的上下文</div>
                 <div>AI有请求限制</div>
                 <div>如果迟迟不生成，AI可能正在生成长文本，请稍等~</div>
-                <div>公共API由api.52vmy.cn提供，SizhiAPI由果园编程AI发展责任有限公司（南京）分公司提供，插件由MSedge拓展商店提供</div>
-                <div>服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。</div>
-                <div class="important">AI必须要安装跨域插件后才可使用，请点击“下载插件”按钮进行下载，安装后请点击插件使插件图标变红，之后刷新页面</div>
-                <div>Hub版本：5.4.20，更新时间：2025年2月22日15点45分，最后编辑者：果园（386498317），本项目采用 Guoyuan License For Page 许可证</div>
-                <div>本版本对Markdown提供支持，Markdown版本：CommonMark0.3.0</div>
-                <div>文心一言版本：3.5，ChatGLM版本：3.0，讯飞星火版本：6.0</div>
+                <div>公共API由api.52vmy.cn提供，Deepseek API由openrouter.ai提供。跨域插件由MSedge拓展商店提供</div>
+                <div class="important">服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。</div>
+                <div class="important">由52vmy提供的API必须要安装跨域插件后才可使用，请点击“下载插件”按钮进行下载，安装后请点击插件使插件图标变红，之后刷新页面</div>
+                <div>Hub版本：6.0.0，更新时间：2025年4月04日17点49分，最后编辑者：果园（386498317），本项目采用 Guoyuan License For Page 许可证</div>
+                <div>52vmy输出对Markdown提供支持，但是DS的Markdown有Bug。Markdown版本：CommonMark0.3.0</div>
+                <div>文心一言版本：3.5，ChatGLM版本：3.0，讯飞星火版本：6.0，Deepseek版本：蒸馏R1</div>
             </div>
-            <!-- 聊天记录将在这里显示 -->
         </div>
         <div class="chat-footer">
             <select id="apiSelector" class="select-api">
                 <option value="https://api.52vmy.cn/api/chat/glm?msg=">现在是平衡模式，各家平衡负载，你也可以选择其他AI服务</option>
-                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-语文输出API</option>
-                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-能力推理API</option>
-                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-官方纯净API</option>
-                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">第三方-公共-52vmy-文心一言-中文推理API</option>
-                <option value="https://api.52vmy.cn/api/chat/glm?msg=">第三方-公共-52vmy-ChatGLM-中文查询API</option>
-                <option value="https://api.52vmy.cn/api/chat/glm?msg=">第三方-公共-52vmy-ChatGLM-哲学推理API</option>
-                <option value="https://api.52vmy.cn/api/chat/glm?msg=">第三方-公共-52vmy-ChatGLM-心情咨询API</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-数学输出API</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-数学推理API</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-编程输出API</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-编程推理API</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-Free推理API</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">第三方-公共-52vmy-讯飞星火-Free数学API</option>
-                <option value="https://api.52vmy.cn/api/chat/quark?msg=">第三方-公共-52vmy-夸克AI-夸克聊天输出API</option>
-                <option value="http://192.168.0.114/chatgpt/ai/msg?msg=">内网-公网不可用果园内网API</option>
-                <option value="https://api.sizhi.com/chat?spoken=">某熊猫API（正在测试，不可用）</option>
+                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">文心一言-52vmy</option>
+                <option value="https://api.52vmy.cn/api/chat/glm?msg=">ChatGLM-查询输出-52vmy</option>
+                <option value="https://api.52vmy.cn/api/chat/spark?msg=">讯飞星火-数学输出-52vmy</option>
+                <option value="https://api.52vmy.cn/api/chat/quark?msg=">夸克AI-聊天输出-52vmy</option>
+                <option value="deepseek">DeepSeek：R1 Distill Qwen 32B（无需安装跨域插件）</option>
+                <option value="gemini">Gemini 2.0 Flash Thinking Experimental（无需安装跨域插件）</option>
+                <option value="kimi">Kimi Moonlight 16B A3B Instruct（无需安装跨域插件）</option>
             </select>
             <input type="text" id="messageInput" class="message-input" placeholder="请输入消息...">
             <button id="sendMessage" class="message-button">发送请求</button>
@@ -207,6 +197,25 @@
         const apiSelector = document.getElementById('apiSelector');
         const sendMessageButton = document.getElementById('sendMessage');
         const clearChatButton = document.getElementById('clearChat');
+        const stopGeneratingButton = document.getElementById('stopGenerating');
+
+        const API_CONFIG = {
+            deepseek: {
+                key: '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',
+                url: 'https://openrouter.ai/api/v1/chat/completions',
+                model: 'deepseek/deepseek-r1-distill-qwen-32b:free'
+            },
+            gemini: {
+                key: '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',
+                url: 'https://openrouter.ai/api/v1/chat/completions',
+                model: 'google/gemini-2.0-flash-thinking-exp:free'
+            },
+            kimi: {
+                key: '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',
+                url: 'https://openrouter.ai/api/v1/chat/completions',
+                model: 'moonshotai/moonlight-16b-a3b-instruct:free'
+            }
+        };
 
         sendMessageButton.addEventListener('click', () => {
             sendMessage();
@@ -223,32 +232,98 @@
             messages.forEach(message => message.remove());
         });
 
-        const converter = new showdown.Converter();
+        stopGeneratingButton.addEventListener('click', () => {
+            if (abortController) {
+                abortController.abort();
+                appendMessage('用户停止了生成', 'ai-message');
+                abortController = null;
+            }
+        });
 
-        function sendMessage() {
+        const converter = new showdown.Converter();
+        let abortController = null;
+
+        async function sendMessage() {
             const userMessage = messageInput.value.trim();
             if (!userMessage) return;
 
             appendMessage(converter.makeHtml(userMessage), 'user-message');
+            messageInput.value = '';
+            
+            try {
+                const selectedApi = apiSelector.value;
+                if (['deepseek', 'gemini', 'kimi'].includes(selectedApi)) {
+                    const response = await callOpenRouterAPI(userMessage, selectedApi);
+                    appendMessage(converter.makeHtml(response), 'ai-message');
+                } else {
+                    await callOtherAPI(selectedApi, userMessage);
+                }
+            } catch (error) {
+                console.error('API调用错误:', error);
+                appendMessage(`请求失败: ${error.message}`, 'ai-message');
+            }
+        }
 
-            const selectedApi = apiSelector.value;
-            const url = selectedApi + encodeURIComponent(userMessage);
+        async function callOpenRouterAPI(userMessage, modelType) {
+            abortController = new AbortController();
+            
+            try {
+                const config = API_CONFIG[modelType];
+                const headers = new Headers();
+                headers.append('Authorization', `Bearer ${config.key}`);
+                headers.append('Content-Type', 'application/json');
+                headers.append('HTTP-Referer', encodeURIComponent(window.location.href));
+                headers.append('X-Title', encodeURIComponent('果园AI测试'));
 
-            fetch(url, { method: 'GET' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.code === 200 || (data.answer && data.answer.text)) {
-                        const aiResponse = data.answer ? data.answer.text : data.data.answer;
-                        appendMessage(converter.makeHtml(aiResponse), 'ai-message');
-                    } else {
-                        appendMessage('AI 调用失败', 'ai-message');
-                    }
-                })
-                .catch(() => {
-                    appendMessage('请求失败', 'ai-message');
+                const response = await fetch(config.url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify({
+                        model: config.model,
+                        messages: [
+                            { role: "user", content: userMessage }
+                        ],
+                        temperature: 0.7,
+                    }),
+                    signal: abortController.signal
                 });
 
-            messageInput.value = '';
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || 'API请求失败');
+                }
+
+                const data = await response.json();
+                return data.choices[0].message.content;
+            } finally {
+                abortController = null;
+            }
+        }
+
+        async function callOtherAPI(apiUrl, userMessage) {
+            abortController = new AbortController();
+            
+            try {
+                const url = apiUrl + encodeURIComponent(userMessage);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    signal: abortController.signal
+                });
+
+                if (!response.ok) {
+                    throw new Error('API请求失败');
+                }
+
+                const data = await response.json();
+                if (data.code === 200 || (data.answer && data.answer.text)) {
+                    const aiResponse = data.answer ? data.answer.text : data.data.answer;
+                    appendMessage(converter.makeHtml(aiResponse), 'ai-message');
+                } else {
+                    throw new Error(data.message || 'AI调用失败');
+                }
+            } finally {
+                abortController = null;
+            }
         }
 
         function appendMessage(text, messageType) {

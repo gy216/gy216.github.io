@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮箱验证码验证</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="email"],
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #dff2bf;
+            color: #4F8A10;
+        }
+        .error {
+            background-color: #ffdddd;
+            color: #d8000c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>邮箱验证码验证</h2>
+        <form id="verificationForm">
+            <div class="form-group">
+                <label for="email">邮箱地址:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="captcha">验证码:</label>
+                <input type="number" id="captcha" name="captcha" required>
+            </div>
+            <button type="button" id="getCaptchaBtn">获取验证码</button>
+            <button type="submit">验证验证码</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('getCaptchaBtn').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            
+            if (!email || !username) {
+                showMessage('请填写邮箱和用户名', 'error');
+                return;
+            }
+            
+            // 获取验证码
+            fetch(`邮箱/index.php?email=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // 在实际应用中，这里应该将服务器返回的验证码存储起来，用于后续验证
+                        // 这里为了演示，直接将验证码显示出来
+                        const captcha = data.message;
+                        showMessage(`验证码已发送: ${captcha}`, 'success');
+                        
+                        // 模拟倒计时
+                        let count = 60;
+                        const timer = setInterval(() => {
+                            count--;
+                            if (count <= 0) {
+                                clearInterval(timer);
+                                this.textContent = '获取验证码';
+                                this.disabled = false;
+                            } else {
+                                this.textContent = `获取验证码 (${count})`;
+                                this.disabled = true;
+                            }
+                        }, 1000);
+                    } else {
+                        showMessage('获取验证码失败', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('获取验证码失败', 'error');
+                });
+        });
+
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const userCaptcha = document.getElementById('captcha').value;
+            
+            if (!email || !username || !userCaptcha) {
+                showMessage('请填写所有信息', 'error');
+                return;
+            }
+            
+            // 获取正确的验证码（在实际应用中，这应该来自服务器）
+            fetch(`邮箱/index.php?email=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const correctCaptcha = data.message;
+                        if (userCaptcha === correctCaptcha) {
+                            showMessage('验证码验证成功', 'success');
+                        } else {
+                            showMessage('验证码错误', 'error');
+                        }
+                    } else {
+                        showMessage('验证失败', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showMessage('验证失败', 'error');
+                });
+        });
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
