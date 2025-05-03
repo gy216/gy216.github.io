@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>https://gy216.github.io/home/index.html</loc>
+        <priority>1.0</priority>
+        <changefreq>weekly</changefreq>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/ai/index.html</loc>
+        <priority>0.8</priority>
+        <changefreq>weekly</changefreq>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/supp/index.html</loc>
+        <priority>1.0</priority>
+        <changefreq>weekly</changefreq>
+    </sitemap>
+</sitemapindex>
