@@ -235,8 +235,14 @@
     </script>
 	<script>
 	console.log("不是你看什么看，看我们代码的人肯定没这么好心");
-	console.error("再看网站就要自动销毁了哦");
-	console.warn("这是一个警告信息");
+	console.warn("再看网站就要把你IP封了哦");
+	console.warn("宝宝不要再看了嘛~");
+	console.warn("宝宝不要看了嘛~");
+	console.warn("再看我就把你IP封了哦~");
+	console.warn("那你说好，再也不看了哦~");
+	console.warn("AI界面你也不要再看哦~");
+	console.warn("宝宝!");
+	console.warn("再看的话我就要生气咯!");
 	</script>
     <!-- HTML区域 -->
     <header>
@@ -246,8 +252,6 @@
         <h1 id="title">果园编程（原果园工作室）</h1>
         <p id="description">果园编程工作室，专注于编程领域，致力于在 CCW（共创世界）平台创作与发布优质作品。</p>
         <p id="slogan">我们的理念： 用心每一作，发展每一天。</p>
-        <p id="notice">注意，果园的主页已迁移：https://gy216/github.io/home(就是你现在访问的网页，现在访问需通过人机验证）</p>
-        <p>果园编程主页，今已增文言文之支持，诚邀诸君共赏古韵，体验新风。（果园编程主页现已支持文言文，欢迎大家体验）<a href="https://gy216.github.io/home/wyw" target="_blank">点这里</a></p>
         <br>
         <a href="javascript:history.back(-1);" class="button">返回上一页</a>
         <a href="/about" class="button">关于我们</a>
@@ -271,28 +275,6 @@
         <a href="/doc/xieyi" class="button">网站协议</a>
         <p> 每日好句API：<script src="https://api.gumengya.com/Api/YiYan?format=js" type="text/javascript"></script></p>
         <p> 果园好句API：<script src="https://api.gumengya.com/Api/WaSentence?format=js" type="text/javascript"></script></p>
-        <script language="javascript">
-            var a = parseInt(Math.random() * 500);
-            document.write("<style>body { color: white; }</style>");
-            document.write("果园的服务器可访问性：可以访问，您当前和服务器的延迟：", a + "ms");
-        </script>
-        <h1></h1>
-        <script>
-            function displayTime() {
-                var currentTime = new Date();
-                var hours = currentTime.getHours();
-                var minutes = currentTime.getMinutes();
-                var seconds = currentTime.getSeconds();
-                minutes = (minutes < 10 ? "0" : "") + minutes;
-                seconds = (seconds < 10 ? "0" : "") + seconds;
-                var timeString = hours + ":" + minutes + ":" + seconds;
-                document.getElementById("clock").innerText = timeString;
-            }
-            window.onload = function() {
-                displayTime();
-                setInterval(displayTime, 1000);
-            };
-        </script>
         <div id="clock" style="animation: bounce 1s infinite;"></div>
     </header>
     <section class="team-members">
@@ -401,11 +383,12 @@
     </section>
     <footer class="footer">
         <div>
+        <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
+                <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
+                
             <p id="footer-text">本网站的背景图片为Bing每日一图， 站长：果园，测试：GZW 更新日期：19:33:06		2025年03月14日 由 果园 最后一次编写保存</p>
-            <p>果园的副站：https://gy-gzw.github.io，可能与主站更新不同步，副站管理者：GZW</p>
-            <p>萌ICP备<a href="https://icp.gov.moe/?keyword=20240169" target="_blank">20240169</a>号</p>
-            <p>果园GICP备20240601号 果园 QQ号：386498317 果园编程QQ群：749914521</p>
-            <p>本网站托管于GitHub，直到永远</p>
+            <p>果园QQ号：386498317 果园编程QQ群：749914521</p>
+            <p>本网站托管于GitHub，直到永远。本网站由Cloudflare提供人机验证，dpdns.org提供域名支持</p>
         </div>
     </footer>
 
