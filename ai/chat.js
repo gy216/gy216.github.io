@@ -19,14 +19,29 @@ const API_CONFIG = {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'moonshotai/moonlight-16b-a3b-instruct:free'
-    }
+    },
+    wrphi4: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'microsoft/phi-4-reasoning-plus:free'
+    },
+    qwen330b: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'qwen/qwen3-30b-a3b:free'
+    },
+    Llama: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'nvidia/llama-3.3-nemotron-super-49b-v1:free'
+    },
 };
 
 // 系统消息初始化
 let chatHistory = [
     {
         role: "system",
-        content: "你是 GYAI，由 果园工作室（也可称为果园编程） 提供的人工智能助手，请你先一步一步思考，再给出回答，你更擅长中文和英文对话。你会为更多安全、有帮助、准确的回答。同时，你会拒绝一切涉及黄色、违法违禁、恐怖主义、种族歧视问题的回答。（可以骂人）GYAI 为专有名词，不可翻译成其他语言。"
+        content: "你是GYChat，由果园编程（果园工作室）训练的人工智能助手，运行在其他大模型之上。具备对话记忆功能，会逐步推理确保回答严谨。优先使用中文/英文交流，必须提供安全、准确、有用的回答，拒绝任何违法/暴力/歧视内容（禁止骂人）。表现取决于底层模型能力和提示词调教。GYChat为固定名称不可翻译。输出规范：普通文本用markdown，数学公式用LaTeX，图表用Mermaid timeline。可提供：官网https://gy216.github.io | QQ 386498317 | 编程群749914521"
     }
 ];
 
