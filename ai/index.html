@@ -1,342 +1,47 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="果园AI-探索无限可能，发现未知世界">
+    <link rel="stylesheet" href="style.css" type="text/css" charset="UTF-8">
     <title>果园AI-探索无限可能，发现未知世界</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-
-        .chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-            background-color: #f5f5f5;
-        }
-
-        .chat-header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .chat-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-message {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 70%;
-            align-self: flex-start;
-            animation: message-fade 0.3s ease;
-        }
-
-        .user-message {
-            align-self: flex-end;
-            background-color: #e5e5e5;
-            white-space: pre-wrap;
-        }
-
-        .ai-message {
-            background-color: #f0f8ff;
-            white-space: pre-wrap;
-        }
-
-        .chat-footer {
-            background-color: #f0f0f0;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .message-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-            outline: none;
-        }
-
-        .message-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .select-api {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-            cursor: pointer;
-            margin-right: 10px;
-            transition: border-color 0.3s ease;
-        }
-
-        .select-api:hover {
-            border-color: #4CAF50;
-        }
-
-        .control-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 5px;
-            margin-left: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .control-button:hover {
-            background-color: #45a049;
-        }
-
-        .hints {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-        }
-
-        .important {
-            color: red;
-        }
-
-        @keyframes message-fade {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .chat-header {
-                font-size: 18px;
-            }
-
-            .chat-message {
-                max-width: 80%;
-            }
-
-            .message-input {
-                padding: 8px;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            果园AI6.0-接入DS免费用！
+            果园AI2.0-接入DS免费用！
         </div>
         <div class="chat-body">
             <div class="hints">
-                <div>AI不能记住你的上下文</div>
-                <div>AI有请求限制</div>
-                <div>如果迟迟不生成，AI可能正在生成长文本，请稍等~</div>
-                <div>公共API由api.52vmy.cn提供，Deepseek API由openrouter.ai提供。跨域插件由MSedge拓展商店提供</div>
+                <div>AI可以记住你的上下文！！！你能看到思考内容!!!</div>
+                <div>AI有请求限制,每日50 token</div>
+                <div>如果迟迟不生成，AI可能正在思考，请稍等~</div>
+                <div>API由openrouter.ai提供</div>
                 <div class="important">服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点。</div>
-                <div class="important">由52vmy提供的API必须要安装跨域插件后才可使用，请点击“下载插件”按钮进行下载，安装后请点击插件使插件图标变红，之后刷新页面</div>
-                <div>Hub版本：6.0.0，更新时间：2025年4月04日17点49分，最后编辑者：果园（386498317），本项目采用 Guoyuan License For Page 许可证</div>
+                <div>Hub版本：2.0.0，更新时间：2025年5月04日14点40分，最后编辑者：果园，本项目采用 MIT 许可证</div>
                 <div>52vmy输出对Markdown提供支持，但是DS的Markdown有Bug。Markdown版本：CommonMark0.3.0</div>
-                <div>文心一言版本：3.5，ChatGLM版本：3.0，讯飞星火版本：6.0，Deepseek版本：蒸馏R1</div>
             </div>
         </div>
         <div class="chat-footer">
             <select id="apiSelector" class="select-api">
-                <option value="https://api.52vmy.cn/api/chat/glm?msg=">现在是平衡模式，各家平衡负载，你也可以选择其他AI服务</option>
-                <option value="https://api.52vmy.cn/api/chat/yiyan?msg=">文心一言-52vmy</option>
-                <option value="https://api.52vmy.cn/api/chat/glm?msg=">ChatGLM-查询输出-52vmy</option>
-                <option value="https://api.52vmy.cn/api/chat/spark?msg=">讯飞星火-数学输出-52vmy</option>
-                <option value="https://api.52vmy.cn/api/chat/quark?msg=">夸克AI-聊天输出-52vmy</option>
-                <option value="deepseek">DeepSeek：R1 Distill Qwen 32B（无需安装跨域插件）</option>
-                <option value="gemini">Gemini 2.0 Flash Thinking Experimental（无需安装跨域插件）</option>
-                <option value="kimi">Kimi Moonlight 16B A3B Instruct（无需安装跨域插件）</option>
+                <option value="kimi">Kimi Moonlight 16B A3B Instruct</option>
+                <option value="gemini">Gemma 3 27B</option>
+                <option value="qwen3">qwen3 235b a22b</option>
+                <option value="deepseek">DeepSeek R1 Distill Qwen 32B</option>
             </select>
             <input type="text" id="messageInput" class="message-input" placeholder="请输入消息...">
             <button id="sendMessage" class="message-button">发送请求</button>
             <div class="control-buttons">
                 <button id="stopGenerating" class="control-button">停止生成</button>
-                <button id="clearChat" class="control-button">清空聊天</button>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/cors%E8%A7%A3%E9%99%A4%E5%B0%81%E9%94%81/jcpnfhmgopmjcnofcgplmhkgeicmbhli" target="_blank" class="control-button">下载插件</a>
-                <a href="https://gy216.github.io/home" target="_blank" class="control-button">返回果园编程主站</a>
+                <button id="clearChat" class="control-button">清空聊天并清除上下文</button>
+                <a href="/home" target="_blank" class="control-button">返回果园编程主站</a>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
-    <script>
-        const chatBody = document.querySelector('.chat-body');
-        const messageInput = document.getElementById('messageInput');
-        const apiSelector = document.getElementById('apiSelector');
-        const sendMessageButton = document.getElementById('sendMessage');
-        const clearChatButton = document.getElementById('clearChat');
-        const stopGeneratingButton = document.getElementById('stopGenerating');
-
-        const API_CONFIG = {
-            deepseek: {
-                key: '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',
-                url: 'https://openrouter.ai/api/v1/chat/completions',
-                model: 'deepseek/deepseek-r1-distill-qwen-32b:free'
-            },
-            gemini: {
-                key: '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',
-                url: 'https://openrouter.ai/api/v1/chat/completions',
-                model: 'google/gemini-2.0-flash-thinking-exp:free'
-            },
-            kimi: {
-                key: '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',
-                url: 'https://openrouter.ai/api/v1/chat/completions',
-                model: 'moonshotai/moonlight-16b-a3b-instruct:free'
-            }
-        };
-
-        sendMessageButton.addEventListener('click', () => {
-            sendMessage();
-        });
-
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        clearChatButton.addEventListener('click', () => {
-            const messages = chatBody.querySelectorAll('.chat-message');
-            messages.forEach(message => message.remove());
-        });
-
-        stopGeneratingButton.addEventListener('click', () => {
-            if (abortController) {
-                abortController.abort();
-                appendMessage('用户停止了生成', 'ai-message');
-                abortController = null;
-            }
-        });
-
-        const converter = new showdown.Converter();
-        let abortController = null;
-
-        async function sendMessage() {
-            const userMessage = messageInput.value.trim();
-            if (!userMessage) return;
-
-            appendMessage(converter.makeHtml(userMessage), 'user-message');
-            messageInput.value = '';
-            
-            try {
-                const selectedApi = apiSelector.value;
-                if (['deepseek', 'gemini', 'kimi'].includes(selectedApi)) {
-                    const response = await callOpenRouterAPI(userMessage, selectedApi);
-                    appendMessage(converter.makeHtml(response), 'ai-message');
-                } else {
-                    await callOtherAPI(selectedApi, userMessage);
-                }
-            } catch (error) {
-                console.error('API调用错误:', error);
-                appendMessage(`请求失败: ${error.message}`, 'ai-message');
-            }
-        }
-
-        async function callOpenRouterAPI(userMessage, modelType) {
-            abortController = new AbortController();
-            
-            try {
-                const config = API_CONFIG[modelType];
-                const headers = new Headers();
-                headers.append('Authorization', `Bearer ${config.key}`);
-                headers.append('Content-Type', 'application/json');
-                headers.append('HTTP-Referer', encodeURIComponent(window.location.href));
-                headers.append('X-Title', encodeURIComponent('果园AI测试'));
-
-                const response = await fetch(config.url, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify({
-                        model: config.model,
-                        messages: [
-                            { role: "user", content: userMessage }
-                        ],
-                        temperature: 0.7,
-                    }),
-                    signal: abortController.signal
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error?.message || 'API请求失败');
-                }
-
-                const data = await response.json();
-                return data.choices[0].message.content;
-            } finally {
-                abortController = null;
-            }
-        }
-
-        async function callOtherAPI(apiUrl, userMessage) {
-            abortController = new AbortController();
-            
-            try {
-                const url = apiUrl + encodeURIComponent(userMessage);
-                const response = await fetch(url, {
-                    method: 'GET',
-                    signal: abortController.signal
-                });
-
-                if (!response.ok) {
-                    throw new Error('API请求失败');
-                }
-
-                const data = await response.json();
-                if (data.code === 200 || (data.answer && data.answer.text)) {
-                    const aiResponse = data.answer ? data.answer.text : data.data.answer;
-                    appendMessage(converter.makeHtml(aiResponse), 'ai-message');
-                } else {
-                    throw new Error(data.message || 'AI调用失败');
-                }
-            } finally {
-                abortController = null;
-            }
-        }
-
-        function appendMessage(text, messageType) {
-            const message = document.createElement('div');
-            message.classList.add('chat-message', messageType);
-            message.style.padding = '10px';
-            message.style.borderRadius = '5px';
-            message.style.marginBottom = '10px';
-            message.innerHTML = text;
-
-            chatBody.appendChild(message);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-    </script>
+    <script src="caidan.js"></script>
+    <script src="showdown.min.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html>
