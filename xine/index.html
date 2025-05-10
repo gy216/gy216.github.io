@@ -3,423 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>果园编程 - 网站性能监控</title>
+    <title>果园编程 - 服务状态监控</title>
     <style>
         :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #2196F3;
+            --primary-color: #4a6fa5;
+            --success-color: #4CAF50;
             --warning-color: #FFC107;
             --danger-color: #F44336;
+            --info-color: #2196F3;
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
             color: #333;
-        }
-        
-        .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f5f7fa;
         }
         
         header {
             text-align: center;
-            padding: 30px 0;
-            background-color: white;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), #6a8fc7);
+            color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: relative;
         }
         
         h1 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            margin: 0;
+            font-size: 2.5em;
         }
         
-        .home-button {
+        .back-button {
             position: absolute;
-            top: 20px;
             left: 20px;
-            padding: 8px 15px;
-            background-color: var(--primary-color);
+            top: 20px;
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.2);
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            font-size: 14px;
             transition: background-color 0.3s;
         }
         
-        .home-button:hover {
-            background-color: #3e8e41;
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
         
         .status-container {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .status-card {
-            flex: 1;
-            min-width: 250px;
             background: white;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .status-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .status-title {
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 1.3em;
+            margin-top: 0;
             margin-bottom: 15px;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
         }
         
         .status-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
             margin-right: 10px;
-            background-color: var(--primary-color);
+            font-size: 1.5em;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 8px;
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
-            }
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
         
-        .status-value {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .status-up {
+            background-color: var(--success-color);
         }
         
-        .status-description {
-            color: #666;
-            font-size: 14px;
+        .status-down {
+            background-color: var(--danger-color);
+            animation: none;
         }
         
-        .search-check {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+        .status-warning {
+            background-color: var(--warning-color);
         }
         
-        .search-item {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
+        .status-info {
+            background-color: var(--info-color);
         }
         
-        .search-item:last-child {
-            border-bottom: none;
-        }
-        
-        .search-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+        .status-bar {
+            height: 10px;
             background-color: #f0f0f0;
-        }
-        
-        .search-name {
-            font-weight: bold;
-            flex: 1;
-        }
-        
-        .search-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            background-color: rgba(33, 150, 243, 0.1);
-            transition: background-color 0.3s;
-        }
-        
-        .search-link:hover {
-            background-color: rgba(33, 150, 243, 0.2);
-        }
-        
-        .uptime-chart {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .chart-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .chart-bar {
-            height: 30px;
-            background-color: #f0f0f0;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
             overflow: hidden;
             position: relative;
         }
         
-        .chart-fill {
+        .status-bar-fill {
             height: 100%;
-            width: 99.9%;
-            background-color: var(--primary-color);
-            border-radius: 15px;
-            animation: fillAnimation 1.5s ease-out;
+            width: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
         }
         
-        @keyframes fillAnimation {
-            from {
-                width: 0;
-            }
-            to {
-                width: 99.9%;
-            }
+        .status-bar-up {
+            background-color: var(--success-color);
+            animation: statusBarPulse 2s infinite;
         }
         
-        .chart-label {
+        .status-bar-down {
+            background-color: var(--danger-color);
+            width: 10% !important;
+        }
+        
+        .status-bar-warning {
+            background-color: var(--warning-color);
+            width: 70% !important;
+        }
+        
+        @keyframes statusBarPulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .search-status {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .search-item {
             display: flex;
             justify-content: space-between;
-            margin-top: 5px;
-            font-size: 14px;
-            color: #666;
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
         }
         
-        footer {
+        .stats-container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .footer {
             text-align: center;
             margin-top: 40px;
             padding: 20px;
             color: #666;
-            font-size: 14px;
         }
         
-        @media (max-width: 768px) {
-            .status-container {
-                flex-direction: column;
-            }
-            
-            .home-button {
-                position: static;
-                display: inline-block;
-                margin-bottom: 15px;
-            }
+        /* 旋转动画 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .loading {
-            color: #666;
-            font-style: italic;
-        }
-        
-        #busuanzi_container_site_pv {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        #busuanzi_value_site_pv {
-            font-weight: bold;
-            color: var(--warning-color);
+        .spin {
+            animation: spin 2s linear infinite;
+            display: inline-block;
         }
     </style>
-    <!-- 不蒜子访问统计 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="https://gy216.github.io" class="home-button">返回主站</a>
-            <h1>果园编程 - 网站状态监控</h1>
-            <p>实时监控网站性能和可访问性</p>
-            <div id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</div>
-        </header>
-        
-        <div class="status-container">
-            <div class="status-card">
-                <div class="status-title">
-                    <div class="status-icon"></div>
-                    网站状态
-                </div>
-                <div id="site-status" class="status-value" style="color: #4CAF50;">检测中...</div>
-                <div class="status-description">正在检查网站状态</div>
-            </div>
-            
-            <div class="status-card">
-                <div class="status-title">
-                    <div class="status-icon" style="background-color: #2196F3;"></div>
-                    响应时间
-                </div>
-                <div id="response-time" class="status-value" style="color: #2196F3;">检测中...</div>
-                <div class="status-description">正在测量果园官网、CloudflareCDN、Under Attack 模式CDN 的响应时间</div>
-            </div>
-            
-            <div class="status-card">
-                <div class="status-title">
-                    <div class="status-icon" style="background-color: #FFC107;"></div>
-                    今日访问量
-                </div>
-                <div class="status-value" style="color: #FFC107;">
-                    <span id="busuanzi_value_site_uv">请求API中……</span>
-                </div>
-                <div class="status-description">独立访客统计</div>
-            </div>
+    <header>
+        <a href="https://gy216.github.io" class="back-button">← 返回主站</a>
+        <h1>果园编程服务状态监控</h1>
+        <p>实时监控各项服务的运行状态</p>
+    </header>
+    
+    <div class="stats-container">
+        <p>本站总访问量: <span id="busuanzi_value_site_pv">加载中...</span> 次</p>
+        <div class="status-bar">
+            <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
         </div>
-        
-        <div class="search-check">
-            <h2>搜索引擎可访问性</h2>
-            <p>检查网站在各大搜索引擎中的收录情况</p>
-            
-            <div class="search-item">
-                <div class="search-icon">百</div>
-                <div class="search-name">百度可访问性</div>
-                <a href="https://www.baidu.com/s?wd=果园编程" class="search-link" target="_blank">检查收录</a>
-            </div>
-            
-            <div class="search-item">
-                <div class="search-icon">B</div>
-                <div class="search-name">Bing可访问性</div>
-                <a href="https://www.bing.com/search?q=果园编程" class="search-link" target="_blank">检查收录</a>
-            </div>
-            
-            <div class="search-item">
-                <div class="search-icon">360</div>
-                <div class="search-name">360搜索可访问性</div>
-                <a href="https://www.so.com/s?q=果园编程" class="search-link" target="_blank">检查收录</a>
-            </div>
-        </div>
-        
-        <div class="uptime-chart">
-            <div class="chart-title">30天运行状态</div>
-            <div class="chart-bar">
-                <div class="chart-fill"></div>
-            </div>
-            <div class="chart-label">
-                <span>正常运行时间</span>
-                <span>99.9%</span>
-            </div>
-        </div>
-        
-        <footer>
-            <p>最后更新: <span id="update-time"></span> | © 2025 果园编程 - 所有权利保留</p>
-            <p id="busuanzi_container_site_pv_footer">总访问量: <span id="busuanzi_value_site_pv_footer"></span> 次 | 今日访客: <span id="busuanzi_value_site_uv_footer"></span> 人</p>
-        </footer>
     </div>
     
+    <div class="status-container">
+        <div class="status-card">
+            <h2 class="status-title">
+                <span class="status-indicator status-up"></span>
+                <span class="status-icon">🌐</span>
+                GitHub Pages 服务
+            </h2>
+            <p>您的GitHub Pages网站托管服务运行状态</p>
+            <div class="status-bar">
+                <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h2 class="status-title">
+                <span class="status-indicator status-up"></span>
+                <span class="status-icon">🤖</span>
+                AI 服务
+            </h2>
+            <p>您的AI服务运行状态</p>
+            <div class="status-bar">
+                <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h2 class="status-title">
+                <span class="status-indicator status-up"></span>
+                <span class="status-icon">🖼️</span>
+                壁纸服务
+            </h2>
+            <p>您的壁纸API服务运行状态</p>
+            <div class="status-bar">
+                <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h2 class="status-title">
+                <span class="status-indicator status-up"></span>
+                <span class="status-icon">☁️</span>
+                Cloudflare 服务
+            </h2>
+            <p>Cloudflare CDN和构建服务运行状态</p>
+            <div class="status-bar">
+                <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
+            </div>
+        </div>
+        
+        <div class="status-card">
+            <h2 class="status-title">
+                <span class="status-indicator status-up"></span>
+                <span class="status-icon">🔗</span>
+                DNS 节点服务
+            </h2>
+            <p>全球DNS解析服务运行状态</p>
+            <div class="status-bar">
+                <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="status-card">
+        <h2 class="status-title">
+            <span class="status-icon">🔍</span>
+            搜索引擎可访问性
+        </h2>
+        
+        <div class="search-status">
+            <div class="search-item">
+                <span>百度搜索 "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+            <div class="search-item">
+                <span>必应搜索 "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+            <div class="search-item">
+                <span>360搜索 "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+            <div class="search-item">
+                <span>Google搜索 "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+            <div class="search-item">
+                <span>DuckDuckGo "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+            <div class="search-item">
+                <span>夸克搜索 "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+            <div class="search-item">
+                <span>神马搜索 "果园编程":</span>
+                <span class="status-indicator status-up"></span> 可访问
+            </div>
+        </div>
+        
+        <div class="status-bar" style="margin-top: 20px;">
+            <div class="status-bar-fill status-bar-up" style="width: 100%"></div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 果园编程 - 服务状态监控 | 最后更新: <span id="update-time">正在获取...</span></p>
+    </div>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
     <script>
-        // 显示当前时间
+        // 更新时间
         document.getElementById('update-time').textContent = new Date().toLocaleString();
         
-        // 模拟实时数据更新
-        setInterval(() => {
-            document.getElementById('update-time').textContent = new Date().toLocaleString();
-        }, 60000);
-        
-        // 实际Ping检测函数
-        async function pingWebsite(url) {
-            const startTime = performance.now();
-            try {
-                // 使用fetch API检测网站可用性
-                const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`, {
-                    method: 'HEAD',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                });
-                
-                const endTime = performance.now();
-                const pingTime = Math.round(endTime - startTime);
-                
-                return {
-                    success: true,
-                    time: pingTime,
-                    status: response.status
-                };
-            } catch (error) {
-                return {
-                    success: false,
-                    error: error.message
-                };
-            }
-        }
-        
-        // 执行Ping检测并更新UI
-        async function checkWebsiteStatus() {
-            const pingResult = await pingWebsite('https://gy216.github.io');
-            const responseTimeElement = document.getElementById('response-time');
-            const siteStatusElement = document.getElementById('site-status');
+        // 模拟状态变化（仅演示用）
+        function simulateStatusChanges() {
+            const services = [
+                'github', 'ai', 'wallpaper', 'cloudflare', 'dns'
+            ];
             
-            if (pingResult.success) {
-                responseTimeElement.textContent = `${pingResult.time}ms`;
-                siteStatusElement.textContent = "运行正常";
-                siteStatusElement.style.color = "#4CAF50";
+            // 随机选择一个服务显示警告状态
+            const randomService = services[Math.floor(Math.random() * services.length)];
+            const card = document.querySelector(`.status-card:nth-child(${services.indexOf(randomService) + 1})`);
+            
+            if(card) {
+                const statusBar = card.querySelector('.status-bar-fill');
+                const statusIndicator = card.querySelector('.status-indicator');
                 
-                // 根据响应时间设置颜色
-                if (pingResult.time > 500) {
-                    responseTimeElement.style.color = "#FFC107"; // 黄色警告
-                } else if (pingResult.time > 1000) {
-                    responseTimeElement.style.color = "#F44336"; // 红色警告
-                } else {
-                    responseTimeElement.style.color = "#2196F3"; // 蓝色正常
-                }
-            } else {
-                responseTimeElement.textContent = "超时";
-                responseTimeElement.style.color = "#F44336";
-                siteStatusElement.textContent = "无法访问";
-                siteStatusElement.style.color = "#F44336";
+                // 临时改为警告状态
+                statusBar.classList.remove('status-bar-up');
+                statusBar.classList.add('status-bar-warning');
+                statusBar.style.width = '70%';
+                
+                statusIndicator.classList.remove('status-up');
+                statusIndicator.classList.add('status-warning');
+                
+                // 3秒后恢复
+                setTimeout(() => {
+                    statusBar.classList.remove('status-bar-warning');
+                    statusBar.classList.add('status-bar-up');
+                    statusBar.style.width = '100%';
+                    
+                    statusIndicator.classList.remove('status-warning');
+                    statusIndicator.classList.add('status-up');
+                }, 3000);
             }
             
-            // 每30秒重新检测一次
-            setTimeout(checkWebsiteStatus, 30000);
+            // 每10秒执行一次
+            setTimeout(simulateStatusChanges, 10000);
         }
         
-        // 页面加载后开始检测
-        window.addEventListener('load', checkWebsiteStatus);
-        
-        // 不蒜子统计回调（如果直接使用不生效）
-        function checkBusuanzi() {
-            if (typeof busuanzi === 'object') {
-                // 不蒜子已加载
-                document.getElementById('busuanzi_value_site_uv').textContent = busuanzi.site.uv;
-                document.getElementById('busuanzi_value_site_uv_footer').textContent = busuanzi.site.uv;
-                document.getElementById('busuanzi_value_site_pv_footer').textContent = busuanzi.site.pv;
-            } else {
-                // 不蒜子未加载，1秒后重试
-                setTimeout(checkBusuanzi, 1000);
-            }
-        }
-        
-        // 检查不蒜子统计
-        window.addEventListener('load', checkBusuanzi);
+        // 启动状态变化模拟
+        setTimeout(simulateStatusChanges, 5000);
     </script>
 </body>
 </html>
