@@ -1,3 +1,10 @@
+// 果园的AICHAT.JS
+// JavaScript格式
+// 感谢@上古米歇尔（2373460868）
+// js编写@上古米歇尔（2373460868）
+// 编译时间：2025年5月10日13点05分
+// 开始
+// ================================
 // 配置区域：分离 API 配置和核心逻辑
 const API_CONFIG = {
     qwen3: {
@@ -34,6 +41,16 @@ const API_CONFIG = {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'nvidia/llama-3.3-nemotron-super-49b-v1:free'
+    },
+    MXDS: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'tngtech/deepseek-r1t-chimera:free'
+    },
+    Dolphin: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'cognitivecomputations/dolphin3.0-r1-mistral-24b:free'
     },
 };
 
