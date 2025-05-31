@@ -257,6 +257,7 @@
         <a href="/about" class="button">关于我们</a>
         <a href="/my" class="button">关于我（我的主页）</a>
         <a href="/study" class="button">访问果园学习</a>
+        <a href="/redirect/guoyuancode.html" class="button">访问副站</a>
         <a href="/ai" class="button">试试AI（新）</a>
         <a href="/doc/rule" class="button">阅读群规</a>
         <a href="/xine" class="button">查看网站性能</a>
@@ -275,7 +276,7 @@
     </header>
     <section class="team-members">
         <h2 id="team-members-title">团队成员</h2>
-        <br>
+        <br><br/>
         <div class="member">
             <h3>果园</h3>
             <p>CCWID: 196543819</p>
@@ -400,7 +401,7 @@
                 document.getElementById("cdn").textContent = coloCode;
             })
             .catch(() => {
-                document.getElementById("cdn").textContent = "未使用 CDN 或检测失败";
+                document.getElementById("cdn").textContent = "检测失败，请确认HTML跑在远程服务器中";
             });
     </script>
         </div>
