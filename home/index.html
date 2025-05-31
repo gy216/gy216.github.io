@@ -390,6 +390,19 @@
             <p id="footer-text">本网站的背景图片为Bing每日一图， 站长：果园，测试：GZW 更新日期：19:33:06		2025年03月14日 由 果园 最后一次编写保存</p>
             <p>果园QQ号：386498317 果园编程QQ群：749914521</p>
             <p>本网站托管于GitHub，直到永远。本网站由Cloudflare提供人机验证，dpdns.org提供域名支持</p>
+            <p>当前 CDN 节点: <span id="cdn">检测中...</span></p>
+
+    <script>
+        fetch('/cdn-cgi/trace')
+            .then(response => response.text())
+            .then(data => {
+                const coloCode = data.match(/colo=([A-Z]+)/)?.[1] || "未知";
+                document.getElementById("cdn").textContent = coloCode;
+            })
+            .catch(() => {
+                document.getElementById("cdn").textContent = "未使用 CDN 或检测失败";
+            });
+    </script>
         </div>
     </footer>
 
