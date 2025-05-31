@@ -1,0 +1,169 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f5f5f5;
+}
+
+.chat-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    background-image: url('https://t.alcy.cc/pc');
+    background-size: cover;
+}
+
+.chat-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    align-self: flex-start;
+    animation: message-fade 0.3s ease;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #e5e5e5;
+    white-space: pre-wrap;
+}
+
+.ai-message {
+    background-color: #f0f8ff;
+    white-space: pre-wrap;
+}
+
+.chat-footer {
+    background-color: #f0f0f0;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.message-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.select-api {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.select-api:hover {
+    border-color: #4CAF50;
+}
+
+.control-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.control-button:hover {
+    background-color: #45a049;
+}
+
+.hints {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f0f0f070;
+    border-radius: 5px;
+}
+
+.important {
+    color: red;
+}
+
+@keyframes message-fade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    body, html {
+        font-size: 14px;
+    }
+
+    .chat-header {
+        font-size: 16px;
+    }
+
+    .chat-body {
+        background-image: url('https://t.alcy.cc/mp');
+    }
+
+    .chat-footer {
+        flex-direction: column;
+        align-items: center; /* 添加这行代码 */
+        gap: 10px;
+    }
+    
+    .select-api, .message-input, .message-button {
+        width: 100%;
+        max-width: 80%; /* 添加这行代码 */
+    }
+
+    .control-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .control-button {
+        flex: 1;
+        margin: 5px;
+        min-width: 30%;
+    }
+}
