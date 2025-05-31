@@ -428,6 +428,7 @@
             "ORD": "芝加哥, 美国",
             "DFW": "达拉斯, 美国",
             "ATL": "亚特兰大, 美国",
+            "SJC": "圣何塞, 美国",
             "JFK": "纽约, 美国",
             "MIA": "迈阿密, 美国",
             "YYZ": "多伦多, 加拿大",
@@ -499,7 +500,7 @@
                     }
                     
                     const coloCode = coloMatch[1];
-                    const location = cdnLocationMap[coloCode] || `未知节点 (${coloCode})`;
+                    const location = cdnLocationMap[coloCode] || `节点中文未收录 (${coloCode})`;
                     
                     // 更新显示
                     cdnElement.textContent = location;
