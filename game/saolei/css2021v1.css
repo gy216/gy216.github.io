@@ -1,0 +1,829 @@
+
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #544a7d;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffd452, #544a7d);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffd452, #544a7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body{
+    font-family: Microsoft Yahei, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+/*通用窗口CSS*/
+
+.window {
+    color : #444;
+    position: absolute;
+    display : table;
+    padding: 5px;
+    border: 1px solid #838383;
+    border-radius : 9px;
+    background-color: #E3E9EB;
+    box-shadow: 0 0 10px #616161;
+}
+
+.window-title {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    border : 1px solid #AAA4A4;
+    border-bottom: none;
+    height : 25px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background : linear-gradient(to bottom, #ffffff, #dddddd);
+    user-select:none;
+    -webkit-user-select: none;
+}
+
+.window-title-left-span{
+    display: flex;
+    cursor: move;
+    font-size: 0.8em;
+    flex-grow: 1;
+    padding-left: 5px;
+}
+
+.window-title-right-icon{
+    margin-right: 4px;
+}
+
+.window-title-right-icon .m-point3
+{
+    box-sizing: border-box;
+    display: table-cell;
+    width : 24px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: rgb(238, 158, 165);
+}
+
+.window-title-right-icon .point3
+{
+    box-sizing: border-box;
+    display: table-cell;
+    width : 24px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: rgb(238, 158, 165);
+}
+
+.window-title-right-icon .point3:hover{
+    background-color: rgb(235, 79, 92);
+}
+
+.window-title-right-icon .point3:active{
+    transform: scale(0.9);
+}
+
+.window-container {
+    box-sizing: border-box;
+    position: relative;
+    display: table;
+    margin-top: 0;
+    border : 1px solid #AAA4A4;
+    background-color: #F8F4F4;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*-----------设置按钮----------------*/
+
+#minesweeper {
+    user-select:none;
+    -webkit-user-select: none;
+    top: 3em;
+}
+
+/*---------------设置按钮和选项----------------------*/
+
+#opt{
+    display: block;
+    position: absolute;
+    left : 2px;
+    border-radius : 3px;
+    margin-left: 1px;
+    margin-top : 1px;
+    height: 22px;
+    width : 30px;
+}
+
+#opt:hover{
+    background-color: #DFD9D9;
+}
+
+#opt:before{
+    content: "";
+    position: absolute;
+    border-top : 2px solid #555;
+    top : 4px;
+    left: 5px;
+    width : 20px;
+    box-shadow:  0 6px #555, 0 12px #555;
+}
+
+#opt-list{
+    font-size: 0.9em;
+    position: relative;
+    color : #333;
+    display: none;
+    top : 0;
+    left: 0;
+    z-index: 11;
+}
+
+#opt-list ul{
+    padding: 3px 4px 3px 5px;
+    width : 4.8em;
+    background-color: #F5F5F5;
+    box-shadow: 1px 2px 3px #555;
+    border-radius: 3px;
+    border: 1px solid #777;
+}
+
+#opt-list ul li{
+    position: relative;
+    list-style: none;
+    text-align: left;
+    cursor: default;
+    margin: 4px 0;
+    padding-left: 2px;
+}
+
+#opt-list li:hover{
+    background-color: skyblue;
+}
+
+#opt-list ul li:hover ul{
+    display: block;
+}
+
+#opt-list ul ul {
+    z-index: 12;
+    position: absolute;
+    list-style: none;
+    width : 4.8em;
+    top : -0.5em;
+    left : 4.5em;
+    background-color: #F5F5F5;
+    box-shadow: 1px 2px 5px #555;
+    border: 1px solid #777;
+}
+
+#opt-list ul li>ul{
+    display: none;
+}
+
+.right-tri{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spot{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 5px solid;
+    border-color: transparent transparent transparent #999999;
+}
+
+/*---------------------顶部信息栏---------------------*/
+
+#topTools {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    text-align: center;
+    margin: 20px auto 10px auto;
+}
+
+#topTools .label{
+    font-size: 0.9em;
+    color : #666666;
+}
+
+#topTools #timer, #topTools #mineNum{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color : #555;
+    font-size: 17px;
+    width : 50px;
+    height: 22px;
+    border : 1px solid #eee;
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px gray;
+    background-color: rgba(201, 206, 211, 0.7);
+    box-shadow: inset 1px 1px 1px #AAA4A4;
+}
+
+/***************格子区域*******************/
+
+.desk_border{
+    margin: 36px;
+}
+
+#desk{
+    display: flex;
+    flex-direction: column;
+    padding: 3px;
+    align-items: center;
+    border: 1px solid rgb(107, 106, 106);
+    box-shadow: inset 3px 3px 2px 3px rgb(190, 186, 186), inset -3px -3px 2px 3px rgb(189, 186, 186);
+    background-color: rgb(195, 195, 195);
+}
+
+#desk div{
+    display: flex;
+    justify-content: center;
+}
+
+#desk div b:first-child{
+    border-left: 1px solid #444;
+}
+
+#desk div:last-child{
+    border-bottom: 1px solid #444;
+}
+
+#desk b{
+    display: inline-block;
+    text-align: center;
+    width : 22px;
+    height: 22px;
+    font-weight: bold;
+    border-top: 1px solid #444;
+    border-right: 1px solid #444;
+    background-image: url(cellsbgv2.png);
+    background-repeat: no-repeat;
+}
+
+/**默认的尺寸元素**/
+
+/********************弹出窗口********************/
+
+#games-win-window {
+    position: absolute;
+    display: none;
+    z-index: 100;
+}
+
+#games-win-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 140px;
+}
+
+#games-win-content span{
+    color: rgb(128, 185, 13);
+    font-size: 2.6em;
+    text-shadow: 5px 5px #ddd;
+}
+
+#games-lost-window {
+    position: absolute;
+    display: none;
+    z-index: 100;
+}
+
+#games-lost-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 140px;
+}
+
+#games-lost-content span:first-child {
+    color: rgb(139, 110, 29);
+    font-size: 2.6em;
+    text-shadow: 5px 5px #ddd;
+}
+
+#games-lost-content span:last-child {
+    font-size: 1.25em;
+}
+
+/****************信息统计***********************/
+
+#games-info-window{
+    display: none;
+    z-index: 100;
+}
+
+#contentBox {
+    z-index: 100;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    width : 370px;
+    margin: 18px;
+    box-shadow: 0 0 3px gray;
+}
+
+.info-top-label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-top-label span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 33.3333%;
+    cursor: default;
+    height: 25px;
+}
+
+.info-top-label span:nth-child(2) {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+}
+
+#contentBox #threeInfo{
+    display: flex;
+    width : 100%;
+    background-color: white;
+    border-top: 1px solid #999;
+    height: 180px;
+}
+
+#contentBox #threeInfo #win5,
+#contentBox #threeInfo #win5info {
+    position: relative;
+    display: flex;
+    width : 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+#contentBox #threeInfo #win5 span{
+    z-index: 21;
+    color : #888;
+    position: absolute;
+    display: inline-block;
+    padding: 0 3px;
+    left: 63px;
+    top : 23px;
+    background-color: white;
+}
+
+#contentBox #threeInfo #win5 ul,
+#contentBox #threeInfo #win5info ul
+{
+    padding-left: 0;
+    width : 140px;
+}
+
+#contentBox #threeInfo #win5info ul {
+    margin-left: 50px;
+}
+
+#contentBox #threeInfo #win5 ul{
+    width : 123px;
+    height: 115px;
+    padding: 0 0 0 5px;
+    border : 1px solid #AAA;
+    border-radius: 5px;
+}
+
+#contentBox #threeInfo #win5 ul li,
+#contentBox #threeInfo #win5info ul li
+{
+    list-style: none;
+    margin : 5px 0;
+}
+
+#games-custom-window{
+    display: none;
+    z-index: 100;
+}
+
+.custom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    margin: 25px 25px 0 25px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid rgb(182, 182, 182);
+    box-shadow: 0 0 2px rgb(216, 216, 216);
+}
+
+.custom div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 6px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.custom-tips{
+    font-size: 0.8em;
+    color: #999;
+    margin-left: 25px;
+}
+
+.custom input{
+    width: 60px;
+}
+
+.custom-bt-box{
+    text-align: center;
+    margin: 35px 0 15px 0;
+}
+
+.custom-bt-box button{
+    display: inline-block;
+    width: 3.8em;
+}
+
+.custom-bt-box button:last-child{
+    margin-left: 0.5em;
+    font-weight: bold;
+    color: rgb(243, 150, 10);
+}
+
+.reset-game-data{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.reset-game-data button{
+    display: inline-block;
+    width : 3.8em;
+}
+
+.reset-game-data button:last-child{
+    margin-left: 0.5em;
+    font-weight: bold;
+    color: red;
+}
+
+.restart-bt-box{
+    display: flex;
+    margin-bottom: 8px;
+    justify-content: center;
+}
+
+.restart-bt-box button:first-child{
+    color: orange;
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+/* --------------关于游戏-------------*/
+
+#about-games-window{
+    position: absolute;
+    z-index: 101;
+    font-size: 0.8em;
+    display: none;
+}
+
+#about-games-content{
+    padding: 1em;
+    width: 420px;
+    max-height: 525px;
+    overflow: auto;
+}
+
+#about-games-content .author-img{
+    text-align: center;
+}
+
+#about-games-content img{
+    box-shadow: 0 0 3px #777;
+}
+
+/************** hover ****************/
+
+.c-hover{
+    filter: brightness(1.2);
+    -webkit-filter: brightness(1.2);
+}
+
+/*************** type 1 ****************/
+.c-select-1{
+    background-position: -176px 0;
+}
+
+.c-doubt-1{
+    background-position: -154px 0;
+}
+
+.c-mkyes-1{
+    background-position: -132px 0;
+}
+
+.c-flag-1{
+    background-position: -110px 0;
+}
+
+.c-bomb-1{
+    background-position: -88px 0;
+}
+
+.c-expNow-1{
+    background-position: -66px 0;
+}
+
+.c-mkno-1{
+    background-position: -44px 0;
+}
+
+.c-cover-1{
+    background-position: -22px 0;
+}
+
+.c-bg-1{
+    background-position: 0px 0;
+}
+
+/************ type 2 *************/
+
+.c-select-2{
+    background-position: -176px -22px;
+}
+
+.c-doubt-2{
+    background-position: -154px -22px;
+}
+
+.c-mkyes-2{
+    background-position: -132px -22px;
+}
+
+.c-flag-2{
+    background-position: -110px -22px;
+}
+
+.c-bomb-2{
+    background-position: -88px -22px;
+}
+
+.c-expNow-2{
+    background-position: -66px -22px;
+}
+
+.c-mkno-2{
+    background-position: -44px -22px;
+}
+
+.c-cover-2{
+    background-position: -22px -22px;
+}
+
+.c-bg-2{
+    background-position: 0px -22px;
+}
+
+/**************** type 3 *****************/
+
+.c-select-3{
+    background-position: -176px -44px;
+}
+
+.c-doubt-3{
+    background-position: -154px -44px;
+}
+
+.c-mkyes-3{
+    background-position: -132px -44px;
+}
+
+.c-flag-3{
+    background-position: -110px -44px;
+}
+
+.c-bomb-3{
+    background-position: -88px -44px;
+}
+
+.c-expNow-3{
+    background-position: -66px -44px;
+}
+
+.c-mkno-3{
+    background-position: -44px -44px;
+}
+
+.c-cover-3{
+    background-position: -22px -44px;
+}
+
+.c-bg-3{
+    background-position: 0px -44px;
+}
+
+/*******number*********/
+
+.c-n1{
+    background-position: 0px -66px;
+}
+.c-n2{
+    background-position: -22px -66px;
+}
+.c-n3{
+    background-position: -44px -66px;
+}
+.c-n4{
+    background-position: -66px -66px;
+}
+.c-n5{
+    background-position: -88px -66px;
+}
+.c-n6{
+    background-position: -110px -66px;
+}
+.c-n7{
+    background-position: -132px -66px;
+}
+.c-n8{
+    background-position: -154px -66px;
+}
+
+
+.c-n1-x{
+    background-position: 0px -88px;
+}
+.c-n2-x{
+    background-position: -22px -88px;
+}
+.c-n3-x{
+    background-position: -44px -88px;
+}
+.c-n4-x{
+    background-position: -66px -88px;
+}
+.c-n5-x{
+    background-position: -88px -88px;
+}
+.c-n6-x{
+    background-position: -110px -88px;
+}
+.c-n7-x{
+    background-position: -132px -88px;
+}
+.c-n8-x{
+    background-position: -154px -88px;
+}
+
+/*******白嫖的按键样式**********/
+
+.button{
+    display: inline-block;
+    padding: 2px 10px;
+    margin: 0;
+    cursor: default;
+    border: 1px solid #bbb;
+    overflow: visible;
+    font: bold 13px arial, helvetica, sans-serif;
+    text-decoration: none;
+    white-space: nowrap;
+    color: #555;
+    outline: none;
+    
+    background-color: #ddd;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,1)), to(rgba(255,255,255,0)));
+    background-image: -webkit-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+    background-image: -moz-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+    background-image: -o-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+    background-image: linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+    
+    -webkit-transition: background-color .2s ease-out;
+    -moz-transition: background-color .2s ease-out;
+    -ms-transition: background-color .2s ease-out;
+    -o-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    background-clip: padding-box; /* Fix bleeding */
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, .3) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 1px 0 rgba(255, 255, 255, .3) inset;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 1px 0 rgba(255, 255, 255, .3) inset;
+    text-shadow: 0 1px 0 rgba(255,255,255, .9);
+    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .button:hover{
+    background-color: #eee;
+    color: #555;
+  }
+  
+  .button:active{
+    background: #e9e9e9;
+    position: relative;
+    top: 1px;
+    text-shadow: none;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+  }
+  
+.reward{
+    display: flex;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #a0a0a0;
+    cursor: pointer;
+    color: #ffffff;
+    position: fixed;
+    left: 5px;
+    bottom: 10px;
+}
+
+.reward .wx img, .reward .zfb img{
+    display: none;
+    position: absolute;
+    left: 1px;
+    bottom: 20px;
+    box-shadow: 0 0 3px #4e4e4e;
+}
+
+.reward .wx{
+    margin: 0 8px;
+}
+
+.reward .wx:hover{
+    font-weight: bold;
+    color: #06ac56;
+    transition: 0.2s color;
+}
+
+.reward .zfb:hover{
+    font-weight: bold;
+    color: #1677ff;
+    transition: 0.2s color;
+}
+
+.reward .wx:hover img, .reward .zfb:hover img{
+    display: block;
+    animation: reward-show 0.5s;
+}
+
+@keyframes reward-show{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.reward-list{
+    padding: 10px 5px;
+    text-align: center;
+    background-color: #ebebeb;
+    border: 1px solid #dadada;
+}
+
+#show-reward-name{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#reward-name b{
+    margin: 0 5px;
+}
+
+.feedback{
+    position: absolute;
+    right: 3px;
+}
+
+.feedback a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+}
+
+.feedback a:hover{
+    color: #9acd32;
+}
