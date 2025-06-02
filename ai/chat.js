@@ -15,7 +15,7 @@ const API_CONFIG = {
     deepseek: {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
-        model: 'deepseek/deepseek-r1-distill-qwen-32b:free'
+        model: 'deepseek/deepseek-r1-0528:free'
     },
     gemini: {
         key: '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',
