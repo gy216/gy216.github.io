@@ -1,134 +1,822 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简介</title>
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>果园编程 | 赛博朋克个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 赛博朋克主题变量 */
+        :root {
+            --neon-teal: #00f7ff;
+            --neon-purple: #bd08f5;
+            --neon-pink: #ff00aa;
+            --neon-blue: #0051ff;
+            --dark-bg: #080818;
+            --card-bg: rgba(10, 10, 30, 0.8);
+            --grid-line: rgba(0, 247, 255, 0.1);
+            --glitch-color1: #00ffea;
+            --glitch-color2: #ff0090;
+            --glitch-color3: #9500ff;
+        }
+        
+        /* 重置与基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', 'Microsoft YaHei', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e0e0ff;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 背景光效 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at top, rgba(189, 8, 245, 0.15), transparent 70%),
+                radial-gradient(ellipse at bottom, rgba(0, 247, 255, 0.1), transparent 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        /* 扫描线效果 */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        /* 容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* 头部样式 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        /* 主页按钮样式 */
+        .home-btn {
+            background: rgba(0, 247, 255, 0.1);
+            color: var(--neon-teal);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid var(--neon-teal);
+            border-radius: 4px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+        }
+        
+        .home-btn:hover {
+            background: var(--neon-teal);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-teal);
+        }
+        
+        .home-btn i {
+            margin-right: 8px;
+        }
+        
+        /* 标题的故障效果 */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 
+                0 0 10px var(--glitch-color1),
+                0 0 20px var(--glitch-color1);
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-text::before {
+            color: var(--glitch-color2);
+            animation: glitch-animation 2.5s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            text-shadow: 0 0 5px var(--glitch-color2);
+        }
+        
+        .glitch-text::after {
+            color: var(--glitch-color3);
+            animation: glitch-animation 2s infinite reverse;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+            text-shadow: 0 0 5px var(--glitch-color3);
+        }
+        
+        @keyframes glitch-animation {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-3px, -2px); }
+            60% { transform: translate(3px, 1px); }
+            80% { transform: translate(2px, -1px); }
+            100% { transform: translate(0); }
+        }
+        
+        /* 个人资料部分样式 */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 50px 0 30px;
+            padding: 30px 25px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(189, 8, 245, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(189, 8, 245, 0.4);
+        }
+        
+        .profile-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
+        }
+        
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid var(--neon-teal);
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px var(--neon-teal);
+        }
+        
+        .motto {
+            font-size: 1.8rem;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+        
+        .motto div {
+            margin: 15px 0;
+            position: relative;
+            padding: 10px 20px;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(0, 30, 40, 0.5);
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+        }
+        
+        /* 霓虹边框区块样式 */
+        .neon-border {
+            position: relative;
+            padding: 30px;
+            margin: 40px 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 80, 255, 0.15);
+            overflow: hidden;
+            border: 1px solid rgba(0, 100, 255, 0.4);
+        }
+        
+        .neon-border::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-teal));
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        
+        /* 标题样式 */
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neon-teal);
+            text-shadow: 0 0 10px var(--neon-teal);
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* 技能网格布局 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        /* 技能卡片样式 */
+        .skill-card {
+            background: rgba(15, 15, 40, 0.6);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 150, 255, 0.4);
+            border-color: var(--neon-teal);
+        }
+        
+        .skill-card h3 {
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .skill-list li:before {
+            content: "⟩";
+            position: absolute;
+            left: 0;
+            color: var(--neon-teal);
+            font-size: 1.4rem;
+        }
+        
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--neon-purple), var(--neon-blue));
+            border-radius: 3px;
+        }
+        
+        .timeline-event {
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        .timeline-year {
+            font-size: 2rem;
+            color: var(--neon-pink);
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .timeline-event p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        /* 游戏部分样式 */
+        .game-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .game-card {
+            background: rgba(20, 15, 40, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(189, 8, 245, 0.4);
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(189, 8, 245, 0.5);
+            border-color: var(--neon-purple);
+        }
+        
+        .game-card h3 {
+            color: var(--neon-purple);
+            margin: 20px 0 15px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 8px var(--neon-purple);
+        }
+        
+        /* 联系方式样式 */
+        .contacts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            margin: 40px 0;
+        }
+        
+        .contact-card {
+            background: rgba(15, 10, 35, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 170, 0.4);
+            width: 250px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 0, 170, 0.4);
+            border-color: var(--neon-pink);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--dark-bg);
+            background: var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+        
+        .contact-link {
+            color: var(--neon-teal);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            border: 1px solid var(--neon-teal);
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .contact-link:hover {
+            background: var(--neon-teal);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-teal);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(0, 247, 255, 0.4);
+            font-size: 1rem;
+            color: rgba(200, 200, 255, 0.8);
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--neon-teal);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links a:hover {
+            text-shadow: 0 0 8px var(--neon-teal);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .glitch-text {
+                font-size: 2.5rem;
+            }
+            
+            .home-btn {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+            
+            .motto {
+                font-size: 1.4rem;
+            }
+            
+            .neon-border {
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .skills-grid, .game-section, .contacts {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 0.7;
+                box-shadow: 0 0 10px var(--neon-teal);
+            }
+            50% { 
+                opacity: 1;
+                box-shadow: 0 0 25px var(--neon-teal);
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="main">
-        <div class="container">
-            <div class="section self">
-                <div class="contain">
-                    <img src="assets/images/user.jpg" alt="user.jpg" class="user-img">
-                    <p class="title">果园</p>
-                    <p class="sub-title">但置我于死地者，必将赐我以后生</p>
-                    <p class="text">Everything that kills me makes me feel alive</p>
-                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
-                </div>
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="glitch-text" data-text="果园">果园</h1>
+            <a href="https://gy216.github.io" class="home-btn">
+                <i class="fas fa-home"></i> 返回主站
+            </a>
+        </header>
+        
+        <section class="profile-section">
+            <div class="motto">
+			<div>果园</div>
+                <div>请记得那些对你好的人，因为他本可以不这样</div>
+				<div>Please remember those who treat you well, because they could have been different</div>
+  
+                <div>“永远相信美好的事情即将发生”</div>
+                <div>“Always believe that beautiful things are about to happen”</div>
+                
             </div>
-            <div class="section skill">
-                <div class="contain">
-                    <div class="skill-pane">
-                        <p class="title">前端</p>
-                        <p class="text">HTML</p>
-                        <p class="text">CSS</p>
-                        <p class="text">JavaScript</p>
-                        <p class="hr"></p>
-                        <p class="title">已会的编程语言</p>
-                        <p class="text">Scratch</p>
-                        <p class="text">Python</p>
-                        <p class="hr"></p>
-                        <p class="title">游戏制作</p>
-                        <p class="text">Scratch</p>
-                        <p class="text">Python</p>
-                    </div>
-                    <img src="assets/images/skill-font.png" alt="skill-font" class="skill-font">
-                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
-                </div>
+        </section>
+        
+        <section class="neon-border">
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> 技能 & 技术栈</h2>
             </div>
-            <div class="section time-line">
-                <div class="contain">
-                    <ul class="time-ul">
-                        <li>
-                            <div class="time-card">
-                                <p class="title">2020</p>
-                                <p class="text">建立果园工作室</p>
-                                <p class="text">在一个社区中，工作室全国第四</p>
-                                <p class="text">开始学习Python</p>
-                                <p class="text">深度学习 Scratch</p>
-                                <p class="text">迷上了灵</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="time-card">
-                                <p class="title">2024</p>
-                                <p class="text">学习前端知识，使用 HTML 和 CSS 制作网页</p>
-                                <p class="text">建立了自己的网站</p>
-                                <p class="text">被查出有轻度抑郁</p>
-                                <p class="text">被同学孤立</p>
-                                <p class="text">注册了自己的dpdns域名,托管到了 cloudflare</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="time-card">
-                                <p class="title">Andmore</p>
-                                <p class="text">以后的路还很长……</p>
-                            </div>
-                        </li>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>前端技术</h3>
+                    <ul class="skill-list">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
                     </ul>
-                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>编程语言</h3>
+                    <ul class="skill-list">
+                        <li>Scratch</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>游戏制作</h3>
+                    <ul class="skill-list">
+                        <li>Scratch</li>
+                        <li>Python</li>
+                    </ul>
                 </div>
             </div>
-            <div class="section hobby">
-                <div class="contain">
-                    <div class="hobby-card left">
-                        <img src="assets/images/和泉纱雾.jpg" alt="和泉纱雾.png" class="art">
-                        <p class="title">GAME</p>
-                        <p class="sub-title">游戏/单机/多人</p>
-                        <p class="text">最喜欢玩的《Minecraft》</p>
-                        <p class="text">最想玩的《黑神话悟空》</p>
-                        <p class="text">有创作游戏的想法</p>
-                    </div>
-                    <a href="#" class="down-link"><img src="assets/images/down.gif" alt="down.gif" class="down-img"></a>
+        </section>
+        
+        <section class="neon-border">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> 历程时间线</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-event">
+                    <div class="timeline-year">2018</div>
+                    <p>查出ADHD</p>
+                    <p>和同学们相处融洽</p>
+                    <p>看到有人编程，想学</p>
+                </div>
+                 <div class="timeline">
+                <div class="timeline-event">
+                    <div class="timeline-year">2019</div>
+                    <p>自学编程</p>
+                    <p>在一个社区发布作品</p>
+                    <p>想要建立一个工作室</p>
+                </div>
+            
+            <div class="timeline">
+                <div class="timeline-event">
+                    <div class="timeline-year">2020</div>
+                    <p>建立果园工作室</p>
+                    <p>在一个社区中，工作室全国第四</p>
+                    <p>ADHD加重</p>
+                    <p>开始学习Python</p>
+                    <p>深度学习 Scratch</p>
+                    <p>迷上了灵</p>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-year">2024</div>
+                    <p>学习前端知识，使用 HTML 和 CSS 制作网页</p>
+                    <p>建立了自己的网站</p>
+                    <p>被查出有轻度抑郁</p>
+                    <p>被同学孤立</p>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-year">2025</div>
+                    <p>注册了自己的dpdns域名，托管到了 Cloudflare</p>
+                    <p>对表妹的冷漠行为不满，抑郁加重</p>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-year">And more</div>
+                    <p>以后的路还很长……</p>
                 </div>
             </div>
-            <div class="section contact">
-                <div class="contain">
-                    <p class="title">联系方式</p>
-                    <div class="contact-pane">
-                        <div class="contact-item">
-                            <a href=""><img src="assets/images/tim.png" alt="tim.png"></a>
-                            <p>QQ:386498317</p>
-                        </div>
-                        <div class="contact-item">
-                            <a href="https://space.bilibili.com/1203461262" target="_blank"><img
-                                    src="assets/images/bilibili.png" alt="bilibili.png"></a>
-                            <p>Bilibili</p>
-                        </div>
-                        <div class="contact-item">
-                            <a href="https://github.com/gy216" target="_blank"><img src="assets/images/github.png"
-                                    alt="github.png"></a>
-                            <p>GitHub</p>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <p class="copy">Copyright © 2025 果园编程. All Rights Reserved.</p>
-                        <p class="studio">果园编程 版权所有-本页面同步自GY-GZW的GIT仓库</p>
+        </section>
+        
+        <section class="neon-border">
+            <div class="section-header">
+                <h2><i class="fas fa-gamepad"></i> 游戏 & 兴趣</h2>
+            </div>
+            
+            <div class="game-section">
+                <div class="game-card">
+                    <h3>GAME</h3>
+                    <p>游戏/单机/多人</p>
+                    <div style="margin-top:20px; font-size:1.1rem">
+                        <p><i class="fas fa-heart pulse" style="color:#ff00aa; margin-right:10px"></i>热衷于游戏开发与体验</p>
                     </div>
                 </div>
+                
+                <div class="game-card">
+                    <h3>Minecraft</h3>
+                    <p>最喜欢玩的游戏</p>
+                    <div style="font-size:3rem; margin:20px 0; color:#00f7ff">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <h3>黑神话：悟空</h3>
+                    <p>最期待的游戏</p>
+                    <div style="font-size:3rem; margin:20px 0; color:#ff00aa">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <p>有创作游戏的想法</p>
+                </div>
             </div>
-        </div>
-
-        <div class="controls">
-            <ul>
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <div class="bar"></div>
-        </div>
+        </section>
+        
+        <section class="neon-border">
+            <div class="section-header">
+                <h2><i class="fas fa-id-card"></i> 联系方式</h2>
+            </div>
+            
+            <div class="contacts">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-qq"></i>
+                    </div>
+                    <h3>QQ</h3>
+                    <p>386498317</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-bilibili"></i>
+                    </div>
+                    <h3>Bilibili</h3>
+                    <a href="https://space.bilibili.com/1203461262" target="_blank" class="contact-link">访问主页</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/gy216" target="_blank" class="contact-link">访问仓库</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <h3>微信</h3>
+                    <p>guoyuan_wx</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Copyright © 2025 果园编程. All Rights Reserved.</p>
+            <p>果园编程 版权所有 - 本页面同步自GY-GZW的GIT仓库</p>
+            <div class="footer-links">
+                <a href="https://gy216.github.io">主站</a> | 
+                <a href="#">项目中心</a> | 
+                <a href="#">博客</a>
+            </div>
+        </footer>
     </div>
+    
+    <!-- 背景装饰元素 -->
+    <div style="position:fixed; top:20%; left:10%; width:50px; height:50px; border-radius:50%; background:rgba(0,247,255,0.3); box-shadow:0 0 50px var(--neon-teal); z-index:-1;"></div>
+    <div style="position:fixed; top:65%; right:15%; width:80px; height:80px; border-radius:50%; background:rgba(189,8,245,0.3); box-shadow:0 0 70px var(--neon-purple); z-index:-1;"></div>
+    
+    <script>
+        // 添加赛博朋克元素动态效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建数字雨效果
+            const rainContainer = document.createElement('div');
+            rainContainer.style.position = 'fixed';
+            rainContainer.style.top = '0';
+            rainContainer.style.left = '0';
+            rainContainer.style.width = '100%';
+            rainContainer.style.height = '100%';
+            rainContainer.style.pointerEvents = 'none';
+            rainContainer.style.zIndex = '-1';
+            document.body.appendChild(rainContainer);
+            
+            // 创建多个数字流
+            for (let i = 0; i < 30; i++) {
+                createDigitalStream(i);
+            }
+            
+            // 添加霓虹文本悬停效果
+            const neonTexts = document.querySelectorAll('h1, h2, h3');
+            neonTexts.forEach(text => {
+                text.addEventListener('mouseenter', function() {
+                    this.style.textShadow = `0 0 15px ${getRandomColor()}, 0 0 25px ${getRandomColor()}`;
+                });
+                
+                text.addEventListener('mouseleave', function() {
+                    setTimeout(() => {
+                        if (text.tagName === 'H1') {
+                            this.style.textShadow = '0 0 10px var(--glitch-color1)';
+                        } else if (text.tagName === 'H2') {
+                            this.style.textShadow = '0 0 10px var(--neon-teal)';
+                        } else {
+                            this.style.textShadow = '';
+                        }
+                    }, 300);
+                });
+            });
+            
+            // 为技能卡片添加闪烁的角标
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach((card, index) => {
+                const corner = document.createElement('div');
+                corner.style.position = 'absolute';
+                corner.style.top = '10px';
+                corner.style.right = '10px';
+                corner.style.width = '15px';
+                corner.style.height = '15px';
+                corner.style.borderRadius = '50%';
+                corner.style.backgroundColor = getRandomColor();
+                corner.style.boxShadow = `0 0 10px ${getRandomColor()}`;
+                corner.style.animation = 'pulse 2s infinite';
+                card.appendChild(corner);
+            });
+            
+            // 工具函数：创建数字流
+            function createDigitalStream(index) {
+                const stream = document.createElement('div');
+                stream.style.position = 'absolute';
+                stream.style.top = '-20px';
+                stream.style.left = `${Math.random() * 100}%`;
+                stream.style.fontFamily = "'Courier New', monospace";
+                stream.style.color = 'rgba(0, 247, 255, 0.7)';
+                stream.style.fontSize = '16px';
+                stream.style.whiteSpace = 'nowrap';
+                stream.style.textShadow = '0 0 5px #00f7ff';
+                
+                // 创建数字内容
+                let content = '';
+                for (let i = 0; i < 40; i++) {
+                    content += `${Math.floor(Math.random() * 2)}<br>`;
+                }
+                stream.innerHTML = content;
+                
+                rainContainer.appendChild(stream);
+                
+                // 动画设置
+                const duration = 2000 + Math.random() * 5000;
+                const delay = Math.random() * 5000;
+                
+                stream.animate([
+                    { transform: `translateY(0)`, opacity: 0 },
+                    { opacity: 1 },
+                    { transform: `translateY(100vh)`, opacity: 0 }
+                ], {
+                    duration: duration,
+                    delay: delay,
+                    iterations: Infinity
+                });
+            }
+            
+            // 工具函数：获取随机颜色
+            function getRandomColor() {
+                const colors = ['var(--neon-teal)', 'var(--neon-pink)', 'var(--neon-purple)', 'var(--neon-blue)'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+        });
+    </script>
 </body>
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/index.js"></script>
-
 </html>
