@@ -2,82 +2,607 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>果园编程服务</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园编程服务丨赛博朋克科技中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff00f0;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --light-text: #ffffff;
+            --neon-glow: 0 0 10px var(--primary), 0 0 20px rgba(0, 240, 255, 0.5);
+            --grid-color: rgba(0, 240, 255, 0.05);
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--dark-bg);
+            color: var(--light-text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* 返回按钮样式 */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button a:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+
+        .back-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .back-button a:hover svg {
+            transform: translateX(-3px);
+        }
+
         .container {
-            width: 80%;
-            margin: 30px auto;
-            background: white;
+            max-width: 1200px;
+            margin: 80px auto 40px;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
         }
-        h1 {
+
+        .header {
             text-align: center;
-            color: #333;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+            box-shadow: var(--neon-glow);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
         }
-        .section {
-            margin-bottom: 20px;
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 240, 255, 0.1) 0%, 
+                rgba(255, 0, 240, 0.1) 100%
+            );
+            z-index: -1;
         }
-        .section-title {
-            font-size: 24px;
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 240, 255, 0.05) 0%,
+                rgba(255, 0, 240, 0.05) 50%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: rotate(30deg) translateY(0); }
+            100% { transform: rotate(30deg) translateY(100%); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
             margin-bottom: 10px;
         }
-        .play-button {
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 240, 255, 0.05) 0%, 
+                rgba(255, 0, 240, 0.05) 100%
+            );
+            z-index: -1;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .card-title i {
+            font-size: 2rem;
+        }
+
+        .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .cyber-button {
             display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            background: #007BFF;
-            color: white;
-            text-align: center;
+            padding: 16px;
+            background: linear-gradient(45deg, var(--primary), #0088cc);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2rem;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .play-button:hover {
-            background: #0056b3;
-        }
-        .qrcode {
-            display: block;
-            margin: 10px auto;
-            width: 150px;
-            height: 150px;
-        }
-        .join-group {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            position: relative;
+            overflow: hidden;
             text-align: center;
-            margin-top: 10px;
+            margin-top: auto;
         }
-        .join-group a {
-            color: #007BFF;
+
+        .cyber-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+        }
+
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+
+        .back-button-style {
+            background: linear-gradient(45deg, #ff00f0, #cc0088);
+        }
+
+        .qq-group {
+            display: block;
+            text-align: center;
+            font-size: 1.4rem;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary);
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qq-link {
+            display: block;
+            padding: 15px;
+            text-align: center;
+            color: var(--primary);
             font-weight: bold;
+            font-size: 1.1rem;
             text-decoration: none;
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
         }
-        .join-group a:hover {
-            text-decoration: underline;
+
+        .qq-link:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .terminal {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            color: #0f0;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cursor {
+            display: inline-block;
+            background-color: #0f0;
+            width: 8px;
+            height: 15px;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* 动画浮点 */
+        .float-points {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .float-point {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin: 70px auto 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 10, 30, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--secondary), var(--primary));
         }
     </style>
 </head>
 <body>
+    <!-- 返回主页按钮 -->
+    <div class="back-button">
+        <a href="https://gy216.github.io">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            返回主页
+        </a>
+    </div>
+
+    <!-- 浮动数据点 -->
+    <div class="float-points" id="float-points"></div>
+
     <div class="container">
-        <h1>果园编程服务</h1>
-        <div class="section" id="play-game">
-            <div class="section-title">作品试玩</div>
-            <a href="https://www.ccw.site/detail/65ae27feba39481f1fa7fa70?accessKey=d8f7fe" class="play-button">点击试玩</a>
-	<a href="javascript:history.back(-1);" class="play-button">返回上一页</a>
+        <div class="header">
+            <h1>果园编程服务</h1>
+            <div class="subtitle">赛博朋克科技中心 · 创新数字服务</div>
         </div>
-        <div class="section" id="join-test">
-            <div class="section-title">参加测试</div>
-	加入QQ群：749914521 <br>
-                <a href="tencent://message/?uin=749914521">点击这里加入（可能无法加入）</a>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="card-title">
+                    <i class="fas fa-gamepad"></i>
+                    作品试玩区
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        体验果园编程团队精心打造的游戏作品，感受前沿技术与创意的完美结合。
+                        所有作品均采用最新技术开发，提供沉浸式游戏体验。
+                    </p>
+                    <a href="https://www.ccw.site/detail/65ae27feba39481f1fa7fa70?accessKey=d8f7fe" class="cyber-button">
+                        <i class="fas fa-rocket"></i> 进入游戏试玩区
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-title">
+                    <i class="fas fa-users"></i>
+                    测试团队加入
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        加入我们的专属测试团队，第一时间体验最新作品，提供宝贵意见。
+                        成为果园编程社区的核心成员，共同创造未来。
+                    </p>
+                    
+                    <div class="qq-group">
+                        <i class="fab fa-qq"></i> 专属测试团队 QQ群：
+                        <div class="terminal">
+                            <span>>~ 果园测试团队邀请代码: 749914521</span><span class="cursor"></span>
+                        </div>
+                    </div>
+                    
+                    <a href="tencent://message/?uin=749914521" class="qq-link">
+                        <i class="fab fa-qq"></i> 直接加入测试群聊
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-title">
+                    <i class="fas fa-code"></i>
+                    开发服务
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        提供专业的编程开发服务，包括网站建设、游戏开发、应用开发等。
+                        我们使用前沿技术，打造高性能、高可用的数字产品。
+                    </p>
+                    <a href="#" class="cyber-button">
+                        <i class="fas fa-laptop-code"></i> 查看开发服务
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    编程教育
+                </div>
+                <div class="card-content">
+                    <p class="card-description">
+                        专业的编程教育服务，适合各年龄段的学习者。
+                        从基础编程到高级算法，全面提升编程能力。
+                    </p>
+                    <a href="#" class="cyber-button">
+                        <i class="fas fa-book-open"></i> 了解课程详情
+                    </a>
+                </div>
             </div>
         </div>
+
+        <div class="service-card">
+            <div class="card-title">
+                <i class="fas fa-arrow-left"></i>
+                导航功能
+            </div>
+            <div class="card-content">
+                <p class="card-description">
+                    快速返回上一页面或返回果园编程主页，便捷的导航功能让您的体验更加流畅。
+                </p>
+                <a href="javascript:history.back(-1);" class="cyber-button back-button-style">
+                    <i class="fas fa-arrow-left"></i> 返回上一级页面
+                </a>
+                <a href="https://gy216.github.io" class="cyber-button" style="margin-top: 15px; background: linear-gradient(45deg, #00ffcc, #00a6ff);">
+                    <i class="fas fa-home"></i> 返回果园主页
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>果园编程 · 科技与创新的完美结合</p>
+            <p>© 2025 果园编程工作室 版权所有</p>
+        </div>
     </div>
+
+    <script>
+        // 创建浮动数据点
+        function createFloatPoints() {
+            const container = document.getElementById('float-points');
+            const pointCount = 50;
+            
+            for (let i = 0; i < pointCount; i++) {
+                const point = document.createElement('div');
+                point.classList.add('float-point');
+                
+                // 随机大小 (2-6px)
+                const size = Math.random() * 4 + 2;
+                point.style.width = `${size}px`;
+                point.style.height = `${size}px`;
+                
+                // 随机位置
+                point.style.left = `${Math.random() * 100}%`;
+                point.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                point.style.animationDelay = `${Math.random() * 10}s`;
+                
+                // 随机动画时长
+                const duration = Math.random() * 10 + 10;
+                point.style.animationDuration = `${duration}s`;
+                
+                // 随机颜色
+                const colors = ['#00f0ff', '#ff00f0', '#ff8c00', '#00ffcc'];
+                point.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(point);
+            }
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatPoints();
+            
+            // 添加控制台彩蛋
+            console.log("%c果园编程服务丨科技驱动未来", "font-size: 18px; color: #00f0ff; text-shadow: 0 0 10px #00f0ff;");
+            console.log("%c欢迎加入我们的测试团队，一起创造未来！", "font-size: 14px; color: #ff00f0;");
+            
+            // 添加卡片入场动画
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(50px)";
+                
+                setTimeout(() => {
+                    card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                }, 300 + index * 150);
+            });
+        });
+    </script>
 </body>
 </html>

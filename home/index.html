@@ -1,458 +1,296 @@
 <!DOCTYPE html>
-<meta name="google" content="notranslate">
-<meta http-equiv="Content-Language" content="zh-CN">
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- 声明IE必须用最新科技（bi） -->
-    <meta http-equiv="X-UA-Compatible" content="IE=5" >
-	<meta http-equiv="X-UA-Compatible" content="IE=7" >
-	<meta http-equiv="X-UA-Compatible" content="IE=8" >
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>果园编程丨永远相信美好的事情即将发生丨果园编程官网</title>
-    <!-- 自定义字体 -->
-        <!-- 以后搞！ -->
-    <!-- CSS区域 -->
-    <style>	
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: '微软雅黑', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-image: url('https://bing.ee123.net/img/rand');
-            background-size: cover;
-            background-attachment: fixed;
-            animation: fadeIn 1s ease-out;
-        }
-        p, h1 {
-            color: #FFFFFF;
-        }
-        a {
-            color: #FF0000;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-        a:hover {
-            text-decoration: none;
-            color: #FFFFFF;
-            text-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes slideInFromLeft {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(0); }
-        }
-        @keyframes slideInFromRight {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(0); }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-30px); }
-            60% { transform: translateY(-15px); }
-        }
-        @keyframes cardFlip {
-            0% { transform: perspective(600px) rotateY(0); }
-            50% { transform: perspective(600px) rotateY(180deg); }
-            100% { transform: perspective(600px) rotateY(0); }
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background: #006FA4;
-            color: #000000;
-            border: none;
-            border-radius: 5px;
-            transition: transform 0.3s, background 0.3s;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            animation: fadeIn 1s ease-out;
-        }
-        .button:hover {
-            cursor: pointer;
-            transform: scale(1.05);
-        }
-        .button:active {
-            transform: scale(0.95);
-            transition: transform 0.1s;
-        }
-        header {
-            text-align: center;
-            padding: 20px 0;
-            background-color: rgb(0,0,0,0);
-            animation: fadeIn 1s ease-out;
-        }
-        .logo img {
-            width: 150px;
-            height: auto;
-            animation: pulse 2s infinite;
-        }
-        .team-members {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 40px;
-            background-color: rgb(0,0,0,0);
-            animation: fadeIn 1s ease-out;
-        }
-        .member {
-            flex: 0 1 240px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px;
-            background: white;
-            animation: slideInFromLeft 1s ease-out;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .member p, .member h3 {
-            color: #000000;
-        }
-        .member:hover {
-            transform: translateY(-10px);
-        }
-        .member .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: transform 0.3s;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            animation: fadeIn 1s ease-out;
-            transform-style: preserve-3d;
-            perspective: 600px;
-        }
-        .member .button:hover {
-            animation: cardFlip 0.5s ease-in-out forwards;
-        }
-        @media (max-width: 768px) {
-            .member {
-                flex-basis: 100%;
-            }
-        }
-        .footer {
-            background-color: #000000;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            animation: slideInFromRight 1s ease-out;
-        }
-        .footer p {
-            margin: 8px 0;
-        }
-        .language-selector {
-            text-align: right;
-            padding: 10px;
-        }
-        .language-selector select {
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .message {
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>果园编程丨科技驱动未来丨果园编程官网</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 通知系统样式 */
+        .cyber-notification {
             position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 20px;
+            right: -100%;
+            background: rgba(10, 10, 30, 0.95);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
             display: flex;
             align-items: center;
-            min-width: 300px;
-            background-color: #edf2fc;
-            border: 1px solid #edf2fc;
-            padding: 16px 17px;
-            top: 25px;
-            border-radius: 6px;
-            overflow: hidden;
+            max-width: 300px;
             z-index: 1000;
-            animation: fadeIn 1s ease-out;
-            opacity: 1;
-            transition: opacity 0.5s ease-out;
-        }
-        .message.hidden {
+            transition: right 0.5s ease, opacity 0.5s ease;
             opacity: 0;
         }
-        .message > .message-close-btn {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #c0c0c4;
-            font-size: 17px;
+        
+        .cyber-notification.active {
+            right: 20px;
+            opacity: 1;
+        }
+        
+        .close-btn {
+            margin-left: 15px;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        .message > .message-close-btn:hover, .message > .message-close-btn:active {
-            color: #909399;
+        
+        .close-btn:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
         }
-        .message p {
-            line-height: 1;
-            font-size: 14px;
-            color: #909399;
+        
+        /* 返回按钮样式 */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
         }
-        .message.message-center {
-            justify-content: center;
+        
+        .back-to-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-home a:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    <script>
-        function showNotification() {
-            var notification = document.getElementById('notification');
-            notification.style.display = 'block';
-            setTimeout(function() {
-                closeNotification();
-            }, 4000);
-        }
+        </a>
+    </div>
 
-        function closeNotification() {
-            var notification = document.getElementById('notification');
-            notification.classList.add('hidden');
-            setTimeout(function() {
-                notification.style.display = 'none';
-            }, 500); // 与CSS中的transition时间一致
-        }
+    <!-- 通知系统 -->
+    <div id="notification" class="cyber-notification">
+        <div class="hologram-line"></div>
+        <p>系统初始化完成</p>
+        <span class="close-btn" onclick="closeNotification()">✕</span>
+    </div>
 
-        window.onload = function() {
-            showNotification();
-        };
-    </script>
-	<script>
-	console.log("不是你看什么看，看我们代码的人肯定没这么好心");
-	console.warn("再看网站就要把你IP封了哦");
-	console.warn("宝宝不要再看了嘛~");
-	console.warn("宝宝不要看了嘛~");
-	console.warn("再看我就把你IP封了哦~");
-	console.warn("那你说好，再也不看了哦~");
-	console.warn("AI界面你也不要再看哦~");
-	console.warn("宝宝!");
-	console.warn("再看的话我就要生气咯!");
-	</script>
-    <!-- HTML区域 -->
-    <header>
-        <div class="logo">
-            <img src="https://gy216.github.io/logo.png" alt="无法获取果园编程的logo">
-        </div>
-        <h1 id="title">果园编程（原果园工作室）</h1>
-        <p id="description">果园编程工作室，专注于编程领域，致力于在 CCW（共创世界）平台创作与发布优质作品。</p>
-        <p id="slogan">我们的理念： 用心每一作，发展每一天。</p>
-        <br>
-        <a href="javascript:history.back(-1);" class="button">返回上一页</a>
-        <a href="/about" class="button">关于我们</a>
-        <a href="/my" class="button">关于我（我的主页）</a>
-        <a href="/study" class="button">访问果园学习</a>
-        <a href="/redirect/guoyuancode.html" class="button">访问副站</a>
-        <a href="/ai" class="button">试试AI（新）</a>
-        <a href="/doc/rule" class="button">阅读群规</a>
-        <a href="https://status.guoyuangzs.dpdns.org/" class="button">查看网站性能</a>
-        <a href="/bk" class="button">宝库</a>
-        <a href="/cartoon" class="button">好看的</a>
-        <a href="/fw" class="button">服务</a>
-        <a href="/join" class="button">加入我们</a>
-        <a href="/game" class="button">玩玩游戏</a>
-        <a href="/so" class="button">果园搜索</a>
-        <a href="/supp" class="button">捐助我们</a>
-        <a href="#" class="button" id="lingButton">彩蛋：灵儿响叮当</a>
-        <a href="/dabao/daobao.html" class="button">scratch作品打包机（不支持GANDI）</a>
-        <a href="/doc/xieyi" class="button">网站协议</a>
-        <p> <script src="https://api.gumengya.com/Api/YiYan?format=js" type="text/javascript"></script></p>
-        <div id="clock" style="animation: bounce 1s infinite;"></div>
-    </header>
-    <section class="team-members">
-        <h2 id="team-members-title">团队成员</h2>
-        <br><br/>
-        <div class="member">
-            <h3>果园</h3>
-            <p>CCWID: 196543819</p>
-            <p>个人简介：室长，会AI、Python、Scratch</p>
-            <p>个性签名：且视他人之凝目如盏盏鬼火，大胆的走你的夜路</p>
-            <a href="https://www.ccw.site/student/61ef9efe4449842875d8f7fe" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>IW大使</h3>
-            <p>CCWID: 242979307</p>
-            <p>个人简介：副室长，高中生、一个IW玩家、精通scratch</p>
-            <p>个性签名：一个普通iwanna玩家，仅此而已。</p>
-            <a href="https://www.ccw.site/student/6361f00a03ed5b41b82d4cce" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>上古米歇尔</h3>
-            <p>CCWID: 236339606</p>
-            <p>个人简介：迷你玩家，会C++、汇编，懂电脑</p>
-            <p>个性签名：母牛大使</p>
-            <a href="https://www.ccw.site/student/627e031a5061e01d8dd6d4d5" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>南翔</h3>
-            <p>CCWID: 244841612</p>
-            <p>个人简介：一个喜欢做Windows，但是不懂Windows的人</p>
-            <p>个性签名：心若有所向往，何惧道阻且长</p>
-            <a href="https://www.ccw.site/student/63d373e97353890bfcc808b0" class="button">个人页面</a>
-             </div>
-        <div class="member">
-            <h3>禾几十</h3>
-            <p>QQ：2655406519</p>
-            <p>个人简介：果园的同学，喜欢玩《萤火突击》、懂一点历史</p>
-            <p>个性签名：家在身后，世界在前</p>
+    <div class="cyber-container">
+        <!-- 全息导航栏 -->
+        <nav class="cyber-nav">
+            <div class="nav-logo">
+                <a href="/"></a>
             </div>
-        <div class="member">
-            <h3>yynna！！！</h3>
-            <p>QQ：2177752974</p>
-            <p>个人简介：果园的同学，对历史和科技感兴趣，对电脑不太懂，但是会操作</p>
-            <p>个性签名：Sieg Heil！！！</p>
-        </div>
-        <div class="member">
-            <h3>果园工作室人员</h3>
-            <p>QQ：1796431249</p>
-            <p>个人简介：上古米歇尔的同学</p>
-            <p>个性签名：暂无</p>
-        </div>
-        <div class="member">
-            <h3>极地蛟龙</h3>
-            <p>CCWID: 246191199</p>
-            <p>个人简介：一起肝作品的，新手</p>
-            <p>个性签名：暂时没有</p>
-            <a href="https://www.ccw.site/student/640418ef9bc4085396341997" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>兴儿-小兴兴仔</h3>
-            <p>QQ:1272372507</p>
-            <p>CCWID:244339023</p>
-            <p>个人简介:一位平平无奇的但热爱创作的小学生</p>
-            <p>个性签名:破釜沉舟</p>
-            <a href="https://www.ccw.site/student/63c782a56858e60efb0eab53" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>编程程序玩家</h3>
-            <p>CCWID: 236456039</p>
-            <p>个人简介：和果园不怎么交往，但是依然有深厚的友谊</p>
-            <p>个性签名：暂时没有</p>
-            <a href="https://www.ccw.site/student/627114fd7780c01e7a3eda6f" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>永青工作室</h3>
-            <p>CCWID: 241334262</p>
-            <p>个人简介：因为学业，但是我们在等他！</p>
-            <p>个性签名：暂时没有</p>
-            <a href="https://www.ccw.site/student/633ad1affe74357739ce8c4a" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>ljc</h3>
-            <p>CCWID: 248561390</p>
-            <p>个人简介：果园的同学，刚学C++，会Python，喜欢把国外的作品搞来，这点果园对此很不满</p>
-            <p>个性签名：人生如戏，全靠演技</p>
-            <a href="https://www.ccw.site/student/64675d47681a9d18b26d5f34" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>XRC 我托马莱依拉</h3>
-            <p>CCWID: 237394302</p>
-            <p>个人简介：在HBC认识的xrc</p>
-            <p>个性签名：原神，启动！</p>
-            <a href="https://www.ccw.site/student/62a576ba4de28e738ab45d6a" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>悦悦（线下）</h3>
-            <p>QQ：3102920598</p>
-            <p>个人简介：果园的表妹，追星族，喜欢成毅</p>
-            <p>个性签名：万水千山，你愿意陪我一起看吗</p>
-        </div>
-        <div class="member">
-            <h3>乐乐（线下）</h3>
-            <p>果园暂时没有她的个人信息</p>
-            <p>个人简介：果园的表妹，现在和果园在一个学校</p>
-            <p>个性签名：暂时没有</p>
-        </div>
-    </section>
-    <footer class="footer">
-        <div>
-        <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
+            <div class="nav-links">
+                <a href="/about" class="cyber-link">关于我们</a>
+                <a href="/my" class="cyber-link">果园个人主页</a>
+                <a href="/study" class="cyber-link">果园学习</a>
+                <a href="/ai" class="cyber-link">果园AI HUB（支持Deepseek）</a>
+                <a href="/game" class="cyber-link">HTML游戏中心</a>
+                <a href="/dabao" class="cyber-link">Scratch作品打包</a>
+                <a href="/join" class="cyber-link">加入果园编程工作室</a>
+            </div>
+        </nav>
+
+        <!-- 全息标题区 -->
+        <header class="cyber-header">
+            <h1 class="cyber-title">果园编程</h1>
+            <p class="cyber-subtitle">科技驱动未来 · 创新改变世界</p>
+            <div class="cyber-grid">
+                <div class="grid-item">
+                    <span class="data-number">16</span>
+                    <span class="data-label">团队成员</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">10+</span>
+                    <span class="data-label">创新项目</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">100%</span>
+                    <span class="data-label">热情投入</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">100%</span>
+                    <span class="data-label">成员活跃度</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">18</span>
+                    <span class="data-label">成员最大年龄</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">12</span>
+                    <span class="data-label">成员最小年龄</span>
+                </div>
+            </div>
+            <a href="members.html" class="cyber-button">查看完整成员</a>
+        </header>
+
+        <!-- 快速链接区 -->
+        <section class="quick-links">
+            <h2 class="section-title">快速访问</h2>
+            <div class="link-grid">
+                <a href="/link/guoyuancode.html" class="link-card">
+                    <div class="link-icon">🔗</div>
+                    <div class="link-text">访问副站</div>
+                </a>
+                <a href="/doc/rule" class="link-card">
+                    <div class="link-icon">📜</div>
+                    <div class="link-text">阅读网站服务条款和果园编程规则</div>
+                </a>
+                <a href="https://status.guoyuangzs.dpdns.org/" class="link-card">
+                    <div class="link-icon">📊</div>
+                    <div class="link-text">网站状态</div>
+                </a>
+                <a href="/bk" class="link-card">
+                    <div class="link-icon">💎</div>
+                    <div class="link-text">宝库</div>
+                </a>
+                <a href="https://tv.guoyuangzs.dpdns.org/" class="link-card">
+                    <div class="link-icon">🎬</div>
+                    <div class="link-text"> LibreTV影视（访问密码：1145，观看密码0216）</div>
+                </a>
+                <a href="/fw" class="link-card">
+                    <div class="link-icon">🛠️</div>
+                    <div class="link-text">服务</div>
+                </a>
+                <a href="/so" class="link-card">
+                    <div class="link-icon">🔍</div>
+                    <div class="link-text">果园搜索</div>
+                </a>
+                <a href="/supp" class="link-card">
+                    <div class="link-icon">❤️</div>
+                    <div class="link-text">捐助我们</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 特色功能区 -->
+        <section class="feature-section">
+            <h2 class="section-title">特色功能（请点击右上角体验）</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AIHub</h3>
+                    <p>体验最新的人工智能技术</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>游戏中心</h3>
+                    <p>放松一下，玩玩游戏</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>作品打包</h3>
+                    <p>Scratch作品打包工具</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>学习资源</h3>
+                    <p>编程学习资料库</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="cyber-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>果园编程工作室，专注于编程领域，致力于在CCW平台创作与发布优质作品。</p>
+                    <p>我们的理念：用心每一作，发展每一天。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系信息</h3>
+                    <p>果园QQ: 386498317</p>
+                    <p>QQ群: 749914521</p>
+                </div>
+                <div class="footer-section">
+                    <h3>技术支持＆友情链接</h3>
+                    <div class="tech-badges">
+                 <a href="https://cloudflare.com" target="_blank" title="Cloudflare">⚡</a>
+                    <!--注释掉-->
+                       <!-- <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" target="_blank" title="SSL安全访问">🔒</a>-->
+                        <!--<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" target="_blank" title="IPv6支持">🌐</a>-->
+                        <!--<a href="https://developers.google.cn/analytics?hl=zh-cn" target="_blank" title="Google证书">G</a>-->
+                       <!--<a href="https://dash.cloudflare.com" target="_blank" title="Cloudflare">⚡</a>-->
+                       <!-- <a href="http://torproject.netcologne.de/" target="_blank" title="Tor">🔗</a>-->
+                    </div>
+                    <h3>CDN节点</h3>
+                    <p>当前CDN节点: <span id="cdn" class="loading">检测中...</span></p>
+                </div>
+               
+            </div>
+            <div class="footer-bottom">
+            <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
 	<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
 	<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4访问" src="https://gy216.github.io/ipv4-s1.svg"></a>
 	<a href="https://developers.google.cn/analytics?hl=zh-cn" title="本站安全证书由Google签发" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站安全证书由Google签发" src="https://gy216.github.io/google.svg"></a>
 	<a href="https://dash.cloudflare.com" title="Cloudflare" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Cloudflare" src="https://gy216.github.io/Cloudflare.svg"></a>
 	<a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="https://gy216.github.io/Tor.svg"></a>
                 
-            <p id="footer-text">本网站的背景图片为Bing每日一图， 站长：果园，测试：GZW 更新日期：19:33:06		2025年03月14日 由 果园 最后一次编写保存</p>
-            <p>果园QQ号：386498317 果园编程QQ群：749914521</p>
-            <p>果园GICP备YZGY20110216</p>
-            <p>本网站托管于GitHub，直到永远。本网站由Cloudflare提供人机验证，dpdns.org提供域名支持</p>
-        <p>当前 CDN 节点: <span id="cdn" class="loading">检测中...</span></p>
+                <p>© 2025 果园编程 | GICP备YZGY20110216</p>
+                <p>最后更新: 2025年03月14日</p>
+            </div>
+        </footer>
     </div>
-    
- <script src="cdn.js"></script>
- 
-        </div>
-    </footer>
 
-     <script>
-        let clickCount = 0;
-        const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'];
-        let resetTimer;
+    <!-- 彩蛋按钮 -->
+    <div id="lingButton" class="easter-egg">
+        <span>彩蛋</span>
+    </div>
 
-        function showNotification(message) {
-            if (Notification.permission !== 'granted') return;
-            const notification = new Notification('果园编程', {
-                body: message
-            });
-            notification.onclick = function() {
-                window.focus();
-                notification.close();
-            };
+    <!-- 一言显示 -->
+    <div class="yi-yan">
+        <script src="https://api.gumengya.com/Api/YiYan?format=js" type="text/javascript"></script>
+    </div>
+
+    <script src="cdn.js"></script>
+    <script>
+        // 通知系统功能
+        let notificationTimer;
+        
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            clearTimeout(notificationTimer);
+            
+            notification.classList.add('active');
+            notificationTimer = setTimeout(() => {
+                closeNotification();
+            }, 4000);
         }
-
-        function requestNotificationPermission() {
-            if (Notification.permission !== 'granted') {
-                Notification.requestPermission(function(permission) {
-                    if (permission === 'granted') {
-                        showNotification('通知权限已开启');
-                    }
-                });
-            }
+        
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('active');
         }
-
-        document.getElementById('lingButton').addEventListener('click', function(event) {
-            event.preventDefault(); // 阻止默认行为
-            clickCount++;
-            this.style.backgroundColor = colors[clickCount - 1];
-
-            // 清除之前的定时器
-            if (resetTimer) {
-                clearTimeout(resetTimer);
-            }
-
-            // 设置新的定时器
-            resetTimer = setTimeout(() => {
-                clickCount = 0;
-                this.style.backgroundColor = '#006FA4'; // 还原初始颜色
-            }, 1000);
-
-            // 显示通知
-            showNotification(`你还有 ${5 - clickCount} 次点击即可进入彩蛋`);
-
-            if (clickCount >= 5) {
+        
+        // 页面加载
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification();
+            
+            // 彩蛋按钮功能
+            document.getElementById('lingButton').addEventListener('click', function() {
+                alert('发现彩蛋！即将跳转到特别页面');
                 window.location.href = '/ling';
+            });
+            
+            // 检测CDN
+            if(typeof detectCDNNode === 'function') {
+                detectCDNNode();
             }
         });
-
-        // 请求通知权限
-        requestNotificationPermission();
-    </script>
+        
+        // 控制台彩蛋
+        console.log("不是你看什么看，看我们代码的人肯定没这么好心");
+        console.warn("再看网站就要把你IP封了哦");
     </script>
 </body>
 </html>

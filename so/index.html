@@ -1,94 +1,472 @@
-﻿<!-- 代码由文心4.0编写！ -->
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园搜索丨赛博朋克搜索门户</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff00f0;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --light-text: #ffffff;
+            --neon-glow: 0 0 10px var(--primary), 0 0 20px rgba(0, 240, 255, 0.5);
+            --grid-color: rgba(0, 240, 255, 0.05);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--dark-bg);
+            color: var(--light-text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
+        }
 
-<!DOCTYPE html>  
-<html lang="zh-CN">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>果园搜索丨开学季，一起加油！</title>  
-    <style>  
-        body {  
-            font-family: Arial, sans-serif;  
-            margin: 0;  
-            padding: 0;  
-            background-image: url('https://bing.ee123.net/img/rand'); /* 假设这个URL提供随机高清图片 */  
-            background-size: cover;  
-            background-position: center;  
-            display: flex;  
-            justify-content: center;  
-            align-items: center;  
-            height: 100vh;  
-        }  
-  
-        .search-container {  
-            background-color: rgba(255, 255, 255, 0.8);  
-            padding: 20px;  
-            border-radius: 10px;  
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
-            text-align: center;  
-        }  
-  
-        input[type="text"], select, button {  
-            padding: 20px;  
-            margin: 20x;  
-            border: 1px solid #ccc;  
-            border-radius: 1px;  
-            font-size: 16px;  
-        }  
-  
-        button {  
-            background-color: #007bff;  
-            color: white;  
-            cursor: pointer;  
-            padding: 15px 30px;  
-            font-size: 16px;  
-        }  
-  
-        button:hover {  
-            background-color: #0056b3;  
-        }  
-    </style>  
-</head>  
-<body>  
-    <div class="search-container">  
-        <h2>果园搜索</h2>  
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
 
-	<h3>更新日期：2025年2月22日16点51分</h3>  
-        <select id="searchEngineSelector">  
-	<option value="https://www.baidu.com/s?wd=">百度</option>  
-	<option value="https://cn.bing.com/search?q=">Bing</option>  
-	<option value="https://www.so.com/s?q=">360搜索</option>  
-	<option value="https://www.sogou.com/web?query=">搜狗</option>
-	<option value="https://google.speedcloud.icu/search?q=">谷歌镜像（国内有封IP的可能）</option>  
-	<option value="https://google.com/search?q=">谷歌（国内无法访问）</option>  
-        </select>  
-        <input type="text" id="searchQuery" placeholder="请输入你的搜索内容进行搜索">  
-        <button onclick="performSearch()">果园SO一下！</button>
-	<button onclick="javascript:history.back(-1);">返回上一页</button>  
-	<button onclick="https://gy216.githuhb.io/ai">进入果园AI体验AI搜搜</button>  
+        .cyber-container {
+            width: 90%;
+            max-width: 800px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--neon-glow);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
 
-    </div>  
-    <script>  
-        function performSearch() {  
-            var baseUrl = document.getElementById('searchEngineSelector').value;  
-            var searchQuery = encodeURIComponent(document.getElementById('searchQuery').value);  
-            var searchUrl = baseUrl.replace(/=\([^)]*\)$/, '=' + searchQuery);  
-  
-            // 由于URL格式可能不同，我们使用更通用的方法构建搜索URL  
-            // 假设URL的最后一个部分是查询参数，我们将其替换  
-            if (!searchUrl.endsWith('=') && !searchUrl.endsWith('&')) {  
-                // 如果URL不以'='或'&'结尾，我们添加'?'或'&'  
-                searchUrl += (searchUrl.includes('?') ? '&' : '?') + searchQuery;  
-            } else {  
-                // 如果URL以'='或'&'结尾，我们直接替换它  
-                searchUrl = searchUrl.substring(0, searchUrl.lastIndexOf('=') + 1) + searchQuery;  
-            }  
-  
-            // 在新标签页中打开搜索URL  
-            window.open(searchUrl, '_blank');  
-        }  
-    </script>  
-</body>  
+        .cyber-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 240, 255, 0.1) 0%, 
+                rgba(255, 0, 240, 0.1) 100%
+            );
+            z-index: -1;
+        }
+
+        .cyber-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 240, 255, 0.05) 0%,
+                rgba(255, 0, 240, 0.05) 50%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: rotate(30deg) translateY(0); }
+            100% { transform: rotate(30deg) translateY(100%); }
+        }
+
+        .header {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .update-date {
+            background: rgba(0, 240, 255, 0.15);
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .search-engine-selector {
+            width: 100%;
+            padding: 15px;
+            background: rgba(10, 10, 30, 0.7);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            outline: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .search-engine-selector:hover {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .search-engine-selector:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(255, 0, 240, 0.4);
+        }
+
+        .search-input-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 20px 18px 50px;
+            background: rgba(10, 10, 30, 0.7);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:hover {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(255, 0, 240, 0.4);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .cyber-button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+        }
+
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+
+        .search-button {
+            background: linear-gradient(45deg, var(--primary), #00a6ff);
+        }
+
+        .back-button {
+            background: linear-gradient(45deg, #ff00f0, #ff0080);
+        }
+
+        .ai-button {
+            background: linear-gradient(45deg, #00ffcc, #00a6ff);
+        }
+
+        .engine-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .engine-logo {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .engine-logo:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .cyber-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .cyber-button {
+                min-width: 100%;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* 粒子效果 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+
+    <div class="cyber-container">
+        <div class="header">
+            <h1>果园搜索</h1>
+            <div class="subtitle">赛博朋克搜索门户 · 科技驱动未来</div>
+            <div class="update-date">更新日期：2025年2月22日16点51分</div>
+        </div>
+
+        <select class="search-engine-selector" id="searchEngineSelector">
+            <option value="https://www.baidu.com/s?wd=">百度搜索</option>
+            <option value="https://cn.bing.com/search?q=">Bing搜索</option>
+            <option value="https://www.so.com/s?q=">360搜索</option>
+            <option value="https://www.sogou.com/web?query=">搜狗搜索</option>
+            <option value="https://google.speedcloud.icu/search?q=">谷歌镜像（国内有封IP的可能）</option>
+            <option value="https://google.com/search?q=">谷歌搜索（国内无法访问）</option>
+        </select>
+
+        <div class="search-input-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="searchQuery" placeholder="输入搜索内容，探索数字世界...">
+        </div>
+
+        <div class="button-container">
+            <button class="cyber-button search-button" onclick="performSearch()">
+                <i class="fas fa-rocket"></i> 果园SO一下！
+            </button>
+            <button class="cyber-button ai-button" onclick="window.location.href='https://gy216.github.io/">
+                <i class="fas fa-robot"></i> 返回主站
+            </button>
+            <button class="cyber-button ai-button" onclick="window.location.href='https://gy216.github.io/ai'">
+                <i class="fas fa-robot"></i> 进入果园AI
+            </button>
+        </div>
+
+        <div class="engine-logos">
+            <div class="engine-logo"><i class="fab fa-google"></i></div>
+            <div class="engine-logo"><i class="fab fa-microsoft"></i></div>
+            <div class="engine-logo"><i class="fas fa-search"></i></div>
+            <div class="engine-logo"><i class="fab fa-safari"></i></div>
+            <div class="engine-logo"><i class="fas fa-globe-asia"></i></div>
+        </div>
+
+        <div class="footer">
+            <p>果园编程 · 科技与创新的完美结合</p>
+        </div>
+    </div>
+
+    <script>
+        // 创建粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小 (1-3px)
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // 随机颜色
+                const colors = ['#00f0ff', '#ff00f0', '#ff8c00'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 搜索功能
+        function performSearch() {
+            const baseUrl = document.getElementById('searchEngineSelector').value;
+            const searchQuery = document.getElementById('searchQuery').value.trim();
+            
+            if (!searchQuery) {
+                // 添加搜索框抖动效果
+                const searchInput = document.getElementById('searchQuery');
+                searchInput.placeholder = "请输入搜索内容...";
+                searchInput.style.borderColor = "#ff0080";
+                searchInput.style.boxShadow = "0 0 15px rgba(255, 0, 128, 0.5)";
+                
+                setTimeout(() => {
+                    searchInput.style.borderColor = "var(--primary)";
+                    searchInput.style.boxShadow = "none";
+                }, 1500);
+                return;
+            }
+            
+            const encodedQuery = encodeURIComponent(searchQuery);
+            let searchUrl;
+            
+            if (baseUrl.includes('?')) {
+                searchUrl = baseUrl + encodedQuery;
+            } else {
+                searchUrl = baseUrl + '?q=' + encodedQuery;
+            }
+            
+            // 在新标签页中打开搜索URL
+            window.open(searchUrl, '_blank');
+        }
+        
+        // 添加键盘事件监听
+        document.getElementById('searchQuery').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // 添加控制台彩蛋
+            console.log("%c果园搜索丨科技驱动未来", "font-size: 18px; color: #00f0ff; text-shadow: 0 0 10px #00f0ff;");
+            console.log("%c探索数字世界，从果园搜索开始！", "font-size: 14px; color: #ff00f0;");
+        });
+    </script>
+</body>
 </html>

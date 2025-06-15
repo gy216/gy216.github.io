@@ -1,118 +1,355 @@
 ﻿<!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>加入果园编程星球</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>加入我们丨果园编程星球</title>
+    <link rel="shortcut icon" href="/favicon.ico">
     <style>
+        :root {
+            --primary-color: #00f0ff;
+            --secondary-color: #ff00f0;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --light-text: #ffffff;
+            --warning-color: #ff8c00;
+            --neon-glow: 0 0 10px var(--primary-color);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.1) 0%, transparent 20%),
+                linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
         }
-        .container {
-            width: 80%;
-            margin: 30px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        /* 返回按钮样式 */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
         }
+
+        .back-button a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button a:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+
+        .cyber-container {
+            max-width: 900px;
+            margin: 80px auto 40px; /* 增加上边距避免被按钮遮挡 */
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--neon-glow);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 240, 255, 0.1) 0%, 
+                rgba(255, 0, 240, 0.1) 100%
+            );
+            z-index: -1;
+        }
+
         h1, h2, h3 {
             text-align: center;
-            color: #333;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
         }
+
         h1 {
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
         }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+        }
+
         .logo {
             text-align: center;
             margin-bottom: 30px;
         }
+
         .logo img {
-            max-width: 100px; /* 根据实际logo大小调整 */
-            display: block;
-            margin: 0 auto;
+            max-width: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--neon-glow);
+            transition: transform 0.3s;
         }
+
+        .logo img:hover {
+            transform: rotate(15deg) scale(1.05);
+        }
+
         .important-notice {
-            background: #ffffcc;
-            padding: 10px;
-            border-left: 5px solid #ffcc00;
-            margin-bottom: 20px;
+            background: rgba(255, 140, 0, 0.15);
+            border-left: 5px solid var(--warning-color);
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 0 5px 5px 0;
+            position: relative;
         }
+
+        .important-notice::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 1.5rem;
+        }
+
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            background: rgba(10, 10, 30, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
         }
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 10px;
+
+        .section:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
+
         ul {
             padding-left: 20px;
         }
+
         li {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
         }
+
+        li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-shadow: var(--neon-glow);
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
         .contact-info {
             list-style: none;
             padding: 0;
         }
+
         .contact-info li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
-        福利 {
-            background: #eef;
-            padding: 10px;
-            border-left: 5px solid #4CAF50;
-            margin-bottom: 20px;
+
+        .contact-info li::before {
+            content: '🔹';
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .benefits {
+            background: rgba(0, 240, 255, 0.1);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .cyber-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            margin: 20px auto;
+            display: block;
+            width: fit-content;
+        }
+
+        .cyber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .cyber-container {
+                padding: 30px 20px;
+                margin: 80px 20px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .back-button {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .back-button a {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- 返回主页按钮 -->
+    <div class="back-button">
+        <a href="https://gy216.github.io">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            返回主页
+        </a>
+    </div>
+
+    <div class="cyber-container">
         <h1>欢迎加入果园编程星球！</h1>
+        
         <div class="logo">
-            <img src="https://i.postimg.cc/R0X6vPF6/S-SHWXNV-0-4-T-GKXOV.png" alt="果园星球LOGO"> <!-- 请替换为果园星球的LOGO图片链接 -->
+            <!-- 如果需要可以在这里添加logo -->
         </div>
+        
         <div class="important-notice">
-            <p>重要提示：请不要随意加入星球，以避免不必要的困扰，如果想要加入，请先找果园或IW大使说明情况and你想加入的职位。</p>
+            <p><strong>重要安全协议：</strong>加入前必须通过身份验证。请先联系果园或IW大使说明加入意向及申请职位。</p>
         </div>
+        
         <div class="section">
-            <h2 class="section-title">友情链接</h2>
+            <h2>通讯链接</h2>
             <ul>
-                <li><a href="https://gy216.github.io">果园的官网</a></li>
-                <li><a href="https:github.io/gy216">果园的Github</a></li>
-                <li><a href="https://space.bilibili.com/1203461262">果园的B站</a></li>
+                <li><a href="https://gy216.github.io" target="_blank">主站控制中心</a></li>
+                <li><a href="https://github.io/gy216" target="_blank">GitHub代码库</a></li>
+                <li><a href="https://space.bilibili.com/1203461262" target="_blank">B站通讯频道</a></li>
             </ul>
         </div>
+        
         <div class="section">
-            <h2 class="section-title">星球新信息</h2>
-            <p>我们正在构思大作：大作名——《物理旅行者》。</p>
-            <p>我们的作品没有做完，上了潜力，如果你想加入我们的协作，请找到下面的“联系方式”，加入我们的QQ群。</p>
+            <h2>任务简报</h2>
+            <p>当前核心开发项目：《物理旅行者》</p>
+            <p>项目状态：开发中（潜力评级已激活）</p>
+            <p>诚邀星际开发者加入协作，详情见下方招募信息</p>
         </div>
+        
         <div class="section">
-            <h2 class="section-title">招人了！</h2>
+            <h2>人才招募</h2>
             <ul>
-                <li><strong>程序：</strong>会scratch，最好会ccw的拓展，并有5个作品。</li>
-                <li><strong>主力：</strong>会scratch，最好会ccw的拓展，并有3个作品，一个潜力。</li>
-                <li><strong>美工：</strong>最好学过画画，有美工基础。</li>
-                <li><strong>测试：</strong>能好好测试，不能把作品积木（或代码）搞乱，只能听从程序或美工的建议，测试MMO，最好懂scratch。</li>
+                <li><strong>核心程序员：</strong>掌握Scratch及CCW扩展，需提供5个作品样本</li>
+                <li><strong>开发工程师：</strong>掌握Scratch基础，需提供3个作品样本（含1个潜力作品）</li>
+                <li><strong>视觉设计师：</strong>具备美术基础，负责界面与角色设计</li>
+                <li><strong>质量检测员：</strong>熟悉Scratch，能执行精确测试（禁止修改核心代码）</li>
             </ul>
         </div>
-        <div class="section contact-info">
-            <h2 class="section-title">联系方式</h2>
-            <li>QQ群：749914521（加群后请改备注为你的共创名字）</li>
-        </div>
-        <福利>
-            <h2 class="section-title">星球福利</h2>
-            <p>你必须要有作品</p>
-            <ul>
-                <li>积极发表上传作品：10金币</li>
-                <li>咸鱼：1金币</li>
+        
+        <div class="section">
+            <h2>通讯站</h2>
+            <ul class="contact-info">
+                <li>QQ群 749914521</li>
+                <li>加入后请更新身份标识为果园ID</li>
             </ul>
-            <p>感谢你的加入：你的加入将为这个星球增加一位新的公民，感谢你的贡献！</p>
-        </福利>
+            
+            <a href="https://qm.qq.com/q/EVKj1qXJh5" class="cyber-button" target="_blank">
+                立即加入果园编程
+            </a>
+        </div>
+        
+        <div class="benefits">
+            <h2>公民福利</h2>
+            <p>贡献度兑换系统（需提供作品证明）：</p>
+            <ul>
+                <li>活跃开发者：10CCW币/作品</li>
+                <li>常规贡献者：1CCW币/作品</li>
+            </ul>
+            <p>您的加入将为星际联盟增添新的创造力量！</p>
+        </div>
     </div>
 </body>
 </html>

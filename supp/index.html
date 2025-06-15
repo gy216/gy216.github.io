@@ -2,180 +2,463 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>支持果园工作室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支持果园工作室丨果园编程</title>
+    <link rel="shortcut icon" href="/favicon.ico">
     <style>
-        /* 基础样式 */
-        body {
+        :root {
+            --primary-color: #00f0ff;
+            --secondary-color: #ff00f0;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --light-text: #ffffff;
+            --warning-color: #ff8c00;
+            --neon-glow: 0 0 10px var(--primary-color);
+            --grid-color: rgba(0, 240, 255, 0.05);
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #f8f9fa;
-            font-family: 'Microsoft Yahei', sans-serif;
             position: relative;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
         }
 
-        /* 主容器 */
-        .container {
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        /* 返回按钮新样式 */
-        .home-btn {
+        body::before {
+            content: '';
             position: absolute;
-            left: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* 返回按钮样式 */
+        .back-button {
+            position: fixed;
             top: 20px;
-            transform: translateX(-50%);
-            background: rgba(231, 76, 60, 0.1);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button a {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #e74c3c;
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            color: var(--primary-color);
             text-decoration: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            z-index: 10;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
-        .home-btn:hover {
-            background: rgba(231, 76, 60, 0.2);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .back-button a:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
         }
 
-        .home-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
+        .back-button svg {
+            transition: transform 0.3s ease;
         }
 
-        /* 标题样式 */
-        h1 {
-            color: #2d3436;
-            margin: 60px 0 25px;
-            font-size: 2.2rem;
-            padding-bottom: 12px;
+        .back-button a:hover svg {
+            transform: translateX(-3px);
+        }
+
+        /* 主容器 */
+        .cyber-container {
+            max-width: 800px;
+            width: 90%;
+            margin: 80px auto 40px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--neon-glow);
+            backdrop-filter: blur(5px);
             position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cyber-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 240, 255, 0.1) 0%, 
+                rgba(255, 0, 240, 0.1) 100%
+            );
+            z-index: -1;
+        }
+
+        .cyber-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 240, 255, 0.05) 0%,
+                rgba(255, 0, 240, 0.05) 50%,
+                transparent 100%
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: rotate(30deg) translateY(0); }
+            100% { transform: rotate(30deg) translateY(100%); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
         }
 
         h1::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 2px;
-            background: #e74c3c;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
 
-        /* 文字描述 */
         .description {
-            color: #636e72;
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.8;
             margin: 25px 0;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
         }
 
         /* 二维码容器 */
         .qr-container {
             margin: 35px 0;
             padding: 25px;
-            background: white;
+            background: rgba(10, 10, 30, 0.5);
             border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
             display: inline-block;
+            position: relative;
+            transition: all 0.4s ease;
+            min-height: 360px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .qr-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .qr-container:hover::before {
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 240, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
         }
 
         /* 二维码图片 */
         .img-code {
             width: 100%;
-            max-width: 320px;
+            max-width: 280px;
             height: auto;
             border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-container:hover .img-code {
+            transform: scale(1.05);
+        }
+
+        /* 错误提示 */
+        .image-error {
+            color: var(--warning-color);
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .image-error a {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary-color);
         }
 
         /* 页脚文字 */
         .footer-text {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.7);
             margin-top: 25px;
             font-size: 0.95rem;
             padding: 15px 0;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 粒子效果容器 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                margin-top: 70px;
+            .cyber-container {
+                padding: 30px 20px;
+                margin: 80px 20px 20px;
             }
-
-            .home-btn {
-                top: 15px;
-                padding: 10px 20px;
-            }
-
+            
             h1 {
-                font-size: 1.8rem;
-                margin-top: 40px;
+                font-size: 2rem;
             }
-
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .back-button {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .back-button a {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            
             .qr-container {
                 padding: 15px;
                 margin: 25px 0;
+                min-height: 300px;
             }
-
+            
             .img-code {
-                max-width: 280px;
+                max-width: 240px;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
-
+            
             .description {
                 font-size: 0.95rem;
+            }
+            
+            .qr-container {
+                min-height: 260px;
+            }
+            
+            .img-code {
+                max-width: 200px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 更新后的返回按钮 -->
-    <a href="https://gy216.github.io/home" class="home-btn">
-        <svg viewBox="0 0 24 24">
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-        </svg>
-        返回首页
-    </a>
+    <!-- 返回主页按钮 -->
+    <div class="back-button">
+        <a href="https://gy216.github.io">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            返回主页
+        </a>
+    </div>
 
-    <div class="container">
-        <h1>🍎 果园工作室捐助通道</h1>
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+
+    <div class="cyber-container">
+        <h1>果园工作室捐助通道</h1>
         
         <p class="description">
-            本网站由果园独立开发完成，从服务器搭建到界面设计，<br>
-            每一行代码都凝聚着个人的心血与努力。<br>
-            如果您认可我的作品，欢迎通过微信扫码支持。
+            本网站由果园独立开发完成，从服务器搭建到界面设计，
+            <span class="highlight">每一行代码都凝聚着心血与努力</span>。
+        </p>
+        
+        <p class="description">
+            如果您认可我们的作品，欢迎通过微信扫码支持，
+            <span class="highlight">您的每一份心意都将助力果园工作室持续发展</span>。
         </p>
 
-        <div class="qr-container">
-            <img src="pay.jpg" alt="微信支付二维码" class="img-code">
+        <div class="qr-container" id="qr-container">
+            <!-- 图片将通过JavaScript动态加载 -->
         </div>
 
-        <p class="footer-text">请使用微信扫码进行捐助支持 | 感谢您的每一份心意</p>
+        <p class="footer-text">请使用微信扫码进行捐助支持 | 感谢您的支持与信任</p>
     </div>
+
+    <script>
+        // 创建粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小 (1-3px)
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // 随机颜色
+                const colors = ['#00f0ff', '#ff00f0', '#ff8c00'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 确保图片正确加载
+        function loadQRImage() {
+            const container = document.getElementById('qr-container');
+            
+            // 尝试加载图片
+            const img = new Image();
+            img.src = 'pay.jpg';
+            img.alt = '微信支付二维码';
+            img.className = 'img-code';
+            
+            // 图片加载成功
+            img.onload = function() {
+                container.innerHTML = ''; // 清空容器
+                container.appendChild(img);
+            };
+            
+            // 图片加载失败
+            img.onerror = function() {
+                container.innerHTML = `
+                    <div class="image-error">
+                        <p>⚠️ 二维码加载失败</p>
+                        <p>请确保图片文件名为 <strong>pay.jpg</strong> 并与本页面在同一目录</p>
+                        <p>或 <a href="#" onclick="location.reload()">点击刷新重试</a></p>
+                        <p style="margin-top: 15px; font-size: 0.9rem">
+                            如果问题持续存在，请检查文件路径或文件名拼写
+                        </p>
+                    </div>
+                `;
+                
+                console.error("二维码图片加载失败，请检查pay.jpg文件路径");
+            };
+            
+            // 添加到容器
+            container.appendChild(img);
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            loadQRImage();
+            
+            // 添加控制台彩蛋
+            console.log("%c果园编程丨科技驱动未来", "font-size: 18px; color: #00f0ff; text-shadow: 0 0 10px #00f0ff;");
+            console.log("%c感谢您对果园工作室的支持！", "font-size: 14px; color: #ff00f0;");
+        });
+    </script>
 </body>
 </html>

@@ -1,67 +1,241 @@
 ﻿<!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="果园编程游戏">
-    <title>果园编程游戏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>游戏中心丨果园编程丨科技驱动未来</title>
+    <link rel="shortcut icon" href="/favicon.ico">
     <style>
+        :root {
+            --primary-color: #00f0ff;
+            --secondary-color: #ff00f0;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --light-text: #ffffff;
+            --neon-glow: 0 0 10px var(--primary-color);
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('https://api.imlazy.ink/img/');
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
             margin: 0;
             padding: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.1) 0%, transparent 20%),
+                linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+            background-attachment: fixed;
         }
-        .container {
-            width: 80%;
-            margin: 30px auto;
-            background-color: rgb(0,0,0,0);
+
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .cyber-header {
             text-align: center;
+            padding: 40px 0;
+            position: relative;
         }
-        h1 {
-            color: #ffffff;
+
+        .cyber-title {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
         }
-        .button {
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .game-card {
+            background: rgba(20, 20, 40, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0, 240, 255, 0.1) 0%, 
+                rgba(255, 0, 240, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .game-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             display: inline-block;
-            margin: 5px;
-            padding: 10px 20px;
-            background-color: #3385ff;
-            color: white;
+            transition: all 0.3s;
+        }
+
+        .game-card:hover .game-icon {
+            transform: scale(1.2);
+            text-shadow: var(--neon-glow);
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .cyber-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: #000;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
-            transition: background-color 0.3s;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            margin-top: 30px;
         }
-        .button:hover {
-            background-color: #2f74e1;
+
+        .cyber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
         }
-        img {
-            max-width: 100%;
-            height: auto;
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cyber-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="cyber-container">
+        <header class="cyber-header">
+            <h1 class="cyber-title">果园游戏中心</h1>
+            <p>精选HTML5游戏合集 · 科技与娱乐的完美结合</p>
+        </header>
 
-    <div class="container">
-        <h1>果园编程H5游戏</h1>
-        <!-- 漫画图片按钮 -->
-        <a href="saolei/" target="_blank" class="button">扫雷</a>
-        <a href="2048/" target="_blank" class="button">2048</a>
-        <a href="chidouren/" target="_blank" class="button">吃豆人</a>
-        <a href="feijidaz/" target="_blank" class="button">飞机大战</a>
-        <a href="feixingqi/" target="_blank" class="button">飞行棋</a>
-        <a href="flybird/" target="_blank" class="button">飞翔的小鸟</a>
-        <a href="guobr/" target="_blank" class="button">圣诞老人过桥</a>
-        <a href="IW/Space Huggers.html" target="_blank" class="button">HTML大作</a>
-        <a href="maryo/" target="_blank" class="button">ETO-Shif（不是）马力欧</a>
-        <a href="tanchishe/" target="_blank" class="button">贪吃蛇</a>
-        <a href="woodfish/" target="_blank" class="button">木鱼（功德+1）</a>
-        <a href="wuziqi/" target="_blank" class="button">五子棋</a>
-        <a href="xiangqi/" target="_blank" class="button">AI（真的）中国象棋</a>
-        <a href="xiaokl/" target="_blank" class="button">谷歌小恐龙</a>
-        <a href="javascript:history.back(-1);" class="button">返回上一页</a>
+        <div class="game-grid">
+            <a href="saolei/" class="game-card" target="_blank">
+                <div class="game-icon">💣</div>
+                <h3 class="game-title">扫雷</h3>
+            </a>
+
+            <a href="2048/" class="game-card" target="_blank">
+                <div class="game-icon">⬛</div>
+                <h3 class="game-title">2048</h3>
+            </a>
+
+            <a href="chidouren/" class="game-card" target="_blank">
+                <div class="game-icon">👻</div>
+                <h3 class="game-title">吃豆人</h3>
+            </a>
+
+            <a href="feijidaz/" class="game-card" target="_blank">
+                <div class="game-icon">✈️</div>
+                <h3 class="game-title">飞机大战</h3>
+            </a>
+
+            <a href="feixingqi/" class="game-card" target="_blank">
+                <div class="game-icon">🎲</div>
+                <h3 class="game-title">飞行棋</h3>
+            </a>
+
+            <a href="flybird/" class="game-card" target="_blank">
+                <div class="game-icon">🐦</div>
+                <h3 class="game-title">飞翔的小鸟</h3>
+            </a>
+
+            <a href="guobr/" class="game-card" target="_blank">
+                <div class="game-icon">🎅</div>
+                <h3 class="game-title">圣诞老人过桥</h3>
+            </a>
+
+            <a href="IW/Space Huggers.html" class="game-card" target="_blank">
+                <div class="game-icon">🚀</div>
+                <h3 class="game-title">HTML大作</h3>
+            </a>
+
+            <a href="maryo/" class="game-card" target="_blank">
+                <div class="game-icon">👨</div>
+                <h3 class="game-title">ETO马力欧</h3>
+            </a>
+
+            <a href="tanchishe/" class="game-card" target="_blank">
+                <div class="game-icon">🐍</div>
+                <h3 class="game-title">贪吃蛇</h3>
+            </a>
+
+            <a href="woodfish/" class="game-card" target="_blank">
+                <div class="game-icon">🎋</div>
+                <h3 class="game-title">木鱼</h3>
+            </a>
+
+            <a href="wuziqi/" class="game-card" target="_blank">
+                <div class="game-icon">⚫</div>
+                <h3 class="game-title">五子棋</h3>
+            </a>
+
+            <a href="xiangqi/" class="game-card" target="_blank">
+                <div class="game-icon">♟️</div>
+                <h3 class="game-title">AI中国象棋</h3>
+            </a>
+
+            <a href="xiaokl/" class="game-card" target="_blank">
+                <div class="game-icon">🐉</div>
+                <h3 class="game-title">谷歌小恐龙</h3>
+            </a>
+        </div>
+
+        <div class="back-btn">
+            <a href="javascript:history.back(-1);" class="cyber-button">返回上一页</a>
+        </div>
     </div>
-    <script src="/caidan.js"></script>
 </body>
 </html>
