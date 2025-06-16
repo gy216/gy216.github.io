@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园AI的kimi服务出现问题 - 果园编程新闻</title>
+    <style>
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --darker-bg: #02010a;
+            --text-color: #ffffff;
+            --glow: 0 0 10px;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(5, 217, 232, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--neon-blue);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--glow) var(--neon-blue);
+            animation: flicker 3s infinite alternate;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-pink);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--neon-pink);
+            text-shadow: var(--glow) var(--neon-pink);
+        }
+        
+        .cyber-border {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .cyber-border-top, .cyber-border-bottom {
+            height: 5px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            position: fixed;
+            left: 0;
+        }
+        
+        .cyber-border-top {
+            top: 0;
+            animation: borderGlow 3s infinite alternate;
+        }
+        
+        .cyber-border-bottom {
+            bottom: 0;
+            animation: borderGlow 3s infinite alternate-reverse;
+        }
+        
+        .cyber-border-left, .cyber-border-right {
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(0deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            position: fixed;
+            top: 0;
+        }
+        
+        .cyber-border-left {
+            left: 0;
+            animation: borderGlowVertical 3s infinite alternate;
+        }
+        
+        .cyber-border-right {
+            right: 0;
+            animation: borderGlowVertical 3s infinite alternate-reverse;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 5px var(--neon-pink),
+                    0 0 10px var(--neon-pink),
+                    0 0 20px var(--neon-pink),
+                    0 0 40px var(--neon-blue),
+                    0 0 80px var(--neon-blue),
+                    0 0 90px var(--neon-blue),
+                    0 0 100px var(--neon-blue),
+                    0 0 150px var(--neon-blue);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                box-shadow: 0 0 10px var(--neon-pink);
+            }
+            50% {
+                box-shadow: 0 0 15px var(--neon-blue);
+            }
+            100% {
+                box-shadow: 0 0 10px var(--neon-purple);
+            }
+        }
+        
+        @keyframes borderGlowVertical {
+            0% {
+                box-shadow: 0 0 10px var(--neon-pink);
+            }
+            50% {
+                box-shadow: 0 0 15px var(--neon-blue);
+            }
+            100% {
+                box-shadow: 0 0 10px var(--neon-purple);
+            }
+        }
+        
+        .news-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .news-article {
+            background: rgba(13, 2, 33, 0.7);
+            border: 1px solid var(--neon-purple);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .news-article h2 {
+            color: var(--neon-pink);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--neon-blue);
+            padding-bottom: 10px;
+        }
+        
+        .news-article .meta {
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .news-article p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--neon-blue);
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--neon-pink);
+            border-bottom-color: var(--neon-pink);
+        }
+        
+        .error-alert {
+            background: rgba(255, 42, 109, 0.2);
+            border-left: 4px solid var(--neon-pink);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .error-alert p {
+            color: var(--neon-pink);
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-border cyber-border-top"></div>
+    <div class="cyber-border cyber-border-bottom"></div>
+    <div class="cyber-border cyber-border-left"></div>
+    <div class="cyber-border cyber-border-right"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">果园编程</div>
+            <nav>
+                <ul>
+                    <li><a href="https://gy216.github.io">返回首页</a></li>
+                    <li><a href="https://gy216.github.io/news.html">更多新闻</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="news-container">
+            <article class="news-article">
+                <h2>果园AI的Kimi服务出现问题，无法修复</h2>
+                <div class="meta">发布于 2025年06月06日 | 作者: 果园技术团队</div>
+                
+                <div class="error-alert">
+                    <p>⚠️ 重要服务通知: Kimi API服务目前不可用</p>
+                </div>
+                
+                <p>果园编程工作室遗憾地通知各位用户，我们基于OpenRouter.ai提供的Kimi API服务目前出现严重故障，且暂时无法修复。</p>
+                
+                <p>上周，OpenRouter.ai平台的Kimi API突然停止工作，导致所有依赖该API的服务中断。我们的技术团队第一时间尝试了各种解决方案，但至今未能恢复服务。</p>
+                
+                <h3 style="color: var(--neon-blue); margin-top: 30px;">问题详情</h3>
+                <p>Kimi是果园AI平台的重要组件之一，我们通过OpenRouter.ai的API接口为用户提供智能对话服务。然而，自上周起，该API开始返回错误响应：</p>
+                
+                <pre style="background: rgba(2, 1, 10, 0.9); padding: 15px; border-left: 3px solid var(--neon-pink); overflow-x: auto;">
+{
+    "error": "Service unavailable",
+    "message": "Kimi API is currently down",
+    "status": 503
+}</pre>
+                
+                <p>我们的技术团队已多次联系OpenRouter.ai官方支持，但截至目前，官方尚未提供任何解决方案或修复时间表。</p>
+                
+                <h3 style="color: var(--neon-blue); margin-top: 30px;">影响范围</h3>
+                <p>此次故障影响了果园AI平台的以下功能：</p>
+                <ul style="line-height: 1.6; padding-left: 20px;">
+                    <li>智能对话系统</li>
+                    <li>内容生成服务</li>
+                    <li>部分自动化工作流</li>
+                </ul>
+                
+                <h3 style="color: var(--neon-blue); margin-top: 30px;">临时解决方案</h3>
+                <p>虽然我们无法直接修复Kimi API的问题，但果园编程团队已采取以下措施减轻影响：</p>
+                <ol style="line-height: 1.6; padding-left: 20px;">
+                    <li>已集成备用AI模型暂时替代Kimi的部分功能</li>
+                    <li>优化了错误处理机制，提供更友好的错误提示</li>
+                    <li>正在评估其他API提供商作为长期替代方案</li>
+                </ol>
+                
+                <div class="error-alert" style="margin-top: 30px;">
+                    <p>❗ 重要提示: 备用AI模型的功能和响应可能与Kimi有所不同，部分高级功能可能暂时无法使用。</p>
+                </div>
+                
+                <h3 style="color: var(--neon-blue); margin-top: 30px;">后续计划</h3>
+                <p>果园编程团队将持续关注此事的进展：</p>
+                <ul style="line-height: 1.6; padding-left: 20px;">
+                    <li>每天检查API状态</li>
+                    <li>与OpenRouter.ai保持沟通</li>
+                    <li>评估是否完全迁移到其他平台</li>
+                    <li>考虑自建类似服务的可能性</li>
+                </ul>
+                
+                <p style="margin-top: 30px;">我们对此次服务中断给用户带来的不便深表歉意。果园编程始终致力于提供稳定可靠的服务，我们将尽最大努力尽快解决这一问题。</p>
+                
+                <p>如需了解更多详情或有任何疑问，请通过我们的支持渠道联系我们。</p>
+                
+                <a href="https://gy216.github.io" class="back-link">← 返回果园编程首页</a>
+            </article>
+        </div>
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 0; margin-top: 80px; border-top: 1px solid var(--neon-blue);">
+        <p>&copy; 20250616 果园编程工作室. 保留所有权利.</p>
+    </footer>
+</body>
+</html>

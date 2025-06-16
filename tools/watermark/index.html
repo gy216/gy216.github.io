@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水印生成工具 - 果园编程</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --accent-color: #d3a267;
+            --bg-color: #121826;
+            --panel-bg: #1a2232;
+            --text-dark: #e0e5ef;
+            --text-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #0c0d10, #1a1c25);
+            color: var(--text-light);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(211, 162, 103, 0.3);
+        }
+        
+        .app-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: #d3a267;
+        }
+        
+        .home-link {
+            color: #d3a267;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border: 1px solid rgba(211, 162, 103, 0.3);
+            border-radius: 5px;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .settings-panel {
+            flex: 1;
+            min-width: 320px;
+            padding: 30px;
+            border-right: 1px solid rgba(211, 162, 103, 0.1);
+        }
+        
+        .preview-panel {
+            flex: 1.5;
+            min-width: 400px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .panel-title {
+            margin-bottom: 25px;
+            font-weight: 500;
+            font-size: 1.3rem;
+            color: #d3a267;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #a1b1c8;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid rgba(211, 162, 103, 0.3);
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: rgba(10, 15, 25, 0.5);
+            color: #e0e5ef;
+        }
+        
+        .exif-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 28px;
+            background: rgba(20, 25, 35, 0.9);
+            color: #d3a267;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-download {
+            background: rgba(163, 123, 68, 0.3);
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .preview-container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(5, 10, 20, 0.5);
+        }
+        
+        #preview {
+            max-width: 100%;
+            max-height: 70vh;
+            display: none;
+            object-fit: contain;
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 18px 20px;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand-model {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .brand {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #d3a267;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .camera-model {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .exif-info {
+            text-align: right;
+            color: #e0e5ef;
+            font-size: 1rem;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #6d7a8d;
+            text-align: center;
+            padding: 60px 30px;
+            width: 100%;
+            min-height: 400px;
+            border: 2px dashed rgba(211, 162, 103, 0.3);
+            border-radius: 6px;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .custom-model-container {
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(5, 10, 20, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #d3a267;
+        }
+        
+        .date-format {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .date-format-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="app-title">水印生成工具</h1>
+            <a href="https://gy216.github.io" class="home-link">
+                返回果园编程主站
+            </a>
+        </header>
+        
+        <div class="content">
+            <div class="settings-panel">
+                <h2 class="panel-title">参数设置</h2>
+                
+                <div class="form-group">
+                    <label for="image-upload">上传图片</label>
+                    <input type="file" id="image-upload" accept="image/*">
+                    <div id="upload-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="camera-model">相机型号</label>
+                    <select id="camera-model">
+                        <option value="" disabled selected>请选择您的相机型号</option>
+                        <optgroup label="SMART智能系列">
+                            <option value="Glyphix S1">Glyphix S1（基础入门款）</option>
+                            <option value="Glyphix S1 Stable">Glyphix S1 Stable（强化防抖功能）</option>
+                            <option value="Glyphix S2">Glyphix S2（二代性能升级）</option>
+                            <option value="Glyphix S3 4K HDR">Glyphix S3 4K HDR（4K高清+动态范围增强）</option>
+                        </optgroup>
+                        <optgroup label="PROFESSIONAL专业系列">
+                            <option value="Glyphix P1 Core">Glyphix P1 Core（专业基础款）</option>
+                            <option value="Glyphix P1 4K Cinema">Glyphix P1 4K Cinema（电影级色域）</option>
+                            <option value="Glyphix P1 Edition Leica">Glyphix P1 Edition Leica（徕卡限定版）</option>
+                            <option value="Glyphix P1 Edition Hasselblad">Glyphix P1 Edition Hasselblad（哈苏限定版）</option>
+                            <option value="Glyphix P3 DeepRaw HDR">Glyphix P3 DeepRaw HDR（RAW级处理+高动态范围）</option>
+                        </optgroup>
+                        <optgroup label="ULTIMATE旗舰系列">
+                            <option value="Glyphix U1 Dolby">Glyphix U1 Dolby（杜比影音旗舰）</option>
+                            <option value="Glyphix U1 8K Hyper">Glyphix U1 8K Hyper（8K超清性能怪兽）</option>
+                            <option value="Glyphix U1 Iris">Glyphix U1 Iris（可变光圈光学系统）</option>
+                            <option value="Glyphix U2 Neural">Glyphix U2 Neural（神经网络AI引擎）</option>
+                            <option value="Glyphix U3 Iris Tensor">Glyphix U3 Iris Tensor（光学+AI双擎旗舰）</option>
+                        </optgroup>
+                        <option value="other">其他型号</option>
+                    </select>
+                    
+                    <div id="custom-model-container" class="custom-model-container">
+                        <label for="custom-model">自定义型号名称</label>
+                        <input type="text" id="custom-model" placeholder="输入您的相机型号">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>拍摄日期</label>
+                    <input type="date" id="photo-date">
+                    <div class="date-format">
+                        <div class="date-format-option">
+                            <input type="radio" id="format-slash" name="date-format" value="slash" checked>
+                            <label for="format-slash">YYYY/MM/DD</label>
+                        </div>
+                        <div class="date-format-option">
+                            <input type="radio" id="format-hyphen" name="date-format" value="hyphen">
+                            <label for="format-hyphen">YYYY-MM-DD</label>
+                        </div>
+                        <div class="date-format-option">
+                            <input type="radio" id="format-text" name="date-format" value="text">
+                            <label for="format-text">YYYY年MM月DD日</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>EXIF信息（带单位）</label>
+                    <div class="exif-grid">
+                        <div>
+                            <label for="focal-length">焦距</label>
+                            <input type="text" id="focal-length" placeholder="如: 120mm">
+                        </div>
+                        <div>
+                            <label for="aperture">光圈</label>
+                            <input type="text" id="aperture" placeholder="如: f/4.1">
+                        </div>
+                        <div>
+                            <label for="shutter">快门</label>
+                            <input type="text" id="shutter" placeholder="如: 1/100">
+                        </div>
+                        <div>
+                            <label for="iso">ISO</label>
+                            <input type="text" id="iso" placeholder="如: 90">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn" id="apply-btn">应用水印</button>
+                <button class="btn btn-download" id="download-btn">下载图片</button>
+            </div>
+            
+            <div class="preview-panel">
+                <h2 class="panel-title">效果预览</h2>
+                
+                <div class="preview-container">
+                    <div class="placeholder" id="image-placeholder">
+                        <p>上传图片后预览效果</p>
+                    </div>
+                    
+                    <img id="preview">
+                    
+                    <div class="watermark">
+                        <div class="brand-model">
+                            <div class="brand">GOAM</div>
+                            <div class="camera-model" id="model-preview">Glyphix P3 DeepRaw HDR</div>
+                        </div>
+                        <div class="exif-info">
+                            <div id="exif-preview">120mm f/4.1 1/100 ISO90</div>
+                            <div id="date-preview">2023/11/15</div>
+                        </div>
+                    </div>
+                    
+                    <div class="loading-overlay" id="loading-overlay">
+                        <p>正在生成图片...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const imageUpload = document.getElementById('image-upload');
+            const previewImg = document.getElementById('preview');
+            const placeholder = document.getElementById('image-placeholder');
+            const watermark = document.querySelector('.watermark');
+            const modelPreview = document.getElementById('model-preview');
+            const exifPreview = document.getElementById('exif-preview');
+            const datePreview = document.getElementById('date-preview');
+            const applyBtn = document.getElementById('apply-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const errorMessage = document.getElementById('upload-error');
+            const cameraModelSelect = document.getElementById('camera-model');
+            const customModelContainer = document.getElementById('custom-model-container');
+            const customModelInput = document.getElementById('custom-model');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const dateFormatOptions = document.getElementsByName('date-format');
+            
+            // 设置默认日期
+            const today = new Date();
+            document.getElementById('photo-date').value = today.toISOString().split('T')[0];
+            
+            // 相机型号选择事件
+            cameraModelSelect.addEventListener('change', function() {
+                customModelContainer.style.display = this.value === 'other' ? 'block' : 'none';
+                updatePreview();
+            });
+            
+            // 图片上传处理
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                errorMessage.style.display = 'none';
+                
+                if (!file) return;
+                
+                if (!file.type.match('image.*')) {
+                    showError('请上传有效的图片文件');
+                    return;
+                }
+                
+                if (file.size > 10 * 1024 * 1024) {
+                    showError('图片大小不能超过10MB');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.onload = function() {
+                        previewImg.style.display = 'block';
+                        placeholder.style.display = 'none';
+                        watermark.style.display = 'flex';
+                        updatePreview();
+                    };
+                    previewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            // 应用水印按钮
+            applyBtn.addEventListener('click', function() {
+                if (!previewImg.src || !previewImg.src.includes('data:')) {
+                    alert('请先上传图片');
+                    return;
+                }
+                updatePreview();
+            });
+            
+            // 更新预览函数
+            function updatePreview() {
+                if (!previewImg.src) return;
+                
+                // 处理相机型号
+                let model = cameraModelSelect.value === 'other' 
+                    ? (customModelInput.value.trim() || '其他型号')
+                    : (cameraModelSelect.value || 'Glyphix P3 DeepRaw HDR');
+                
+                // 更新预览显示
+                document.querySelector('.brand').textContent = 'GOAM';
+                modelPreview.textContent = model;
+                
+                // 处理EXIF信息
+                const focalLength = document.getElementById('focal-length').value || '120mm';
+                const aperture = document.getElementById('aperture').value || 'f/4.1';
+                const shutter = document.getElementById('shutter').value || '1/100';
+                const iso = document.getElementById('iso').value || '90';
+                
+                exifPreview.textContent = `${focalLength} ${aperture} ${shutter} ISO${iso}`;
+                
+                // 处理日期格式
+                const date = document.getElementById('photo-date').value;
+                if (date) {
+                    const dateObj = new Date(date);
+                    const year = dateObj.getFullYear();
+                    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    const day = String(dateObj.getDate()).padStart(2, '0');
+                    
+                    let selectedFormat = 'slash';
+                    dateFormatOptions.forEach(option => {
+                        if (option.checked) selectedFormat = option.value;
+                    });
+                    
+                    switch(selectedFormat) {
+                        case 'slash':
+                            datePreview.textContent = `${year}/${month}/${day}`;
+                            break;
+                        case 'hyphen':
+                            datePreview.textContent = `${year}-${month}-${day}`;
+                            break;
+                        case 'text':
+                            datePreview.textContent = dateObj.toLocaleDateString('zh-CN', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            });
+                            break;
+                        default:
+                            datePreview.textContent = `${year}/${month}/${day}`;
+                    }
+                }
+            }
+            
+            // 下载图片功能
+            downloadBtn.addEventListener('click', function() {
+                if (!previewImg.src || !previewImg.src.includes('data:')) {
+                    alert('请先上传图片并应用水印');
+                    return;
+                }
+                
+                loadingOverlay.style.display = 'flex';
+                
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    
+                    // 绘制原始图片
+                    ctx.drawImage(img, 0, 0);
+                    
+                    // 计算水印高度
+                    const watermarkHeight = Math.max(60, img.height * 0.1);
+                    
+                    // 绘制水印背景
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(0, img.height - watermarkHeight, img.width, watermarkHeight);
+                    
+                    // 设置文本样式
+                    ctx.textBaseline = 'middle';
+                    
+                    // 计算字体大小
+                    const fontSize = Math.max(20, img.width * 0.02);
+                    const largeFontSize = Math.max(28, img.width * 0.025);
+                    
+                    // 绘制品牌（左侧，橙色）
+                    ctx.fillStyle = '#d3a267';
+                    ctx.font = `bold ${largeFontSize}px Arial`;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('GOAM', 30, img.height - watermarkHeight/2);
+                    
+                    // 绘制相机型号（左侧，白色）
+                    ctx.fillStyle = 'white';
+                    ctx.font = `bold ${largeFontSize}px Arial`;
+                    const brandWidth = ctx.measureText('GOAM').width;
+                    ctx.fillText(modelPreview.textContent, 30 + brandWidth + 10, img.height - watermarkHeight/2);
+                    
+                    // 绘制EXIF信息和日期（右侧）
+                    ctx.fillStyle = 'white';
+                    ctx.font = `500 ${fontSize}px Arial`;
+                    ctx.textAlign = 'right';
+                    
+                    // 修复重叠问题：增加行间距
+                    const lineHeight = fontSize * 1.5;
+                    const baseY = img.height - watermarkHeight/2 - lineHeight/2;
+                    
+                    ctx.fillText(exifPreview.textContent, img.width - 30, baseY);
+                    ctx.fillText(datePreview.textContent, img.width - 30, baseY + lineHeight);
+                    
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    link.download = 'watermarked_' + new Date().getTime() + '.png';
+                    link.href = canvas.toDataURL('image/png', 1.0);
+                    link.click();
+                    
+                    loadingOverlay.style.display = 'none';
+                };
+                img.src = previewImg.src;
+            });
+            
+            // 日期格式选项变化时更新预览
+            dateFormatOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    if (previewImg.src && previewImg.src.includes('data:')) {
+                        updatePreview();
+                    }
+                });
+            });
+            
+            // 其他输入变化时更新预览
+            document.querySelectorAll('#focal-length, #aperture, #shutter, #iso, #custom-model, #photo-date').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (previewImg.src && previewImg.src.includes('data:')) {
+                        updatePreview();
+                    }
+                });
+            });
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+            
+            // 初始化
+            updatePreview();
+        });
+    </script>
+</body>
+</html>
