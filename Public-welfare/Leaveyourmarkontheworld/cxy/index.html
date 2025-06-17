@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXY的小天地</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Marker Felt', '微软雅黑', sans-serif;
+            background-color: #fff5f7;
+            color: #555;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #ffb6c1;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin: 0;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+        
+        .section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #ff6b88;
+            border-bottom: 2px dashed #ffb6c1;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item i {
+            font-size: 24px;
+            color: #ff6b88;
+            margin-right: 10px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #ffb6c1;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ff6b88;
+            border: 3px solid #ffb6c1;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #ff6b88;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .photo-gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .heart {
+            color: #ff6b88;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .cloud {
+            position: absolute;
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            filter: blur(5px);
+            z-index: -1;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CXY <span class="heart">♥</span></h1>
+            <img src="logo.jpg" alt="CXY的照片" class="profile-pic">
+        </header>
+        
+        <div class="section">
+            <h2><i class="fas fa-info-circle"></i> 关于我</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-venus"></i>
+                    <div>性别：女生</div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-camera"></i>
+                    <div>兴趣：拍照记录生活</div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <div>生日：2011年7月21日</div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-heart"></i>
+                    <div>性格：敏感但坚强</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-images"></i> 我的摄影作品</h2>
+            <p>我喜欢用相机记录生活中的美好瞬间，虽然生活有时很艰难，但镜头下的世界总是充满希望。</p>
+            <div class="photo-gallery">
+                <img src="1.jpg" alt="摄影作品1">
+                <img src="2.jpg" alt="摄影作品2">
+                <img src="3.jpg" alt="摄影作品3">
+                <img src="4.jpg" alt="摄影作品4">
+                <img src="5.jpg" alt="摄影作品5">
+                <img src="6.jpg" alt="摄影作品6">
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-history"></i> 我的历程</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">小学时期</div>
+                    <p>不知道开心是什么感觉，做什么都是错的，有一个不幸福的原生家庭。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">初中时期</div>
+                    <p>被同学们造谣，经历了很多不愉快的时光，但学会了用相机记录生活。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">现在</div>
+                    <p>仍在寻找真正的快乐，但通过摄影找到了一丝慰藉和表达自我的方式。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-envelope"></i> 联系我</h2>
+            <p>如果你愿意和我做朋友，或者想分享摄影心得，可以通过以下方式联系我：</p>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas WX"></i>
+                    <div>微信：CXYAIL20100927</div>
+                </div>
+                <div class="info-item">
+                    <i class="fab QQ"></i>
+                    <div>QQ：3686730349</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>用镜头记录生活，用心感受世界 <span class="heart">♥</span></p>
+            <p>隶属于：果园编程公益项目——在世界留下你的痕迹<span class="heart">💖</span></p>
+            <p>本站永久链接：https://gy216.github.io/Public-welfare/Leaveyourmarkontheworld/cxy<span class="heart">🔍</span></p>
+            <p>© 2025 CXY的小天地</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 创建漂浮的云朵
+        function createClouds() {
+            const colors = ['#ffebee', '#fce4ec', '#f8bbd0', '#f48fb1'];
+            const body = document.body;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            for (let i = 0; i < 10; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                
+                const size = Math.random() * 100 + 50;
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const opacity = Math.random() * 0.5 + 0.3;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                cloud.style.width = `${size}px`;
+                cloud.style.height = `${size}px`;
+                cloud.style.left = `${x}px`;
+                cloud.style.top = `${y}px`;
+                cloud.style.opacity = opacity;
+                cloud.style.backgroundColor = color;
+                
+                body.appendChild(cloud);
+                
+                // 让云朵动起来
+                animateCloud(cloud);
+            }
+        }
+        
+        function animateCloud(cloud) {
+            let x = parseFloat(cloud.style.left);
+            let y = parseFloat(cloud.style.top);
+            const xSpeed = (Math.random() - 0.5) * 0.5;
+            const ySpeed = (Math.random() - 0.5) * 0.2;
+            
+            function move() {
+                x += xSpeed;
+                y += ySpeed;
+                
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                
+                if (x < -100) x = width;
+                if (x > width) x = -100;
+                if (y < -100) y = height;
+                if (y > height) y = -100;
+                
+                cloud.style.left = `${x}px`;
+                cloud.style.top = `${y}px`;
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+        
+        window.onload = createClouds;
+    </script>
+</body>
+</html>
