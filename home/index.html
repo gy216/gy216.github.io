@@ -70,12 +70,45 @@
             transform: translateY(-2px);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
         }
+        
+        /* 数字计数动画 */
+        .data-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            transition: all 0.5s ease;
+            margin-bottom: 5px;
+        }
+        
+        .data-label {
+            display: block;
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .counting {
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 网格项垂直排列 */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-        </a>
-    </div>
-
     <!-- 通知系统 -->
     <div id="notification" class="cyber-notification">
         <div class="hologram-line"></div>
@@ -106,28 +139,24 @@
             <p class="cyber-subtitle">科技驱动未来 · 创新改变世界</p>
             <div class="cyber-grid">
                 <div class="grid-item">
-                    <span class="data-number">16</span>
+                    <span class="data-number" data-target="18">0</span>
                     <span class="data-label">团队成员</span>
                 </div>
                 <div class="grid-item">
-                    <span class="data-number">10+</span>
+                    <span class="data-number" data-target="10">0</span>
                     <span class="data-label">创新项目</span>
                 </div>
                 <div class="grid-item">
-                    <span class="data-number">100%</span>
-                    <span class="data-label">热情投入</span>
+                    <span class="data-number" data-target="100%">0</span>
+                    <span class="data-label">热情投入%</span>
                 </div>
                 <div class="grid-item">
-                    <span class="data-number">100%</span>
-                    <span class="data-label">成员活跃度</span>
+                    <span class="data-number" data-target="100%">0</span>
+                    <span class="data-label">成员活跃度%</span>
                 </div>
                 <div class="grid-item">
-                    <span class="data-number">18</span>
-                    <span class="data-label">成员最大年龄</span>
-                </div>
-                <div class="grid-item">
-                    <span class="data-number">12</span>
-                    <span class="data-label">成员最小年龄</span>
+                    <span class="data-number" data-target="7">0</span>
+                    <span class="data-label">精通的编程语言数</span>
                 </div>
             </div>
             <a href="members.html" class="cyber-button">查看完整成员</a>
@@ -140,10 +169,8 @@
                     <div class="link-text">果园AI的kimi服务出现问题，无法修复</div>
                     <div class="link-text">2025/06/16</div>
                 </a>
-               
             </div>
         </section>
-
 
         <!-- 快速链接区 -->
         <section class="quick-links">
@@ -219,7 +246,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">📷</div>
                     <h3>果园相机生成工具</h3>
-                    <p>"果园子品牌“GOAM”水印，为影像注入专业灵魂，让每张照片都诉说你的艺术故事</p>
+                    <p>"果园子品牌"GOAM"水印，为影像注入专业灵魂，让每张照片都诉说你的艺术故事</p>
                     </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎮</div>
@@ -257,12 +284,6 @@
                     <div class="tech-badges">
                  <a href="https://cloudflare.com" target="_blank" title="Cloudflare">⚡</a>
                   <a href="https://gy216.github.io/Public-welfare/Leaveyourmarkontheworld/cxy" target="_blank" title="cxy的空间-果园 在世界留下你的痕迹 公益项目">❤</a>
-                    <!--注释掉-->
-                       <!-- <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" target="_blank" title="SSL安全访问">🔒</a>-->
-                        <!--<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" target="_blank" title="IPv6支持">🌐</a>-->
-                        <!--<a href="https://developers.google.cn/analytics?hl=zh-cn" target="_blank" title="Google证书">G</a>-->
-                       <!--<a href="https://dash.cloudflare.com" target="_blank" title="Cloudflare">⚡</a>-->
-                       <!-- <a href="http://torproject.netcologne.de/" target="_blank" title="Tor">🔗</a>-->
                     </div>
                     <h3>CDN节点</h3>
                     <p>当前CDN节点: <span id="cdn" class="loading">检测中...</span></p>
@@ -271,11 +292,11 @@
             </div>
             <div class="footer-bottom">
             <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
-	<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
-	<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4访问" src="https://gy216.github.io/ipv4-s1.svg"></a>
-	<a href="https://developers.google.cn/analytics?hl=zh-cn" title="本站安全证书由Google签发" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站安全证书由Google签发" src="https://gy216.github.io/google.svg"></a>
-	<a href="https://dash.cloudflare.com" title="Cloudflare" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Cloudflare" src="https://gy216.github.io/Cloudflare.svg"></a>
-	<a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="https://gy216.github.io/Tor.svg"></a>
+    <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
+    <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4访问" src="https://gy216.github.io/ipv4-s1.svg"></a>
+    <a href="https://developers.google.cn/analytics?hl=zh-cn" title="本站安全证书由Google签发" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站安全证书由Google签发" src="https://gy216.github.io/google.svg"></a>
+    <a href="https://dash.cloudflare.com" title="Cloudflare" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Cloudflare" src="https://gy216.github.io/Cloudflare.svg"></a>
+    <a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="https://gy216.github.io/Tor.svg"></a>
                 
                 <p>© 2025 果园编程 | GICP备YZGY20110216</p>
                 <p>最后更新: 2025年03月14日</p>
@@ -313,9 +334,38 @@
             notification.classList.remove('active');
         }
         
+        // 数字计数动画
+        function animateCounters() {
+            const counters = document.querySelectorAll('.data-number');
+            const speed = 1000; // 动画速度，数值越小越快
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const count = parseInt(counter.innerText);
+                const increment = Math.ceil(target / speed);
+                
+                const updateCount = () => {
+                    const currentCount = parseInt(counter.innerText);
+                    
+                    if(currentCount < target) {
+                        counter.innerText = Math.min(currentCount + increment, target);
+                        counter.classList.add('counting');
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.classList.remove('counting');
+                    }
+                };
+                
+                updateCount();
+            });
+        }
+        
         // 页面加载
         document.addEventListener('DOMContentLoaded', function() {
             showNotification();
+            
+            // 数字计数动画
+            setTimeout(animateCounters, 100);
             
             // 彩蛋按钮功能
             document.getElementById('lingButton').addEventListener('click', function() {
