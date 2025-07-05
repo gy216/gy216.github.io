@@ -106,6 +106,71 @@
             justify-content: center;
             text-align: center;
         }
+        
+        /* 产品展示区改进样式 */
+        .products-section {
+            margin: 40px 0;
+        }
+        
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            width: 300px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+        }
+        
+        .product-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+        
+        .product-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-development {
+            background: rgba(255, 165, 0, 0.2);
+            color: orange;
+            border: 1px solid orange;
+        }
+        
+        .product-iframe-container {
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -161,6 +226,46 @@
             </div>
             <a href="members.html" class="cyber-button">查看完整成员</a>
         </header>
+        
+        <!-- 产品展示区 - 改进后的版本 -->
+        <section class="products-section">
+            <h2 class="section-title">我们的产品</h2>
+            
+            <div class="product-iframe-container">
+                <iframe
+                    width="100%"
+                    height="350px"
+                    src="https://www.ccw.site/embed?id=65ae27feba39481f1fa7fa70&type=creation"
+                    title="【潜力】物理旅行者-开发中（第3阶段第95次修订） - 果园 - 共创世界(ccw.site) - Scratch、游戏、动画、漫画、小说、编程创作社区"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    scrolling="no"
+                ></iframe>
+            </div>
+            
+            <div class="product-container">
+                <div class="product-card">
+                    <h3 class="product-title">物理旅行者</h3>
+                    <span class="product-status status-development">开发中</span>
+                    <p class="product-description">一款基于物理引擎的冒险游戏，玩家将扮演一位能够操控物理法则的旅行者，解决各种谜题和挑战。</p>
+                    <a href="https://www.ccw.site/creation?id=65ae27feba39481f1fa7fa70" class="cyber-button small">查看详情</a>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">果园AI HUB</h3>
+                    <p class="product-description">集成多种AI模型的智能平台，支持DeepSeek等先进模型，提供强大的AI能力。</p>
+                    <a href="/ai" class="cyber-button small">立即体验</a>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">Scratch作品打包工具</h3>
+                    <p class="product-description">将Scratch作品打包成可执行文件，无需网络即可运行，完美保存您的创意成果。</p>
+                    <a href="/dabao" class="cyber-button small">使用工具</a>
+                </div>
+            </div>
+        </section>
+    
         <!-- 最新消息 -->
         <section class="quick-links">
             <h2 class="section-title">最新消息</h2>
@@ -168,6 +273,18 @@
                 <a href="/news/250616/1.html" class="link-card">
                     <div class="link-text">果园AI的kimi服务出现问题，无法修复</div>
                     <div class="link-text">2025/06/16</div>
+                </a>
+            </div>
+        </section>
+            
+        <!-- 旗下工作室品牌 -->
+        <section class="quick-links">
+            <h2 class="section-title">旗下工作室品牌</h2>
+            <div class="link-grid">
+                <a href="https://xuzhoulab.cn" class="link-card">
+                    <div class="link-icon">☁</div>
+                    <div class="link-text">虚舟实验室</div>
+                    <div class="link-text">创始人：云云</div>
                 </a>
             </div>
         </section>
@@ -302,13 +419,15 @@
             <div class="footer-bottom">
             <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
     <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
-    <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4访问" src="https://gy216.github.io/ipv4-s1.svg"></a>
-    <a href="https://developers.google.cn/analytics?hl=zh-cn" title="本站安全证书由Google签发" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站安全证书由Google签发" src="https://gy216.github.io/google.svg"></a>
-    <a href="https://dash.cloudflare.com" title="Cloudflare" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Cloudflare" src="https://gy216.github.io/Cloudflare.svg"></a>
-    <a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="https://gy216.github.io/Tor.svg"></a>
+    <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4访问" src="ipv4-s1.svg"></a>
+    <a href="https://developers.google.cn/analytics?hl=zh-cn" title="本站安全证书由Google签发" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站安全证书由Google签发" src="google.svg"></a>
+    <a href="https://dash.cloudflare.com" title="Cloudflare" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Cloudflare" src="Cloudflare.svg"></a>
+    <a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="Tor.svg"></a>
                 
-                <p>© 2025 果园编程 | GICP备YZGY20110216</p>
-                <p>最后更新: 2025年03月14日</p>
+                <p>© 2025 果园编程® | GICP备YZGY20110216</p>
+                <p>最后更新: 2025年07月05日</p>
+                <p>我们采用Cloudflare Web Analytics®进行网站访问统计，该服务严格遵循《中华人民共和国个人信息保护法》和欧盟GDPR等隐私保护法规。在数据收集过程中，系统不会记录任何能够识别个人身份的信息，包括IP地址、设备标识符或Cookie等数据。所有访问信息都会经过即时匿名化处理，并通过Cloudflare的全球网络节点进行聚合分析，原始数据会在处理后立即删除。我们始终致力于在保障网站服务质量的同时，切实保护每一位用户的隐私权益。如果您不希望被统计，可以使用广告拦截插件；欧盟用户（如西班牙等地区的灵）若不同意此数据收集，请停止访问本站；我们的PyPI镜像服务因未完全符合GDPR要求，目前暂不对欧盟地区用户开放。</p>
+                
             </div>
         </footer>
     </div>
