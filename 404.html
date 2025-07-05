@@ -1,106 +1,319 @@
 ﻿<!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>404 - 页面未找到</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 果园编程</title>
     <style>
-        body {
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --text-color: #d1f7ff;
+            --glow: 0 0 10px;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-            animation: fadeIn 1s ease-in-out;
+            box-sizing: border-box;
         }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            padding: 1rem;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 65%, var(--neon-pink) 80%, transparent 90%),
+                linear-gradient(-45deg, transparent 65%, var(--neon-blue) 80%, transparent 90%);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
         .container {
             text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            animation: slideIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 60px;
-            margin-bottom: 10px;
-            color: #007BFF;
-            animation: shake 0.5s ease-in-out infinite;
-        }
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #555;
-            animation: fadeIn 1s ease-in-out 0.5s;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out 1s;
-        }
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            animation: fadeIn 1s ease-in-out 1.5s;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
+            padding: 1rem;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 
+                var(--glow) var(--neon-blue),
+                inset var(--glow) var(--neon-blue);
             border-radius: 5px;
-            transition: background-color 0.3s;
-            animation: fadeIn 1s ease-in-out 2s;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            margin: 0 auto;
+            animation: pulse 2s infinite alternate;
+            overflow: hidden;
         }
-        .button:hover {
-            background: #0056b3;
+        
+        .content-wrapper {
+            max-height: calc(90vh - 4rem);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .button-secondary {
-            background: #e0e0e0;
-            color: #333;
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 
+                    var(--glow) var(--neon-blue),
+                    inset var(--glow) var(--neon-blue);
+            }
+            100% {
+                box-shadow: 
+                    0 0 15px var(--neon-purple),
+                    inset 0 0 15px var(--neon-purple);
+            }
         }
-        .button-secondary:hover {
-            background: #d0d0d0;
+        
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 0.5rem;
+            color: var(--neon-pink);
+            text-shadow: 
+                0 0 5px var(--neon-pink),
+                0 0 15px var(--neon-pink);
+            letter-spacing: 2px;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        
+        h2 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+            text-shadow: 
+                0 0 3px var(--neon-blue),
+                0 0 10px var(--neon-blue);
         }
-
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        
+        p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-bottom: 1rem;
+            line-height: 1.4;
         }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+        
+        .error-code {
+            font-family: monospace;
+            background-color: rgba(5, 217, 232, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border: 1px solid var(--neon-blue);
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+        }
+        
+        .home-link {
+            display: inline-block;
+            padding: 0.6rem clamp(0.8rem, 4vw, 1.5rem);
+            background: transparent;
+            color: var(--neon-purple);
+            border: 1px solid var(--neon-purple);
+            text-decoration: none;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .home-link:hover {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            text-shadow: none;
+            box-shadow: 
+                0 0 10px var(--neon-purple),
+                0 0 20px var(--neon-purple);
+        }
+        
+        .home-link::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .home-link:hover::before {
+            left: 100%;
+        }
+        
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            color: var(--neon-blue);
+            animation: glitch-effect 3s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+        
+        .glitch::after {
+            color: var(--neon-pink);
+            animation: glitch-effect 2s infinite reverse;
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        }
+        
+        @keyframes glitch-effect {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-3px, 3px);
+            }
+            40% {
+                transform: translate(-3px, -3px);
+            }
+            60% {
+                transform: translate(3px, 3px);
+            }
+            80% {
+                transform: translate(3px, -3px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .binary-code {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+            user-select: none;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
+    <div class="scanlines"></div>
+    
+    <!-- Random binary code in the background -->
+    <div class="binary-code" style="top: 10%; left: 5%;">10101010</div>
+    <div class="binary-code" style="top: 30%; left: 80%;">11100011</div>
+    <div class="binary-code" style="top: 70%; left: 15%;">01010101</div>
+    <div class="binary-code" style="top: 85%; left: 70%;">10011001</div>
+    
     <div class="container">
-        <h1>404</h1>
-        <h2>哎呀，看起来你迷路了！</h2>
-        <p>可能是因为网址输入错误，或者你正在寻找的页面已经不存在。</p>
-        <h2>为什么会这样呢？</h2>
-        <p>当你在浏览器中输入一个网址时，服务器会检查是否有对应的页面。如果没有找到，就会显示这个404错误页面，告诉你找不到你要的页面。</p>
-        <h2>这里有一些解决办法：</h2>
-        <div class="button-group">
-            <a href="https://gy216.github.io" class="button">返回首页</a>
-            <a href="https://gy216.github.io/so" class="button">返回果园搜搜</a>
-            <a href="javascript:history.back(-1);" class="button button-secondary">返回上一页</a>
+        <div class="content-wrapper">
+            <h1 class="glitch" data-text="404">404</h1>
+            <h2>页面未找到</h2>
+            
+            <div class="error-code">
+                支持代码会带你找到问题，请复制并放到百度去搜搜——ERROR: 0x1F404 (PAGE_NOT_FOUND)
+            </div>
+            
+            <p>
+                您访问的页面似乎迷失在这片有你的森林，你存在我深深的脑海里我的梦里我的心里我的歌声里 ..<br>
+                很抱歉，找不到您请求的页面。<br>
+                宝宝我知道你很急，但你先别急，看看解决方法吧！<br>
+                你的网址可能拼写错误，或者您要查找的页面不再可用。<br>
+                如果是你随便输的网址，那就没事了，本站真的没有这个目录<br>
+                如果是你在本站点击的超链接，那就找果园！<br>
+                祝宝宝天天开心！<br>
+            </p>
+            
+            <a href="https://gy216.github.io" class="home-link">返回果园编程</a>
         </div>
     </div>
+    
+    <script>
+        // Generate random binary code elements
+        function generateBinaryCode() {
+            const count = 10; // Reduced for better fit
+            const container = document.body;
+            
+            for (let i = 0; i < count; i++) {
+                const binary = document.createElement('div');
+                binary.className = 'binary-code';
+                
+                // Generate random binary string (8 bits)
+                let binaryString = '';
+                for (let j = 0; j < 8; j++) {
+                    binaryString += Math.round(Math.random());
+                }
+                
+                binary.textContent = binaryString;
+                
+                // Random position
+                binary.style.top = `${Math.random() * 90 + 5}%`;
+                binary.style.left = `${Math.random() * 90 + 5}%`;
+                
+                // Random animation
+                binary.style.animation = `float ${Math.random() * 5 + 3}s infinite alternate`;
+                
+                container.appendChild(binary);
+            }
+        }
+        
+        // Add floating animation to binary elements
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translate(0, 0) rotate(0deg);
+                    opacity: 0.1;
+                }
+                100% {
+                    transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px) rotate(${Math.random() * 360}deg);
+                    opacity: ${Math.random() * 0.3 + 0.1};
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize
+        generateBinaryCode();
+    </script>
 </body>
 </html>
