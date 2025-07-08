@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gy216.github.io/sitemap.xml
