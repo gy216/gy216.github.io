@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <!-- SEO优化 -->
-	<meta name="description" content="果园编程,果园工作室,果园,编程,Scratch,在线编程,打包器,SC打包器,果园BC,Guoyuangzs，guoyuangzs.dpdns.org,SC编程,CF网站,GitHub Pages"/>  
-	 <!-- 定义网页在社交媒体上分享时显示的 ​标题和内容​​ -->
-	<meta property="og:title" content="果园工作室 ">
-	<meta property="og:description" content="果园编程用心每一作，发展每一天">
+    <meta name="description" content="果园编程,果园工作室,果园,编程,Scratch,在线编程,打包器,SC打包器,果园BC,Guoyuangzs，guoyuangzs.dpdns.org,SC编程,CF网站,GitHub Pages"/>  
+    <!-- 定义网页在社交媒体上分享时显示的 标题和内容 -->
+    <meta property="og:title" content="果园工作室 ">
+    <meta property="og:description" content="果园编程用心每一作，发展每一天">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>果园编程丨科技驱动未来丨果园编程官网</title>
@@ -176,9 +176,90 @@
             overflow: hidden;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
+        
+        /* Cookies 弹窗样式 */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(20, 20, 40, 0.95);
+            border-top: 1px solid var(--primary-color);
+            padding: 20px;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 -5px 15px rgba(0, 240, 255, 0.2);
+        }
+        
+        .cookie-consent.active {
+            display: block;
+        }
+        
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+            color: #ccc;
+            margin-right: 20px;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .cookie-button {
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .cookie-accept {
+            background: var(--primary-color);
+            color: #000;
+            border: 1px solid var(--primary-color);
+        }
+        
+        .cookie-accept:hover {
+            background: rgba(0, 240, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        
+        .cookie-settings {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .cookie-settings:hover {
+            background: rgba(0, 240, 255, 0.1);
+        }
     </style>
 </head>
 <body>
+    <!-- Cookies 弹窗 -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>我们如何使用Cookies我们使用 Cookies和其他技术（"cookies"）来改进我们的网站。除了严格必要的 Cookies之外，我们还希望使用 Cookies（1）了解我们的网站是如何使用的以及如何执行的，如跨网站数据统计，（2）向您提供额外的功能和个性化服务，（3）向您提供社交媒体互动，以及（4）用于定向和营销目的。单击"接受所有"即表示您同意使用所有 Cookies和相应的数据处理，其中可能包括您的浏览器信息和 IP地址，并同意向第三方披露个人数据，详见我们的隐私政策中的Cookie章节。</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookieAccept" class="cookie-button cookie-accept">接受所有</button>
+                <button id="cookieSettings" class="cookie-button cookie-settings">设置</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 通知系统 -->
     <div id="notification" class="cyber-notification">
         <div class="hologram-line"></div>
@@ -434,86 +515,159 @@
     </div>
 
     <!-- 一言显示 -->
-    <div class="yi-yan">
-        <script src="https://api.gumengya.com/Api/YiYan?format=js" type="text/javascript"></script>
-    </div>
+  <!-- 原代码中的一言部分替换为以下内容 -->
+<div class="yi-yan">
+    <p id="hitokoto-text">正在加载随机的名言、诗句、歌词或网络流行语……（API接口：v1.hitokoto.cn）10秒刷新一次</p>
+    <p id="hitokoto-from"></p>
+</div>
 
-    <script src="cdn.js"></script>
-    <script>
-        // 通知系统功能
-        let notificationTimer;
-        
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            clearTimeout(notificationTimer);
-            
-            notification.classList.add('active');
-            notificationTimer = setTimeout(() => {
-                closeNotification();
-            }, 4000);
-        }
-        
-        function closeNotification() {
-            const notification = document.getElementById('notification');
-            notification.classList.remove('active');
-        }
-        
-        // 数字计数动画
-        function animateCounters() {
-            const counters = document.querySelectorAll('.data-number');
-            const speed = 1000; // 动画速度，数值越小越快
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const count = parseInt(counter.innerText);
-                const increment = Math.ceil(target / speed);
-                
-                const updateCount = () => {
-                    const currentCount = parseInt(counter.innerText);
-                    
-                    if(currentCount < target) {
-                        counter.innerText = Math.min(currentCount + increment, target);
-                        counter.classList.add('counting');
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.classList.remove('counting');
-                    }
-                };
-                
-                updateCount();
-            });
-        }
-        
-        // 页面加载
-        document.addEventListener('DOMContentLoaded', function() {
-            showNotification();
-            
-            // 数字计数动画
-            setTimeout(animateCounters, 100);
-            
-            // 彩蛋按钮功能
-            document.getElementById('lingButton').addEventListener('click', function() {
-                alert('发现彩蛋！即将跳转到特别页面');
-                window.location.href = '/ling';
-            });
-            
-            // 检测CDN
-            if(typeof detectCDNNode === 'function') {
-                detectCDNNode();
-            }
+<script>
+// 更新一言功能
+function updateHitokoto() {
+    fetch('https://v1.hitokoto.cn/?c=h')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('hitokoto-text').textContent = data.hitokoto;
+            let fromText = '—— ';
+            if (data.from_who) fromText += data.from_who + ' ';
+            if (data.from) fromText += '《' + data.from + '》';
+            document.getElementById('hitokoto-from').textContent = fromText;
+        })
+        .catch(error => {
+            console.error('获取一言失败:', error);
+            document.getElementById('hitokoto-text').textContent = '一言加载失败';
+            document.getElementById('hitokoto-from').textContent = '可能频率超过限制或接口不在可用。当前API接口：一言官方影视接口';
         });
+}
+
+// 页面加载时获取一言
+document.addEventListener('DOMContentLoaded', function() {
+    updateHitokoto();
+    
+    // 每10秒刷新一次一言
+    setInterval(updateHitokoto, 10000);
+});
+
+// Cookies 弹窗功能
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+    const cookieName = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+    for(let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i];
+        while (cookie.charAt(0) == ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(cookieName) == 0) {
+            return cookie.substring(cookieName.length, cookie.length);
+        }
+    }
+    return "";
+}
+
+function checkCookieConsent() {
+    const cookieConsent = getCookie("cookieConsent");
+    if (cookieConsent !== "accepted") {
+        document.getElementById("cookieConsent").classList.add("active");
+    }
+}
+
+function acceptCookies() {
+    setCookie("cookieConsent", "accepted", 2);
+    document.getElementById("cookieConsent").classList.remove("active");
+}
+
+// 初始化Cookies弹窗
+document.addEventListener("DOMContentLoaded", function() {
+    checkCookieConsent();
+    
+    // 绑定按钮事件
+    document.getElementById("cookieAccept").addEventListener("click", acceptCookies);
+    document.getElementById("cookieSettings").addEventListener("click", function() {
+        alert("请通过浏览器设置管理Cookie");
+    });
+});
+
+// 通知系统功能
+let notificationTimer;
         
-        // 控制台彩蛋
-        console.log("不是你看什么看，看我们代码的人肯定没这么好心");
-        console.warn("再看网站就要把你IP封了哦");
-    </script>
-    <script>
-    document.onkeydown = function(event) {
+function showNotification() {
+    const notification = document.getElementById('notification');
+    clearTimeout(notificationTimer);
+    
+    notification.classList.add('active');
+    notificationTimer = setTimeout(() => {
+        closeNotification();
+    }, 4000);
+}
+        
+function closeNotification() {
+    const notification = document.getElementById('notification');
+    notification.classList.remove('active');
+}
+        
+// 数字计数动画
+function animateCounters() {
+    const counters = document.querySelectorAll('.data-number');
+    const speed = 1000; // 动画速度，数值越小越快
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const count = parseInt(counter.innerText);
+        const increment = Math.ceil(target / speed);
+        
+        const updateCount = () => {
+            const currentCount = parseInt(counter.innerText);
+            
+            if(currentCount < target) {
+                counter.innerText = Math.min(currentCount + increment, target);
+                counter.classList.add('counting');
+                setTimeout(updateCount, 1);
+            } else {
+                counter.classList.remove('counting');
+            }
+        };
+        
+        updateCount();
+    });
+}
+        
+// 页面加载
+document.addEventListener('DOMContentLoaded', function() {
+    showNotification();
+    
+    // 数字计数动画
+    setTimeout(animateCounters, 100);
+    
+    // 彩蛋按钮功能
+    document.getElementById('lingButton').addEventListener('click', function() {
+        alert('发现彩蛋！即将跳转到特别页面');
+        window.location.href = '/ling';
+    });
+    
+    // 检测CDN
+    if(typeof detectCDNNode === 'function') {
+        detectCDNNode();
+    }
+});
+        
+// 控制台彩蛋
+console.log("不是你看什么看，看我们代码的人肯定没这么好心");
+console.warn("再看网站就要把你IP封了哦");
+</script>
+<script>
+document.onkeydown = function(event) {
   if (event.keyCode == 123) {
     alert("宝宝休想查看网页和修改网页！可是，如果宝宝真的想看的话……那就给你看吧！");
   }
 };
-
 </script>
 
 </body>
