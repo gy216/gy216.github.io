@@ -251,7 +251,15 @@
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-content">
             <div class="cookie-text">
-                <p>我们如何使用Cookies我们使用 Cookies和其他技术（"cookies"）来改进我们的网站。除了严格必要的 Cookies之外，我们还希望使用 Cookies（1）了解我们的网站是如何使用的以及如何执行的，如跨网站数据统计，（2）向您提供额外的功能和个性化服务，（3）向您提供社交媒体互动，以及（4）用于定向和营销目的。单击"接受所有"即表示您同意使用所有 Cookies和相应的数据处理，其中可能包括您的浏览器信息和 IP地址，并同意向第三方披露个人数据，详见我们的隐私政策中的Cookie章节。</p>
+                <p>果园编程使用 Cookies​​提升用户使用体验，Cookies 能让网站记住您的登录状态，带来更好的服务<br/>
+我们使用 Cookies 用于：<br/>
+✅ 网站分析优化<br/>
+✅ 个性化服务<br/>
+✅ 社交互动<br/>
+✅ 广告推荐<br/>
+​​点击“接受全部”即表示您同意：​​使用所有 Cookies</p>
+点击“设置”即表示您要通过浏览器设置管理所有Cookies。点击网址旁边的小锁，点击Cookies和站点数据，点击Cookies正在使用...，点击这个窗口上我的网址，点击删除，点击完成即可</p>
+（本窗口也使用了为期两天的Cookies，宝宝两天后再见！）</p>
             </div>
             <div class="cookie-buttons">
                 <button id="cookieAccept" class="cookie-button cookie-accept">接受所有</button>
@@ -591,7 +599,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 绑定按钮事件
     document.getElementById("cookieAccept").addEventListener("click", acceptCookies);
     document.getElementById("cookieSettings").addEventListener("click", function() {
-        alert("请通过浏览器设置管理Cookie");
+        alert("请通过浏览器设置管理Cookie，点击网址旁边的小锁，点击Cookies和站点数据，点击Cookies正在使用...，点击这个窗口上我的网址，点击删除，点击完成即可！");
     });
 });
 
