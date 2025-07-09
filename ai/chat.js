@@ -12,7 +12,13 @@ const API_CONFIG = {
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'qwen/qwen3-235b-a22b:free'
     },
-    deepseek: {
+    dsv3: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'deepseek/deepseek-chat-v3-0324:free'
+    },
+    
+    dsr1: {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'deepseek/deepseek-r1-0528:free'
@@ -22,10 +28,22 @@ const API_CONFIG = {
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'google/gemma-3-27b-it:free'
     },
-    kimi: {
+    hunyuan: {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
-        model: 'moonshotai/moonlight-16b-a3b-instruct:free'
+        model: 'tencent/hunyuan-a13b-instruct:free'
+    },
+    kimidev: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'moonshotai/kimi-dev-72b:free'
+        
+    },
+    kimisee: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'moonshotai/kimi-vl-a3b-thinking:free'
+        
     },
     wrphi4: {
         key: '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',
@@ -40,7 +58,7 @@ const API_CONFIG = {
     Llama: {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
-        model: 'nvidia/llama-3.3-nemotron-super-49b-v1:free'
+        model: 'nvidia/llama-3.1-nemotron-ultra-253b-v1:free'
     },
     MXDS: {
         key: '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',
@@ -51,6 +69,16 @@ const API_CONFIG = {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
         model: 'cognitivecomputations/dolphin3.0-r1-mistral-24b:free'
+    },
+    Mistral: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'mistralai/mistral-7b-instruct:free'
+    },
+     DeepHermes: {
+        key: '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',
+        url: 'https://openrouter.ai/api/v1/chat/completions',
+        model: 'nousresearch/deephermes-3-llama-3-8b-preview:free'
     },
 };
 
