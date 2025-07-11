@@ -3,353 +3,774 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>关于我们丨果园编程星球</title>
-    <link rel="shortcut icon" href="/favicon.ico">
+    <title>关于果园编程工作室</title>
     <style>
         :root {
-            --primary-color: #00f0ff;
-            --secondary-color: #ff00f0;
-            --dark-bg: #0a0a1a;
-            --darker-bg: #050510;
-            --light-text: #ffffff;
-            --warning-color: #ff8c00;
-            --neon-glow: 0 0 10px var(--primary-color);
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff2a6d;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --darker-bg: #080116;
+            --text-color: #e0e0e0;
+            --glow: 0 0 10px;
         }
-
-        body {
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 10% 20%, rgba(255, 42, 109, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(15, 240, 252, 0.1) 0%, transparent 20%),
                 linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+            min-height: 100vh;
         }
-
-        /* 返回按钮样式 */
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
+        
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
         }
-
-        .back-button a {
-            display: inline-flex;
+        
+        .cyber-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid var(--primary-color);
-            border-radius: 50px;
-            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .cyber-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--glow) var(--neon-blue);
+            letter-spacing: 2px;
+        }
+        
+        .cyber-nav a {
+            color: var(--text-color);
             text-decoration: none;
-            font-size: 0.95rem;
+            margin-left: 1.5rem;
+            font-size: 1.1rem;
+            position: relative;
             transition: all 0.3s ease;
         }
-
-        .back-button a:hover {
-            background: var(--primary-color);
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        
+        .cyber-nav a:hover {
+            color: var(--neon-blue);
+            text-shadow: var(--glow) var(--neon-blue);
         }
-
-        .cyber-container {
-            max-width: 900px;
-            margin: 80px auto 40px; /* 增加上边距避免被按钮遮挡 */
-            background: rgba(20, 20, 40, 0.8);
-            border: 1px solid var(--primary-color);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: var(--neon-glow);
-            backdrop-filter: blur(5px);
+        
+        .cyber-nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--neon-blue);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        
+        .cyber-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .cyber-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--glow) var(--neon-pink);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .cyber-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            box-shadow: var(--glow) var(--neon-blue);
+        }
+        
+        .cyber-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            background-color: rgba(13, 2, 33, 0.7);
             position: relative;
             overflow: hidden;
         }
-
-        .cyber-container::before {
+        
+        .cyber-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg, 
-                rgba(0, 240, 255, 0.1) 0%, 
-                rgba(255, 0, 240, 0.1) 100%
-            );
-            z-index: -1;
+            background: linear-gradient(45deg, 
+                transparent 48%, 
+                rgba(15, 240, 252, 0.1) 49%, 
+                rgba(15, 240, 252, 0.1) 51%, 
+                transparent 52%);
+            background-size: 10px 10px;
+            pointer-events: none;
         }
-
-        h1, h2, h3 {
-            text-align: center;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: var(--neon-glow);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
-
-        h2 {
+        
+        .section-title {
             font-size: 1.8rem;
-            margin: 30px 0 15px;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo img {
-            max-width: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--primary-color);
-            box-shadow: var(--neon-glow);
-            transition: transform 0.3s;
-        }
-
-        .logo img:hover {
-            transform: rotate(15deg) scale(1.05);
-        }
-
-        .important-notice {
-            background: rgba(255, 140, 0, 0.15);
-            border-left: 5px solid var(--warning-color);
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 0 5px 5px 0;
-            position: relative;
-        }
-
-        .important-notice::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            font-size: 1.5rem;
-        }
-
-        .section {
-            margin-bottom: 30px;
-            background: rgba(10, 10, 30, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
-        .section:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s;
-        }
-
-        a:hover {
-            color: var(--secondary-color);
-            text-shadow: var(--neon-glow);
-        }
-
-        a:hover::after {
-            width: 100%;
-        }
-
-        .contact-info {
-            list-style: none;
-            padding: 0;
-        }
-
-        .contact-info li {
-            margin-bottom: 15px;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            text-shadow: var(--glow) var(--neon-blue);
             display: flex;
             align-items: center;
         }
-
-        .contact-info li::before {
-            content: '🔹';
-            font-size: 1.2rem;
+        
+        .section-title::before {
+            content: '>';
             margin-right: 10px;
+            color: var(--neon-pink);
         }
-
-        .benefits {
-            background: rgba(0, 240, 255, 0.1);
-            border-left: 5px solid var(--primary-color);
-            padding: 20px;
-            margin-top: 30px;
+        
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
-
-        .cyber-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: #000;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
+        
+        .highlight {
+            color: var(--neon-pink);
+            font-weight: bold;
+            text-shadow: var(--glow) var(--neon-pink);
+        }
+        
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .cyber-card {
+            background-color: rgba(8, 1, 22, 0.8);
+            border: 1px solid rgba(255, 42, 109, 0.3);
+            border-radius: 5px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.3);
+            border-color: var(--neon-pink);
+        }
+        
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+        
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .cyber-list {
+            list-style-type: none;
+            margin-left: 1rem;
+        }
+        
+        .cyber-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .cyber-list li::before {
+            content: '■';
+            position: absolute;
+            left: 0;
+            color: var(--neon-pink);
+        }
+        
+        .cyber-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .cyber-footer a {
+            color: var(--neon-blue);
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-footer a:hover {
+            text-shadow: var(--glow) var(--neon-blue);
+        }
+        
+        .cyber-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 3px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-            margin: 20px auto;
-            display: block;
-            width: fit-content;
+            text-decoration: none;
+            margin-top: 1rem;
+            box-shadow: 0 0 15px rgba(15, 240, 252, 0.5);
         }
-
-        .cyber-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+        
+        .cyber-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 42, 109, 0.7);
         }
-
+        
+        .motto {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid var(--neon-purple);
+            border-radius: 5px;
+            background-color: rgba(211, 0, 197, 0.1);
+            color: var(--neon-purple);
+            text-shadow: var(--glow) var(--neon-purple);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .motto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 48%, 
+                rgba(211, 0, 197, 0.1) 49%, 
+                rgba(211, 0, 197, 0.1) 51%, 
+                transparent 52%);
+            background-size: 10px 10px;
+            pointer-events: none;
+        }
+        
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: rgba(15, 240, 252, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+        }
+        
         @media (max-width: 768px) {
-            .cyber-container {
-                padding: 30px 20px;
-                margin: 80px 20px 20px;
+            .cyber-header {
+                flex-direction: column;
+                text-align: center;
             }
             
-            h1 {
+            .cyber-nav {
+                margin-top: 1.5rem;
+            }
+            
+            .cyber-nav a {
+                margin: 0 0.8rem;
+            }
+            
+            .cyber-title {
                 font-size: 2rem;
             }
             
-            h2 {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+            
+            .cyber-section {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cyber-logo {
+                font-size: 2rem;
+            }
+            
+            .cyber-nav a {
+                font-size: 0.9rem;
+                margin: 0 0.5rem;
+            }
+            
+            .cyber-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
                 font-size: 1.5rem;
             }
-            
-            .back-button {
-                top: 10px;
-                left: 10px;
+        }
+        
+        /* Cyberpunk scanline effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 95%,
+                rgba(255, 255, 255, 0.05) 96%
+            );
+            background-size: 100% 3px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: scanline 8s linear infinite;
+        }
+        
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
             }
-            
-            .back-button a {
-                padding: 8px 15px;
-                font-size: 0.85rem;
+            100% {
+                background-position: 0 100%;
+            }
+        }
+        
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch::before {
+            color: var(--neon-blue);
+            z-index: -1;
+            animation: glitch-effect 3s infinite;
+        }
+        
+        .glitch::after {
+            color: var(--neon-pink);
+            z-index: -2;
+            animation: glitch-effect 2s infinite reverse;
+        }
+        
+        @keyframes glitch-effect {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-3px, 3px);
+            }
+            40% {
+                transform: translate(-3px, -3px);
+            }
+            60% {
+                transform: translate(3px, 3px);
+            }
+            80% {
+                transform: translate(3px, -3px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        /* Neon pulse animation */
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Floating grid background */
+        .floating-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 42, 109, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 42, 109, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: float 30s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-50px, -50px);
             }
         }
     </style>
 </head>
 <body>
-    <!-- 返回主页按钮 -->
-    <div class="back-button">
-        <a href="https://gy216.github.io">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-            返回主页
-        </a>
-    </div>
-
+    <div class="floating-grid"></div>
+    <div class="scanlines"></div>
+    
     <div class="cyber-container">
-        <h1>欢迎加入果园编程星球！</h1>
+        <header class="cyber-header">
+            <div class="cyber-logo glitch" data-text="果园编程">果园编程</div>
+            <nav class="cyber-nav">
+                <a href="https://gy216.github.io">首页</a>
+                <a href="#about">关于</a>
+                <a href="#services">服务</a>
+                <a href="#contact">联系</a>
+            </nav>
+        </header>
         
-        <div class="logo">
-            <!-- 如果需要可以在这里添加logo -->
-        </div>
-        
-        <div class="important-notice">
-            <p><strong>重要安全协议：</strong>加入前必须通过身份验证。请先联系果园或IW大使说明加入意向及申请职位。</p>
-        </div>
-        
-        <div class="section">
-            <h2>通讯链接</h2>
-            <ul>
-                <li><a href="https://gy216.github.io" target="_blank">主站控制中心</a></li>
-                <li><a href="https://github.io/gy216" target="_blank">GitHub代码库</a></li>
-                <li><a href="https://space.bilibili.com/1203461262" target="_blank">B站通讯频道</a></li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>任务简报</h2>
-            <p>当前核心开发项目：《物理旅行者》</p>
-            <p>项目状态：开发中（潜力评级已激活）</p>
-            <p>诚邀星际开发者加入协作，详情见下方招募信息</p>
-        </div>
-        
-        <div class="section">
-            <h2>人才招募</h2>
-            <ul>
-                <li><strong>核心程序员：</strong>掌握Scratch及CCW扩展，需提供5个作品样本</li>
-                <li><strong>开发工程师：</strong>掌握Scratch基础，需提供3个作品样本（含1个潜力作品）</li>
-                <li><strong>视觉设计师：</strong>具备美术基础，负责界面与角色设计</li>
-                <li><strong>质量检测员：</strong>熟悉Scratch，能执行精确测试（禁止修改核心代码）</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>通讯站</h2>
-            <ul class="contact-info">
-                <li>QQ群 749914521</li>
-                <li>加入后请更新身份标识为果园ID</li>
-            </ul>
+        <main>
+            <h1 class="cyber-title">关于果园编程工作室</h1>
             
-            <a href="https://qm.qq.com/q/EVKj1qXJh5" class="cyber-button" target="_blank">
-                立即加入果园编程
-            </a>
-        </div>
+            <section id="about" class="cyber-section">
+                <h2 class="section-title">关于我们</h2>
+                <div class="grid-2-col">
+                    <div class="section-content">
+                        <p>果园编程工作室成立于<span class="highlight">2020年2月</span>，是一家专注于编程技术研发与创意实现的团队。我们以<span class="highlight">CCW（共创世界）平台</span>为核心阵地，致力于打造高质量、创新性的编程作品，推动技术与艺术的融合。</p>
+                        <p>我们的团队由一群热爱编程、追求创新的开发者组成，拥有丰富的全栈开发经验和跨领域项目经验。从游戏开发到企业应用，从教育工具到创意实验，我们不断探索编程的无限可能。</p>
+                        <a href="https://gy216.github.io" class="cyber-btn">返回首页</a>
+                    </div>
+                    <div>
+                        <img src="https://gy216.github.io/logo.png" alt="果园编程工作室" style="width: 100%; border: 1px solid var(--neon-blue); border-radius: 5px;">
+                    </div>
+                </div>
+            </section>
+            
+            <div class="motto">
+                "用心每一作，发展每一天"
+            </div>
+            
+            <section id="philosophy" class="cyber-section">
+                <h2 class="section-title">核心理念</h2>
+                <div class="section-content">
+                    <p>从一行代码到一个完整的项目，我们坚持对每一份作品倾注匠心；从技术探索到行业应用，我们追求每一天的突破与成长。</p>
+                    <p>我们相信技术应该服务于创意，代码应该充满温度。在果园编程工作室，我们不只是编写代码，我们创造体验、解决问题、实现梦想。</p>
+                </div>
+                
+                <div class="cyber-grid">
+                    <div class="cyber-card">
+                        <h3 class="card-title">创新驱动</h3>
+                        <div class="card-content">
+                            <p>不断探索新技术、新方法，保持对前沿技术的敏感度和学习热情。</p>
+                            <ul class="cyber-list">
+                                <li>前沿技术实验</li>
+                                <li>跨领域融合</li>
+                                <li>持续学习文化</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cyber-card">
+                        <h3 class="card-title">质量至上</h3>
+                        <div class="card-content">
+                            <p>从架构设计到代码实现，从用户体验到性能优化，每个环节都追求卓越。</p>
+                            <ul class="cyber-list">
+                                <li>严格代码审查</li>
+                                <li>全面测试覆盖</li>
+                                <li>性能优化优先</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cyber-card">
+                        <h3 class="card-title">协作共赢</h3>
+                        <div class="card-content">
+                            <p>开放、透明、互助的团队文化，与客户建立长期合作伙伴关系。</p>
+                            <ul class="cyber-list">
+                                <li>敏捷开发流程</li>
+                                <li>透明沟通机制</li>
+                                <li>知识共享文化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="brands" class="cyber-section">
+                <h2 class="section-title">品牌矩阵</h2>
+                <div class="grid-2-col">
+                    <div>
+                        <h3 class="card-title">技术研发</h3>
+                        <div class="card-content">
+                            <p><span class="highlight">• 主品牌：果园编程</span></p>
+                            <p><span class="highlight">• 编程子品牌：虚舟实验室</span>（聚焦前沿技术实验与创新开发）</p>
+                            <div style="margin-top: 1rem;">
+                                <span class="tech-badge">游戏开发</span>
+                                <span class="tech-badge">Scratch开发</span>
+                                <span class="tech-badge">Web代码</span>
+                                <span class="tech-badge">Python开发</span>
+                                <span class="tech-badge">区块链</span>
+                                <span class="tech-badge">物联网</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="card-title">多元子品牌生态</h3>
+                        <div class="card-content">
+                            <ul class="cyber-list">
+                                <li>果园公益 - 技术赋能社会</li>
+                                <li>果园学习 - 知识分享平台</li>
+                                <li>果园邮 - 同城邮局开放</li>
+                                <li>果园影视 - 数字内容创作</li>
+                                <li>果园游戏 - 互动娱乐体验</li>
+                                <li>果园教育 - 使得教育普及</li>
+                            </ul>
+                            <p>通过多领域协作，构建技术赋能的全场景生态链</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="features" class="cyber-section">
+                <h2 class="section-title">我们的特色</h2>
+                <div class="section-content">
+                    <div class="cyber-grid">
+                        <div class="cyber-card">
+                            <h3 class="card-title">✓ 原创性</h3>
+                            <div class="card-content">
+                                <p>在CCW平台持续输出独家技术解决方案，拒绝模板化开发，每个项目都量身定制。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cyber-card">
+                            <h3 class="card-title">✓ 专业性</h3>
+                            <div class="card-content">
+                                <p>涵盖游戏开发、工具应用、教育编程等多维度，拥有全栈技术能力和行业经验。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cyber-card">
+                            <h3 class="card-title">✓ 社会价值</h3>
+                            <div class="card-content">
+                                <p>通过技术能力践行公益，助力数字化教育，让技术创造更多社会价值。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 2rem; text-align: center;" class="pulse">
+                        <span class="highlight">加入果园的创意世界，见证代码如何改变未来！</span>
+                    </p>
+                    
+                    <p style="text-align: center; margin-top: 1rem;">
+                        （可通过CCW平台搜索"果园编程"体验我们的最新作品）
+                    </p>
+                </div>
+            </section>
+            
+            <section id="contact" class="cyber-section" style="text-align: center;">
+                <h2 class="section-title">加入我们</h2>
+                <div class="section-content">
+                    <p>无论您是有项目需求，还是想加入我们的团队，或者只是想聊聊技术与创意，我们都欢迎您的联系。</p>
+                    <a href="mailto:386498317@qq.com" class="cyber-btn">联系我们</a>
+                </div>
+            </section>
+            
+            <div style="text-align: center; margin: 3rem 0; font-size: 1.5rem; color: var(--neon-purple); text-shadow: var(--glow) var(--neon-purple);">
+                —— 用技术播种，让创意结果 ——
+            </div>
+        </main>
         
-        <div class="benefits">
-            <h2>公民福利</h2>
-            <p>贡献度兑换系统（需提供作品证明）：</p>
-            <ul>
-                <li>活跃开发者：10CCW币/作品</li>
-                <li>常规贡献者：1CCW币/作品</li>
-            </ul>
-            <p>您的加入将为星际联盟增添新的创造力量！</p>
-        </div>
+        <footer class="cyber-footer">
+            <p>&copy; 2020-2025果园编程工作室</p>
+        </footer>
     </div>
+    
+    <script>
+        // Cyberpunk style interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add glitch effect randomly to elements with .glitch class
+            setInterval(function() {
+                const glitchElements = document.querySelectorAll('.glitch');
+                glitchElements.forEach(el => {
+                    if (Math.random() > 0.7) {
+                        el.classList.add('glitch-active');
+                        setTimeout(() => {
+                            el.classList.remove('glitch-active');
+                        }, 500);
+                    }
+                });
+            }, 3000);
+            
+            // Add hover effect to cyber cards
+            const cyberCards = document.querySelectorAll('.cyber-card');
+            cyberCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = `0 0 20px ${getRandomNeonColor()}`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            // Random neon color generator
+            function getRandomNeonColor() {
+                const colors = ['#0ff0fc', '#ff2a6d', '#d300c5', '#00ff9d'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            // Add typing effect to motto
+            const motto = document.querySelector('.motto');
+            if (motto) {
+                const text = motto.textContent;
+                motto.textContent = '';
+                let i = 0;
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        motto.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                    }
+                }, 100);
+            }
+            
+            // Add scanline effect to sections on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.cyber-section');
+                const scrollPosition = window.scrollY;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition > sectionTop - window.innerHeight + 100 && 
+                        scrollPosition < sectionTop + sectionHeight) {
+                        section.style.boxShadow = `0 0 30px rgba(15, 240, 252, 0.3)`;
+                    } else {
+                        section.style.boxShadow = '';
+                    }
+                });
+            });
+            
+            // Add click effect to buttons
+            const buttons = document.querySelectorAll('.cyber-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000);
+                    
+                    // Navigate after animation
+                    if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                        setTimeout(() => {
+                            window.location.href = this.getAttribute('href');
+                        }, 500);
+                    }
+                });
+            });
+            
+            // Add style for ripple effect
+            const style = document.createElement('style');
+            style.textContent = `
+                .ripple {
+                    position: absolute;
+                    background: rgba(255, 255, 255, 0.7);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                }
+                
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>
