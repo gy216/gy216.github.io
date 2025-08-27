@@ -216,7 +216,7 @@ function detectCDNNode() {
         })
         .catch(error => {
             console.error("CDN检测错误:", error);
-            cdnElement.textContent = "本地访问 (未检测到CDN)";
+            cdnElement.textContent = "未检测到CDN，请检查资源是否完整，页面是否加载完成";
             cdnElement.className = "error";
         });
 }
