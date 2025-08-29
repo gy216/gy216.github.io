@@ -1,0 +1,154 @@
+﻿ /* 
+Description: 
+Author: Viktor Ivanov
+*/ 
+	
+/*************************************************************	
+Reset  																						
+************************************************************/ 
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, ol, ul, li, fieldset,
+article, aside, footer, header, hgroup, nav, section {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+img {
+    border: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+	a:hover {
+		text-decoration: none;
+	}
+	
+/*************************************************************	
+Globals  																						
+************************************************************/
+
+body
+{
+    background: #303030;
+    font: normal normal 62.5% Verdana, helvetica, sans-serif;
+    line-height: 1;
+    color: #fff;
+}
+
+#wrapper-site
+{
+    position: relative;
+    margin: 10px auto;
+    width: 660px;
+    background: #191919;
+    box-shadow: 0 0 10px #000;
+}
+
+/*************************************************************	
+Custom  																						
+************************************************************/
+
+.clear:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+/*************************************************************	
+header        																						
+************************************************************/
+
+#header {
+    padding: 15px 10px;
+}
+
+#logo h2 {
+    padding: 10px 0 0 5px;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/*************************************************************	
+main - menu 																		
+************************************************************/
+
+#main-navi {
+    background: #191919;
+}
+
+	#main-navi li {
+		margin: 5px;
+		padding: 5px;
+		float: left;
+	}
+
+/*************************************************************	
+Content        																						
+************************************************************/
+
+#wrapper-content {
+    padding: 0;
+    background: #191919;
+    height: 355px;
+}
+
+#game-field {
+    width: 650px;
+    height: 350px;
+    background: #000 url("../img/sprite.png") 0 500;
+    border: 1px solid #303030;
+}
+
+/*************************************************************	
+main-content																						*/
+
+#content {
+    margin: auto;
+	width: 650px;
+    height: 350px;
+}
+
+/*************************************************************	
+footer        																						
+************************************************************/	
+
+#footer {
+    margin: auto;
+    padding-bottom: 5px;
+    width: 620px;
+}
+
+#footer .footer-group p {
+    padding: 3px 0;
+    font-size: 1.1em;
+}
+
+#footer a {
+    font-size: 1.2em;
+    color: #12fc33;
+}
+    #footer a:hover {
+        font-size: 1.2em;
+        color: #fff;
+    }

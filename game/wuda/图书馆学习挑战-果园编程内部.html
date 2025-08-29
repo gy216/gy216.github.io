@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书馆学习挑战</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .main-container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            gap: 20px;
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            padding: 20px;
+            text-align: center;
+            display: grid;
+            grid-template-rows: auto auto auto 1fr auto;
+            grid-gap: 15px;
+            height: 90vh;
+            max-height: 700px;
+        }
+        
+        .rules-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 40%;
+            padding: 20px;
+            height: 90vh;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+        
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .rules-title {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .rules-content {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .rules-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .rules-content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        
+        .danger-text {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card h3 {
+            color: #3498db;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .progress-container {
+            text-align: left;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 0.85rem;
+        }
+        
+        .progress-bar {
+            height: 18px;
+            background: #ecf0f1;
+            border-radius: 9px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 9px;
+            transition: width 0.3s ease;
+        }
+        
+        #learning-progress {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+        }
+        
+        #itch-progress {
+            background: linear-gradient(to right, #e67e22, #d35400);
+        }
+        
+        .observer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .observer {
+            width: 80px;
+            height: 80px;
+            background: #e74c3c;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            transition: all 0.5s ease;
+            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
+        }
+        
+        .observing {
+            background: #c0392b;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(192, 57, 43, 0.7);
+        }
+        
+        .message {
+            min-height: 40px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .warning {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .danger {
+            background: #e74c3c;
+            color: white;
+            animation: pulse 0.5s infinite alternate;
+        }
+        
+        .success {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.03); }
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 14px 0;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        #study-btn {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+        }
+        
+        #scratch-btn {
+            background: linear-gradient(to right, #e67e22, #d35400);
+            color: white;
+        }
+        
+        .game-over {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .game-over.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .game-over h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+        
+        .game-over p {
+            font-size: 1.3rem;
+            margin: 8px 0;
+        }
+        
+        #restart-btn {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .game-container, .rules-container {
+                width: 100%;
+                height: auto;
+            }
+            
+            .rules-container {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="game-container">
+            <header>
+                <h1>图书馆学习挑战</h1>
+                <p class="subtitle">专心学习并偷偷挠痒！尽可能获取学习点</p>
+            </header>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>学习点</h3>
+                    <div class="stat-value" id="score">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>痒值</h3>
+                    <div class="stat-value" id="itch">30%</div>
+                </div>
+                <div class="stat-card">
+                    <h3>诬告次数</h3>
+                    <div class="stat-value" id="accusations">0</div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>学习进度</span>
+                    <span id="learning-percent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="learning-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>痒值</span>
+                    <span id="itch-percent">30%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="itch-progress" style="width: 30%"></div>
+                </div>
+            </div>
+            
+            <div class="observer-container">
+                <div class="observer" id="observer">👀</div>
+            </div>
+            
+            <div class="message" id="message">游戏开始！注意杨某某的观察...</div>
+            
+            <div class="controls">
+                <button class="btn" id="study-btn">学习</button>
+                <button class="btn" id="scratch-btn">挠痒</button>
+            </div>
+        </div>
+        
+        <div class="rules-container">
+            <h2 class="rules-title">游戏规则</h2>
+            <div class="rules-content">
+                <p>欢迎来到图书馆学习挑战！在这个游戏中，你需要平衡学习和挠痒的需求，同时避免被杨某某发现。</p>
+                
+                <h3>基本规则：</h3>
+                <ul>
+                    <li>点击<span class="highlight">学习</span>按钮增加学习点和学习进度</li>
+                    <li>长按<span class="highlight">挠痒</span>按钮降低痒值</li>
+                    <li><span class="danger-text">被杨某某观察时（红眼睛）不要挠痒，否则会被"诬告"！</span></li>
+                    <li>痒值会随时间增加，过高会结束游戏</li>
+                    <li>学习进度达到100%可获得额外奖励</li>
+                </ul>
+                
+                <h3>详细机制：</h3>
+                <ul>
+                    <li><strong>学习按钮</strong>：每次点击增加1学习点和2%学习进度，有1秒冷却时间</li>
+                    <li><strong>挠痒按钮</strong>：长按可降低痒值，每秒降低2.5%痒值</li>
+                    <li><strong>痒值系统</strong>：每秒自动增加0.5%，达到100%游戏结束</li>
+                    <li><strong>学习进度</strong>：达到100%获得5点额外奖励，随后重置</li>
+                    <li><strong>观察系统</strong>：杨某某随机出现观察2-5秒</li>
+                </ul>
+                
+                <h3>惩罚机制：</h3>
+                <ul>
+                    <li>被观察时挠痒会被"诬告"1次</li>
+                    <li>每次被诬告有15%概率直接游戏结束</li>
+                    <li>痒值超过70%时，学习效率降低20%</li>
+                </ul>
+                
+                <h3>游戏策略：</h3>
+                <ul>
+                    <li>在杨某某不观察时快速挠痒</li>
+                    <li>保持痒值在中等水平以最大化学习效率</li>
+                    <li>注意观察周围环境，红眼睛出现时停止所有动作</li>
+                    <li>优先完成学习进度以获得额外奖励</li>
+                </ul>
+                
+                <p class="danger-text">游戏灵感来源于武汉某大学（我可没有说是武汉大学）图书馆真实事件，旨在反映学习环境中的不合理现象。</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="game-over" id="game-over">
+        <h2>游戏结束</h2>
+        <p id="final-score">你的学习点: 0</p>
+        <p id="final-accusations">被诬告次数: 0</p>
+        <button class="btn" id="restart-btn">重新开始</button>
+    </div>
+    
+    <script>
+        // 游戏变量
+        let score = 0;
+        let itch = 30; // 初始痒值为30%
+        let accusations = 0;
+        let isObserving = false;
+        let isScratching = false;
+        let gameActive = true;
+        let learningProgress = 0;
+        let lastStudyTime = 0;
+        const studyCooldown = 1000; // 学习按钮冷却时间1秒
+        
+        // 获取DOM元素
+        const scoreElement = document.getElementById('score');
+        const itchElement = document.getElementById('itch');
+        const itchPercentElement = document.getElementById('itch-percent');
+        const accusationsElement = document.getElementById('accusations');
+        const studyBtn = document.getElementById('study-btn');
+        const scratchBtn = document.getElementById('scratch-btn');
+        const messageElement = document.getElementById('message');
+        const observerElement = document.getElementById('observer');
+        const gameOverElement = document.getElementById('game-over');
+        const finalScoreElement = document.getElementById('final-score');
+        const finalAccusationsElement = document.getElementById('final-accusations');
+        const restartBtn = document.getElementById('restart-btn');
+        const learningProgressBar = document.getElementById('learning-progress');
+        const learningPercentElement = document.getElementById('learning-percent');
+        const itchProgressBar = document.getElementById('itch-progress');
+        
+        // 初始化游戏
+        function initGame() {
+            score = 0;
+            itch = 30;
+            accusations = 0;
+            isObserving = false;
+            isScratching = false;
+            gameActive = true;
+            learningProgress = 0;
+            lastStudyTime = 0;
+            
+            updateUI();
+            gameOverElement.classList.remove('active');
+            showMessage("游戏开始！注意杨某某的观察...", "success");
+            
+            // 开始游戏循环
+            startGameLoop();
+        }
+        
+        // 更新UI
+        function updateUI() {
+            scoreElement.textContent = score;
+            itchElement.textContent = `${itch}%`;
+            itchPercentElement.textContent = `${itch}%`;
+            accusationsElement.textContent = accusations;
+            
+            learningProgressBar.style.width = `${learningProgress}%`;
+            learningPercentElement.textContent = `${Math.round(learningProgress)}%`;
+            
+            itchProgressBar.style.width = `${itch}%`;
+            
+            if (isObserving) {
+                observerElement.classList.add('observing');
+            } else {
+                observerElement.classList.remove('observing');
+            }
+        }
+        
+        // 游戏主循环
+        function startGameLoop() {
+            // 观察者随机出现
+            const observerInterval = setInterval(() => {
+                if (!gameActive) {
+                    clearInterval(observerInterval);
+                    return;
+                }
+                
+                // 随机决定是否开始观察
+                if (Math.random() < 0.25) {
+                    startObserving();
+                }
+            }, 3000);
+            
+            // 痒值随时间增加
+            const itchInterval = setInterval(() => {
+                if (!gameActive) {
+                    clearInterval(itchInterval);
+                    return;
+                }
+                
+                if (!isScratching) {
+                    itch = Math.min(100, itch + 0.5);
+                    updateUI();
+                    
+                    if (itch >= 100) {
+                        gameOver("痒值太高，无法专心学习！");
+                    }
+                }
+            }, 500);
+            
+            // 学习进度随时间减少（如果不学习）
+            const learningInterval = setInterval(() => {
+                if (!gameActive) {
+                    clearInterval(learningInterval);
+                    return;
+                }
+                
+                if (learningProgress > 0) {
+                    learningProgress = Math.max(0, learningProgress - 0.2);
+                    updateUI();
+                }
+            }, 1000);
+        }
+        
+        // 开始观察
+        function startObserving() {
+            isObserving = true;
+            updateUI();
+            showMessage("杨某某正在观察你...", "warning");
+            
+            // 观察持续一段时间
+            setTimeout(() => {
+                isObserving = false;
+                updateUI();
+                showMessage("杨某某移开了视线", "success");
+            }, 2000 + Math.random() * 3000);
+        }
+        
+        // 显示消息
+        function showMessage(msg, type) {
+            messageElement.textContent = msg;
+            messageElement.className = "message";
+            
+            if (type) {
+                messageElement.classList.add(type);
+            }
+        }
+        
+        // 游戏结束
+        function gameOver(reason) {
+            gameActive = false;
+            showMessage(reason, "danger");
+            
+            finalScoreElement.textContent = `你的学习点: ${score}`;
+            finalAccusationsElement.textContent = `被诬告次数: ${accusations}`;
+            gameOverElement.classList.add('active');
+        }
+        
+        // 事件监听
+        studyBtn.addEventListener('click', () => {
+            if (!gameActive) return;
+            
+            const now = Date.now();
+            // 检查学习按钮冷却时间
+            if (now - lastStudyTime < studyCooldown) {
+                showMessage("冷却一秒，请等下再试！", "warning");
+                return;
+            }
+            
+            lastStudyTime = now;
+            
+            // 学习增加分数和学习进度
+            score += 1;
+            learningProgress = Math.min(100, learningProgress + 2);
+            
+            // 学习进度满时获得奖励
+            if (learningProgress >= 100) {
+                score += 5;
+                showMessage("学习完成！获得5点额外奖励", "success");
+                learningProgress = 0;
+            }
+            
+            // 学习时如果痒值高，效率降低
+            if (itch > 70) {
+                score -= 0.2; // 效率降低
+                showMessage("太痒了，学习效率降低！", "warning");
+            }
+            
+            updateUI();
+            
+            // 学习时有小概率引起观察
+            if (Math.random() < 0.1 && !isObserving) {
+                startObserving();
+            }
+        });
+        
+        scratchBtn.addEventListener('mousedown', () => {
+            if (!gameActive) return;
+            
+            isScratching = true;
+            
+            // 如果被观察时挠痒，会被诬告
+            if (isObserving) {
+                accusations += 1;
+                showMessage("你被杨某某诬告了！", "danger");
+                
+                // 被诬告有小概率直接游戏结束
+                if (Math.random() < 0.15) {
+                    gameOver("多次被诬告，你被赶出图书馆！");
+                }
+            }
+            
+            // 开始挠痒定时器
+            const scratchInterval = setInterval(() => {
+                if (!isScratching || !gameActive) {
+                    clearInterval(scratchInterval);
+                    return;
+                }
+                
+                itch = Math.max(0, itch - 0.5);
+                updateUI();
+                
+            }, 200);
+            
+            // 鼠标松开时停止挠痒
+            const stopScratching = () => {
+                isScratching = false;
+                document.removeEventListener('mouseup', stopScratching);
+                clearInterval(scratchInterval);
+            };
+            
+            document.addEventListener('mouseup', stopScratching);
+        });
+        
+        // 触摸设备支持
+        scratchBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            scratchBtn.dispatchEvent(new Event('mousedown'));
+        });
+        
+        document.addEventListener('touchend', () => {
+            isScratching = false;
+        });
+        
+        // 重新开始游戏
+        restartBtn.addEventListener('click', initGame);
+        
+        // 初始化游戏
+        initGame();
+    </script>
+</body>
+</html>
