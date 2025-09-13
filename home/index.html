@@ -314,6 +314,8 @@
                 </div>
             </div>
             <a href="/home/members/" class="cyber-button">查看完整成员</a>
+            <br/>
+            <a href="/home/smyunyun" class="cyber-button">果园编程对于虚舟实验室造谣的澄清声明→ 点击查看详情</a>
         </header>
         
         <!-- 产品展示区 - 改进后的版本 -->
@@ -570,14 +572,14 @@
     <!-- 一言显示 -->
   <!-- 原代码中的一言部分替换为以下内容 -->
 <div class="yi-yan">
-    <p id="hitokoto-text">正在加载随机的名言、诗句、歌词或网络流行语……（API接口：v1.hitokoto.cn）10秒刷新一次</p>
+    <p id="hitokoto-text">正在加载随机的名言、诗句、歌词或网络流行语……（API接口：international.v1.hitokoto.cn）10秒刷新一次</p>
     <p id="hitokoto-from"></p>
 </div>
 
 <script>
 // 更新一言功能
 function updateHitokoto() {
-    fetch('https://v1.hitokoto.cn/')
+    fetch('https://international.v1.hitokoto.cn')
         .then(response => response.json())
         .then(data => {
             document.getElementById('hitokoto-text').textContent = data.hitokoto;
