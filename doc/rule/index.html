@@ -3,74 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>查看规则</title>
+    <title>规则中心 - 果园编程工作室</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --darker-bg: #070113;
+            --text-color: #d1f7ff;
+            --text-glow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            --box-glow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            min-height: 100vh;
             padding: 20px;
+            background-image: 
+                linear-gradient(rgba(5, 217, 232, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Rajdhani';
+            src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(13, 2, 33, 0.7);
+            border-radius: 5px;
+            border: 1px solid var(--neon-blue);
+            box-shadow: var(--box-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 8px;
+            animation: pulse 4s infinite alternate;
+            pointer-events: none;
+        }
+        
+        h1 {
+            color: var(--neon-pink);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: var(--text-glow);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            color: var(--neon-blue);
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--neon-blue);
+            margin-bottom: 15px;
+        }
+        
+        .warning-badge {
+            display: inline-block;
+            background-color: var(--neon-purple);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            text-shadow: 0 0 5px var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .rule-card {
+            background: rgba(7, 1, 19, 0.8);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--neon-blue);
+            box-shadow: var(--box-glow);
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
-            align-items: center;
+            position: relative;
         }
-        .header {
-            margin-bottom: 30px;
+        
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+        
+        .rule-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+        }
+        
+        .card-header {
+            background: rgba(5, 217, 232, 0.1);
+            color: var(--neon-blue);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--neon-blue);
+        }
+        
+        .card-header h2 {
+            text-shadow: 0 0 5px var(--neon-blue);
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-description {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            padding: 0 20px 20px;
             text-align: center;
         }
-        .button-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            width: 80%;
-            max-width: 1000px;
-        }
-        .selection-button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 25px;
-            text-align: center;
-            text-decoration: none;
+        
+        .btn {
             display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            border: 1px solid var(--neon-blue);
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-shadow: 0 0 5px var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
         }
-        .selection-button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        
+        .btn:hover {
+            background: rgba(5, 217, 232, 0.2);
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
         }
-        .selection-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        .btn-secondary {
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        .home-btn {
+            display: block;
+            margin: 30px auto;
+            max-width: 200px;
+            text-align: center;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 20px;
+            }
+        }
+        
+        /* Terminal-like effect for some elements */
+        .terminal-effect {
+            position: relative;
+        }
+        
+        .terminal-effect::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            position: absolute;
+            right: -10px;
+        }
+        
+        @keyframes blink {
+            from, to {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>查看规则</h1>
-        <p>本页面维护较少</p>
-    </div>
-    
-    <div class="button-container">
-        <button class="selection-button" onclick="window.location.href='rule.html'">果园编程工作室群规及处罚规则</button>
-        <button class="selection-button" onclick="window.location.href='zi.html'">果园编程工作室子品牌规则</button>
-        <button class="selection-button" onclick="window.location.href='/">返回主页</button>
+    <div class="container">
+        <header>
+            <h1 class="terminal-effect">果园编程工作室规则中心</h1>
+            <p class="subtitle">所有官方规则与声明的集中查阅平台</p>
+            <span class="warning-badge">本页面维护较少，内容可能未及时更新</span>
+        </header>
+        
+        <div class="card-container">
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>群规及处罚规则</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        包含果园编程工作室官方群的交流规则、行为准则以及违规处罚标准。所有成员必须遵守。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='rule.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>子品牌规则</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        关于创建和管理果园编程工作室子品牌的详细规定，包括申请流程、品牌定位和运营要求。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='zi.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>儿童隐私保护政策</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        郑重承诺，全力守护每一位儿童用户的隐私安全
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='kids.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>AI HUB服务条款与免责声明</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        AI服务的使用条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='aihub.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>果园影视服务条款与免责声明</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        果园影视的使用条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='tv.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>Scratch作品打包工具服务条款与免责声明</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Scratch作品打包工具的使用条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='twdb.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>DuckDuckGo镜像服务免责声明</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        DuckDuckGo镜像服务的使用条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='duckpr.html'">查看详情</button>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="btn btn-secondary home-btn">返回主页</a>
     </div>
 
     <script>
-        document.querySelectorAll('.selection-button').forEach(button => {
-            button.addEventListener('mouseover', function() {
-                this.style.transform = 'translateY(-2px)';
+        // 添加赛博朋克风格的点击效果
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 创建点击效果
+                const effect = document.createElement('div');
+                effect.style.position = 'absolute';
+                effect.style.width = '100%';
+                effect.style.height = '100%';
+                effect.style.top = '0';
+                effect.style.left = '0';
+                effect.style.background = 'radial-gradient(circle, rgba(255,42,109,0.8) 0%, rgba(5,217,232,0.8) 100%)';
+                effect.style.opacity = '0';
+                effect.style.transition = 'opacity 0.5s';
+                effect.style.borderRadius = '5px';
+                effect.style.pointerEvents = 'none';
+                
+                this.appendChild(effect);
+                
+                // 动画效果
+                this.style.transform = 'translateY(2px)';
+                effect.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    effect.style.opacity = '0';
+                    setTimeout(() => {
+                        effect.remove();
+                    }, 500);
+                }, 200);
+                
+                setTimeout(() => {
+                    this.style.transform = 'translateY(0)';
+                }, 200);
             });
-            button.addEventListener('mouseout', function() {
-                this.style.transform = 'translateY(0)';
-            });
+        });
+        
+        // 添加赛博朋克风格的终端打字效果
+        const terminalElements = document.querySelectorAll('.terminal-effect');
+        terminalElements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = '';
+            
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 100);
         });
     </script>
 </body>

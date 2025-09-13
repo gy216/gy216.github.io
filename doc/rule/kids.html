@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园编程 - 儿童隐私保护政策</title>
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0a0a12;
+            --darker-bg: #050508;
+            --text-color: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid var(--neon-blue);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 65%, 
+                rgba(0, 255, 252, 0.1) 75%, 
+                transparent 85%);
+            animation: scan 4s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        h1 {
+            color: var(--neon-blue);
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 252, 0.5);
+            margin: 0;
+            position: relative;
+        }
+        
+        h2 {
+            color: var(--neon-pink);
+            font-size: 1.8rem;
+            margin-top: 40px;
+            border-left: 4px solid var(--neon-pink);
+            padding-left: 15px;
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+        }
+        
+        p, li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: var(--darker-bg);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        .glitch-effect {
+            position: relative;
+        }
+        
+        .glitch-effect::before, .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-effect::before {
+            color: var(--neon-pink);
+            z-index: -1;
+            animation: glitch 3s infinite;
+        }
+        
+        .glitch-effect::after {
+            color: var(--neon-blue);
+            z-index: -2;
+            animation: glitch 2s infinite reverse;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid var(--neon-pink);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            p, li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="glitch-effect" data-text="果园编程">果园编程</h1>
+        </header>
+        
+        <h2>儿童隐私保护政策</h2>
+        <p>最后更新日期：25-09-13</p>
+        
+        <p>果园编程工作室（以下简称"我们"）非常重视儿童个人信息的保护。本《儿童隐私保护政策》旨在向家长（或监护人，下同）和儿童说明我们如何收集、使用、存储和保护儿童个人信息，以及家长和儿童享有的权利。</p>
+        
+        <h2>【一】我们收集哪些信息</h2>
+        <p>我们可能会收集以下类型的儿童个人信息：</p>
+        <ul>
+            <li><strong>基本信息</strong>：如姓名、年龄、性别、学校年级等；</li>
+            <li><strong>联系方式</strong>：如电子邮箱地址</li>
+            <li><strong>设备信息</strong>：如IP地址、设备类型、操作系统版本等；</li>
+        </ul>
+        <p>我们承诺仅收集提供服务所必需的最少信息，并确保这些信息的收集和使用符合相关法律法规的要求。</p>
+        
+        <h2>【二】我们如何使用这些信息</h2>
+        <p>我们可能将收集的儿童个人信息用于以下目的：</p>
+        <ul>
+            <li>提供和改善我们的服务；</li>
+            <li>确保服务的安全性和正常运行；</li>
+            <li>遵守法律法规要求。</li>
+        </ul>
+        <p>我们不会将儿童个人信息用于任何商业广告目的，也不会基于儿童个人信息进行自动化决策。</p>
+        
+        <h2>【三】共享、转移、披露儿童个人信息的情形</h2>
+        <p>我们承诺不会将儿童个人信息出售给第三方。仅在以下情况下，我们可能会共享儿童个人信息：</p>
+        <ul>
+            <li>获得家长明确同意或授权；</li>
+            <li>根据法律法规规定或司法、行政机关的要求；</li>
+            <li>为保护儿童或其他个人的重要合法权益；</li>
+            <li>为实现本政策所述目的，向我们的关联方、合作伙伴或服务提供商提供（这些第三方将受到同等保密义务的约束）。</li>
+        </ul>
+        <p>如发生合并、收购或资产转让等情形，我们将继续保护儿童个人信息安全，并要求新的持有儿童个人信息的公司、组织继续受本政策的约束。</p>
+        
+        <h2>【四】存储儿童个人信息</h2>
+        <p>我们采取合理措施保护儿童个人信息的安全：</p>
+        <ul>
+            <li>在中华人民共和国境内存储儿童个人信息；</li>
+            <li>采取加密技术确保数据传输和存储的安全；</li>
+            <li>仅限有必要知晓的授权人员访问儿童个人信息；</li>
+            <li>建立完善的安全管理制度和技术防护措施。</li>
+        </ul>
+        <p>我们仅会在实现本政策所述目的所需的期限内保留儿童个人信息，除非法律有强制的留存要求。</p>
+        
+        <h2>【五】管理儿童个人信息</h2>
+        <p>儿童享有以下权利：</p>
+        <ul>
+            <li><strong>访问权</strong>：有权访问我们持有的儿童个人信息；</li>
+            <li><strong>更正权</strong>：有权更正不准确或不完整的儿童个人信息；</li>
+            <li><strong>删除权</strong>：在特定情况下，有权要求删除儿童个人信息；</li>
+            <li><strong>撤回同意权</strong>：有权随时撤回之前给予的同意；</li>
+            <li><strong>投诉权</strong>：有权向相关监管部门投诉我们的个人信息处理行为。</li>
+        </ul>
+        
+        <h2>【六】本声明的适用</h2>
+        <p>本《儿童隐私保护政策》适用于果园编程工作室提供的所有产品和服务，</p>
+        
+        <h2>【七】联系我们</h2>
+        <p>如对本政策或我们的个人信息处理行为有任何疑问、意见或建议，请通过以下方式联系我们：</p>
+        <ul>
+            <li>电子邮箱：386498317@qq.com</li>
+        
+        <a href="/" class="back-btn">返回主站</a>
+    </div>
+    
+    <footer>
+        <p>© 2023 果园编程工作室 版权所有</p>
+    </footer>
+</body>
+</html>

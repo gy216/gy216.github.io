@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园编程 - Scratch作品打包工具服务条款</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        h2 {
+            color: #4b6cb7;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        ul {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+        li:before {
+            content: "•";
+            color: #4b6cb7;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+        .highlight {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #4b6cb7;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4b6cb7;
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            background: #4b6cb7;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background: #3a5998;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>果园编程 Scratch作品打包工具</h1>
+            <p class="subtitle">服务条款与免责声明</p>
+        </header>
+        
+        <div class="content">
+            <h2>服务性质说明</h2>
+            <p>果园编程Scratch作品打包工具是基于TurboWarp Packager修改而成的开源项目，旨在帮助用户将Scratch项目转换为HTML文件、压缩包或适用于Windows、macOS和Linux的可执行程序。</p>
+            
+            <h2>使用条款</h2>
+            <ul>
+                <li>本工具基于Apache 2.0许可证开源，用户在使用时应遵守相关许可证条款</li>
+                <li>用户应保证上传打包的作品不侵犯第三方知识产权</li>
+                <li>禁止使用本工具从事任何违法或侵权活动</li>
+                <li>我们保留在不事先通知的情况下修改或终止服务的权利</li>
+            </ul>
+            
+            <h2>隐私政策</h2>
+            <ul>
+                <li>用户上传的Scratch项目仅用于打包处理，不会被永久存储或用于其他目的</li>
+                <li>我们不会收集或分享用户的个人信息</li>
+                <li>打包过程中可能需要从外部服务器下载必要组件（如NW.js、Electron等）</li>
+            </ul>
+            
+            <h2>使用风险提示</h2>
+            <ul>
+                <li>本工具按"原样"提供，不提供任何明示或暗示的担保</li>
+                <li>使用本工具打包的作品可能存在兼容性或功能性问题</li>
+                <li>对于因使用本工具而导致的任何直接或间接损失，我们不承担责任</li>
+                <li>建议用户定期检查工具更新，以获取最新功能和安全修复</li>
+            </ul>
+            
+            <div class="highlight">
+                <h2>开源声明</h2>
+                <p>本工具基于TurboWarp Packager开发，遵守Apache License 2.0开源协议。项目源码地址：GitHub - TurboWarp/packager</p>
+                <p>如有问题或建议，请联系我们。继续使用本工具即表示您同意以上条款。</p>
+                <a href="#" class="button">返回打包工具</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="logo">果园编程</div>
+            <p>© 2023 果园编程 Scratch作品打包工具 | 基于TurboWarp Packager</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,37 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>果园编程工作室子品牌规则</title>
     <style>
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --darker-bg: #070113;
+            --text-color: #d1f7ff;
+            --text-glow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            --box-glow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Rajdhani', 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            background-image: 
+                linear-gradient(rgba(5, 217, 232, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
         }
+        
+        @font-face {
+            font-family: 'Rajdhani';
+            src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap');
+        }
+        
         h1 {
             text-align: center;
             margin-bottom: 30px;
+            color: var(--neon-pink);
+            text-shadow: var(--text-glow);
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 20px;
+            border: 1px solid var(--neon-blue);
+            box-shadow: var(--box-glow);
+            position: relative;
+            overflow: hidden;
         }
+        
+        h1::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 8px;
+            animation: pulse 4s infinite alternate;
+            pointer-events: none;
+        }
+        
         h2 {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--neon-blue);
             padding-bottom: 5px;
             margin-top: 25px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            font-weight: 500;
         }
-        ul {
-            padding-left: 20px;
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
         }
+        
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+        
+        strong {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            border: 1px solid var(--neon-blue);
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-shadow: 0 0 5px var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 20px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(5, 217, 232, 0.2);
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                padding: 15px;
+            }
+        }
+        
+        /* Terminal-like effect */
+        .terminal-effect {
+            position: relative;
+        }
+        
+        .terminal-effect::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            position: absolute;
+            right: -10px;
+        }
+        
+        @keyframes blink {
+            from, to {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
-<button onclick="javascript:history.back(-1)">返回</button>  
 <body>
-    <h1>果园编程工作室子品牌规则</h1>
+    <button class="back-btn" onclick="window.location.href='/'">返回主页</button>
+    
+    <h1 class="terminal-effect">果园编程工作室子品牌规则</h1>
     
     <h2>一、子品牌创立资格与申请流程</h2>
     <ol>
@@ -65,7 +209,7 @@
     <ul>
         <li><strong>宣传标注</strong>：所有宣传物料（官网、海报等）需标注"果园编程工作室旗下子品牌"字样，并链接至母品牌主页</li>
         <li><strong>作品标注</strong>：所有作品需标注"果园编程工作室旗下子品牌"字样，并链接至母品牌主页</li>
-        <li><strong>成员规范</strong>：子品牌不得向母品牌“偷取“成员，除非成员同意跳槽</li>
+        <li><strong>成员规范</strong>：子品牌不得向母品牌"偷取"成员，除非成员同意跳槽</li>
     </ul>
     
     <h2>四、运营管理与监督</h2>
@@ -90,5 +234,57 @@
             </ul>
         </li>
     </ol>
+
+    <script>
+        // 添加赛博朋克风格的终端打字效果
+        const terminalElements = document.querySelectorAll('.terminal-effect');
+        terminalElements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = '';
+            
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 100);
+        });
+        
+        // 添加赛博朋克风格的点击效果
+        document.querySelector('.back-btn').addEventListener('click', function() {
+            // 创建点击效果
+            const effect = document.createElement('div');
+            effect.style.position = 'absolute';
+            effect.style.width = '100%';
+            effect.style.height = '100%';
+            effect.style.top = '0';
+            effect.style.left = '0';
+            effect.style.background = 'radial-gradient(circle, rgba(255,42,109,0.8) 0%, rgba(5,217,232,0.8) 100%)';
+            effect.style.opacity = '0';
+            effect.style.transition = 'opacity 0.5s';
+            effect.style.borderRadius = '5px';
+            effect.style.pointerEvents = 'none';
+            
+            this.appendChild(effect);
+            
+            // 动画效果
+            this.style.transform = 'translateY(2px)';
+            effect.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                effect.style.opacity = '0';
+                setTimeout(() => {
+                    effect.remove();
+                }, 500);
+            }, 200);
+            
+            setTimeout(() => {
+                this.style.transform = 'translateY(0)';
+            }, 200);
+        });
+    </script>
 </body>
 </html>
