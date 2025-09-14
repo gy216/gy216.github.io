@@ -3,154 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>免责声明 - DuckDuckGo镜像服务</title>
+    <title>免责声明 - 果园编程工作室</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff2a6d;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --dark-text: #c1c1c1;
+            --glow: 0 0 10px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Courier New', monospace;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
-            padding: 0;
-            margin: 0;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(13, 2, 33, 0.9), rgba(13, 2, 33, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="50" y="50" fill="%230ff0fc" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-            margin-bottom: 30px;
+        /* 赛博朋克风格滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
         
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-pink);
+        }
+        
+        /* 头部样式 */
         header {
+            padding: 1.5rem 2rem;
             text-align: center;
-            padding: 30px 0;
-            background: #2c3e50;
-            color: white;
-            border-radius: 10px 10px 0 0;
-            margin: -20px -20px 30px -20px;
-            background-image: linear-gradient(120deg, #3498db, #2c3e50);
+            border-bottom: 1px solid var(--neon-blue);
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.7);
         }
         
-        h1 {
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent 48%,
+                var(--neon-blue) 49%,
+                var(--neon-blue) 51%,
+                transparent 52%
+            );
+            background-size: 10px 10px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .logo {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 
+                var(--glow) var(--neon-blue),
+                var(--glow) var(--neon-pink);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            box-shadow: 
+                0 0 5px var(--neon-blue),
+                0 0 5px var(--neon-pink);
         }
         
         .subtitle {
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        /* 主要内容 */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+        
+        .disclaimer-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-blue);
+            border-radius: 0;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 252, 0.2),
+                0 0 20px rgba(0, 255, 252, 0.1);
+        }
+        
+        .disclaimer-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                transparent 48%,
+                var(--neon-blue) 49%,
+                var(--neon-blue) 51%,
+                transparent 52%
+            );
+            background-size: 10px 10px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .disclaimer-card h2 {
+            color: var(--neon-pink);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px var(--neon-pink);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .disclaimer-card h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--neon-pink);
+        }
+        
+        .disclaimer-card p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .disclaimer-card ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .disclaimer-card li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .disclaimer-card li::before {
+            content: ">";
+            position: absolute;
+            left: -1.5rem;
+            color: var(--neon-pink);
+        }
+        
+        /* 警告框 */
+        .warning-box {
+            background: rgba(255, 42, 109, 0.1);
+            border: 1px solid var(--neon-pink);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .warning-box::before {
+            content: "⚠";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--dark-bg);
+            border: 1px solid var(--neon-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
+            color: var(--neon-pink);
         }
         
-        .back-button {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
+        .warning-box h3 {
+            color: var(--neon-pink);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        /* 按钮样式 */
+        .cyber-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            margin: 1.5rem 0;
         }
         
-        .back-button:hover {
-            background: #2980b9;
+        .cyber-btn:hover {
+            color: var(--dark-bg);
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
         }
         
-        .disclaimer-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-left: 5px solid #3498db;
-            border-radius: 5px;
+        .cyber-btn i {
+            margin-right: 0.5rem;
         }
         
-        .disclaimer-section h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
+        .cyber-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 255, 252, 0.4),
+                transparent
+            );
+            transition: all 0.5s;
         }
         
-        .disclaimer-section p {
-            margin-bottom: 15px;
+        .cyber-btn:hover::before {
+            left: 100%;
         }
         
-        .disclaimer-section ul {
-            padding-left: 30px;
-            margin-bottom: 15px;
+        /* 页脚 */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--neon-purple);
         }
         
-        .disclaimer-section li {
-            margin-bottom: 10px;
-        }
-        
-        .warning {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
         }
         
         .update-date {
-            text-align: right;
-            font-style: italic;
-            color: #7f8c8d;
-            margin-top: 30px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
         
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
+        .copyright {
+            color: var(--neon-blue);
             font-size: 0.9rem;
         }
         
+        /* 动画效果 */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0.5;
+            }
+        }
+        
+        .flicker {
+            animation: flicker 3s infinite;
+        }
+        
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
-                margin: 15px;
+                padding: 0 1rem;
             }
             
-            h1 {
+            .disclaimer-card {
+                padding: 1.5rem;
+            }
+            
+            .logo {
                 font-size: 2rem;
             }
             
-            .disclaimer-section {
-                padding: 15px;
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .disclaimer-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .disclaimer-card {
+                padding: 1rem;
+            }
+            
+            .cyber-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1 class="logo flicker">果园编程</h1>
+        <p class="subtitle">青少年编程工作室 · 免责声明</p>
+    </header>
+    
     <div class="container">
-        <header>
-            <h1>免责声明</h1>
-            <p class="subtitle">DuckDuckGo镜像服务使用条款</p>
-        </header>
+        <a href="javascript:history.back()" class="cyber-btn">
+            <i class="fas fa-arrow-left"></i> 返回上一页
+        </a>
         
-        <a href="javascript:history.back()" class="back-button">返回上一页</a>
-        
-        <div class="disclaimer-section">
+        <div class="disclaimer-card">
             <h2>服务性质</h2>
             <p>本网站（gystu.top）提供的DuckDuckGo镜像服务为<strong>非官方、实验性技术项目</strong>，仅用于技术研究与学习目的，不涉及任何商业用途。该服务未获得DuckDuckGo官方授权，使用者应自行承担风险。</p>
         </div>
         
-        <div class="disclaimer-section">
+        <div class="disclaimer-card">
             <h2>合规声明</h2>
             <ul>
                 <li>本服务部署于境外服务器，未违反中国大陆现行法律法规，但可能受国际服务条款约束；</li>
@@ -159,19 +378,19 @@
             </ul>
         </div>
         
-        <div class="disclaimer-section">
+        <div class="disclaimer-card">
             <h2>隐私与数据</h2>
             <p>本站不会主动记录用户搜索行为，但无法保证第三方引擎或网络中间节点（如Cloudflare）的数据处理；</p>
             <p>建议敏感查询使用端到端加密工具（如Tor/VPN）增强隐私保护。</p>
         </div>
         
-        <div class="warning">
-            <h2>风险提示</h2>
+        <div class="warning-box">
+            <h3>风险提示</h3>
             <p>因技术或政策原因，服务可能随时中断或终止；</p>
             <p>使用本镜像即代表您知悉：该服务处于合规灰色地带，存在被封锁或域名失效的风险。</p>
         </div>
         
-        <div class="disclaimer-section">
+        <div class="disclaimer-card">
             <h2>责任豁免</h2>
             <p>果园编程工作室及网站运营者不对因以下情况导致的损失负责：</p>
             <ul>
@@ -184,10 +403,31 @@
         <div class="update-date">
             <p>最后更新：2025年9月</p>
         </div>
-        
-        <footer>
-            <p>© 2025 果园编程工作室 | 子品牌规则</p>
-        </footer>
     </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">© 2025 果园编程工作室</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 添加简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.disclaimer-card, .warning-box');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 0 15px rgba(0, 255, 252, 0.4), 0 0 25px rgba(0, 255, 252, 0.2)';
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '';
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

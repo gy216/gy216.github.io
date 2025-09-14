@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服务条款 - 果园编程 Scratch作品打包工具</title>
+    <title>安全与伦理规则 - 果园编程工作室</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --neon-pink: #ff2a6d;
             --neon-purple: #d300c5;
             --neon-green: #39ff14;
+            --neon-yellow: #ffe600;
             --dark-bg: #0d0221;
             --dark-text: #c1c1c1;
             --glow: 0 0 10px;
@@ -59,7 +60,7 @@
         header {
             padding: 1.5rem 2rem;
             text-align: center;
-            border-bottom: 1px solid var(--neon-green);
+            border-bottom: 1px solid var(--neon-yellow);
             position: relative;
             overflow: hidden;
             background: rgba(0, 0, 0, 0.7);
@@ -75,8 +76,8 @@
             background: linear-gradient(
                 45deg,
                 transparent 48%,
-                var(--neon-green) 49%,
-                var(--neon-green) 51%,
+                var(--neon-yellow) 49%,
+                var(--neon-yellow) 51%,
                 transparent 52%
             );
             background-size: 10px 10px;
@@ -89,7 +90,7 @@
             font-weight: bold;
             color: white;
             text-shadow: 
-                var(--glow) var(--neon-green),
+                var(--glow) var(--neon-yellow),
                 var(--glow) var(--neon-blue);
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
@@ -104,9 +105,9 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            background: linear-gradient(90deg, var(--neon-yellow), var(--neon-blue));
             box-shadow: 
-                0 0 5px var(--neon-green),
+                0 0 5px var(--neon-yellow),
                 0 0 5px var(--neon-blue);
         }
         
@@ -124,28 +125,28 @@
             flex: 1;
         }
         
-        .terms-card {
+        .ethics-card {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-green);
+            border: 1px solid var(--neon-yellow);
             border-radius: 0;
             padding: 2rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
             box-shadow: 
-                0 0 10px rgba(57, 255, 20, 0.2),
-                0 0 20px rgba(57, 255, 20, 0.1);
+                0 0 10px rgba(255, 230, 0, 0.2),
+                0 0 20px rgba(255, 230, 0, 0.1);
             transition: all 0.3s;
         }
         
-        .terms-card:hover {
+        .ethics-card:hover {
             box-shadow: 
-                0 0 15px rgba(57, 255, 20, 0.4),
-                0 0 25px rgba(57, 255, 20, 0.2);
+                0 0 15px rgba(255, 230, 0, 0.4),
+                0 0 25px rgba(255, 230, 0, 0.2);
             transform: translateY(-5px);
         }
         
-        .terms-card::before {
+        .ethics-card::before {
             content: "";
             position: absolute;
             top: 0;
@@ -155,8 +156,8 @@
             background: linear-gradient(
                 135deg,
                 transparent 48%,
-                var(--neon-green) 49%,
-                var(--neon-green) 51%,
+                var(--neon-yellow) 49%,
+                var(--neon-yellow) 51%,
                 transparent 52%
             );
             background-size: 10px 10px;
@@ -164,49 +165,49 @@
             pointer-events: none;
         }
         
-        .terms-card h2 {
-            color: var(--neon-green);
+        .ethics-card h2 {
+            color: var(--neon-yellow);
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
-            text-shadow: 0 0 5px var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-yellow);
             position: relative;
             padding-bottom: 0.5rem;
         }
         
-        .terms-card h2::after {
+        .ethics-card h2::after {
             content: "";
             position: absolute;
             bottom: 0;
             left: 0;
             width: 50px;
             height: 2px;
-            background: var(--neon-green);
+            background: var(--neon-yellow);
         }
         
-        .terms-card p {
+        .ethics-card p {
             margin-bottom: 1rem;
             line-height: 1.8;
         }
         
-        .terms-card ul {
+        .ethics-card ul {
             padding-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
         
-        .terms-card li {
+        .ethics-card li {
             margin-bottom: 0.8rem;
             position: relative;
         }
         
-        .terms-card li::before {
+        .ethics-card li::before {
             content: ">";
             position: absolute;
             left: -1.5rem;
-            color: var(--neon-green);
+            color: var(--neon-yellow);
         }
         
-        /* 警告框 */
-        .warning-box {
+        /* 禁止框 */
+        .prohibition-box {
             background: rgba(255, 42, 109, 0.1);
             border: 1px solid var(--neon-pink);
             padding: 1.5rem;
@@ -215,13 +216,13 @@
             transition: all 0.3s;
         }
         
-        .warning-box:hover {
+        .prohibition-box:hover {
             box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
             transform: translateY(-3px);
         }
         
-        .warning-box::before {
-            content: "⚠";
+        .prohibition-box::before {
+            content: "⛔";
             position: absolute;
             top: -15px;
             left: -15px;
@@ -237,8 +238,46 @@
             color: var(--neon-pink);
         }
         
-        .warning-box h3 {
+        .prohibition-box h3 {
             color: var(--neon-pink);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        /* 鼓励框 */
+        .encouragement-box {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .encouragement-box:hover {
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .encouragement-box::before {
+            content: "✅";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--dark-bg);
+            border: 1px solid var(--neon-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--neon-green);
+        }
+        
+        .encouragement-box h3 {
+            color: var(--neon-green);
             margin-bottom: 1rem;
             font-size: 1.4rem;
         }
@@ -249,8 +288,8 @@
             align-items: center;
             padding: 0.8rem 1.5rem;
             background: transparent;
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
+            color: var(--neon-yellow);
+            border: 1px solid var(--neon-yellow);
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
@@ -263,8 +302,8 @@
         
         .cyber-btn:hover {
             color: var(--dark-bg);
-            background: var(--neon-green);
-            box-shadow: 0 0 10px var(--neon-green);
+            background: var(--neon-yellow);
+            box-shadow: 0 0 10px var(--neon-yellow);
         }
         
         .cyber-btn i {
@@ -273,7 +312,7 @@
         
         .cyber-btn::before {
             content: "";
-            position: absolute;
+           极 position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
@@ -281,7 +320,7 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(57, 255, 20, 0.4),
+                rgba(255, 230, 0, 0.4),
                 transparent
             );
             transition: all 0.5s;
@@ -291,45 +330,12 @@
             left: 100%;
         }
         
-        /* 开源声明 */
-        .open-source {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-purple);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            transition: all 0.3s;
-        }
-        
-        .open-source:hover {
-            box-shadow: 0 0 15px rgba(211, 0, 197, 0.3);
-            transform: translateY(-3px);
-        }
-        
-        .open-source h3 {
-            color: var(--neon-purple);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            text-shadow: 0 0 5px var(--neon-purple);
-        }
-        
-        .open-source a {
-            color: var(--neon-blue);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .open-source a:hover {
-            color: var(--neon-green);
-            text-decoration: underline;
-        }
-        
         /* 页脚 */
         footer {
             background: rgba(0, 0, 0, 0.7);
             padding: 1.5rem;
             text-align: center;
-            border-top: 1px solid var(--neon-purple);
+            border-top: 极 1px solid var(--neon-purple);
         }
         
         .footer-content {
@@ -358,13 +364,13 @@
         
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 230, 0, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 10px rgba(57, 255, 20, 0);
+                box-shadow: 0 0 0 10px rgba(255, 230, 0, 0);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(57, 255, 20, 0);
+                box-shadow: 0 0 0 0 rgba(255, 230, 0, 0);
             }
         }
         
@@ -378,7 +384,7 @@
                 padding: 0 1rem;
             }
             
-            .terms-card {
+            .ethics-card {
                 padding: 1.5rem;
             }
             
@@ -390,7 +396,7 @@
                 font-size: 1rem;
             }
             
-            .terms-card h2 {
+            .ethics-card h2 {
                 font-size: 1.5rem;
             }
         }
@@ -400,7 +406,7 @@
                 padding: 1rem;
             }
             
-            .terms-card {
+            .ethics-card {
                 padding: 1rem;
             }
             
@@ -414,50 +420,90 @@
 <body>
     <header>
         <h1 class="logo flicker">果园编程</h1>
-        <p class="subtitle">Scratch作品打包工具 · 服务条款与免责声明</p>
+        <p class="subtitle">安全与伦理规则 - 对技术社区至关重要</p>
     </header>
     
     <div class="container">
-        <div class="terms-card">
-            <h2>服务性质说明</h2>
-            <p>果园编程Scratch作品打包工具是基于TurboWarp Packager修改而成的开源项目，旨在帮助用户将Scratch项目转换为HTML文件、压缩包或适用于Windows、macOS和Linux的可执行程序。</p>
+        <div class="ethics-card">
+            <h2>技术伦理公约</h2>
+            <p>作为果园编程工作室的成员，我们承诺将技术用于创造而非破坏，用于帮助而非伤害。我们明确禁止将技术用于任何非法或不道德的用途。</p>
+            
+            <div class="prohibition-box">
+                <h3>严格禁止的行为</h3>
+                <ul>
+                    <li>不编写、不传播病毒、木马等恶意程序</li>
+                    <li>不进行未经授权的网络安全测试（"黑客行为"）</li>
+                    <li>不开发用于作弊、欺诈、侵犯他人隐私的工具</li>
+                    <li>不参与任何形式的网络攻击或破坏活动</li>
+                    <li>不创建或传播虚假信息、垃圾邮件</li>
+                </ul>
+            </div>
         </div>
         
-        <div class="terms-card">
-            <h2>使用条款</h2>
+        <div class="ethics-card">
+            <h2>网络安全准则</h2>
+            <p>我们鼓励负责任的网络安全实践，所有安全相关活动必须遵循以下原则：</p>
             <ul>
-                <li>本工具基于Apache 2.0许可证开源，用户在使用时应遵守相关许可证条款</li>
-                <li>用户应保证上传打包的作品不侵犯第三方知识产权</li>
-                <li>禁止使用本工具从事任何违法或侵权活动</li>
-                <li>我们保留在不事先通知的情况下修改或终止服务的权利</li>
+                <li>只在自己拥有或获得明确书面授权的系统上进行安全测试</li>
+                <li>发现漏洞时遵循负责任的披露原则，及时通知相关方</li>
+                <li>不利用安全漏洞获取未经授权的访问或数据</li>
+                <li>尊重所有系统的服务条款和可接受使用政策</li>
+                <li>保护用户数据和隐私，绝不泄露或滥用</li>
             </ul>
         </div>
         
-        <div class="terms-card">
-            <h2>隐私政策</h2>
+        <div class="ethics-card">
+            <h2>隐私保护承诺</h2>
+            <p>我们高度重视隐私保护，特别是对青少年用户的隐私保护：</p>
             <ul>
-                <li>用户上传的Scratch项目仅用于打包处理，不会被永久存储或用于其他目的</li>
-                <li>我们不会收集或分享用户的个人信息</li>
-                <li>打包过程中可能需要从外部服务器下载必要组件（如NW.js、Electron等）</li>
+                <li>绝不收集不必要的个人信息</li>
+                <li>明确告知数据收集目的并获得同意</li>
+                <li>为用户提供访问、修改和删除个人数据的途径</li>
+                <li>采用适当的安全措施保护存储的数据</li>
+                <li>不为广告或商业目的出售或共享用户数据</li>
+            </ul>
+            
+            <div class="encouragement-box">
+                <h3>鼓励的行为</h3>
+                <ul>
+                    <li>开发增强隐私保护的工具和应用</li>
+                    <li>教育社区成员关于数字隐私的重要性</li>
+                    <li>提倡透明和开源的技术解决方案</li>
+                    <li>参与负责任的漏洞披露计划</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="ethics-card">
+            <h2>青少年特别保护</h2>
+            <p>鉴于我们大部分成员是未成年人，我们实施额外的保护措施：</p>
+            <ul>
+                <li>所有活动必须适合相应年龄段的青少年参与</li>
+                <li>提供安全、 moderated 的交流环境</li>
+                <li>鼓励家长参与和监督孩子的技术活动</li>
+                <li>教育成员识别和避免在线风险</li>
+                <li>建立清晰的报告机制处理不当行为</li>
             </ul>
         </div>
         
-        <div class="warning-box">
-            <h3>使用风险提示</h3>
+        <div class="ethics-card">
+            <h2>违规处理</h2>
+            <p>违反本伦理公约的后果可能包括：</p>
             <ul>
-                <li>本工具按"原样"提供，不提供任何明示或暗示的担保</li>
-                <li>使用本工具打包的作品可能存在兼容性或功能性问题</li>
-                <li>对于因使用本工具而导致的任何直接或间接损失，我们不承担责任</li>
-                <li>建议用户定期检查工具更新，以获取最新功能和安全修复</li>
+                <li>警告和教育谈话</li>
+                <li>暂时或永久取消项目参与资格</li>
+                <li>从社区平台移除</li>
+                <li>在严重情况下，通知家长或相关 authorities</li>
             </ul>
+            
+            <div class="prohibition-box">
+                <h3>重要提示</h3>
+                <p>技术能力越强，责任越大。我们鼓励所有成员不仅关注"能做什么"，更要思考"应该做什么"。技术的正当使用能够创造美好，而滥用则可能造成伤害。</p>
+            </div>
         </div>
         
-        <div class="open-source">
-            <h3>开源声明</h3>
-            <p>本工具基于TurboWarp Packager开发，遵守Apache License 2.0开源协议。</p>
-            <p>项目源码地址：<a href="https://github.com/TurboWarp/packager" target="_blank">GitHub - TurboWarp/packager</a></p>
-            <p>如有问题或建议，请联系我们。</p>
-            <p class="pulse">继续使用本工具即表示您同意以上条款。</p>
+        <div class="pulse" style="text-align: center; padding: 1.5rem; color: var(--neon-yellow);">
+            <p>加入果园编程工作室即表示您承诺遵守这些安全与伦理规则</p>
         </div>
         
         <a href="javascript:history.back()" class="cyber-btn">
@@ -467,14 +513,14 @@
     
     <footer>
         <div class="footer-content">
-            <p class="copyright">© 2023 果园编程 Scratch作品打包工具 | 基于TurboWarp Packager</p>
+            <p class="copyright">© 2020-2025 果园编程工作室 | 青少年技术伦理倡导者</p>
         </div>
     </footer>
     
     <script>
         // 添加简单的交互效果
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.terms-card, .warning-box, .open-source');
+            const cards = document.querySelectorAll('.ethics-card, .prohibition-box, .encouragement-box');
             
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {

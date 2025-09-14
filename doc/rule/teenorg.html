@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服务条款 - 果园编程 Scratch作品打包工具</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>青少年非营利性组织公示协议 - 果园编程工作室</title>
     <style>
         :root {
             --neon-blue: #0ff0fc;
             --neon-pink: #ff2a6d;
             --neon-purple: #d300c5;
             --neon-green: #39ff14;
+            --neon-orange: #ff7b00;
             --dark-bg: #0d0221;
             --dark-text: #c1c1c1;
             --glow: 0 0 10px;
@@ -59,7 +59,7 @@
         header {
             padding: 1.5rem 2rem;
             text-align: center;
-            border-bottom: 1px solid var(--neon-green);
+            border-bottom: 1px solid var(--neon-orange);
             position: relative;
             overflow: hidden;
             background: rgba(0, 0, 0, 0.7);
@@ -75,8 +75,8 @@
             background: linear-gradient(
                 45deg,
                 transparent 48%,
-                var(--neon-green) 49%,
-                var(--neon-green) 51%,
+                var(--neon-orange) 49%,
+                var(--neon-orange) 51%,
                 transparent 52%
             );
             background-size: 10px 10px;
@@ -89,7 +89,7 @@
             font-weight: bold;
             color: white;
             text-shadow: 
-                var(--glow) var(--neon-green),
+                var(--glow) var(--neon-orange),
                 var(--glow) var(--neon-blue);
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
@@ -104,9 +104,9 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-blue));
             box-shadow: 
-                0 0 5px var(--neon-green),
+                0 0 5px var(--neon-orange),
                 0 0 5px var(--neon-blue);
         }
         
@@ -124,28 +124,28 @@
             flex: 1;
         }
         
-        .terms-card {
+        .protocol-card {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-green);
+            border: 1px solid var(--neon-orange);
             border-radius: 0;
             padding: 2rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
             box-shadow: 
-                0 0 10px rgba(57, 255, 20, 0.2),
-                0 0 20px rgba(57, 255, 20, 0.1);
+                0 0 10px rgba(255, 123, 0, 0.2),
+                0 0 20px rgba(255, 123, 0, 0.1);
             transition: all 0.3s;
         }
         
-        .terms-card:hover {
+        .protocol-card:hover {
             box-shadow: 
-                0 0 15px rgba(57, 255, 20, 0.4),
-                0 0 25px rgba(57, 255, 20, 0.2);
+                0 0 15px rgba(255, 123, 0, 0.4),
+                0 0 25px rgba(255, 123, 0, 0.2);
             transform: translateY(-5px);
         }
         
-        .terms-card::before {
+        .protocol-card::before {
             content: "";
             position: absolute;
             top: 0;
@@ -155,8 +155,8 @@
             background: linear-gradient(
                 135deg,
                 transparent 48%,
-                var(--neon-green) 49%,
-                var(--neon-green) 51%,
+                var(--neon-orange) 49%,
+                var(--neon-orange) 51%,
                 transparent 52%
             );
             background-size: 10px 10px;
@@ -164,81 +164,64 @@
             pointer-events: none;
         }
         
-        .terms-card h2 {
-            color: var(--neon-green);
+        .protocol-card h2 {
+            color: var(--neon-orange);
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
-            text-shadow: 0 0 5px var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-orange);
             position: relative;
             padding-bottom: 0.5rem;
         }
         
-        .terms-card h2::after {
+        .protocol-card h2::after {
             content: "";
             position: absolute;
             bottom: 0;
             left: 0;
             width: 50px;
             height: 2px;
-            background: var(--neon-green);
+            background: var(--neon-orange);
         }
         
-        .terms-card p {
+        .protocol-card p {
             margin-bottom: 1rem;
             line-height: 1.8;
         }
         
-        .terms-card ul {
+        .protocol-card ul {
             padding-left: 1.5rem;
             margin-bottom: 1.5rem;
         }
         
-        .terms-card li {
+        .protocol-card li {
             margin-bottom: 0.8rem;
             position: relative;
         }
         
-        .terms-card li::before {
+        .protocol-card li::before {
             content: ">";
             position: absolute;
             left: -1.5rem;
-            color: var(--neon-green);
+            color: var(--neon-orange);
         }
         
-        /* 警告框 */
-        .warning-box {
-            background: rgba(255, 42, 109, 0.1);
-            border: 1px solid var(--neon-pink);
+        /* 强调框 */
+        .highlight-box {
+            background: rgba(255, 123, 0, 0.1);
+            border: 1px solid var(--neon-orange);
             padding: 1.5rem;
             margin: 1.5rem 0;
             position: relative;
             transition: all 0.3s;
         }
         
-        .warning-box:hover {
-            box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
+        .highlight-box:hover {
+            box-shadow: 0 0 15px rgba(255, 123, 0, 0.3);
             transform: translateY(-3px);
         }
         
-        .warning-box::before {
-            content: "⚠";
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            width: 30px;
-            height: 30px;
-            background: var(--dark-bg);
-            border: 1px solid var(--neon-pink);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: var(--neon-pink);
-        }
-        
-        .warning-box h3 {
-            color: var(--neon-pink);
+        .highlight-box h3 {
+            color: var(--neon-orange);
             margin-bottom: 1rem;
             font-size: 1.4rem;
         }
@@ -249,8 +232,8 @@
             align-items: center;
             padding: 0.8rem 1.5rem;
             background: transparent;
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
+            color: var(--neon-orange);
+            border: 1px solid var(--neon-orange);
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
@@ -263,8 +246,8 @@
         
         .cyber-btn:hover {
             color: var(--dark-bg);
-            background: var(--neon-green);
-            box-shadow: 0 0 10px var(--neon-green);
+            background: var(--neon-orange);
+            box-shadow: 0 0 10px var(--neon-orange);
         }
         
         .cyber-btn i {
@@ -281,7 +264,7 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(57, 255, 20, 0.4),
+                rgba(255, 123, 0, 0.4),
                 transparent
             );
             transition: all 0.5s;
@@ -289,39 +272,6 @@
         
         .cyber-btn:hover::before {
             left: 100%;
-        }
-        
-        /* 开源声明 */
-        .open-source {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-purple);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            transition: all 0.3s;
-        }
-        
-        .open-source:hover {
-            box-shadow: 0 0 15px rgba(211, 0, 197, 0.3);
-            transform: translateY(-3px);
-        }
-        
-        .open-source h3 {
-            color: var(--neon-purple);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            text-shadow: 0 0 5px var(--neon-purple);
-        }
-        
-        .open-source a {
-            color: var(--neon-blue);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .open-source a:hover {
-            color: var(--neon-green);
-            text-decoration: underline;
         }
         
         /* 页脚 */
@@ -358,13 +308,13 @@
         
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7);
+                box-shadow: 0 0 0 0 rgba(255, 123, 0, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 10px rgba(57, 255, 20, 0);
+                box-shadow: 0 0 0 10px rgba(255, 123, 0, 0);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(57, 255, 20, 0);
+                box-shadow: 0 0 0 0 rgba(255, 123, 0, 0);
             }
         }
         
@@ -378,7 +328,7 @@
                 padding: 0 1rem;
             }
             
-            .terms-card {
+            .protocol-card {
                 padding: 1.5rem;
             }
             
@@ -390,7 +340,7 @@
                 font-size: 1rem;
             }
             
-            .terms-card h2 {
+            .protocol-card h2 {
                 font-size: 1.5rem;
             }
         }
@@ -400,7 +350,7 @@
                 padding: 1rem;
             }
             
-            .terms-card {
+            .protocol-card {
                 padding: 1rem;
             }
             
@@ -414,50 +364,85 @@
 <body>
     <header>
         <h1 class="logo flicker">果园编程</h1>
-        <p class="subtitle">Scratch作品打包工具 · 服务条款与免责声明</p>
+        <p class="subtitle">青少年非营利性组织公示协议</p>
     </header>
     
     <div class="container">
-        <div class="terms-card">
-            <h2>服务性质说明</h2>
-            <p>果园编程Scratch作品打包工具是基于TurboWarp Packager修改而成的开源项目，旨在帮助用户将Scratch项目转换为HTML文件、压缩包或适用于Windows、macOS和Linux的可执行程序。</p>
+        <div class="protocol-card">
+            <h2>组织性质声明</h2>
+            <p>果园编程工作室成立于2020年2月，是一家专注于编程技术研发与创意实现的团队。我们以CCW（共创世界）平台为核心阵地，致力于打造高质量、创新性的编程作品，推动技术与艺术的融合。</p>
+            
+            <p>我们的团队由一群热爱编程、追求创新的开发者组成，拥有丰富的全栈开发经验和跨领域项目经验。从游戏开发到企业应用，从教育工具到创意实验，我们不断探索编程的无限可能。</p>
+            
+            <div class="highlight-box">
+                <h3>重要声明</h3>
+                <p>我们大部分成员都未成年（包括室长），本组织为青少年自发组织的非营利性技术团体，所有活动均以技术学习与交流为目的，不涉及任何商业盈利行为。</p>
+            </div>
         </div>
         
-        <div class="terms-card">
-            <h2>使用条款</h2>
+        <div class="protocol-card">
+            <h2>非营利性质声明</h2>
+            <p>果园编程工作室郑重声明，本组织为完全非营利性质，旨在：</p>
             <ul>
-                <li>本工具基于Apache 2.0许可证开源，用户在使用时应遵守相关许可证条款</li>
-                <li>用户应保证上传打包的作品不侵犯第三方知识产权</li>
-                <li>禁止使用本工具从事任何违法或侵权活动</li>
-                <li>我们保留在不事先通知的情况下修改或终止服务的权利</li>
+                <li>促进青少年编程技术的学习与交流</li>
+                <li>提供开放、友好的技术创作环境</li>
+                <li>鼓励创新思维和开源精神</li>
+                <li>培养团队协作和项目管理能力</li>
+                <li>推广负责任的技术使用理念</li>
+            </ul>
+            <p>我们不以任何形式向成员收取费用，也不通过组织活动获取经济利益。</p>
+        </div>
+        
+        <div class="protocol-card">
+            <h2>组织原则</h2>
+            <ul>
+                <li><strong>学习优先</strong> - 所有活动以技术学习和能力提升为主要目标</li>
+                <li><strong>安全第一</strong> - 确保所有成员在网络环境中的安全和隐私</li>
+                <li><strong>开源共享</strong> - 鼓励代码和知识的开源与共享</li>
+                <li><strong>尊重包容</strong> - 尊重每位成员的个性与创意，营造包容环境</li>
+                <li><strong>责任意识</strong> - 培养成员的技术责任感和伦理意识</li>
             </ul>
         </div>
         
-        <div class="terms-card">
-            <h2>隐私政策</h2>
+       
+            
+            <div class="highlight-box">
+                <h3>安全承诺</h3>
+                <p>我们承诺为所有成员提供安全、健康的技术交流环境，严格遵循网络安全规范，保护成员隐私，杜绝任何形式的网络欺凌和不适当内容。</p>
+            </div>
+        </div>
+        
+        <div class="protocol-card">
+            <h2>知识产权声明</h2>
+            <p>果园编程工作室尊重并保护知识产权：</p>
             <ul>
-                <li>用户上传的Scratch项目仅用于打包处理，不会被永久存储或用于其他目的</li>
-                <li>我们不会收集或分享用户的个人信息</li>
-                <li>打包过程中可能需要从外部服务器下载必要组件（如NW.js、Electron等）</li>
+                <li>成员创作的作品版权归创作者本人所有</li>
+                <li>组织鼓励开源共享，但尊重个人选择</li>
+                <li>不得侵犯他人知识产权，禁止盗用代码或创意</li>
+                <li>引用他人作品必须注明来源和作者</li>
+                <li>组织提供的学习材料仅限内部学习使用</li>
             </ul>
         </div>
         
-        <div class="warning-box">
-            <h3>使用风险提示</h3>
+        <div class="protocol-card">
+            <h2>免责声明</h2>
+            <p>果园编程工作室作为青少年非营利组织：</p>
             <ul>
-                <li>本工具按"原样"提供，不提供任何明示或暗示的担保</li>
-                <li>使用本工具打包的作品可能存在兼容性或功能性问题</li>
-                <li>对于因使用本工具而导致的任何直接或间接损失，我们不承担责任</li>
-                <li>建议用户定期检查工具更新，以获取最新功能和安全修复</li>
+                <li>不承担成员个人行为造成的任何后果</li>
+                <li>提供的技术指导和建议仅供参考</li>
+                <li>不保证项目的完整性和可用性</li>
+                <li>成员应自行评估项目风险和技术难度</li>
+                <li>组织不对任何技术问题或损失负责</li>
             </ul>
+            
+            <div class="highlight-box">
+                <h3>重要提示</h3>
+                <p>本组织所有活动均由青少年自发组织，请参与者根据自身情况谨慎参与，如有任何疑问或顾虑，请及时与家长或监护人沟通。</p>
+            </div>
         </div>
         
-        <div class="open-source">
-            <h3>开源声明</h3>
-            <p>本工具基于TurboWarp Packager开发，遵守Apache License 2.0开源协议。</p>
-            <p>项目源码地址：<a href="https://github.com/TurboWarp/packager" target="_blank">GitHub - TurboWarp/packager</a></p>
-            <p>如有问题或建议，请联系我们。</p>
-            <p class="pulse">继续使用本工具即表示您同意以上条款。</p>
+        <div class="pulse" style="text-align: center; padding: 1.5rem; color: var(--neon-orange);">
+            <p>继续参与果园编程工作室活动即表示您已阅读、理解并同意本协议的所有内容</p>
         </div>
         
         <a href="javascript:history.back()" class="cyber-btn">
@@ -467,14 +452,14 @@
     
     <footer>
         <div class="footer-content">
-            <p class="copyright">© 2023 果园编程 Scratch作品打包工具 | 基于TurboWarp Packager</p>
+            <p class="copyright">© 2020-2025 果园编程工作室 | 青少年非营利性技术组织</p>
         </div>
     </footer>
     
     <script>
         // 添加简单的交互效果
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.terms-card, .warning-box, .open-source');
+            const cards = document.querySelectorAll('.protocol-card, .highlight-box');
             
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
