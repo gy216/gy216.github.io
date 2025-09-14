@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园编程隐私政策 - 赛博朋克版</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0a16;
+            color: #e6e6e6;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(6, 6, 26, 0.9), rgba(6, 6, 26, 0.9)),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23441ea0' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .cyberpunk-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: rgba(13, 4, 30, 0.85);
+            border: 1px solid #ff2a6d;
+            box-shadow: 
+                0 0 15px rgba(157, 0, 255, 0.7),
+                0 0 30px rgba(0, 234, 255, 0.5),
+                inset 0 0 20px rgba(120, 0, 200, 0.6);
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        
+        .cyberpunk-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff2a6d, #00eaff, #d100ff, #ff2a6d);
+            background-size: 300% 100%;
+            animation: scanline 3s linear infinite;
+            z-index: 2;
+        }
+        
+        .cyberpunk-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(125deg, rgba(255, 42, 109, 0.1) 0%, transparent 40%, rgba(0, 234, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(0, 234, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 234, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00eaff;
+            text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+            letter-spacing: 2px;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff2a6d, #00eaff, #ff2a6d, transparent);
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #ff2a6d;
+            text-shadow: 0 0 5px rgba(255, 42, 109, 0.7);
+            font-size: 1.6rem;
+            border-left: 3px solid #00eaff;
+            padding-left: 10px;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight {
+            color: #00eaff;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 234, 255, 0.7);
+        }
+        
+        a {
+            color: #ff2a6d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 8px rgba(0, 234, 255, 0.8);
+        }
+        
+        .footer {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 234, 255, 0.3);
+        }
+        
+        .glitch-effect {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch-effect::before {
+            color: #ff2a6d;
+            z-index: -1;
+            animation: glitch 2s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+        
+        .glitch-effect::after {
+            color: #00eaff;
+            z-index: -2;
+            animation: glitch 2s infinite reverse;
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        }
+        
+        @keyframes scanline {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 300% 0%;
+            }
+        }
+        
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .cyber-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            background: transparent;
+            color: #00eaff;
+            border: 1px solid #00eaff;
+            text-shadow: 0 0 5px #00eaff;
+            box-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cyber-button:hover {
+            background: rgba(0, 234, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 234, 255, 0.8);
+        }
+        
+        .terminal {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid #00eaff;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal::before {
+            content: '>';
+            color: #ff2a6d;
+            margin-right: 10px;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+        
+        /* 返回按钮样式 */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 8px 15px;
+            background: rgba(13, 4, 30, 0.7);
+            border: 1px solid #ff2a6d;
+            color: #00eaff;
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 42, 109, 0.3);
+            box-shadow: 0 0 15px rgba(255, 42, 109, 0.8);
+            transform: translateX(-3px);
+        }
+        
+        .back-button::before {
+            content: '←';
+            margin-right: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .cyberpunk-container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .back-button {
+                top: 10px;
+                left: 10px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .cyberpunk-container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.1rem;
+            }
+            
+            .back-button {
+                top: 5px;
+                left: 5px;
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <a href="javascript:history.back()" class="back-button">返回</a>
+    
+    <div class="cyberpunk-container">
+        <div class="grid-overlay"></div>
+        <h1 class="glitch-effect" data-text="果园编程隐私政策">果园编程隐私政策</h1>
+        
+        <p><span class="highlight">开发方</span>：果园编程工作室</p>
+        <p><span class="highlight">用户</span>：愿意接受本隐私政策所有条款并注册、使用我们的果园编程产品的个人或实体。</p>
+        
+        <div class="terminal">
+            <span class="pulse">数据保护协议已激活 | 版本 2.4.3 | 最后更新: 2024-03-03</span>
+        </div>
+        
+        <h2>一、信息收集</h2>
+        <p>我们收集的信息包括但不限于用户名、电子邮件地址、IP地址等，用于提供服务和改进用户体验。我们仅在履行服务所必需的范围内收集个人信息，并且会确保收集过程的透明性和合法性。</p>
+        
+        <h2>二、信息使用</h2>
+        <p>我们使用收集的信息来提供、维护、保护和改进我们的服务，以及开发新服务。我们承诺不会将您的个人信息用于任何与服务无关的目的，并且会采取适当措施保护您的信息安全。</p>
+        
+        <h2>三、信息共享</h2>
+        <p>我们不会与外部公司、组织或个人共享用户的个人信息，除非获得用户的明确同意或法律要求。在某些情况下，我们可能会根据法律程序、法院命令或政府要求披露个人信息。</p>
+        
+        <h2>四、信息安全</h2>
+        <p>我们采取各种安全措施来保护用户的信息，防止未经授权的访问、使用或泄露。这些措施包括但不限于数据加密、访问控制和定期的安全审计。我们承诺会持续改进我们的安全措施，以应对不断变化的安全威胁。</p>
+        
+        <h2>五、隐私政策的变更</h2>
+        <p>我们可能会不时更新本隐私政策。我们会在此页面上发布任何隐私政策的变更，并更新修订日期。我们鼓励用户定期查看隐私政策，以了解任何变更。</p>
+        
+        <h2>六、联系我们</h2>
+        <p>如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
+        <p>室长电子邮件：<a href="mailto:386498317@qq.com">386498317@qq.com</a></p>
+        <p>技术支持电子邮件：<a href="mailto:2373460868@qq.com">2373460868@qq.com</a></p>
+        <p>QQ群：749914521</p>
+        
+        <p>感谢您的阅读和理解。希望您在使用果园编程产品时，能够遵守本隐私政策的各项规定，享受编程的乐趣。</p>
+        
+        <div class="footer">
+            <p>果园编程工作室</p>
+            <p>更新于：2024 年 3 月 3 日星期日</p>
+            <p>适用版本：果园编程产品 ALL</p>
+            <p>网站：<a href="https://gy216.github.io">https://gy216.github.io</a></p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+        </div>
+    </div>
+
+    <script>
+        // 添加一些赛博朋克风格的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.cyberpunk-container');
+            const buttons = document.querySelectorAll('.cyber-button');
+            const backButton = document.querySelector('.back-button');
+            
+            // 添加鼠标移动时的光效
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                container.style.boxShadow = `
+                    0 0 15px rgba(157, 0, 255, 0.7),
+                    0 0 30px rgba(0, 234, 255, 0.5),
+                    inset 0 0 20px rgba(120, 0, 200, 0.6),
+                    ${20 * x}px ${20 * y}px 50px rgba(255, 42, 109, 0.2)
+                `;
+            });
+            
+            // 按钮点击效果
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.boxShadow = '0 0 20px rgba(0, 234, 255, 1)';
+                    setTimeout(() => {
+                        this.style.boxShadow = '0 0 10px rgba(0, 234, 255, 0.5)';
+                    }, 300);
+                });
+            });
+            
+            // 返回按钮悬停效果
+            backButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(-3px)';
+            });
+            
+            backButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+            
+            // 随机字符效果
+            const terminal = document.querySelector('.terminal');
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    terminal.style.opacity = '0.8';
+                    setTimeout(() => {
+                        terminal.style.opacity = '1';
+                    }, 100);
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

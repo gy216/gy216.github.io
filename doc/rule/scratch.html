@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch在线编辑器协议 - 果园编程</title>
+    <style>
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --dark-bg: #0d0221;
+            --darker-bg: #070113;
+            --text-color: #d1f7ff;
+            --text-glow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            --box-glow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            background-image: 
+                linear-gradient(rgba(5, 217, 232, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @font-face {
+            font-family: 'Rajdhani';
+            src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap');
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--neon-pink);
+            text-shadow: var(--text-glow);
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 20px;
+            border: 1px solid var(--neon-blue);
+            box-shadow: var(--box-glow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 8px;
+            animation: pulse 4s infinite alternate;
+            pointer-events: none;
+        }
+        
+        h2 {
+            border-bottom: 1px solid var(--neon-blue);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            font-weight: 500;
+        }
+        
+        p, ul, ol {
+            margin: 15px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+        
+        strong {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+        
+        .warning-box {
+            background: rgba(255, 42, 109, 0.1);
+            border: 1px solid var(--neon-pink);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--neon-blue);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            border: 1px solid var(--neon-blue);
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-shadow: 0 0 5px var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 20px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(5, 217, 232, 0.2);
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                padding: 15px;
+            }
+        }
+        
+        /* Terminal-like effect */
+        .terminal-effect {
+            position: relative;
+        }
+        
+        .terminal-effect::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            position: absolute;
+            right: -10px;
+        }
+        
+        @keyframes blink {
+            from, to {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="window.location.href='javascript:history.back()'">返回上一页</button>
+    
+    <h1 class="terminal-effect">Scratch在线编辑器协议</h1>
+    
+    <div class="warning-box">
+        <strong>重要声明：</strong> 果园编程提供的Scratch在线编辑器是基于Cloudflare反向代理，将请求转发到TurboWarp，同时处理必要的CORS和响应头问题。TurboWarp不属于Scratch、Scratch团队或Scratch基金会。Scratch是Scratch基金会的一个项目，可在 <a href="https://scratch.org/" style="color: var(--neon-blue); text-decoration: none;">https://scratch.org/</a> 免费使用。
+    </div>
+    
+    <h2>一、服务性质</h2>
+    <ol>
+        <li>本服务为果园编程工作室提供的Scratch在线编辑器代理服务。</li>
+        <li>服务基于Cloudflare反向代理技术，将用户请求转发至TurboWarp平台。</li>
+        <li>本服务仅提供技术中转，不存储用户项目数据。</li>
+    </ol>
+    
+    <h2>二、使用条款</h2>
+    <ol>
+        <li>用户需遵守TurboWarp及Scratch的原始使用条款。</li>
+        <li>禁止使用本服务进行任何违法或侵权活动。</li>
+        <li>用户应自行保管好项目数据，本服务不提供数据备份功能。</li>
+    </ol>
+    
+    <h2>三、隐私政策</h2>
+    <ol>
+        <li>本服务不会收集或存储用户的Scratch项目内容。</li>
+        <li>Cloudflare可能会记录必要的访问日志用于安全分析。</li>
+        <li>用户隐私保护遵循果园编程工作室的通用隐私政策。</li>
+    </ol>
+    
+    <h2>四、免责声明</h2>
+    <ol>
+        <li>本服务为技术中转，果园编程不对TurboWarp的功能完整性负责。</li>
+        <li>因网络问题导致的服务中断，果园编程不承担相关责任。</li>
+        <li>用户应自行评估使用风险，果园编程不保证服务的永久可用性。</li>
+    </ol>
+    
+    <h2>五、技术支持</h2>
+    <ol>
+        <li>本服务仅提供基本的技术中转支持。</li>
+        <li>对于TurboWarp或Scratch的功能问题，建议直接联系相关平台。</li>
+        <li>果园编程保留随时终止本服务的权利。</li>
+    </ol>
+    
+    <div class="warning-box">
+        <strong>最后更新：</strong> 2025年。请定期查看本协议，我们可能会不时更新条款。
+    </div>
+
+    <script>
+        // 添加赛博朋克风格的终端打字效果
+        const terminalElements = document.querySelectorAll('.terminal-effect');
+        terminalElements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = '';
+            
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 100);
+        });
+        
+        // 添加赛博朋克风格的点击效果
+        document.querySelector('.back-btn').addEventListener('click', function() {
+            // 创建点击效果
+            const effect = document.createElement('div');
+            effect.style.position = 'absolute';
+            effect.style.width = '100%';
+            effect.style.height = '100%';
+            effect.style.top = '0';
+            effect.style.left = '0';
+            effect.style.background = 'radial-gradient(circle, rgba(255,42,109,0.8) 0%, rgba(5,217,232,0.8) 100%)';
+            effect.style.opacity = '0';
+            effect.style.transition = 'opacity 0.5s';
+            effect.style.borderRadius = '5px';
+            effect.style.pointerEvents = 'none';
+            
+            this.appendChild(effect);
+            
+            // 动画效果
+            this.style.transform = 'translateY(2px)';
+            effect.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                effect.style.opacity = '0';
+                setTimeout(() => {
+                    effect.remove();
+                }, 500);
+            }, 200);
+            
+            setTimeout(() => {
+                this.style.transform = 'translateY(0)';
+            }, 200);
+        });
+        
+        // 为所有外部链接添加警告效果
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(!confirm('您即将离开果园编程网站，是否继续？')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

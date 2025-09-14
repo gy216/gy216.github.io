@@ -9,6 +9,7 @@
             --neon-pink: #ff2a6d;
             --neon-blue: #05d9e8;
             --neon-purple: #d300c5;
+            --neon-green: #00ff9d;
             --dark-bg: #0d0221;
             --darker-bg: #070113;
             --text-color: #d1f7ff;
@@ -45,6 +46,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
         
         header {
@@ -57,6 +59,11 @@
             box-shadow: var(--box-glow);
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        header:hover {
+            box-shadow: 0 0 30px var(--neon-pink);
         }
         
         header::before {
@@ -79,6 +86,7 @@
             text-shadow: var(--text-glow);
             font-weight: 700;
             letter-spacing: 2px;
+            position: relative;
         }
         
         .subtitle {
@@ -98,6 +106,27 @@
             margin-top: 10px;
             text-shadow: 0 0 5px var(--neon-purple);
             box-shadow: 0 0 10px var(--neon-purple);
+            animation: pulse 2s infinite;
+        }
+        
+        .category-title {
+            color: var(--neon-green);
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            text-shadow: 0 0 10px var(--neon-green);
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-green), transparent);
         }
         
         .card-container {
@@ -146,6 +175,7 @@
         .card-header h2 {
             text-shadow: 0 0 5px var(--neon-blue);
             font-weight: 500;
+            margin: 0;
         }
         
         .card-body {
@@ -159,6 +189,7 @@
             margin-bottom: 20px;
             color: var(--text-color);
             flex-grow: 1;
+            line-height: 1.5;
         }
         
         .card-footer {
@@ -215,6 +246,7 @@
             text-align: center;
         }
         
+        /* Animations */
         @keyframes pulse {
             0% {
                 opacity: 0.5;
@@ -224,21 +256,19 @@
             }
         }
         
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+        @keyframes float {
+            0% {
+                transform: translateY(0);
             }
-            
-            .card-container {
-                grid-template-columns: 1fr;
+            50% {
+                transform: translateY(-5px);
             }
-            
-            header {
-                padding: 20px;
+            100% {
+                transform: translateY(0);
             }
         }
         
-        /* Terminal-like effect for some elements */
+        /* Terminal-like effect */
         .terminal-effect {
             position: relative;
         }
@@ -258,6 +288,25 @@
                 opacity: 1;
             }
         }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -268,6 +317,7 @@
             <span class="warning-badge">本页面维护较少，内容可能未及时更新</span>
         </header>
         
+        <h2 class="category-title">社区与组织规则</h2>
         <div class="card-container">
             <div class="rule-card">
                 <div class="card-header">
@@ -285,6 +335,20 @@
             
             <div class="rule-card">
                 <div class="card-header">
+                    <h2>青少年非营利性组织公示协议</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        正式声明果园编程工作室的性质和原则
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='teenorg.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
                     <h2>子品牌规则</h2>
                 </div>
                 <div class="card-body">
@@ -294,6 +358,23 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn" onclick="window.location.href='zi.html'">查看详情</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="category-title">隐私与安全政策</h2>
+        <div class="card-container">
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>果园编程隐私政策</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        全力守护每一位用户的隐私安全
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='privacy.html'">查看详情</button>
                 </div>
             </div>
             
@@ -313,39 +394,38 @@
             
             <div class="rule-card">
                 <div class="card-header">
-                    <h2>青少年非营利性组织公示协议</h2>
+                    <h2>安全与伦理准则</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">
-                        正式声明果园编程工作室的性质和原则
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <button class="btn" onclick="window.location.href='teenorg.html'">查看详情</button>
-                </div>
-            </div>
-            
-            
-            <div class="rule-card">
-                <div class="card-header">
-                    <h2>果园编程工作室 - 安全与伦理规则</h2>
-                </div>
-                <div class="card-body">
-                    <p class="card-description">
-                        明确禁止将技术用于任何非法或 unethical 的用途
+                        明确禁止将技术用于任何非法或不道德的用途
                     </p>
                 </div>
                 <div class="card-footer">
                     <button class="btn" onclick="window.location.href='safe.html'">查看详情</button>
                 </div>
             </div>
-            
-            
-            
+        </div>
+        
+        <h2 class="category-title">产品与服务条款</h2>
+        <div class="card-container">
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>果园编程产品用户协议</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        访问或使用果园编程产品的要求
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='uesr.html'">查看详情</button>
+                </div>
+            </div>
             
             <div class="rule-card">
                 <div class="card-header">
-                    <h2>AI HUB服务条款与免责声明</h2>
+                    <h2>AI HUB服务条款</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">
@@ -359,7 +439,7 @@
             
             <div class="rule-card">
                 <div class="card-header">
-                    <h2>果园影视服务条款与免责声明</h2>
+                    <h2>果园影视服务条款</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">
@@ -373,7 +453,21 @@
             
             <div class="rule-card">
                 <div class="card-header">
-                    <h2>Scratch作品打包工具服务条款与免责声明</h2>
+                    <h2>Scratch在线编辑器协议</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        Scratch在线编辑器的条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='scratch.html'">查看详情</button>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>Scratch作品打包工具服务条款</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">
@@ -387,6 +481,39 @@
             
             <div class="rule-card">
                 <div class="card-header">
+                    <h2>果园编程PyPI加速服务条款</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        果园编程PyPI加速服务的使用条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='pypi.html'">查看详情</button>
+                </div>
+            </div>
+            
+            
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>“果园公益-在世界留下你的痕迹”项目使用条款和免责声明</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        在世界留下你的痕迹的使用条款和免责声明，包含服务性质、隐私政策和使用风险提示。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='gongyi-lw.html'">查看详情</button>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            <div class="rule-card">
+                <div class="card-header">
                     <h2>DuckDuckGo镜像服务免责声明</h2>
                 </div>
                 <div class="card-body">
@@ -396,6 +523,23 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn" onclick="window.location.href='duckpr.html'">查看详情</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="category-title">开发与技术规范</h2>
+        <div class="card-container">
+            <div class="rule-card">
+                <div class="card-header">
+                    <h2>果园编程代码规范</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        确保项目高效、有序进行，保持代码的可读性和可维护性
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn" onclick="window.location.href='code.html'">查看详情</button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园公益 - 在世界留下你的痕迹 - 服务条款</title>
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff2a6d;
+            --dark-bg: #0d0221;
+            --darker-bg: #040115;
+            --text-color: #d1f7ff;
+            --accent-purple: #7d12ff;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: 
+                linear-gradient(rgba(13, 2, 33, 0.9), rgba(13, 2, 33, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%231a1a2e" stroke-width="0.5"/></svg>');
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h1 {
+            color: var(--neon-blue);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px rgba(0, 255, 252, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-pink);
+        }
+        
+        h2 {
+            color: var(--neon-pink);
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            text-shadow: 0 0 5px var(--neon-pink);
+            border-left: 3px solid var(--neon-pink);
+            padding-left: 1rem;
+        }
+        
+        h3 {
+            color: var(--accent-purple);
+            font-size: 1.4rem;
+            margin-top: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+        }
+        
+        a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        a:hover {
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(90deg, var(--neon-blue), var(--accent-purple));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .back-button:hover {
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--accent-purple);
+            transform: translateY(-2px);
+        }
+        
+        .glitch-effect {
+            position: relative;
+        }
+        
+        .glitch-effect::before, .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-effect::before {
+            color: var(--neon-pink);
+            z-index: -1;
+            animation: glitch 3s infinite;
+        }
+        
+        .glitch-effect::after {
+            color: var(--accent-purple);
+            z-index: -2;
+            animation: glitch 2s infinite reverse;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        .neon-box {
+            border: 1px solid var(--neon-blue);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 255, 252, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .neon-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 4px;
+            animation: borderPulse 4s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes borderPulse {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .highlight {
+            color: var(--neon-blue);
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .logo {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .neon-box {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="javascript:history.back()" class="back-button">返回上一页</a>
+        
+        <header>
+            <div class="logo">果园编程</div>
+            <h1 class="glitch-effect" data-text="果园公益">果园公益</h1>
+            <p>在世界留下你的痕迹</p>
+        </header>
+        
+        <div class="neon-box">
+            <p>我们的服务器永远都在，哪怕站长死了。你可以在世界留下你的痕迹，证明你来过这个世界。</p>
+            <p>这个项目旨在帮助所有人创造有意义的数字遗产。</p>
+        </div>
+        
+        <h2>服务条款</h2>
+        
+        <p>欢迎使用果园公益的"在世界留下你的痕迹"服务。请仔细阅读以下条款和条件，这些条款和条件适用于您对本服务的使用。</p>
+        
+        <h3>1. 服务概述</h3>
+        <p>果园公益的"在世界留下你的痕迹"是一项数字遗产保存服务，允许用户创建、上传和存储数字内容，作为其在数字世界的永久记录。</p>
+        
+        <h3>2. 承诺</h3>
+        <p>我们承诺尽最大努力永久保存您的数字遗产。除非遇到不可抗力（如自然灾害、战争、全球性互联网中断等），我们将确保您的数据安全存储。</p>
+        
+        <h3>3. 用户责任</h3>
+        <p>您同意：</p>
+        <ul>
+            <li>不上传任何非法、侵权、淫秽、仇恨或有害内容</li>
+            <li>对您上传的内容拥有合法权利或已获得必要授权</li>
+            <li>不试图破坏服务的安全性或稳定性</li>
+        </ul>
+        
+        <h3>4. 内容所有权</h3>
+        <p>您保留对上传内容的所有权利。通过上传内容，您授予果园公益非独占的、全球性的、永久性的权利，以存储、展示和分发您的内容。</p>
+        
+        <h3>5. 隐私政策</h3>
+        <p>我们尊重您的隐私。您可以指定哪些内容公开，哪些内容仅限特定人员访问。我们不会出售或分享您的个人信息给第三方。</p>
+        
+        <h3>6. 数据安全</h3>
+        <p>我们采用行业标准的安全措施保护您的数据，包括加密和多重备份。然而，互联网传输和存储没有100%的安全性保证。</p>
+        
+        <h3>7. 服务变更</h3>
+        <p>我们保留修改或终止服务的权利，但会提前通知用户。如果服务终止，我们将提供数据导出选项。</p>
+        
+        <h3>8. 免责声明</h3>
+        <p>果园公益不对以下情况负责：</p>
+        <ul>
+            <li>因不可抗力导致的服务中断或数据丢失</li>
+            <li>用户自行删除或修改内容</li>
+            <li>第三方对您内容的非法访问（尽管我们会尽力防范）</li>
+        </ul>
+        
+        <h3>9. 法律适用</h3>
+        <p>本条款受中华人民共和国法律管辖。任何争议应首先通过友好协商解决，协商不成可向有管辖权的人民法院提起诉讼。</p>
+        
+        <div class="neon-box">
+            <p class="highlight">重要提示：</p>
+            <p>数字遗产的永久保存是一个崇高但复杂的承诺。虽然我们承诺尽最大努力，但无法保证绝对的永久性。建议您同时在多个平台备份重要内容。</p>
+        </div>
+        
+        <footer>
+            <p>© 2020-2025 果园编程工作室 | 青少年编程创新团队</p>
+        </footer>
+    </div>
+</body>
+</html>

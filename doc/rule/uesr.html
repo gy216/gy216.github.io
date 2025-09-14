@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园编程产品用户协议 | 赛博朋克风格</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #bd00ff;
+            --dark-bg: #0d0d0d;
+            --darker-bg: #080808;
+            --card-bg: rgba(20, 20, 30, 0.8);
+            --text-color: #e0e0ff;
+            --text-secondary: #a0a0c0;
+        }
+        
+        body {
+            font-family: 'Rajdhani', 'Noto Sans SC', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.1) 0%, transparent 15%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 15%),
+                linear-gradient(to bottom, rgba(8, 8, 8, 0.9), rgba(13, 13, 13, 0.9));
+            padding: 20px;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .cyber-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 0, 255, 0.05) 0%, 
+                rgba(0, 243, 255, 0.05) 50%, 
+                rgba(189, 0, 255, 0.05) 100%);
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+            animation: glitch 5s infinite linear;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        .logo i {
+            margin-right: 12px;
+            color: var(--neon-purple);
+        }
+        
+        .back-btn {
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--text-color);
+            padding: 10px 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(0, 243, 255, 0.2);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover::before {
+            width: 100%;
+        }
+        
+        .back-btn:hover {
+            box-shadow: 0 0 15px var(--neon-blue);
+            color: white;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .container {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 5px;
+            padding: 40px;
+            margin: 0 auto;
+            max-width: 900px;
+            box-shadow: 
+                0 0 15px rgba(0, 243, 255, 0.1),
+                0 0 30px rgba(189, 0, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-pink));
+            z-index: -1;
+            border-radius: 7px;
+        }
+        
+        .container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 13, 13, 0.9);
+            z-index: -1;
+            border-radius: 5px;
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--neon-blue), transparent);
+            box-shadow: 0 0 10px var(--neon-blue);
+            animation: scan 8s linear infinite;
+            z-index: 1;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink);
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(to right, 
+                transparent, 
+                var(--neon-purple), 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                transparent);
+        }
+        
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        h2::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--neon-pink);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        p::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--neon-purple);
+        }
+        
+        .highlight {
+            color: var(--neon-blue);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 243, 255, 0.3);
+            text-align: right;
+        }
+        
+        .footer p {
+            padding-left: 0;
+        }
+        
+        .footer p::before {
+            display: none;
+        }
+        
+        .neon-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .neon-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--neon-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .neon-link:hover::after {
+            width: 100%;
+        }
+        
+        .neon-link:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        /* Animations */
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); opacity: 0.1; }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); opacity: 0.1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1, h2, p, .footer {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Delay animations */
+        h1 { animation-delay: 0.1s; }
+        h2:nth-child(1) { animation-delay: 0.2s; }
+        p:nth-child(1) { animation-delay: 0.3s; }
+        h2:nth-child(2) { animation-delay: 0.4s; }
+        /* Continue this pattern for all elements */
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            p {
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cyber-glitch"></div>
+    
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-code"></i>
+            <span>果园编程</span>
+        </div>
+        <button class="back-btn" onclick="javascript:history.back()">
+            <i class="fas fa-arrow-left"></i> 返回
+        </button>
+    </div>
+    
+    <div class="container">
+        <div class="scan-line"></div>
+        
+        <h1>果园编程产品用户协议</h1>
+        
+        <p><span class="highlight">开发方</span>：果园编程工作室</p>
+        <p><span class="highlight">用户</span>：愿意接受本协议所有条款并注册、使用我们的果园编程产品的个人或实体。</p>
+        
+        <h2>一、协议接受</h2>
+        <p>通过注册、访问或使用果园编程产品，您表示您已经阅读、理解并同意接受本协议的所有条款。如果您不同意本协议的任何条款，您不得注册、访问或使用本产品。</p>
+        
+        <h2>二、产品内容与运行环境</h2>
+        <p>果园编程产品包括Scratch编程作品、Python编程作品以及其他编程语言（如HTML、JS、C++等）制作的作品，这些作品由果园编程工作室成员创作，其原码及所有相关知识产权归开发方所有，受法律保护。</p>
+        <p>您承诺不通过任何不正当的方式尝试获取、修改、复制、分发或利用产品原码，包括但不限于逆向工程、破解、盗取等行为。</p>
+        <p>Scratch作品只能在"共创世界"（CCW）的web平台上运行。您不得在其他平台或设备上运行这些作品，除非得到开发方的明确许可。</p>
+        <p>Python作品以及其他编程语言制作的作品需要用户自行下载并在本地运行。您理解并同意，开发方对因用户设备问题导致的数据丢失或损坏不承担任何责任。</p>
+        
+        <h2>三、账号安全与责任</h2>
+        <p>对于Scratch作品，您应妥善保管自己的CCW账号和密码，确保账号安全，防止被他人非法使用。</p>
+        <p>您不得买卖、转让或出租自己的CCW账号给他人使用，也不得盗用他人的账号。</p>
+        <p>若因您未能妥善保管账号和密码，导致账号被他人非法使用或造成其他损失，开发方不承担任何责任。</p>
+        
+        <h2>四、违规行为处理</h2>
+        <p>如果您在使用产品过程中发现任何违反本协议的行为，包括但不限于通过不正当方式获取原码、在非指定平台运行作品等，您有权向CCW官方进行举报。开发方将积极配合CCW官方对违规行为进行调查和处理。</p>
+        
+        <h2>五、CCW平台规则适用</h2>
+        <p>您在使用Scratch作品时，还应遵守CCW平台的相关规则和协议。开发方建议您仔细阅读并理解CCW平台的所有相关条款，以确保您的使用行为符合所有规定。</p>
+        
+        <h2>六、协议版本</h2>
+        <p>本协议适用于果园编程工作室所有成员的作品，包括但不限于Scratch、Python、HTML、JS、C++等编程语言制作的作品。若本协议存在多个语言版本，以中文版为准。</p>
+        
+        <h2>七、其他</h2>
+        <p>本协议自您接受之日起生效，并在您使用我们的服务期间持续有效。</p>
+        <p>开发方有权随时修改本协议，修改后的协议将在您下次登录时生效。若您不接受修改后的协议，您应停止使用我们的服务。</p>
+        <p>若本协议的任何条款在任何时候被认定为无效或不可执行，该无效或不可执行不应影响本协议的其他条款的有效性或可执行性。</p>
+        <p>感谢您的阅读和理解。希望您在使用果园编程产品时，能够遵守本协议的各项规定，享受编程的乐趣。</p>
+        
+        <div class="footer">
+            <p>果园编程工作室</p>
+            <p>更新于：2024 年 3 月 3 日星期日</p>
+            <p>适用版本：果园编程产品 ALL</p>
+            <p>网站：<a href="https://gy216.github.io" class="neon-link">https://gy216.github.io</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // 添加赛博朋克风格的终端效果
+        document.querySelectorAll('p').forEach(p => {
+            p.style.opacity = '0';
+        });
+        
+        setTimeout(() => {
+            let delay = 0.1;
+            document.querySelectorAll('p, h2').forEach(el => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                }, delay * 1000);
+                delay += 0.05;
+            });
+        }, 500);
+        
+        // 扫描线动画
+        const scanLine = document.querySelector('.scan-line');
+        setInterval(() => {
+            scanLine.style.animation = 'none';
+            setTimeout(() => {
+                scanLine.style.animation = 'scan 8s linear infinite';
+            }, 10);
+        }, 8000);
+        
+        // 霓虹文字效果
+        const neonElements = document.querySelectorAll('.logo, h1, h2, .neon-link');
+        neonElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.style.textShadow = `0 0 15px ${getComputedStyle(el).color}`;
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                const color = getComputedStyle(el).color;
+                if(color.includes('243, 255')) {
+                    el.style.textShadow = '0 0 10px var(--neon-blue)';
+                } else if(color.includes('255, 0, 255')) {
+                    el.style.textShadow = '0 0 10px var(--neon-pink)';
+                } else {
+                    el.style.textShadow = '0 0 5px var(--neon-purple)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
