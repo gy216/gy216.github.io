@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园Glyphix影像系统 - 果园编程工作室</title>
+    <style>
+        /* 基础样式与赛博朋克主题 */
+        :root {
+            --neon-pink: #ff2d95;
+            --neon-blue: #0ff0fc;
+            --neon-purple: #8a2be2;
+            --neon-green: #39ff14;
+            --neon-yellow: #ffe600;
+            --neon-orange: #ff7700;
+            --dark-bg: #0a0a16;
+            --darker-bg: #050510;
+            --text-color: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Orbitron', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 45, 149, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(15, 240, 252, 0.05) 0%, transparent 20%),
+                linear-gradient(125deg, rgba(10, 10, 22, 0.9) 40%, rgba(57, 255, 20, 0.05) 100%);
+            min-height: 100vh;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: rgba(5, 5, 16, 0.8);
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid var(--neon-purple);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(15, 240, 252, 0.5);
+            margin-left: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .back-btn {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--neon-blue);
+            color: var(--darker-bg);
+            box-shadow: 0 0 15px var(--neon-blue);
+            transform: translateY(-2px);
+        }
+        
+        /* 主内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .product-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            border: 1px solid var(--neon-purple);
+            border-radius: 12px;
+            background: rgba(10, 10, 22, 0.7);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 45, 149, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 6s infinite linear;
+            z-index: 0;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .product-title {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 45, 149, 0.5);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+        
+        .product-subtitle {
+            font-size: 1.6rem;
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 8px rgba(15, 240, 252, 0.4);
+        }
+        
+        /* 特性部分 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: rgba(10, 10, 22, 0.7);
+            border: 1px solid var(--neon-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-title {
+            color: var(--neon-pink);
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .feature-title::before {
+            content: "◆";
+            color: var(--neon-blue);
+            margin-right: 12px;
+            font-size: 1.4rem;
+        }
+        
+        .feature-content {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+        
+        /* 样片对比部分 */
+        .samples {
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .samples::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+        
+        .samples-title {
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(15, 240, 252, 0.4);
+        }
+        
+        .samples-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(5, 5, 16, 0.85);
+            padding: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px rgba(15, 240, 252, 0.5);
+        }
+        
+        /* Q&A 部分 */
+        .qa-section {
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .qa-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-yellow), transparent);
+        }
+        
+        .qa-title {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
+        }
+        
+        .qa-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .qa-container {
+            background: rgba(10, 10, 22, 0.7);
+            border: 1px solid var(--neon-yellow);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(255, 230, 0, 0.2);
+        }
+        
+        .question {
+            color: var(--neon-yellow);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .question::before {
+            content: "Q:";
+            color: var(--neon-green);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .answer {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .answer::before {
+            content: "A:";
+            color: var(--neon-pink);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* 下载部分 */
+        .download-section {
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-orange), transparent);
+        }
+        
+        .download-title {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+            color: var(--neon-orange);
+            text-shadow: 0 0 10px rgba(255, 119, 0, 0.4);
+        }
+        
+        .download-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .download-container {
+            background: rgba(10, 10, 22, 0.7);
+            border: 1px solid var(--neon-orange);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(255, 119, 0, 0.2);
+        }
+        
+        .requirement-title {
+            color: var(--neon-orange);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .requirement-title::before {
+            content: "◆";
+            color: var(--neon-green);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .requirement-list {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            padding-left: 1.5rem;
+        }
+        
+        .requirement-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        .requirement-list li::before {
+            content: "•";
+            color: var(--neon-blue);
+            font-weight: bold;
+            position: absolute;
+            left: -1.2rem;
+        }
+        
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .device-category {
+            background: rgba(5, 5, 16, 0.5);
+            border: 1px solid var(--neon-purple);
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        
+        .device-category h4 {
+            color: var(--neon-green);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .device-list {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .device-list li {
+            margin-bottom: 0.4rem;
+        }
+        
+        .note {
+            background: rgba(255, 119, 0, 0.1);
+            border-left: 3px solid var(--neon-orange);
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .note p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 2.4rem;
+            }
+            
+            .product-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .comparison {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .qa-container {
+                padding: 1.5rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .download-container {
+                padding: 1.5rem;
+            }
+            
+            .device-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 赛博朋克风格元素 */
+        .cyberpunk-glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cyberpunk-glitch::before,
+        .cyberpunk-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .cyberpunk-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-blue);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .cyberpunk-glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-pink);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(24px, 9999px, 23px, 0); }
+            100% { clip: rect(32px, 9999px, 92px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 2.5rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid var(--neon-purple);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .studio-info {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+        }
+        
+        .copyright {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 网格背景效果 */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(15, 240, 252, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 240, 252, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* 下载按钮 */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 45, 149, 0.4);
+        }
+        
+        .app-download-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(45deg, var(--neon-orange), var(--neon-yellow));
+            color: var(--darker-bg);
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 2rem auto;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+        
+        .app-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 119, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    
+    <!-- 导航栏 -->
+    <header>
+        <div class="logo">
+            <h1>果园编程</h1>
+        </div>
+        <a href="/" class="back-btn">返回首页</a>
+    </header>
+
+    <!-- 主内容区域 -->
+    <div class="container">
+        <!-- 产品标题区域 -->
+        <section class="product-hero">
+            <h2 class="product-title cyberpunk-glitch" data-text="果园Glyphix影像系统">果园Glyphix影像系统</h2>
+            <p class="product-subtitle">重新定义光影的AI影像处理系统</p>
+            <a href="#download" class="download-btn">立即下载APP</a>
+        </section>
+
+        <!-- 特性介绍 -->
+        <section class="features">
+            <div class="feature-card">
+                <h3 class="feature-title">AI算法优化</h3>
+                <div class="feature-content">
+                    <p>采用最新一代神经网络技术，智能分析图像内容，自动优化色彩、对比度和细节表现。我们的AI算法经过数百万张专业照片训练，能够精准识别不同场景并应用最佳优化方案。</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-title">徕卡影调加持</h3>
+                <div class="feature-content">
+                    <p>与徕卡视觉实验室深度合作，集成经典徕卡影调风格。通过精确的色彩科学和独特的影调曲线，为您的照片赋予德系相机的经典质感与艺术表现力。</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-title">蔡司影调</h3>
+                <div class="feature-content">
+                    <p>融入蔡司光学传奇般的成像特性，还原自然真实的色彩表现。特有的蔡司Biotar人像虚化算法，创造出令人惊叹的旋转焦外效果，让每一张人像都充满艺术感。</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-title">智能场景识别</h3>
+                <div class="feature-content">
+                    <p>系统能够自动识别超过200种不同场景和拍摄对象，针对人像、夜景、逆光、微距等特殊场景进行专项优化，确保在任何条件下都能获得最佳成像效果。</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-title">自动水印添加</h3>
+                <div class="feature-content">
+                    <p>智能识别图片内容并添加个性化水印，支持自定义文字、logo和EXIF信息嵌入。采用隐形水印技术，在保护版权的同时不破坏画面美感。</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-title">RAW专业处理</h3>
+                <div class="feature-content">
+                    <p>支持多种RAW格式文件处理，提供专业级的降噪、锐化和动态范围优化算法，充分发挥相机传感器的全部潜力，保留每一个细节。</p>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-title">CUBE调色文件</h3>
+                <div class="feature-content">
+                    <p>通过下载调色文件，您可以在Adobe Photoshop CC等专业软件中进行精准色彩还原和高级调色，获得影院级的色彩表现。</p>
+                    <a href="/bk/imgapp/glyphixcube.cube" class="download-btn">下载CUBE文件</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 样片对比 -->
+        <section class="samples">
+            <h3 class="samples-title">样片对比展示</h3>
+            <p class="samples-subtitle">S20影像配置比S16高，为什么拍的照片没有S16好看？原来是算法！</p>
+            
+            <div class="comparison">
+                <div class="image-container">
+                    <img src="or.jpg" alt="原片" onerror="this.src='404'">
+                    <div class="image-label">VIVO S20 原图直出</div>
+                </div>
+                
+                <div class="image-container">
+                    <img src="gly.jpg" alt="果园影像系统处理后" onerror="this.src='404'">
+                    <div class="image-label">VIVO S16 果园Glyphix算法处理后</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Q&A 部分 -->
+        <section class="qa-section">
+            <h3 class="qa-title">常见问题解答</h3>
+            <p class="qa-subtitle">您可能关心的问题都在这里</p>
+            
+            <div class="qa-container">
+                <div class="question">你们是怎么优化的？</div>
+                <div class="answer">通过下载我们的Glyphix相机APP，在APP中拍摄，拍完后会自动进行优化处理。我们的AI算法会智能分析图像内容并应用最适合的优化方案。</div>
+            </div>
+            
+            <div class="qa-container">
+                <div class="question">我应该选择徕卡还是蔡司影调？</div>
+                <div class="answer">我们会自动识别您拍摄的内容：人像默认使用蔡司影调，风景默认使用徕卡影调，其他场景一律使用"果园影像系统"智能优化，您也可以手动选择喜欢的影调风格。</div>
+            </div>
+            
+            <div class="qa-container">
+                <div class="question">我的手机已经支持哈苏/徕卡/蔡司，该怎么办？</div>
+                <div class="answer">若您的手机自带影像风格优化，我们会优先使用手机自带的风格处理，然后再应用我们的增强算法，确保获得最佳成像效果。</div>
+            </div>
+            
+            <div class="qa-container">
+                <div class="question">支持哪些设备？</div>
+                <div class="answer">果园Glyphix影像系统支持Android8.0及以上系统的设备，但您的手机必须自带Webview。大部分主流手机型号都能获得良好体验。</div>
+            </div>
+            
+            <div class="qa-container">
+                <div class="question">是否需要网络连接？</div>
+                <div class="answer">基本优化功能可离线使用，但部分高级AI功能需要联网以获得最佳效果。所有数据处理均在本地完成，保护您的隐私安全。</div>
+            </div>
+        </section>
+        
+        <!-- 下载部分 -->
+        <section id="download" class="download-section">
+            <h3 class="download-title">下载Glyphix APP</h3>
+            <p class="download-subtitle">包名：io.guoyuancode.glyphix</p>
+            <p class="download-subtitle">版本：3.3.21_7499</p>
+            
+            <a href="#" class="app-download-btn">超激动？我们也超期待！APP正在开发中！</a>
+            
+            <div class="download-container">
+                <h4 class="requirement-title">设备要求</h4>
+                <ul class="requirement-list">
+                    <li><strong>基础配置</strong>（可以运行，但无某些功能）：Android 8.0及以上系统，自带Webview</li>
+                    <li><strong>优化配置</strong>（支持完整功能体验）：</li>
+                </ul>
+                
+                <div class="note">
+                    <p>注意：不是说不支持的手机就无法使用APP，而是不同手机的影像素质不同，不支持的用户仅可以使用"果园影像系统"进行智能优化，不支持影调优化！</p>
+                </div>
+                
+                <div class="device-grid">
+                    <div class="device-category">
+                        <h4>小米系</h4>
+                        <ul class="device-list">
+                            <li>小米11及以上所有设备</li>
+                            <li>不支持CIVI</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="device-category">
+                        <h4>红米系</h4>
+                        <ul class="device-list">
+                            <li>Note10及以上所有设备</li>
+                            <li>K系列2019年后全部机型</li>
+                            <li>13C、14C/R</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="device-category">
+                        <h4>VIVO系</h4>
+                        <ul class="device-list">
+                            <li>X90及以上的所有X系列</li>
+                            <li>S11、S16、S17、S18、S20、S30</li>
+                            <li>X100及以上所有设备</li>
+                            <li>不支持iQOO系列</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="device-category">
+                        <h4>OPPO系</h4>
+                        <ul class="device-list">
+                            <li>Find系列2021年后全部机型</li>
+                            <li>A系列2021年后全部机型</li>
+                            <li>不支持一加、真我系列</li>
+                        </ul>
+                    </div>
+                    <div class="device-category">
+                        <h4>不支持我的手机？</h4>
+                        <ul class="device-list">
+                            <li>你可以发送邮件到386498317@qq.com让开发者适配您的机型</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="studio-info">
+                <p>果园编程工作室 · 青少年编程创新者</p>
+            </div>
+            <div class="copyright">
+                <p>© 2020-2025 果园编程工作室 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
