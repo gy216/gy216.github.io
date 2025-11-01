@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- SEO优化 -->
+    <meta name="description" content="果园编程,果园工作室,果园,编程,Scratch,在线编程,打包器,SC打包器,果园BC,Guoyuangzs，guoyuangzs.dpdns.org,SC编程,CF网站,GitHub Pages"/>  
+    <!-- 定义网页在社交媒体上分享时显示的 标题和内容 -->
+    <meta property="og:title" content="果园工作室 ">
+    <meta property="og:description" content="果园编程用心每一作，发展每一天">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>果园编程丨永远相信美好的事情即将发生丨果园编程官网 果园工作室 Guoyuan Code Guoyuangzs</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 通知系统样式 */
+        .cyber-notification {
+            position: fixed;
+            top: 20px;
+            right: -100%;
+            background: rgba(10, 10, 30, 0.95);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            display: flex;
+            align-items: center;
+            max-width: 300px;
+            z-index: 1000;
+            transition: right 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .cyber-notification.active {
+            right: 20px;
+            opacity: 1;
+        }
+        
+        .close-btn {
+            margin-left: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        /* 返回按钮样式 */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-to-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-home a:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        
+        /* 数字计数动画 */
+        .data-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            transition: all 0.5s ease;
+            margin-bottom: 5px;
+        }
+        
+        .data-label {
+            display: block;
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .counting {
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 网格项垂直排列 */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        /* 产品展示区改进样式 */
+        .products-section {
+            margin: 40px 0;
+        }
+        
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            width: 300px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+        }
+        
+        .product-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+        
+        .product-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-development {
+            background: rgba(255, 165, 0, 0.2);
+            color: orange;
+            border: 1px solid orange;
+        }
+        
+        .product-iframe-container {
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        
+        /* Cookies 弹窗样式 */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(20, 20, 40, 0.95);
+            border-top: 1px solid var(--primary-color);
+            padding: 20px;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 -5px 15px rgba(0, 240, 255, 0.2);
+        }
+        
+        .cookie-consent.active {
+            display: block;
+        }
+        
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+            color: #ccc;
+            margin-right: 20px;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .cookie-button {
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .cookie-accept {
+            background: var(--primary-color);
+            color: #000;
+            border: 1px solid var(--primary-color);
+        }
+        
+        .cookie-accept:hover {
+            background: rgba(0, 240, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        
+        .cookie-settings {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .cookie-settings:hover {
+            background: rgba(0, 240, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Cookies 弹窗 -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>我们在本网站上使用Cookie，包括第三方Cookie，以便网站正常工作并分析流量，提供增强的功能、社交媒体功能，以及个性化内容和广告。<br/> 
+                </p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookieAccept" class="cookie-button cookie-accept">我已知悉并同意</button>
+                <button id="cookieSettings" class="cookie-button cookie-settings">删除Cookies</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知系统 -->
+    <div id="notification" class="cyber-notification">
+        <div class="hologram-line"></div>
+        <p>系统初始化完成</p>
+        <span class="close-btn" onclick="closeNotification()">✕</span>
+    </div>
+
+    <div class="cyber-container">
+        <!-- 全息导航栏 -->
+        <nav class="cyber-nav">
+            <div class="nav-logo">
+                <a href="/"></a>
+            </div>
+            <div class="nav-links">
+                <a href="/my" class="cyber-link">室长个人主页</a>
+                <a href="/about" class="cyber-link">关于我们</a>
+                <a href="/join" class="cyber-link">加入我们</a>
+                <a href="https://article.gystu.top/" class="cyber-link">官方论坛</a>
+            </div>
+        </nav>
+
+        <!-- 全息标题区 -->
+        <header class="cyber-header">
+            <h1 class="cyber-title">果园编程</h1>
+            <p class="cyber-subtitle">科技驱动未来 · 创新改变世界</p>
+            <p class="cyber-subtitle">永远相信美好的事情即将发生</p>
+            
+            <div class="cyber-grid">
+                <div class="grid-item">
+                    <span class="data-number" data-target="18">0</span>
+                    <span class="data-label">团队成员</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number" data-target="10">0</span>
+                    <span class="data-label">创新项目</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number" data-target="100">0</span>
+                    <span class="data-label">热情投入%</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number" data-target="67">0</span>
+                    <span class="data-label">成员活跃度%</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number" data-target="7">0</span>
+                    <span class="data-label">精通的编程语言数</span>
+                </div>
+                 <div class="grid-item">
+                    <span class="data-number" data-target="5">0</span>
+                    <span class="data-label">旗下品牌</span>
+                </div>
+            </div>
+            <a href="/home/members/" class="cyber-button">查看完整成员</a>
+            <br/>
+            <a href="/home/smyunyun" class="cyber-button">果园编程对于虚舟实验室造谣的澄清声明→ 点击查看详情</a>
+        </header>
+        
+        <!-- 产品展示区 - 改进后的版本 -->
+        <section class="products-section">
+            <h2 class="section-title">主要产品</h2>
+
+            <div class="product-container">
+                <div class="product-card">
+                    <h3 class="product-title">物理旅行者</h3>
+                    <span class="product-status status-development">开发中</span>
+                    <p class="product-description">一款基于物理引擎的冒险游戏，玩家将扮演一位能够操控物理法则的旅行者，解决各种谜题和挑战。</p>
+                    <a href="https://www.ccw.site/creation?id=65ae27feba39481f1fa7fa70" class="cyber-button small">查看详情</a>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">果园AI HUB</h3>
+                    <p class="product-description">集成多种AI模型的智能平台，支持DeepSeek等先进模型，提供强大的AI能力。</p>
+                    <a href="/ai" class="cyber-button small">立即体验</a>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">果园Scratch在线编辑器</h3>
+                    <p class="product-description">基于TurboWarp的在线Scratch编辑器</p>
+                    <a href="https://scratch.guoyuangzs.dpdns.org/editor" class="cyber-button small">立即体验</a>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title">Scratch作品打包工具</h3>
+                    <p class="product-description">将Scratch作品打包成可执行文件，无需网络即可运行，完美保存您的创意成果。</p>
+                    <a href="/dabao" class="cyber-button small">使用工具</a>
+                </div>
+            </div>
+        </section>
+ 
+
+<section class="quick-links">
+            <h2 class="section-title">其他产品</h2>
+            <div class="link-grid">
+            <a href="/dabao" class="link-card">
+                    <img src="svgs/packet.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">Scratch打包机</div>
+                </a>
+            <a href="/bk" class="link-card">
+                    <img src="svgs/diamond.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">宝库</div>
+                </a>
+                <a href="/fw" class="link-card">
+                    <img src="svgs/fix.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">服务</div>
+                </a>
+                <a href="/so" class="link-card">
+                    <img src="svgs/search.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">果园搜索</div>
+                </a>
+                <a href="/image" class="link-card">
+                    <img src="svgs/glyphix.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">果园Glyphix影像</div>
+                </a>
+                <a href="/tools/watermark" class="link-card">
+                    <img src="svgs/camera_wk.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">果园相机水印生成</div>
+                </a>
+                <a href="https://duckduckgo.guoyuangzs.dpdns.org/" class="link-card">
+                    <img src="svgs/duckduckgo_logo.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">duckduckgo镜像</div>
+                </a>
+                <a href="https://wikipedia.guoyuangzs.dpdns.org/" class="link-card">
+                    <img src="svgs/wikipedia.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">维基百科镜像</div>
+                </a>
+                 <a href="https://pypi.guoyuangzs.dpdns.org/" class="link-card">
+                    <img src="svgs/py_logo.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">Pypi加速代理</div>
+                </a>
+                            <a href="/Public-welfare" class="link-card">
+                 <img src="svgs/gongyi.svg" alt="SVG Image" width="50" height="50">
+                 <div class="link-text">果园公益</div>
+                </a>
+                <a href="/study" class="link-card">
+               <img src="svgs/book.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">果园学习</div>
+                </a>
+                <a href="https://tv.guoyuangzs.dpdns.org/" class="link-card">
+                    <img src="svgs/tv.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text"> 果园影视</div>
+                </a>
+                <a href="/game" class="link-card">
+                    <img src="svgs/h5game.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text"> 果园游戏</div>
+                </a>
+        </section>
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+        <!-- 快速链接区 -->
+        <section class="quick-links">
+            <h2 class="section-title">网站相关</h2>
+            <div class="link-grid">
+                <a href="/link/guoyuancode.html" class="link-card">
+                <img src="svgs/link.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">访问副站</div>
+                </a>
+                <a href="/doc/rule" class="link-card">
+                    <img src="svgs/rules.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">阅读网站服务条款和果园编程规则协议</div>
+                </a>
+                <a href="https://status.guoyuangzs.dpdns.org/" class="link-card">
+                    <img src="svgs/zhuangtai.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">网站状态</div>
+                </a>
+                <a href="/supp" class="link-card">
+                    <img src="svgs/sup.svg" alt="SVG Image" width="50" height="50">
+                    <div class="link-text">捐助我们</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 特色功能区 -->
+        <section class="feature-section">
+            <h2 class="section-title">产品体验</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="svgs/ai.svg" alt="SVG Image" width="50" height="50">
+                    <h3>AIHub</h3>
+                    <p>不用付费也能用最聪明的AI！果园AI已更新至DeepSeek最新版！</p>
+                    <p>果园AI集合，汇聚全球前沿技术！DeepSeek最新版独家首发，百款开源模型免费用，隐私无忧，智能无限！</p>
+                </div>
+                <div class="feature-card">
+                    <img src="svgs/duckduckgo_logo.svg" alt="SVG Image" width="50" height="50">
+                    <h3>DuckduckGo</h3>
+                    <p>DuckDuckGo镜像站 - 无墙直达的隐私搜索！像没人监视一样搜索</p>
+                </div>
+                <div class="feature-card">
+                    <img src="svgs/wikipedia.svg" alt="SVG Image" width="50" height="50">
+                    <h3>维基百科</h3>
+                    <p>无墙直查，海纳百川，有容乃大；壁立千仞，无欲则刚，人人可编辑的自由百科全书！让知识在纯文本中自由流淌，用知识构筑没有边界的智慧殿堂。</p>
+                </div>
+                <div class="feature-card">
+                    <img src="svgs/camera_wk.svg" alt="SVG Image" width="50" height="50">
+                    <h3>果园相机生成工具</h3>
+                    <p>"果园子品牌"GOAM"水印，为影像注入专业灵魂，让每张照片都诉说你的艺术故事</p>
+                    </div>
+                <div class="feature-card">
+                    <img src="svgs/h5game.svg" alt="SVG Image" width="50" height="50">
+                    <h3>游戏中心</h3>
+                    <p>放松一下，玩玩游戏果园游戏中心 - 让快乐自然生长</p>
+                </div>
+                <div class="feature-card">
+                    <img src="svgs/packet.svg" alt="SVG Image" width="50" height="50">
+                    <h3>作品打包</h3>
+                    <p>Scratch作品本地运行专家！官方SB文件完美解析，即使官网崩溃、网络受限，也能在本地流畅执行，完整保存你的创意成果</p>
+                </div>
+                <div class="feature-card">
+                    <img src="svgs/book.svg" alt="SVG Image" width="50" height="50">
+                    <h3>学习资源</h3>
+                    <p>语数外物、编程、算法、AI、开发……海量资源一网打尽！从入门到精通，你的学习加速器！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="cyber-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>果园编程工作室，专注于编程领域，致力于在CCW平台创作与发布优质作品。</p>
+                    <p>我们的理念：用心每一作，发展每一天。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系信息</h3>
+                    <p>果园QQ: 386498317</p>
+                    <p>QQ群: 749914521</p>
+                </div>
+                <div class="footer-section">
+                    <h3>友情链接</h3>
+                    <br>
+                   <a href="/Public-welfare/Leaveyourmarkontheworld/cxy/" class="cyber-link">1.果园编程公益项目——在世界留下你的痕迹-CXY</a>
+                    <br>
+                   <a href="https://gystu.top" class="cyber-link">2.果园编程副站</a>
+                   <br>
+                   <a href="https://ysjf.com" class="cyber-link">3.影视飓风</a>
+                   <br>
+                   <a href="https://mi.com" class="cyber-link">4.小米集团</a>
+                </div>
+                <div class="footer-section">
+                
+                <h3>版本信息</h3>
+                <p>最后更新: <br>
+                2025年10月26日<br>
+                网站版本：V6.0.02_251026_10<br>
+                版本介绍：果园Website 6.0.0——秋天就配秋UI<br>
+                更新日志：1.重构大部分UI<br>
+                2.稳定性提升7891%<br>
+                3.和副站链接更紧密！本是同根生，相煎何太急！<br>
+                4.本UI设计者：果园，设计语言：GAutumn Design 1.0
+                </div>
+                
+                 <div class="footer-section">
+                 <h3>GAutumn Design信息</h3>
+                <p> 本页面使用GAutumn Design 1.0设计语言<br>
+                最后更新:<br>
+                2025年10月26日<br>
+                GAutumn Design版本：1.0<br>
+                Designed by GAutumn Design
+                </div>
+                
+                <div class="footer-section">
+                
+                 <h3>版本设置</h3>
+                 <p>版本选项</p>
+                 <a href="/new" class="cyber-link">体验测试版本</a>
+                 <br>
+                <a href="/oldwebsite/indexold/" class="cyber-link">回到旧版本</a>
+                <br>
+                <p>在线历史记录保存选项（请使用代理访问）：</p>
+                <a href="https://web.archive.org/web/20250000000000*/https://gy216.github.io" class="cyber-link">在Wayback Machine中查看历史记录</a>
+                <br>
+                <a href="https://archive.ph/https://gy216.github.io/" class="cyber-link">在Archive.today中查看历史记录</a>
+                </div>
+                <div class="footer-section">
+                    <h3>CDN节点</h3>
+                    <p>当前CDN节点: <span id="cdn" class="loading">检测中...</span></p>
+                </div>
+                 
+               
+            </div>
+            <div class="footer-bottom">
+	            <a href="https://github.com/gy216" title="小猫" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="小猫" src="svgs/cat.svg"></a>
+	<a href="https://github.com/gy216" title="小猫生成" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="小猫生成" src="svgs/catsc.svg"></a>
+	<a href=https://www.cloudflare-cn.com/developer-platform/products/workers" title="worker生成" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="worker生成" src="svgs/Cloudflaresc.svg"></a>
+	<a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4、6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4、6访问" src="svgs/ipv4-s1.svg"></a>
+	<a href="https://developers.google.cn/analytics?hl=zh-cn" title="本站安全证书由Google签发" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站安全证书由Google签发" src="svgs/google.svg"></a>
+	<br/>
+	<br/>
+	<a href="https://cloudflare.com" title="Cloudflare" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Cloudflare" src="svgs/Cloudflare.svg"></a>
+	<a href="https://cloudflare.com" title="CloudflareCDN" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="CloudflareCDN" src="svgs/CloudflareCDN.svg"></a>
+	<a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="svgs/Tor.svg"></a>
+	<a href="https://duckduckgo.com/" title="duckduckgo" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="duckduckgo" src="svgs/duckduckgo.svg"></a>
+                <p>Copyright©2021-2025 果园编程®版权所有 | GICP备YZGY20110216</p>
+                <p>Cloudflare、Cloudflare 徽标、Cloudflare Workers 以及 Github 和 Github 徽标分别为 Cloudflare, Inc. 和 Github, Inc. 在美国及其他司法管辖区注册的商标和/或注册商标；果园编程工作室对上述商标的使用分别受《Cloudflare 商标指南》及《GitHub Logos and Usage》相关条款约束。科赋锐（北京）信息科技有限公司为 Cloudflare 在中国的全资子公司。</p>
+                <p>我们使用 Cloudflare Web Analytics®进行网站统计，该服务严格遵守中国《个人信息保护法》和欧盟GDPR等法规。我们不会收集任何可识别个人身份的信息（如IP、设备标识符或Cookie），所有数据经即时匿名化处理后聚合分析，原始数据随即删除。如您不希望被统计，可使用广告拦截插件。欧盟用户如不同意本条款，请停止访问本站；我们的 PyPI 镜像因暂未完全符合 GDPR，目前未对欧盟地区开放。</p>
+ <p>本网站所有托管于 GitHub Pages 的项目均遵循《果园页面专用许可证》。此许可是 MIT 许可证的修改版本，旨在授予持有人免费、永久且不受限制地使用、复制、修改和分发软件的权利。软件按“原样”提供，不附带任何明示或暗示的担保。</p>
+
+            </div>
+        </footer>
+    </div>
+
+    <!-- 彩蛋按钮 -->
+    <div id="lingButton" class="easter-egg">
+        <span>彩蛋</span>
+    </div>
+
+    <!-- 一言显示 -->
+  <!-- 原代码中的一言部分替换为以下内容 -->
+<div class="yi-yan">
+    <p id="hitokoto-text">正在加载一言……</p>
+    <p id="hitokoto-from"></p>
+</div>
+
+<script src="js/yiyan.js"></script>
+<script src="js/cdn.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/notice.js"></script>
+<script src="js/number.js"></script>
+<script src="js/console.js"></script>
+<script src="js/coloregg.js"></script>
+<script src="js/others.js"></script>
+</body>
+</html>

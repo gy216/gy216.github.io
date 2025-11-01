@@ -526,22 +526,24 @@
                 
                 <h3>版本信息</h3>
                 <p>最后更新: <br>
-                2025年10月26日<br>
-                网站版本：V6.0.02_251026_10<br>
-                版本介绍：果园Website 6.0.0——秋天就配秋UI<br>
+                2025年11月01日<br>
+                网站版本：V6.1.1_251101_10<br>
+                版本介绍：果园Website 6.1.1——秋天就配秋UI<br>
                 更新日志：1.重构大部分UI<br>
-                2.稳定性提升7891%<br>
-                3.和副站链接更紧密！本是同根生，相煎何太急！<br>
-                4.本UI设计者：果园，设计语言：GAutumn Design 1.0
+                2.提升稳定性<br>
+                3.整合JS，优化HTML加载速度<br>
+                3.主站与副站链接更紧密，携手打造无缝的用户旅程<br>
+                4.在本HTML上注释了一点小心思！嘿嘿！<br>
                 </div>
                 
                  <div class="footer-section">
                  <h3>GAutumn Design信息</h3>
-                <p> 本页面使用GAutumn Design 1.0设计语言<br>
+                <p> 本页面使用GAutumn Design 1.1设计语言<br>
                 最后更新:<br>
                 2025年10月26日<br>
-                GAutumn Design版本：1.0<br>
+                GAutumn Design版本：1.1<br>
                 Designed by GAutumn Design
+                Designer with @果园、@IW大使
                 </div>
                 
                 <div class="footer-section">
@@ -561,7 +563,7 @@
                     <h3>CDN节点</h3>
                     <p>当前CDN节点: <span id="cdn" class="loading">检测中...</span></p>
                 </div>
-                 <script src="cdn.js"></script>
+                 
                
             </div>
             <div class="footer-bottom">
@@ -577,7 +579,10 @@
 	<a href="http://torproject.netcologne.de/" title="Tor" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="Tor" src="svgs/Tor.svg"></a>
 	<a href="https://duckduckgo.com/" title="duckduckgo" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="duckduckgo" src="svgs/duckduckgo.svg"></a>
                 <p>Copyright©2021-2025 果园编程®版权所有 | GICP备YZGY20110216</p>
-                <p>我们采用Cloudflare Web Analytics®进行网站访问统计，该服务严格遵循《中华人民共和国个人信息保护法》和欧盟GDPR等隐私保护法规。在数据收集过程中，系统不会记录任何能够识别个人身份的信息，包括IP地址、设备标识符或Cookie等数据。所有访问信息都会经过即时匿名化处理，并通过Cloudflare的全球网络节点进行聚合分析，原始数据会在处理后立即删除。我们始终致力于在保障网站服务质量的同时，切实保护每一位用户的隐私权益。如果您不希望被统计，可以使用广告拦截插件；欧盟用户（如西班牙的灵）若不同意此数据收集，请停止访问本站；我们的PyPI镜像服务因未完全符合GDPR要求，目前暂不对欧盟地区用户开放。灵对不起！</p>
+                <p>Cloudflare、Cloudflare 徽标、Cloudflare Workers 以及 Github 和 Github 徽标分别为 Cloudflare, Inc. 和 Github, Inc. 在美国及其他司法管辖区注册的商标和/或注册商标；果园编程工作室对上述商标的使用分别受《Cloudflare 商标指南》及《GitHub Logos and Usage》相关条款约束。科赋锐（北京）信息科技有限公司为 Cloudflare 在中国的全资子公司。</p>
+                <p>我们使用 Cloudflare Web Analytics®进行网站统计，该服务严格遵守中国《个人信息保护法》和欧盟GDPR等法规。我们不会收集任何可识别个人身份的信息（如IP、设备标识符或Cookie），所有数据经即时匿名化处理后聚合分析，原始数据随即删除。如您不希望被统计，可使用广告拦截插件。欧盟用户如不同意本条款，请停止访问本站；我们的 PyPI 镜像因暂未完全符合 GDPR，目前未对欧盟地区开放。</p>
+ <p>本网站所有托管于 GitHub Pages 的项目均遵循《果园页面专用许可证》。此许可是 MIT 许可证的修改版本，旨在授予持有人免费、永久且不受限制地使用、复制、修改和分发软件的权利。软件按“原样”提供，不附带任何明示或暗示的担保。</p>
+
             </div>
         </footer>
     </div>
@@ -590,158 +595,93 @@
     <!-- 一言显示 -->
   <!-- 原代码中的一言部分替换为以下内容 -->
 <div class="yi-yan">
-    <p id="hitokoto-text">正在加载随机的名言、诗句、歌词或网络流行语……（API接口：international.v1.hitokoto.cn）10秒刷新一次</p>
+    <p id="hitokoto-text">正在加载一言……</p>
     <p id="hitokoto-from"></p>
 </div>
 
-<script>
-// 更新一言功能
-function updateHitokoto() {
-    fetch('https://international.v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('hitokoto-text').textContent = data.hitokoto;
-            let fromText = '—— ';
-            if (data.from_who) fromText += data.from_who + ' ';
-            if (data.from) fromText += '《' + data.from + '》';
-            document.getElementById('hitokoto-from').textContent = fromText;
-        })
-        .catch(error => {
-            console.error('获取一言失败:', error);
-            document.getElementById('hitokoto-text').textContent = '一言加载失败';
-            document.getElementById('hitokoto-from').textContent = '可能频率超过限制或接口不在可用。当前API接口：一言官方接口';
-        });
-}
-
-// 页面加载时获取一言
-document.addEventListener('DOMContentLoaded', function() {
-    updateHitokoto();
-    
-    // 每20秒刷新一次一言
-    setInterval(updateHitokoto, 20000);
-});
-
-// Cookies 弹窗功能
-function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
-}
-
-function getCookie(name) {
-    const cookieName = name + "=";
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-    for(let i = 0; i < cookieArray.length; i++) {
-        let cookie = cookieArray[i];
-        while (cookie.charAt(0) == ' ') {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(cookieName) == 0) {
-            return cookie.substring(cookieName.length, cookie.length);
-        }
-    }
-    return "";
-}
-
-function checkCookieConsent() {
-    const cookieConsent = getCookie("cookieConsent");
-    if (cookieConsent !== "accepted") {
-        document.getElementById("cookieConsent").classList.add("active");
-    }
-}
-
-function acceptCookies() {
-    setCookie("cookieConsent", "accepted", 2);
-    document.getElementById("cookieConsent").classList.remove("active");
-}
-
-// 初始化Cookies弹窗
-document.addEventListener("DOMContentLoaded", function() {
-    checkCookieConsent();
-    
-    // 绑定按钮事件
-    document.getElementById("cookieAccept").addEventListener("click", acceptCookies);
-    document.getElementById("cookieSettings").addEventListener("click", function() {
-        alert("请通过浏览器设置管理Cookie，点击网址旁边的小锁，点击Cookies和站点数据，点击Cookies正在使用...，点击这个窗口上我的网址，点击删除，点击完成即可！");
-    });
-});
-
-// 通知系统功能
-let notificationTimer;
-        
-function showNotification() {
-    const notification = document.getElementById('notification');
-    clearTimeout(notificationTimer);
-    
-    notification.classList.add('active');
-    notificationTimer = setTimeout(() => {
-        closeNotification();
-    }, 4000);
-}
-        
-function closeNotification() {
-    const notification = document.getElementById('notification');
-    notification.classList.remove('active');
-}
-        
-// 数字计数动画
-function animateCounters() {
-    const counters = document.querySelectorAll('.data-number');
-    const speed = 1000; // 动画速度，数值越小越快
-    
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const count = parseInt(counter.innerText);
-        const increment = Math.ceil(target / speed);
-        
-        const updateCount = () => {
-            const currentCount = parseInt(counter.innerText);
-            
-            if(currentCount < target) {
-                counter.innerText = Math.min(currentCount + increment, target);
-                counter.classList.add('counting');
-                setTimeout(updateCount, 1);
-            } else {
-                counter.classList.remove('counting');
-            }
-        };
-        
-        updateCount();
-    });
-}
-        
-// 页面加载
-document.addEventListener('DOMContentLoaded', function() {
-    showNotification();
-    
-    // 数字计数动画
-    setTimeout(animateCounters, 100);
-    
-    // 彩蛋按钮功能
-    document.getElementById('lingButton').addEventListener('click', function() {
-        alert('发现彩蛋！即将跳转到特别页面');
-        window.location.href = '/ling';
-    });
-    
-    // 检测CDN
-    if(typeof detectCDNNode === 'function') {
-        detectCDNNode();
-    }
-});
-        
-// 控制台彩蛋
-console.log("不是你看什么看，看我们代码的人肯定没这么好心");
-console.warn("再看网站就要把你IP封了哦");
-</script>
-<script>
-document.onkeydown = function(event) {
-  if (event.keyCode == 123) {
-    alert("宝宝休想查看网页和修改网页！可是，如果宝宝真的想看的话……那就给你看吧！");
-  }
-};
-</script>
-
+<script src="js/yiyan.js"></script>
+<script src="js/cdn.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/notice.js"></script>
+<script src="js/number.js"></script>
+<script src="js/console.js"></script>
+<script src="js/coloregg.js"></script>
+<script src="js/others.js"></script>
 </body>
 </html>
+
+<!--好玩的地方！-->
+<!--嘿嘿-->
+<!--说说心里话-->
+<!--CXY 我喜欢你-->
+<!--真的！-->
+<!--其实你也喜欢我-->
+<!--嗯，双向的！-->
+<!--啊啊啊啊啊啊宝宝你是一个香香软软甜甜糯糯蜂蜜奶油甜甜腻腻酥酥脆脆滑滑嫩嫩绵绵密密弹弹润润丝丝滑滑蓬蓬松松香香甜甜油油润润细细软软密密实实润润甜甜酥酥软软嫩嫩滑滑松松软软甜甜蜜蜜细细绵绵香香浓浓弹弹嫩嫩香香甜甜酸酸甜甜辣辣爽爽咸咸鲜鲜苦苦甘甘滑滑嫩嫩酥酥脆脆软软绵绵弹弹润润油油腻腻清清爽爽浓浓醇醇淡淡幽幽热热乎乎冰冰凉凉黏黏糊糊爽爽脆脆鲜鲜嫩嫩辣辣麻苦苦辣辣的小蛋糕酱油醋橄榄油菜籽油葵花籽油鱼虾蟹龙虾贝类牛肉羊肉猪肉鸡肉鸭肉鹅肉火鸡肉香肠火腿培根肉丸汉堡热狗披萨寿司拉面咖喱炖肉烤肉烤鱼烤鸡沙拉汤粥芒果柠檬柚子百香果茼蒿芥蓝芹菜荠菜苋菜意式烤蔬菜配香草酱和橄榄油鲜美多汁香脆可口滑嫩浓郁醇厚甘甜爽口香辣酸的小蛋糕
+-->
+<!--宝宝确实很可爱-->
+
+<!--
+
+      
+           ╭────────╮
+           │    │   │
+           │────────│        
+           │    │   │
+           ╰────────╯
+         ------│------
+           ╱   │   ╲
+           ╱   │   ╲
+           ╱   │   ╲
+           ╱   │   ╲
+          ╱    │   ╲
+
+               
+
+    果园LOGO像不像 
+    -->
+    
+    
+<!--
+    
+    /\_/\
+( o.o )
+ > ^ <
+ 
+ 
+ 
+ / \__
+ (    @\___
+ /         O
+/   (_____/
+/_____/   U
+
+
+
+*
+   ***
+  *****
+ *******
+*********
+   |||
+   |||
+   
+   
+   
+   
+   (\_/)
+ (•ᴥ•)
+/ >🍃>
+
+
+
+
+.ooo.
+.o'   'o.
+'o.   .o'
+ 'o.o'
+   '
+   
+   
+   
+     -->
