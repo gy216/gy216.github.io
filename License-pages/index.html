@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>许可证 - 果园编程</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #00f3ff;
+            --secondary: #ff00ff;
+            --dark-bg: #0a0a16;
+            --darker-bg: #050510;
+            --card-bg: rgba(16, 16, 32, 0.8);
+            --text: #e0e0ff;
+            --text-dim: #a0a0cc;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* 赛博朋克风格元素 */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .glow {
+            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: rgba(10, 10, 22, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+            background-color: rgba(0, 243, 255, 0.1);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* 主要内容 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        /* 许可证内容 */
+        .license-content {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .license-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .license-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .license-section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-left: 3px solid var(--primary);
+            padding-left: 1rem;
+        }
+        
+        .license-section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background-color: rgba(0, 243, 255, 0.1);
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* 返回按钮 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--darker-bg);
+            border-top: 1px solid rgba(0, 243, 255, 0.3);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-info {
+            text-align: right;
+            color: var(--text-dim);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-bg);
+                padding: 1rem;
+                border-top: 1px solid var(--primary);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-info {
+                text-align: center;
+            }
+            
+            .license-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 赛博朋克网格背景 -->
+    <div class="cyber-grid"></div>
+    
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">&#9881;</div>
+                <div class="logo-text">果园编程</div>
+            </div>
+            
+            <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main class="container">
+        <div class="page-header">
+            <h1 class="glow">网站许可证</h1>
+            <p>果园编程工作室 - 特此许可任何人免费获取副本</p>
+        </div>
+        
+        <div class="license-content">
+                <div class="license-section">
+                    <h2>中文许可证</h2>
+                    <p>版权所有 (c) 2025 果园编程</p>
+                    
+                    <div class="highlight">
+                        <p>特此许可任何人免费获取副本<br>
+                        本网站和相关文档文件("网站")的交易<br>
+                        在网站中不受限制，包括但不限于权利<br>
+                        使用、复制、修改、合并、发布、分发、再许可和/或销售<br>
+                        网站的副本，并允许网站的使用者<br>
+                        符合以下条件:</p>
+                    </div>
+                    
+                    <h3>归属要求:</h3>
+                    <p>上述版权声明和本许可声明应包含在所有<br>
+                    网站的副本或重要部分。此外，原作者的<br>
+                    在网站的任何使用或分发中，必须显著标明"果园"的名称。</p>
+                    
+                    <h3>仅限网站使用:</h3>
+                    <p>本许可证仅对在网站中使用本网站有效。对于其他用例，<br>
+                    请联系原作者获得许可。</p>
+                    
+                    <p>该网站是"按原样"提供的，没有任何形式的担保，明示或<br>
+                    暗示，包括但不限于适销性保证，<br>
+                    适合特定目的和不侵权。在任何情况下<br>
+                    作者或版权所有者对任何索赔、损害或其他<br>
+                    责任，无论是在合同诉讼、侵权诉讼或其他诉讼中，<br>
+                    出于或与网站有关，或在<br>
+                    网站。</p>
+                </div>
+                
+                <div class="license-section">
+                    <h2>English License</h2>
+                    <p>Copyright (c) 2025 Guoyuan code</p>
+                    
+                    <div class="highlight">
+                        <p>Anyone is hereby permitted to obtain a copy free of charge.<br>
+                        Transactions between this website and related documents ("website")<br>
+                        There are no restrictions in the website, including but not limited to rights.<br>
+                        Use, copy, modify, merge, publish, distribute, sublicense and/or sell.<br>
+                        Copy of the website and allow users of the website.<br>
+                        Meet the following conditions:</p>
+                    </div>
+                    
+                    <h3>Ownership requirements:</h3>
+                    <p>The above copyright notice and this license notice shall be included in all<br>
+                    A copy or an important part of a website. In addition, the original author's<br>
+                    In any use or distribution of the website, the name of "Guoyuan" must be clearly marked.</p>
+                    
+                    <h3>Website use only:</h3>
+                    <p>This license is only valid for using this website in the website. For other use cases,<br>
+                    Please contact the original author for permission.</p>
+                    
+                    <p>The website is provided "as is" without any warranty of any kind, express or<br>
+                    Implied, including but not limited to the warranty of merchantability,<br>
+                    Fit for a specific purpose and non-infringement. In any case<br>
+                    The author or copyright owner shall be responsible for any claim, damage or other<br>
+                    Liability, whether in contract litigation, tort litigation or other litigation,<br>
+                    Out of or relating to a website, or in<br>
+                    Website.</p>
+                </div>
+                
+                <a href="/" class="back-button">
+                    <span>←</span> 返回首页
+                </a>
+            </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">果园编程工作室</div>
+            <div class="footer-info">
+                <p>© 2020-2025 果园编程工作室 版权所有</p>
+                <p>专注于青少年编程教育</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // 添加一些赛博朋克风格的动态效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为标题添加闪烁效果
+            const headings = document.querySelectorAll('h1, h2, h3');
+            headings.forEach(heading => {
+                setInterval(() => {
+                    heading.classList.toggle('glow');
+                }, 2000 + Math.random() * 2000);
+            });
+            
+            // 添加网格线动画
+            const grid = document.querySelector('.cyber-grid');
+            let offset = 0;
+            setInterval(() => {
+                offset = (offset + 1) % 50;
+                grid.style.backgroundPosition = `${offset}px ${offset}px`;
+            }, 100);
+        });
+    </script>
+</body>
+</html>

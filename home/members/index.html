@@ -212,6 +212,26 @@
 .back-to-home a:hover svg {
     transform: translateX(-3px);
 }
+
+.member-card img {
+    display: block;
+    margin: 0 auto 15px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.member-card:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+}
+
+
+
+
     </style>
 </head>
 <div class="back-to-home">
@@ -227,12 +247,15 @@
         <!-- 团队成员展示 - 完整原始数据 -->
         <section class="team-members">
             <h2 id="team-members-title">全体成员</h2>
+            
             <div class="member-grid">
                 <!-- 果园 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=386498317&s=100" >
                     <h3>果园</h3>
                     <div class="member-meta">
-                        <span class="member-id">CCWID: 196543819</span>
+                    <span class="member-id">QQ:386498317</span>
+                        <span class="member-id">CCWID:196543819</span>
                         <p class="member-bio">室长，会AI、Python、Scratch</p>
                         <p class="member-sign">请记得那些对你好的人，因为他本可以不这样</p>
                     </div>
@@ -241,9 +264,11 @@
 
                 <!-- IW大使 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=16216988&s=100" >
                     <h3>IW大使</h3>
                     <div class="member-meta">
-                        <span class="member-id">CCWID: 242979307</span>
+                    <span class="member-id">QQ:16216988</span>
+                        <span class="member-id">CCWID:242979307</span>
                         <p class="member-bio">副室长，高中生、一个IW玩家、精通scratch</p>
                         <p class="member-sign">一个普通iwanna玩家，仅此而已。</p>
                     </div>
@@ -252,8 +277,10 @@
 
                 <!-- 上古米歇尔 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2373460868&s=100" >
                     <h3>上古米歇尔</h3>
                     <div class="member-meta">
+                    <span class="member-id">QQ:2373460868</span>
                         <span class="member-id">CCWID: 236339606</span>
                         <p class="member-bio">迷你玩家，会C++、汇编，懂电脑</p>
                         <p class="member-sign">知觉为感觉赋予意义，所以知觉是对世界的解释，而非完美的如实再现。</p>
@@ -263,8 +290,10 @@
 
                 <!-- 南翔 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=3854318002&s=100" >
                     <h3>南翔</h3>
                     <div class="member-meta">
+                    <span class="member-id">QQ:3854318002</span>
                         <span class="member-id">CCWID: 244841612</span>
                         <p class="member-bio">一个喜欢做Windows，但是不懂Windows的人</p>
                         <p class="member-sign">心若有所向往，何惧道阻且长</p>
@@ -274,6 +303,7 @@
                 
                 <!-- ETO（马力欧） -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2737421264&s=100" >
                     <h3>ETO（马力欧）</h3>
                     <div class="member-meta">
 			<span class="member-id">QQ： 2737421264</span>
@@ -286,8 +316,10 @@
                 
                 <!-- Camellia -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=3122768200&s=100" >
                     <h3>Camellia</h3>
                     <div class="member-meta">
+                    <span class="member-id">QQ:3122768200</span>
                         <span class="member-id">CCWID: 197611986</span>
                         <p class="member-bio">sc原版屎山堆砌者</p>
                         <p class="member-sign">我宣布边狱巴士堂吉诃德是世界上最可爱的小蛋糕</p>
@@ -297,6 +329,7 @@
 
                 <!-- 禾几十 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2655406519&s=100" >
                     <h3>禾几十</h3>
                     <div class="member-meta">
                         <span class="member-id">QQ：2655406519</span>
@@ -308,6 +341,7 @@
 
                 <!-- yynna！！！ -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2177752974&s=100" >
                     <h3>yynna！！！</h3>
                     <div class="member-meta">
                         <span class="member-id">QQ：2177752974</span>
@@ -319,6 +353,7 @@
                 
                 <!-- Itnge yu -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=3639701468&s=100" >
                     <h3>Itnge yu </h3>
                     <div class="member-meta">
                         <span class="member-id">QQ：3639701468</span>
@@ -328,21 +363,11 @@
                     <span class="no-link">暂无个人页面</span>
                 </div>
  
-                <!-- Dolphinberg -->
-                <div class="member-card">
-                    <h3>Dolphinberg </h3>
-                    <div class="member-meta">
-                        <span class="member-id">QQ：2940807098</span>
-                        <p class="member-bio">工作室美工，使用电脑画画</p>
-                        <p class="member-sign">用冰冷的理性温暖这个世界
-
-</p>
-                    </div>
-                    <a href="https://www.ccw.site/student/6218d72512f8c304d85459c2" class="social-link">CCW个人页面</a>
-                </div>
+                
                 
                  <!-- nirx雨巷 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=3253144217&s=100" >
                     <h3>雨巷 </h3>
                     <div class="member-meta">
                         <span class="member-id">QQ：3253144217</span>
@@ -351,10 +376,23 @@
                     </div>
                     <span class="no-link">暂无个人页面</span>
                 </div>
-
-                <!-- 果园工作室人员 -->
+				<!-- Dolphinberg -->
                 <div class="member-card">
-                    <h3>果园工作室人员</h3>
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2940807098&s=100" >
+                    <h3>Dolphinberg </h3>
+                    <div class="member-meta">
+                        <span class="member-id">QQ：2940807098</span>
+                        <span class="member-id">CCWID:240089153</span>
+                        <p class="member-bio">工作室美工，使用电脑画画</p>
+                        <p class="member-sign">用冰冷的理性温暖这个世界</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/6332d37c73c5ef476cbc716a" class="social-link">CCW个人页面</a>
+                </div>
+
+                <!-- 喆宝 -->
+                <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=1796431249&s=100" >
+                    <h3>喆宝</h3>
                     <div class="member-meta">
                         <span class="member-id">QQ：1796431249</span>
                         <p class="member-bio">上古米歇尔的同学</p>
@@ -365,6 +403,7 @@
 
                 <!-- 极地蛟龙 -->
                 <div class="member-card">
+                <img src="default.jpg" >
                     <h3>极地蛟龙</h3>
                     <div class="member-meta">
                         <span class="member-id">CCWID: 246191199</span>
@@ -376,6 +415,7 @@
 
                 <!-- 兴儿-小兴兴仔 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=1272372507&s=100" >
                     <h3>兴儿-小兴兴仔</h3>
                     <div class="member-meta">
                         <span class="member-id">QQ:1272372507</span>
@@ -388,8 +428,10 @@
 
                 <!-- 编程程序玩家 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2506549500&s=100" >
                     <h3>编程程序玩家</h3>
                     <div class="member-meta">
+                    <span class="member-id">QQ: 2506549500</span>
                         <span class="member-id">CCWID: 236456039</span>
                         <p class="member-bio">和果园不怎么交往，但是依然有深厚的友谊</p>
                         <p class="member-sign">暂时没有</p>
@@ -400,8 +442,10 @@
                 
                 <!-- XRC 我托马莱依拉 -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=2522243415&s=100" >
                     <h3>XRC 我托马莱依拉</h3>
                     <div class="member-meta">
+                    <span class="member-id">QQ: 2522243415</span>
                         <span class="member-id">CCWID: 237394302</span>
                         <p class="member-bio">在HBC认识的xrc</p>
                         <p class="member-sign">原神，启动！</p>
@@ -411,9 +455,10 @@
 
                 <!-- 悦悦（线下） -->
                 <div class="member-card">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=264976729&s=100" >
                     <h3>悦悦（线下）</h3>
                     <div class="member-meta">
-                        <span class="member-id">QQ：3102920598</span>
+                        <span class="member-id">QQ：264976729</span>
                         <p class="member-bio">果园的表妹，追星族，喜欢成毅</p>
                         <p class="member-sign">万水千山，你愿意陪我一起看吗</p>
                     </div>
@@ -422,6 +467,7 @@
 
                 <!-- 乐乐（线下） -->
                 <div class="member-card">
+                <img src="default.jpg" >
                     <h3>乐乐（线下）</h3>
                     <div class="member-meta">
                         <span class="member-id">果园暂时没有她的个人信息</span>
