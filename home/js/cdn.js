@@ -208,7 +208,7 @@ function detectCDNNode() {
             }
             
             const coloCode = coloMatch[1];
-            const location = cdnLocationMap[coloCode] || `节点中文未收录 (${coloCode})`;
+            const location = cdnLocationMap[coloCode] || `节点中文未收录，您可以访问gy216.github.io/home/cloudflare_cdn来查看所有节点 (${coloCode})`;
             
             // 更新显示
             cdnElement.textContent = location;
