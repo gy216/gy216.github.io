@@ -24,6 +24,14 @@
     <priority>0.8</priority> <!-- 给0.8的优先级  -->
   </url>
   
+  <!-- 加入页面  -->
+    <url>
+    <loc>https://guoyuangzs.dpdns.org/join/</loc>
+    <lastmod>2025-12-13</lastmod> <!-- 更新时间  -->
+    <changefreq>daily</changefreq> <!-- 每天更新  -->
+    <priority>0.8</priority> <!-- 给0.8的优先级  -->
+  </url>
+  
 
  <!-- 支持页面  -->
   <url>
