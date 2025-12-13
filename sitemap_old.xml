@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- 核心页面 -->
+    <sitemap>
+        <loc>https://gy216.github.io/home/index.html</loc>
+        <lastmod>2025-07-08</lastmod>
+        <priority>1.0</priority>
+        <changefreq>daily</changefreq>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/about/index.html</loc>
+        <priority>0.9</priority>
+        <changefreq>monthly</changefreq>
+    </sitemap>
+
+    <!-- AI模块 -->
+    <sitemap>
+        <loc>https://gy216.github.io/ai/index.html</loc>
+        <priority>0.8</priority>
+        <changefreq>weekly</changefreq>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/ai/translate/index.html</loc>
+        <priority>0.7</priority>
+    </sitemap>
+
+    <!-- 游戏集合 -->
+    <sitemap>
+        <loc>https://gy216.github.io/game/2048/index.html</loc>
+        <priority>0.7</priority>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/game/tanchishe/index.html</loc>
+        <priority>0.6</priority>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/game/xiangqi/index.html</loc>
+        <priority>0.7</priority>
+    </sitemap>
+
+    <!-- 工具类 -->
+    <sitemap>
+        <loc>https://gy216.github.io/tools/watermark/index.html</loc>
+        <priority>0.5</priority>
+        <changefreq>monthly</changefreq>
+    </sitemap>
+
+    <!-- 文档与协议 -->
+    <sitemap>
+        <loc>https://gy216.github.io/doc/rule/index.html</loc>
+        <priority>0.3</priority>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/doc/xieyi/index.html</loc>
+        <priority>0.3</priority>
+    </sitemap>
+
+    <!-- 其他重要页面 -->
+    <sitemap>
+        <loc>https://gy216.github.io/supp/index.html</loc>
+        <priority>1.0</priority>
+        <changefreq>weekly</changefreq>
+    </sitemap>
+    <sitemap>
+        <loc>https://gy216.github.io/Public-welfare/Leaveyourmarkontheworld/index.html</loc>
+        <priority>0.8</priority>
+    </sitemap>
+</sitemapindex>
