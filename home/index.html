@@ -2,13 +2,83 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- SEO优化 -->
-    <meta name="description" content="果园编程,果园工作室,果园,编程,Scratch,在线编程,打包器,SC打包器,果园BC,Guoyuangzs，guoyuangzs.dpdns.org,SC编程,CF网站,GitHub Pages"/>  
-    <!-- 定义网页在社交媒体上分享时显示的 标题和内容 -->
-    <meta property="og:title" content="果园工作室 ">
-    <meta property="og:description" content="果园编程用心每一作，发展每一天">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--用于 移动端适配  -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- 专门针对 Internet Explorer (IE) 浏览器的兼容性设置 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--提前解析域名对应的IP地址  -->
+    <link rel="dns-prefetch" href="https://fonts.cloudflare.com/css?family=Roboto">
+    <!--预先加载  -->
+    <link rel="preload"	href="https://gy216.github.io/logo.jpg">
+    <link rel="preload"	href="https://guoyuangzs.dpdns.org/logo.jpg">
+    <!-- 定义网页的简短描述，通常显示在搜索引擎结果中 -->
+    <meta name="description" content="【用心每一作，发展每一天】果园编程工作室，专注于编程领域，由青少年自发组织的团队，致力于创作与发布优质作品。"/>  
+    <!-- 定义网页的关键词（早期用于SEO，现在大部分搜索引擎已忽略） -->
+    <meta name="keywords" content="果园编程,果园工作室,果园,编程,Scratch,在线编程,打包器,SC打包器,果园BC,Guoyuangzs,guoyuangzs.dpdns.org,SC编程,CF网站,GitHub Pages,果园游戏,果园代码,guoyuan,guoyuancode,guoyuanstudio,gystu,guoyuanstu,gycode,青少年编程团队,scratch游戏开发,青少年工作室,编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,scratch聚集地,ccw,共创世界,scratch中社,中社,scratch-cn,gamejam,ccwgamejam,gandi,小码王社区,学生游戏设计,学生开发团队,开发团队,少儿开发团队,青少年开发游戏,学生开发游戏"/>
+    <!--页面更新频率（对搜索引擎的建议） -->
+    <meta name="revisit-after" content="1 days">
+    <!--作者和版权信息 -->
+    <meta name="author" content="果园编程工作室">
+	<meta name="copyright" content="© 2025-2030 果园编程工作室">
+	<meta name="designer" content="果园开发团队">
+	
+	
+	<!-- 针对OS和浏览器的特别优化 -->
+    <!-- Windows 8/10 开始屏幕磁贴 -->
+	<meta name="msapplication-TileColor" content="#4CAF50">
+	<meta name="msapplication-TileImage" content="https://gy216.github.io">
+	<!-- Edge 侧边栏支持 -->
+	<meta name="msapplication-allowDomainApiCalls" content="true">
+	<meta name="msapplication-allowDomainMetaTags" content="true">
+	<!-- Edge 集合功能 -->
+	<meta name="msapplication-navbutton-color" content="#4CAF50">
+	<meta name="msapplication-starturl" content="/">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="msapplication-window" content="width=1024;height=768">
+    <!-- QQ/QQ浏览器视频优化 -->
+	<meta name="x5-video-player-type" content="h5">  <!-- H5视频播放器 -->
+	<meta name="x5-video-player-fullscreen" content="true">  <!-- 视频全屏 -->
+	<!-- QQ搜索优化 -->
+	<meta name="applicable-device" content="pc,mobile">  <!-- 设备适配 -->
+    <!-- 360极速/安全模式兼容 -->
+	<meta name="renderer" content="webkit">  <!-- 优先webkit内核 -->
+    <!-- 强制启用硬件加速（Firefox特有） -->
+	<meta http-equiv="X-Powered-By" content="Firefox">
+	<meta name="HandheldFriendly" content="True">
+    <!-- 启用Firefox开发者模式提示 -->
+	<meta name="firefox:console" content="true">  <!-- 控制台提示 -->
+	<meta name="firefox:inspector" content="true">  <!-- 审查元素优化 -->
+    <!-- 果园浏览器优化 -->
+	<meta name="guoyuanbrowser-appname" content="果园编程"> 
+	<meta name="guoyuanbrowser-translate" content="false"> 
+    <meta name="guoyuanbrowser-python-support" content="true"> 
+    <meta name="guoyuanbrowser-JavaScript_support" content="true"> 
+    <meta name="guoyuanbrowser-Enable_multi-tab_page_support" content="true"> 
+    
+    
+    <!--用于 Open Graph 协议的meta优化  -->
+    
+    <!--用于 Open Graph 协议，控制网站名称和url -->    
+    <meta property="og:site_name" content="果园工作室">
+	<meta property="og:url" content="https://gy216.github.io">   
+    <!--用于 Open Graph 协议，控制在社交媒体（如 Facebook、微信、LinkedIn）分享时显示的标题 -->
+    <meta property="og:title" content="果园工作室">
+    <!--用于 Open Graph 协议，控制在社交媒体分享时显示的描述文本。 -->
+    <meta property="og:description" content="果园编程用心每一作，发展每一天">
+	<!--用于 Open Graph 协议，控制在社交媒体分享时显示的缩略图（需填写图片URL） -->
+    <meta property="og:image" content="https://gy216.github.io/logo.png">
+     <!--用于 Open Graph 协议，定义分享内容的类型（如 website、article、video等） -->
+    <meta property="og:type" content="website">
+    <!--用于 Open Graph 协议，定义网页的语言和地区（zh-CN表示简体中文-中国大陆） -->
+    <meta property="og:locale" content="zh-CN">
+    <!--用于 Open Graph 协议，控制在X上分享时显示的内容 -->
+    <meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="果园工作室">
+	<meta name="twitter:description" content="果园编程用心每一作，发展每一天">
+	<meta name="twitter:image" content="https://gy216.github.io/logo.png">
+    
+    
+
     <title>主页-果园编程-果园编程主站</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="styles.css">
