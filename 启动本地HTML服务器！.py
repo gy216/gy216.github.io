@@ -1,6 +1,10 @@
 import http.server
 import socketserver
+import sys
 from threading import Thread
+
+# 设置输出编码为 UTF-8
+sys.stdout.reconfigure(encoding='utf-8')
 
 class OptimizedHTTPHandler(http.server.SimpleHTTPRequestHandler):
     # 禁用日志输出（减少IO开销）
