@@ -4,6 +4,7 @@ const cdnLocationMap = {
     "HKG": "香港, 中国",
     "TPE": "台北, 中国台湾",
     "NRT": "东京, 日本",
+    "KIX": "关西, 日本",
     "SIN": "新加坡",
     "BKK": "曼谷, 泰国",
     "ICN": "首尔, 韩国",
