@@ -324,6 +324,122 @@
       width: 100px;
       height: auto;
     }
+    
+    
+    
+    
+    
+    
+    /* 产品图片样式 - 不会影响原有CSS */
+.product-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+/* 原有CSS保持不变 */
+.products-section { 
+  margin: 40px 0; 
+} 
+
+.product-container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 20px; 
+  justify-content: center; 
+  margin-top: 20px; 
+} 
+
+.product-card { 
+  width: 300px; 
+  background: rgba(20, 20, 40, 0.8); 
+  border: 1px solid var(--primary-color); 
+  border-radius: 8px; 
+  padding: 20px; 
+  transition: all 0.3s ease; 
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1); 
+} 
+
+.product-card:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); 
+} 
+
+.product-title { 
+  color: var(--primary-color); 
+  font-size: 1.2rem; 
+  margin-bottom: 10px; 
+  border-bottom: 1px solid var(--primary-color); 
+  padding-bottom: 5px; 
+} 
+
+.product-description { 
+  color: #ccc; 
+  font-size: 0.9rem; 
+  margin-bottom: 15px; 
+} 
+
+.product-status { 
+  display: inline-block; 
+  padding: 3px 8px; 
+  border-radius: 4px; 
+  font-size: 0.8rem; 
+  font-weight: bold; 
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.status-development {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+  border: 1px solid #ffa500;
+}
+
+.status-RC {
+  background: rgba(0, 255, 0, 0.2);
+  color: #0f0;
+  border: 1px solid #0f0;
+}
+
+.cyber-button.small {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cyber-button.small:hover {
+  background: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+
     </style>
 </head>
 <body>
@@ -400,50 +516,47 @@
             <a href="/home/members/" class="cyber-button">查看完整成员</a>
         </header>
         
-        <!-- 产品展示区 - 改进后的版本 -->
-        <section class="products-section">
-            <h2 class="section-title">主要产品</h2>
-
-            <div class="product-container">
-                <div class="product-card">
-                    <h3 class="product-title">物理旅行者</h3>
-                    <span class="product-status status-development">开发中</span>
-                    <span class="product-status status-development">工作室主导作品</span>
-                    <span class="product-status status-RC">Scratch</span>
-                    <p class="product-description">一款基于物理引擎的冒险游戏，玩家将扮演一位能够操控物理法则的旅行者，解决各种谜题和挑战。</p>
-                    <a href="https://www.ccw.site/creation?id=65ae27feba39481f1fa7fa70" class="cyber-button small">查看详情</a>
-                </div>
-                
-                <div class="product-card">
-                    <h3 class="product-title">HYOS（移动版）</h3>
-                    <span class="product-status status-RC">RC已发布</span>
-                    <span class="product-status status-RC">成员个人作品</span>
-                    <span class="product-status status-RC">Scratch</span>
-                    <p class="product-description">一款基于 Scratch、针对移动端深度优化的模拟操作系统，由工作室潜力成员 @南翔 开发。</p>
-                    <a href="https://www.ccw.site/detail/68e4cc2f34c6d44f5fbf6d97?inviteCode=mPagz4kzgJ3kcuZb" class="cyber-button small">查看详情</a>
-                </div>
-                
-                <div class="product-card">
-                    <h3 class="product-title">HYOS</h3>
-                    <span class="product-status status-development">开发中</span>
-                    <span class="product-status status-RC">成员个人作品</span>
-                    <span class="product-status status-RC">Scratch</span>
-                    <p class="product-description">一款炫酷的轻量化模拟操作系统，由团队新星 @南翔 基于 Scratch精心开发。</p>
-                    <a href="https://www.ccw.site/detail/68e4cc2f34c6d44f5fbf6d97?inviteCode=mPagz4kzgJ3kcuZb" class="cyber-button small">查看详情</a>
-                </div>
-                
-               
-                
-                <div class="product-card">
-                    <h3 class="product-title">Scratch作品打包工具</h3>
-                    <span class="product-status status-RC">在线版已发布</span>
-                    <span class="product-status status-RC">室长个人作品</span>
-                    <span class="product-status status-RC">HTML</span>
-                    <p class="product-description">将Scratch作品打包成可执行文件，无需网络即可运行，完美保存您的创意成果。</p>
-                    <a href="/dabao" class="cyber-button small">使用工具</a>
-                </div>
-            </div>
-        </section>
+<!-- 产品展示区 - 改进后的版本 -->
+<section class="products-section">
+  <h2 class="section-title">主要产品</h2>
+  <div class="product-container">
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://m.ccw.site/works-covers/f0f9b077-dceb-4af2-a3e8-9e0e2c62bfb7.png?x-oss-process=image%2Fresize%2Cs_360%2Fformat%2Cwebp" alt="物理旅行者游戏截图" loading="lazy">
+      </div>
+      <h3 class="product-title">物理旅行者</h3>
+      <span class="product-status status-development">开发中</span>
+      <span class="product-status status-development">工作室主导作品</span>
+      <span class="product-status status-RC">Scratch</span>
+      <p class="product-description">一款基于物理引擎的冒险游戏，玩家将扮演一位能够操控物理法则的旅行者，解决各种谜题和挑战。</p>
+      <a href="https://www.ccw.site/detail/65ae27feba39481f1fa7fa70" class="cyber-button small">查看详情</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://m.ccw.site/works-covers/667e2af0-0c50-415a-befb-fc420e0018a4.jpg?x-oss-process=image%2Fresize%2Cs_360%2Fformat%2Cwebp" alt="HYOS移动版截图" loading="lazy">
+      </div>
+      <h3 class="product-title">Hy Waver OS </h3>
+      <span class="product-status status-RC">RC已发布</span>
+      <span class="product-status status-RC">成员个人作品</span>
+      <span class="product-status status-RC">Scratch</span>
+      <p class="product-description">一款基于 Scratch、针对移动端深度优化的模拟操作系统，由工作室潜力成员 @南翔 开发。</p>
+      <a href="https://www.ccw.site/detail/68e4cc2f34c6d44f5fbf6d97?inviteCode=mPagz4kzgJ3kcuZb" class="cyber-button small">查看详情</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="product-image">
+        <img src="img/dabao.png" alt="Scratch打包工具界面截图" loading="lazy">
+      </div>
+      <h3 class="product-title">Scratch作品打包工具</h3>
+      <span class="product-status status-RC">在线版已发布</span>
+      <span class="product-status status-RC">室长个人作品</span>
+      <span class="product-status status-RC">HTML</span>
+      <p class="product-description">将Scratch作品打包成可执行文件，无需网络即可运行，完美保存您的创意成果。</p>
+      <a href="/dabao" class="cyber-button small">使用工具</a>
+    </div>
+  </div>
+</section>
  
 
 <section class="quick-links">
@@ -604,10 +717,13 @@
         </div>
         <div class="footer-section">
             <h3>版本与历史</h3>
-            <p><strong>网站版本：</strong>V6.7.0_260401_01WK</p>
-            <p><strong>最后更新：</strong>2026年04月01日</p>
+            <br>
+            <p><strong>更新日志：</strong><a href="/blog" class="cyber-link">点这里看更新日志</a></p>
+            <p><strong>网站版本：</strong>V6.7.0_260402_14MJ</p>
+            <p><strong>最后更新：</strong>2026年04月02日</p>
             <p><strong>设计语言：</strong>GAutumn Design 19.0.7<br>
-                <small>(2026年4月01日更新)</small>
+            <p><strong>版本代号：</strong>Milk Jujube（奶枣）<br>
+                <small>(2026年4月02日更新)</small>
             </p>
             <br>
            
@@ -623,8 +739,10 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <a href="https://ipw.cn/ssl/?site=guoyuangzs.dpdns.org" title="本站支持IPV4、6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPV4、6访问" src="svgs/ipv4-s1.svg"></a>
-        <br/>
+     <a href="https://ipw.cn/ipv6webcheck/?site=gybc.top" title="本站支持IPv6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
+     <a href="https://ipw.cn/ssl/?site=gybc.top" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
+</a>
+     <p><a href="https://www.cac.gov.cn/" class="cyber-link">中央网信办违法和不良信息举报中心</a>|<a href="https://www.china-ipv6.cn" class="cyber-link">国家IPV6发展平台</a></p>
     </div>
     <div class="footer-bottom legal-text">
         <p>为优化访问体验，本站使用 Cloudflare Web Analytics® 进行流量与性能统计。该服务不收集任何个人数据（如 IP 地址、Cookie 等），所有数据均经匿名化处理后以聚合形式呈现。数据处理可能涉及 Cloudflare 的全球网络节点（包括美国、欧盟等地）。若您不希望参与统计，可使用广告拦截工具；若您不同意此条款，敬请停止使用本网站。</p>
@@ -632,7 +750,7 @@
         <p>本网站所有托管于 GitHub Pages 上的项目及全部文字内容，均基于《果园页面专用许可证》授权提供。此许可证系 MIT 许可证的修改版本，授予用户免费、永久、全球范围内、非排他性的使用、复制、修改及分发权利。相关作品按“原样”提供，不附带任何明示或默示的担保或条件。附加条款可能适用，详见许可页面：<a href="https://gy216.github.io/License-pages" class="cyber-link">https://gy216.github.io/License-pages</a>。</p>
         <p>果园编程工作室®、果园编程®、果园 Logo、GAutumn Design、Glyphix、果园页面专用许可证、果园AI HUB、物理旅行者和果园标志为果园编程的商标。</p>
         <p>果园编程工作室是由青少年自发组成的社群组织，其性质不属于法定非营利机构或企业，亦不具备企业法人资格。</p>
-        <p>Copyright © 2021–2026 果园编程® 版权所有 | GICP 备 YZGY20110216 号</p>
+        <p>Copyright © 2021–2026 果园编程® 版权所有</p>
     </div>
 </footer>
     </div>
