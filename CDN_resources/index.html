@@ -9,17 +9,21 @@
             --neon-blue: #0ff0fc;
             --neon-pink: #ff00ff;
             --neon-purple: #9600ff;
+            --neon-green: #00ff9d;
             --dark-bg: #0a0a12;
             --darker-bg: #050508;
+            --card-bg: rgba(20, 20, 30, 0.8);
             --text-color: #e0e0e0;
+            --text-secondary: #a0a0c0;
             --glow: 0 0 10px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
+            font-family: 'Segoe UI', 'Consolas', 'Courier New', monospace;
         }
         
         body {
@@ -28,14 +32,17 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                linear-gradient(rgba(9, 1, 17, 0.8), rgba(9, 1, 17, 0.8)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23333" stroke-width="0.5"/></svg>');
+                radial-gradient(circle at 20% 30%, rgba(150, 0, 255, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 252, 0.1) 0%, transparent 30%),
+                linear-gradient(rgba(9, 1, 17, 0.95), rgba(9, 1, 17, 0.95)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23222" stroke-width="0.8"/></svg>');
+            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
         header {
@@ -43,369 +50,502 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
-            border-bottom: 1px solid var(--neon-purple);
+            border-bottom: 1px solid rgba(150, 0, 255, 0.3);
             margin-bottom: 40px;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-pink), 
+                transparent);
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
+        }
+        
+        .logo-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
         .logo h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: var(--glow) rgba(150, 0, 255, 0.5);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .logo-tag {
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            background: rgba(0, 255, 157, 0.1);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 157, 0.3);
         }
         
         .logo-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            border-radius: 50%;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 15px var(--neon-purple);
+            box-shadow: 0 0 20px var(--neon-purple), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
         
         .logo-icon::before {
             content: "</>";
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 25px;
         }
         
         nav a {
             color: var(--text-color);
             text-decoration: none;
-            padding: 5px 10px;
+            padding: 8px 15px;
             border: 1px solid transparent;
-            transition: all 0.3s;
+            transition: var(--transition);
             position: relative;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         nav a:hover {
             color: var(--neon-blue);
-            border-color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
         }
         
-        nav a::after {
+        nav a::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: var(--neon-blue);
-            transform: scaleX(0);
-            transition: transform 0.3s;
+            height: 100%;
+            border: 1px solid transparent;
+            transition: var(--transition);
         }
         
-        nav a:hover::after {
-            transform: scaleX(1);
+        nav a:hover::before {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue), inset 0 0 10px var(--neon-blue);
         }
         
         .hero {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             margin-bottom: 60px;
             position: relative;
+            overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(150, 0, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(150, 0, 255, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 252, 0.2) 0%, transparent 40%);
             z-index: -1;
         }
         
         .hero h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-blue));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: var(--glow) rgba(150, 0, 255, 0.5);
+            text-shadow: 0 0 20px rgba(150, 0, 255, 0.5);
+            animation: gradient 3s ease infinite;
+            font-weight: 700;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
+            font-size: 1.3rem;
+            max-width: 900px;
             margin: 0 auto 30px;
-            color: var(--text-color);
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: transparent;
+        .hero .highlight {
             color: var(--neon-blue);
-            border: 2px solid var(--neon-blue);
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            font-weight: 600;
         }
         
-        .btn:hover {
-            color: var(--dark-bg);
-            background: var(--neon-blue);
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .section {
-            margin-bottom: 80px;
-            padding: 40px;
-            background: rgba(10, 10, 20, 0.7);
-            border: 1px solid rgba(150, 0, 255, 0.3);
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(150, 0, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(150, 0, 255, 0.05), transparent);
-            transform: skewX(-45deg);
-            pointer-events: none;
-        }
-        
-        .section h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--neon-pink);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--neon-pink), transparent);
-        }
-        
-        .features {
+        .cdn-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
         
-        .feature {
-            padding: 25px;
-            background: rgba(20, 20, 30, 0.5);
+        .cdn-card {
+            background: var(--card-bg);
             border: 1px solid rgba(150, 0, 255, 0.3);
-            border-radius: 5px;
-            transition: all 0.3s;
+            border-radius: 12px;
+            padding: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cdn-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(150, 0, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+        
+        .cdn-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+        }
+        
+        .cdn-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .cdn-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .cdn-icon.cf { background: linear-gradient(135deg, #f38020, #fa5a28); }
+        .cdn-icon.jsd { background: linear-gradient(135deg, #4078c0, #6e5494); }
+        .cdn-icon.eo { background: linear-gradient(135deg, #00a1ff, #0052d9); }
+        .cdn-icon.st { background: linear-gradient(135deg, #00d4aa, #00a8ff); }
+        
+        .cdn-header h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .cdn-url {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(150, 0, 255, 0.3);
+            border-radius: 6px;
+            padding: 12px 15px;
+            font-family: 'Courier New', monospace;
+            color: var(--neon-green);
+            margin: 15px 0;
+            overflow-x: auto;
+            white-space: nowrap;
             position: relative;
         }
         
+        .cdn-url::before {
+            content: 'URL';
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            background: var(--card-bg);
+            padding: 0 5px;
+            font-size: 0.8rem;
+            color: var(--neon-blue);
+        }
+        
+        .cdn-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin: 60px 0 30px;
+            color: var(--neon-pink);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), transparent);
+        }
+        
+        .usage-guide {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+        
+        .guide-step {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--neon-green);
+        }
+        
+        .guide-step h4 {
+            color: var(--neon-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .guide-step h4 i {
+            font-size: 1.2rem;
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(150, 0, 255, 0.3);
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: '代码示例';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: var(--card-bg);
+            padding: 0 10px;
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+        }
+        
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+        }
+        
+        .code-comment { color: #7f7f7f; }
+        .code-tag { color: var(--neon-pink); }
+        .code-attr { color: var(--neon-blue); }
+        .code-value { color: #ffcc00; }
+        .code-string { color: var(--neon-green); }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid rgba(150, 0, 255, 0.2);
+            transition: var(--transition);
+        }
+        
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(150, 0, 255, 0.2);
             border-color: var(--neon-blue);
+            transform: translateY(-5px);
         }
         
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: rgba(150, 0, 255, 0.2);
-            border-radius: 50%;
+            background: rgba(150, 0, 255, 0.1);
+            border-radius: 12px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--neon-blue);
         }
         
         .feature h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
             color: var(--neon-blue);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
         
-        .usage-examples {
-            margin-top: 40px;
-        }
-        
-        .code-block {
-            background: rgba(0, 0, 0, 0.5);
-            border-left: 3px solid var(--neon-purple);
-            padding: 20px;
-            margin: 20px 0;
-            overflow-x: auto;
+        footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(150, 0, 255, 0.3);
             position: relative;
         }
         
-        .code-block::before {
+        footer::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(150, 0, 255, 0.1), transparent);
-            pointer-events: none;
-        }
-        
-        .code-block pre {
-            margin: 0;
-            font-family: 'Courier New', monospace;
-            color: var(--neon-blue);
-        }
-        
-        .code-block .comment {
-            color: #7f7f7f;
-        }
-        
-        .code-block .tag {
-            color: var(--neon-pink);
-        }
-        
-        .code-block .attr {
-            color: var(--neon-blue);
-        }
-        
-        .code-block .value {
-            color: #ffcc00;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid var(--neon-purple);
-            margin-top: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--neon-blue), 
+                var(--neon-purple), 
+                var(--neon-pink), 
+                transparent);
         }
         
         .social-links {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin: 20px 0;
+            margin: 30px 0;
         }
         
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(150, 0, 255, 0.2);
+            background: rgba(150, 0, 255, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
             color: var(--text-color);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-size: 1.3rem;
+            border: 1px solid transparent;
         }
         
         .social-link:hover {
             background: var(--neon-purple);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--neon-purple);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(150, 0, 255, 0.4);
+            border-color: var(--neon-blue);
         }
         
         .back-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             margin-top: 20px;
-            padding: 8px 20px;
+            padding: 12px 30px;
             background: transparent;
             color: var(--neon-pink);
             border: 1px solid var(--neon-pink);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .back-btn:hover {
             background: var(--neon-pink);
             color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-pink);
+            transform: translateY(-3px);
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
+        .copyright {
+            color: var(--text-secondary);
+            margin-top: 30px;
+            font-size: 0.9rem;
         }
         
-        @media (max-width: 480px) {
-            .logo h1 {
-                font-size: 1.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-        
-        /* 赛博朋克风格的扫描线效果 */
+        /* 扫描线效果 */
         .scanlines {
             position: fixed;
             top: 0;
@@ -416,34 +556,7 @@
             background-size: 100% 2px;
             pointer-events: none;
             z-index: 1000;
-            animation: scanline 8s linear infinite;
-        }
-        
-        @keyframes scanline {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 100%;
-            }
-        }
-        
-        /* 霓虹灯闪烁效果 */
-        .neon-flicker {
-            animation: flicker 3s infinite alternate;
-        }
-        
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                text-shadow: 
-                    0 0 5px var(--neon-blue),
-                    0 0 10px var(--neon-blue),
-                    0 0 20px var(--neon-blue),
-                    0 0 40px var(--neon-purple);
-            }
-            20%, 24%, 55% {
-                text-shadow: none;
-            }
+            opacity: 0.1;
         }
         
         /* 数字雨效果 */
@@ -454,8 +567,96 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.05;
             pointer-events: none;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .logo-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cdn-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cdn-card {
+                padding: 20px;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(15, 240, 252, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(15, 240, 252, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(15, 240, 252, 0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--neon-blue), var(--neon-purple));
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--neon-purple), var(--neon-pink));
         }
     </style>
 </head>
@@ -463,19 +664,187 @@
     <div class="scanlines"></div>
     <canvas id="matrix" class="matrix-rain"></canvas>
 
-        <section class="hero">
-            <h2>CDN页面</h2>
-            <p>本页为CDN服务，用于cdn.gybc.top的腾讯云CDN的服务</p>
-            <p>cdn.gybc.top/CDN_resources/xxxx.xxxx</p>
-            <a href="#usage" class="btn">立即使用</a>
-        </section>
-  
+    <div class="container">
+        <header>
+            <a href="/" class="logo">
+                <div class="logo-content">
+                    <div class="logo-icon"></div>
+                    <div>
+                        <h1>果园编程</h1>
+                        <div class="logo-tag">CDN 服务</div>
+                    </div>
+                </div>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#services"><i class="fas fa-server"></i> CDN服务</a></li>
+                    <li><a href="#usage"><i class="fas fa-code"></i> 使用指南</a></li>
+                    <li><a href="#features"><i class="fas fa-star"></i> 特色功能</a></li>
+                </ul>
+            </nav>
+        </header>
 
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <h2>果园编程 CDN 服务</h2>
+            <p>我们提供稳定、高速的全球内容分发网络服务，助力您的项目加速</p>
+            <p>目前网站接入了 <span class="highlight">4 家顶级 CDN 服务商</span>，确保资源的全球可用性和加载速度</p>
+            
+            <div class="cdn-grid" id="services">
+                <div class="cdn-card">
+                    <div class="cdn-header">
+                        <div class="cdn-icon cf">
+                            <i class="fab fa-cloudflare"></i>
+                        </div>
+                        <h3>Cloudflare</h3>
+                    </div>
+                    <p>全球分布式网络，提供安全防护和性能优化</p>
+                    <div class="cdn-url">gybc.top/CDN_resources/[文件名]</div>
+                    <div class="cdn-stats">
+                        <div class="stat">
+                            <div class="stat-value">280+</div>
+                            <div class="stat-label">数据中心</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">99.9%</div>
+                            <div class="stat-label">可用性</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cdn-card">
+                    <div class="cdn-header">
+                        <div class="cdn-icon jsd">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>jsDelivr</h3>
+                    </div>
+                    <p>开源项目CDN，专注于JavaScript库和静态资源</p>
+                    <div class="cdn-url">cdn.jsdelivr.net/gh/gy216/gy216.github.io/CDN_resources/[文件名]</div>
+                    <div class="cdn-stats">
+                        <div class="stat">
+                            <div class="stat-value">无限制</div>
+                            <div class="stat-label">带宽</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">高速</div>
+                            <div class="stat-label">全球加速</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cdn-card">
+                    <div class="cdn-header">
+                        <div class="cdn-icon eo">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>腾讯EdgeOne</h3>
+                    </div>
+                    <p>腾讯云边缘安全加速平台，亚太地区优化</p>
+                    <div class="cdn-url">cdn.gybc.top/CDN_resources/[文件名]</div>
+                    <div class="cdn-stats">
+                        <div class="stat">
+                            <div class="stat-value">100+</div>
+                            <div class="stat-label">边缘节点</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">DDoS</div>
+                            <div class="stat-label">防护</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cdn-card">
+                    <div class="cdn-header">
+                        <div class="cdn-icon st">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Statically</h3>
+                    </div>
+                    <p>专注于GitHub资源的CDN服务，简单易用</p>
+                    <div class="cdn-url">cdn.statically.io/gh/gy216/gy216.github.io/CDN_resources/[文件名]</div>
+                    <div class="cdn-stats">
+                        <div class="stat">
+                            <div class="stat-value">免费</div>
+                            <div class="stat-label">开源项目</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">自动</div>
+                            <div class="stat-label">压缩优化</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title" id="usage"><i class="fas fa-code"></i> 使用指南</h2>
         
-        <footer>
- 
+        <div class="usage-guide">
+            <div class="guide-step">
+                <h4><i class="fas fa-link"></i> 步骤1.获取链接</h4>
+                <p>选择适合您地理位置的CDN服务，复制对应的资源链接</p>
+                <div class="code-block">
+<pre><span class="code-comment">&lt;!-- 示例：引入CSS文件 --&gt;</span>
+&lt;<span class="code-tag"></span> <span class="code-attr">rel</span>=<span class="code-string">"stylesheet"</span> <span class="code-attr">href</span>=<span class="code-string">"https://gybc.top/CDN_resources/style.css"</span>&gt;
+
+<span class="code-comment">&lt;!-- 示例：引入JS文件 --&gt;</span>
+&lt;<span class="code-tag"></span> <span class="code-attr">src</span>=<span class="code-string">"https://cdn.jsdelivr.net/gh/gy216/gy216.github.io/CDN_resources/app.js"</span>&gt;&lt;/<span class="code-tag">script</span>&gt;
+
+<span class="code-comment">&lt;!-- 示例：图片资源 --&gt;</span>
+&lt;<span class="code-tag"></span> <span class="code-attr">src</span>=<span class="code-string">"https://cdn.gybc.top/CDN_resources/logo.png"</span> <span class="code-attr">alt</span>=<span class="code-string">"Logo"</span>&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <h4><i class="fas fa-check-circle"></i> 步骤3.测试使用</h4>
+                <p>将链接应用到您的项目中，测试资源加载情况</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="features"><i class="fas fa-star"></i> 特色功能</h2>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h4>全球加速</h4>
+                <p>多CDN网络覆盖全球，确保用户在任何地区都能快速访问资源</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>安全可靠</h4>
+                <p>DDoS防护、HTTPS加密、WAF防护等多重安全措施</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h4>高性能</h4>
+                <p>智能缓存、压缩传输、HTTP/2协议优化，提升加载速度</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h4>易用性</h4>
+                <p>简单的URL结构，无需复杂配置，开箱即用</p>
+            </div>
+        </div>
+
+            
             <p>© 2020-2026 果园编程工作室 版权所有</p>
-            <a href="/" class="back-btn">返回首页</a>
+            <p class="copyright">青少年编程工作室 | 专注于创造与创新</p>
+            
+            <a href="/" class="back-btn">
+                <i class="fas fa-home"></i> 返回首页
+            </a>
         </footer>
     </div>
     
@@ -487,40 +856,35 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const katakana = '01';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-        
-        const alphabet = katakana + latin + nums;
-        
+        const chars = '01abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$+-*/=%"\'^&*()[]{}~;:<>.,\\|_';
         const fontSize = 16;
-        const columns = canvas.width / fontSize;
+        const columns = Math.floor(canvas.width / fontSize);
         
-        const rainDrops = [];
+        const drops = Array(columns).fill(1);
         
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
-        }
-        
-        const draw = () => {
+        function drawMatrix() {
             ctx.fillStyle = 'rgba(10, 10, 20, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             ctx.fillStyle = '#0ff0fc';
-            ctx.font = fontSize + 'px monospace';
+            ctx.font = `${fontSize}px 'Courier New', monospace`;
             
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+            for (let i = 0; i < drops.length; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
                 
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
+                ctx.fillText(char, x, y);
+                
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
                 }
-                rainDrops[i]++;
+                
+                drops[i]++;
             }
-        };
+        }
         
-        setInterval(draw, 30);
+        setInterval(drawMatrix, 35);
         
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
@@ -528,13 +892,55 @@
         });
         
         // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 卡片悬停效果
+        document.querySelectorAll('.cdn-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 25;
+                const rotateX = (centerY - y) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+        
+        // 添加页面加载动画
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.cdn-card, .feature, .guide-step');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 + index * 100);
             });
         });
     </script>
