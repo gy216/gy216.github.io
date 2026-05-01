@@ -1,449 +1,334 @@
-<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Created By http://www.zhetao.com/sitemapcreator,  URLs: 74 Generated at: 2026-03-29 01:05:14 -->
-
-  <url>
-    <loc>https://gybc.top/</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/home</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/home/</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/my</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/about</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/join</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/fw</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/home/members/</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao</loc>
-    <changefreq>always</changefreq>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/so</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/image</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/tools/watermark</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/Public-welfare</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/doc/rule</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/supp</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/link/guoyuancode.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study/zaixian.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.55</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.55</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study/ziyuan.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.54</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study/up.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.54</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study/becode.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.54</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.54</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study/index.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.53</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.52</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/study/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.52</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/about/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/image/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/Public-welfare/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/oldwebsite/indexold/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/fw/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/fw/mail/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/home/members/sofaraway/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/saolei/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/new</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/my/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/join/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/home/members/sofaraway</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/tools/watermark/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/doc/rule/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/supp/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/new/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/3.6pro.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.51</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/Public-welfare/Leaveyourmarkontheworld/cxy/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/so/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/3.6.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/3.6gy.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/3.0.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/2.0.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/dabao/2.2.html</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/3.11.4PYTHON.exe</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/32-potplayer.exe</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/bandizip.EXE</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/geek.exe</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/HONEYVIEW-SETUP.EXE</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/Notepad3_6.23.203.2_x64_Setup.exe</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/toexe.zip</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/bk/imgapp/glyphixcube.cube</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/misu7/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/wuda/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/2048/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/chidouren/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/feijidaz/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/feixingqi/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/flybird/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/guobr/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/maryo/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/tanchishe/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/woodfish/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/wuziqi/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/xiangqi/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://gybc.top/game/xiaokl/</loc>
-    <changefreq>always</changefreq>
-    <priority>0.50</priority>
-  </url>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- 主页面和核心页面 -->
+    <url>
+        <loc>https://gybc.top/home/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/about/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/my/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- AI 相关 -->
+    <url>
+        <loc>https://gybc.top/ai/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/ai/translate/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- API 接口 -->
+    <url>
+        <loc>https://gybc.top/api/bingimg/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/api/city/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- 应用和工具 -->
+    <url>
+        <loc>https://gybc.top/APP/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/tools/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/tools/watermark/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/bk/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- 学习与资源 -->
+    <url>
+        <loc>https://gybc.top/study/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/study/becode.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/study/up.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/study/zaixian.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/study/ziyuan.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- 文档 -->
+    <url>
+        <loc>https://gybc.top/doc/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/doc/rule/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/doc/xieyi/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- 服务与支持 -->
+    <url>
+        <loc>https://gybc.top/fw/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/fw/mail/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/supp/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/join/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- 游戏中心 (所有游戏) -->
+    <url>
+        <loc>https://gybc.top/game/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/2048/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/chidouren/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/feijidaz/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/feixingqi/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/flybird/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/guobr/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/maryo/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/saolei/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/tanchishe/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/woodfish/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/wuziqi/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/xiangqi/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/misu7/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/pinbao/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/wuda/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/xiaokl/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/game/IW/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- 其他重要页面 -->
+    <url>
+        <loc>https://gybc.top/cloud/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/csr/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/dabao/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/image/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/integrity/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/ling/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/ling/success/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/link/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/new/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/Public-welfare/Leaveyourmarkontheworld/cxy/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/so/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/CDN_resources/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/License-pages/</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- 打包页面 -->
+    <url>
+        <loc>https://gybc.top/dabao/2.0.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/dabao/2.2.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/dabao/3.0.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/dabao/3.6.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/dabao/3.6gy.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/dabao/3.6pro.html</loc>
+        <lastmod>2026-05-01</lastmod>
+        <priority>0.5</priority>
+    </url>
 </urlset>
