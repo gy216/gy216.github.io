@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扬州经济技术开发区实验中学 - 现代化国际化完全中学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #1a5fb4;
+            --secondary-color: #2d9cdb;
+            --accent-color: #e6b325;
+            --light-color: #f5f9ff;
+            --dark-color: #333333;
+            --success-color: #27ae60;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 顶部导航栏 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            font-size: 8px;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.85), rgba(45, 156, 219, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #d19c1b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        /* 主要区域 */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 18px;
+        }
+        
+        /* 关于学校 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-img img:hover {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* 特色 */
+        .features {
+            background-color: var(--light-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* 荣誉 */
+        .honors {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .honor-badge {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .honor-badge i {
+            color: var(--accent-color);
+        }
+        
+        /* 新闻 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .news-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .news-card:hover .news-img img {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .news-content h3 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info li i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .qrcode {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            width: 120px;
+            text-align: center;
+        }
+        
+        .qrcode img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .qrcode p {
+            color: #333;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-text {
+                width: 100%;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .mobile-menu ul {
+                list-style: none;
+            }
+            
+            .mobile-menu ul li {
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-menu ul li a {
+                display: block;
+                padding: 15px 20px;
+                text-decoration: none;
+                color: var(--dark-color);
+            }
+            
+            .mobile-menu ul li a:hover, .mobile-menu ul li a.active {
+                background-color: #f5f9ff;
+                color: var(--primary-color);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .stats {
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            
+            .stat-item {
+                width: 45%;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+            
+            .stat-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-img">
+                <img src="300.png" alt="学校校园">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>扬州经济技术开发区实验中学</h1>
+                    <p>本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准。</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#about">学校简介</a></li>
+                    <li><a href="#features">学校特色</a></li>
+                    <li><a href="#honors">学校荣誉</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </div>
+       
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>扬州经济技术开发区实验中学</h2>
+            <p>由国家级开发区——扬州经济技术开发区创办的一所现代化、国际化完全中学。学校秉持"树人为本，服务社会"办学宗旨，与扬中树人学校合作办学，致力于培养创新拔尖人才。</p>
+            <p>本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准。</p>
+            <a href="#about" class="btn">了解更多</a>
+            <a href="#contact" class="btn btn-outline">联系我们</a>
+        </div>
+    </section>
+
+    <!-- 关于学校 -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>学校简介</h2>
+                <p>扬州经济技术开发区实验中学是由国家级开发区——扬州经济技术开发区创办的一所现代化、国际化完全中学，位于扬州市南部古运河畔的临港新城区。</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="men.webp" alt="学校校园">
+                </div>
+                <div class="about-text">
+                    <h3>现代化、国际化完全中学</h3>
+                    <p>学校总用地面积82100平方米，总建筑面积近7万平方米，总投资1.8亿元。由上海同济大学规划设计研究院设计，校园建筑以浅灰色为主色调，同时使用大片的玻璃幕墙映衬出蓝天白云，为建筑立面增添了绚丽的色彩，让整个校园呈现出都市现代感。</p>
+                    <p>学校设有初中部60个班（含国际部18个班）和高中部30个班（含国际部12个班），可容纳4500名学生就读。与扬中树人学校合作办学，配置玻璃幕墙建筑与多项现代化设施。</p>
+                    <p>以"国际性、实验性、示范性"为定位，努力践行"创新教育、精致学校、幸福师生"的理念。大力构建教学共同体，推进创新拔尖人才的培养工程；大力推进校本课程建设，实施人才强校战略；大力实施素质教育，加大教育开放和国际交流合作。</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">82100</span>
+                            <span class="stat-label">占地面积(㎡)</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4500</span>
+                            <span class="stat-label">学生容量</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">104</span>
+                            <span class="stat-label">教职工</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">90</span>
+                            <span class="stat-label">教学班级</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学校特色 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>学校特色</h2>
+                <p>学校秉持先进教育理念，构建特色教育体系，致力于培养具有国际视野和创新精神的优秀人才</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>合作办学</h3>
+                    <p>与扬中树人学校合作办学，共享优质教育资源，秉承"树人为本，服务社会"办学宗旨，坚持走"质量立校、科研强校、文化兴校、特色亮校"之路。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>国际化教育</h3>
+                    <p>设有初中部国际部18个班和高中部国际部12个班，开展国际交流合作，引进先进教育理念，培养学生国际视野和跨文化沟通能力。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>创新人才培养</h3>
+                    <p>实施创新拔尖人才培养工程，构建树人少科院、快乐大讲堂等德育载体，初步形成了"自尊、自信、自律、自强、自立"的主体参与式品牌德育模式。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>现代化设施</h3>
+                    <p>配置玻璃幕墙建筑与多项现代化设施，2025年完成篮球场改造工程，采购功能教室设备并升级录播教室，打造数字化智慧校园。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学校荣誉 -->
+    <section id="honors">
+        <div class="container">
+            <div class="section-title">
+                <h2>学校荣誉</h2>
+                <p>学校在教育教学各方面取得优异成绩，荣获多项省市级荣誉称号</p>
+            </div>
+            
+            <div class="honors">
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>江苏省示范初中</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>扬州市绿色学校</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>扬州市数字化校园</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>开发区"优秀家长学校"示范点</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>扬州市文明食堂</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>扬州市文明宿舍</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>扬州市优美校园</span>
+                </div>
+                <div class="honor-badge">
+                    <i class="fas fa-award"></i>
+                    <span>初三教学质量优胜单位</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>联系</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>地址：江苏省扬州市邗江区唐桥路与毓秀路交叉口西50米 </span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>教务处电话：0514-89991003</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>工作时间：周一至周五 8:00-18:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>微信公众号（请从此处获取官方内容，本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准。）</h3>
+                    <div class="qrcode">
+                        <!-- 这里应该是微信公众号二维码 -->
+                        <div style="width: 100px; height: 100px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <img src="ma.jpeg" alt="ma">
+                            
+                        </div>
+                        <p>扫描关注</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // 点击菜单项关闭移动菜单
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 滚动时高亮当前导航项
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

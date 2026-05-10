@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站建设中 - 扬州经济技术开发区实验中学</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a5fb4, #2d9cdb);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            color: #1a5fb4;
+            text-align: left;
+            line-height: 1.3;
+        }
+        
+        .logo-text p {
+            color: #666;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .status-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 48px;
+        }
+        
+        h2 {
+            color: #1a5fb4;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .message {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid #1a5fb4;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            background-color: #fff8e6;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #ffeaa7;
+            margin: 20px 0;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .contact-info h3 {
+            color: #1a5fb4;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .contact-info p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .countdown {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+        }
+        
+        .countdown h3 {
+            color: #1a5fb4;
+            margin-bottom: 10px;
+        }
+        
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 15px 0;
+        }
+        
+        .timer span {
+            padding: 5px 10px;
+            background-color: white;
+            border-radius: 5px;
+            margin: 0 5px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .logo-text h1, .logo-text p {
+                text-align: center;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .timer {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .timer span {
+                display: block;
+                margin: 5px auto;
+                width: 50px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-school"></i>
+            </div>
+            <div class="logo-text">
+                <h1>扬州经济技术开发区实验中学</h1>
+                <p>学生信息交流平台</p>
+            </div>
+        </div>
+        
+        <div class="status-icon">
+            <i class="fas fa-tools"></i>
+        </div>
+        
+        <h2>网站暂时无法访问</h2>
+        
+        <div class="message">
+            <p>尊敬的用户，您好！</p>
+            <p>本网站是<strong>扬州经济技术开发区实验中学学生自发建设</strong>的非官方信息交流平台，旨在为学生、家长和校友提供一个信息分享与交流的空间。</p>
+            
+            <div class="highlight">
+                <p><i class="fas fa-exclamation-triangle"></i> 为符合相关法律法规要求，我们正在与学校相关部门积极沟通，争取获得运营许可。</p>
+            </div>
+            
+            <p>目前网站处于筹备阶段，上线时间尚未确定。我们理解您对本平台的期待，并将尽快推进相关工作。</p>
+            <p>感谢您的理解与支持！</p>
+        </div>
+        
+        <div class="countdown">
+            <h3>预计沟通完成时间</h3>
+            <div class="timer">
+                <span id="days">00</span>天
+                <span id="hours">00</span>时
+                <span id="minutes">00</span>分
+            </div>
+            <p>此时间为预估，实际进度可能有所调整</p>
+        </div>
+        
+        <div class="contact-info">
+            <h3><i class="fas fa-info-circle"></i> 关于本平台</h3>
+            <p>• 由学生志愿者自发创建与维护</p>
+            <p>• 非官方性质，信息仅供参考</p>
+            <p>• 正在与学校沟通合法运营事宜</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023-2024 扬州经济技术开发区实验中学学生信息平台 · 本网站为学生自发建设</p>
+        <p>最后更新: 2023年12月</p>
+    </footer>
+
+    <script>
+        // 设置预计完成时间（示例：30天后）
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 9999999999999999999999999);
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+        }
+        
+        // 初始化倒计时
+        updateCountdown();
+        // 每分钟更新一次
+        setInterval(updateCountdown, 60000);
+        
+        // 页面加载时的简单动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'opacity 0.8s, transform 0.8s';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
