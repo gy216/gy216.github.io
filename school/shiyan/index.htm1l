@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>扬州经济技术开发区实验中学 - 现代化国际化完全中学</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="扬州经开区实验网站 ，本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准" />
+    <!-- 定义网页的关键词（早期用于SEO，现在大部分搜索引擎已忽略） -->
+<meta name="keywords" content="经开区实验" />
+    <!--页面更新频率（对搜索引擎的建议） -->
+    <meta name="revisit-after" content="1 days">
+    <!--作者和版权信息 -->
+    <meta name="author" content="81team">
+	<meta name="copyright" content="© 2025-2030 81team">
+	<meta name="designer" content="81team">
+	
+	
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "扬州经济技术开发区实验中学",
+  "description": "扬州经开区实验网站 ，本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准",
+  "url": "https://rottybun.com/",
+  "author": {
+    "@type": "Organization",
+    "name": "扬州经济技术开发区实验中学",
+    "url": "https://rottybun.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "扬州经济技术开发区实验中学",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rottybun.com/logo.png"
+    }
+  },
+  "datePublished": "2026-05-10",
+  "dateModified": "2025-05-10"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Home",
+  "name": "扬州经济技术开发区实验中学",
+  "description": "扬州经开区实验网站 ，本网站为 扬州经济技术开发区实验中学 学生自发建设的非官方信息交流平台。网站内容由学生维护，仅供参考，不保证其绝对准确性与时效性。所有官方信息请以学校公众号为准",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "扬州市",
+    "addressRegion": "江苏省"
+  },
+  "numberOfStudents": 4500,
+  "founder": "扬州经济技术开发区",
+  "foundingDate": "2026年",
+  "url": "https://rottybun.com/"
+}
+</script>
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     <style>
         * {
             margin: 0;
@@ -792,6 +859,23 @@
                         <li>
                             <i class="fas fa-clock"></i>
                             <span>工作时间：周一至周五 8:00-18:00</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>友情链接01（本人站点）：<a href="https://www.caellab.com/">CloudCloud</a></span>
+                            </li>
+                        <li>   
+                        <i class="fas fa-clock"></i>
+                            <span>友情链接02：<a href="https://www.baidu.com">百度</a></span>
+                            </li>
+                            <li> 
+                            <i class="fas fa-clock"></i>
+                            <span>友情链接03：<a href="https://gybc.top">果园编程</a></span>
+                             </li>
+                              <li> 
+                              <i class="fas fa-clock"></i>
+                            <span>友情链接04：<a href="https://gystu.top">上古米歇尔</a></span>
+                             </li>
                         </li>
                     </ul>
                 </div>
