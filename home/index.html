@@ -98,14 +98,54 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
+<!--这是webfontloader，果园创建  -->
+<script src="https://cdn.bootcdn.net/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
 
+<script>
+WebFont.load({
+  custom: {
+    families: ['ZCOOL KuaiLe'],
+    urls: ['https://fonts.font.im/css?family=ZCOOL+KuaiLe&display=swap']
+  },
+  active: function() {
+	 console.log('Webfontloader：🎉 自定义字体“ZCOOL KuaiLe”已成功加载并应用！');
+    // 字体加载成功后执行的回调函数
+  },
+  inactive: function() {
+   console.log('Webfontloader：🎉 自定义字体“ZCOOL KuaiLe”未成功加载');
+    // 字体加载失败后执行的回调函数
+  }
+});
+</script>
+
+<style>
+    body {
+  font-family: Arial, sans-serif; /* 这是备用的安全字体 */
+}
+
+.wf-active body {
+  /* 此时，全局应用您想要的中文字体 */
+  font-family: 'ZCOOL KuaiLe', Arial, sans-serif;
+}
+</style>
+
+<!--注释内容  
+WebFont.load({
+  custom: {
+    families: ['ZCOOL KuaiLe'],
+    urls: ['ZCOOLFR.css']
+  },
+  active: function() {
+    // 字体加载成功后执行的回调函数
+  },
+  inactive: function() {
+    // 字体加载失败后执行的回调函数
+  }
+});
+-->
+    
+    
+    
 
 
 
@@ -796,6 +836,7 @@
         <p>果园编程工作室®、果园编程®、果园 Logo、GAutumn Design、Glyphix、果园页面专用许可证、果园AI HUB、物理旅行者和果园标志为果园编程的商标。</p>
         <p>果园编程工作室是由青少年自发组成的社群组织，其性质不属于法定非营利机构或企业，亦不具备企业法人资格。</p>
         <p>Copyright © 2021–2026 果园编程® 版权所有</p>
+        <a href="https://icp.gov.moe/?keyword=20260216" target="_blank">萌ICP备20260216号</a>
     </div>
 </footer>
     </div>
