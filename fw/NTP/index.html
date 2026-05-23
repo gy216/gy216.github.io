@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>果园编程时间服务</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Courier New', monospace;
+            background-color: #0a0a14;
+            color: #e0e0ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
+            min-height: 100vh;
+        }
+
+        /* 赛博朋克风格容器 */
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 头部样式 */
+        .cyber-header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            position: relative;
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.8) 0%, rgba(0, 10, 30, 0.9) 100%);
+            border-radius: 10px;
+        }
+
+        .cyber-header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .cyber-header h2 {
+            font-size: 1.8rem;
+            color: #a0a0ff;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .studio-name {
+            font-size: 1.5rem;
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            margin-top: 10px;
+        }
+
+        /* 导航按钮 */
+        .nav-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #00aaff, #0088cc);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-button:hover {
+            background: linear-gradient(45deg, #00ffff, #00aaff);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* 赛博朋克卡片 */
+        .cyber-card {
+            background: rgba(10, 15, 30, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        }
+
+        .cyber-card h3 {
+            color: #00ffff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cyber-card h3 i {
+            margin-right: 10px;
+        }
+
+        .server-card {
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+        }
+
+        .server-card h3 {
+            color: #ff00ff;
+        }
+
+        .server-card:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+        }
+
+        /* 服务器地址样式 */
+        .server-address {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #4444ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #00ffaa;
+            text-align: center;
+            word-break: break-all;
+            box-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
+        }
+
+        .server-info {
+            color: #a0a0ff;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* 配置步骤 */
+        .config-steps {
+            margin-top: 20px;
+        }
+
+        .step {
+            background: rgba(20, 25, 50, 0.5);
+            border-left: 3px solid #00ffff;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #00ffff;
+            color: #000;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* 操作系统图标 */
+        .os-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .windows { color: #00a4ef; }
+        .macos { color: #999999; }
+        .linux { color: #fbbd08; }
+
+        /* 页脚 */
+        .cyber-footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #4444ff;
+            color: #8888cc;
+            font-size: 0.9rem;
+            background: rgba(5, 10, 25, 0.7);
+            border-radius: 10px;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: #00aaff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .cyber-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cyber-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .cyber-card {
+                padding: 20px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .server-address {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cyber-header h1 {
+                font-size: 2rem;
+            }
+            
+            .cyber-header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .cyber-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.7); }
+        }
+
+        .glow-text {
+            animation: glow 2s infinite;
+        }
+
+        /* 网格背景效果 */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 网格背景 -->
+    <div class="grid-bg"></div>
+    
+    <div class="cyber-container">
+        <!-- 头部 -->
+        <header class="cyber-header">
+            <h1 class="glow-text">果园编程时间服务</h1>
+            <h2>精准时间同步 · 专业NTP服务</h2>
+            <div class="studio-name">果园编程 · 青少年工作室</div>
+            <a href="/" class="nav-button">
+                <i class="fas fa-home"></i> 返回主页
+            </a>
+        </header>
+
+        <!-- 主要内容 -->
+        <div class="main-content">
+            <!-- 服务器信息 -->
+            <div class="cyber-card server-card">
+                <h3><i class="fas fa-server"></i> 时间服务器</h3>
+                <p>果园编程现提供2台高精度时间服务器，满足不同场景的时间同步需求：</p>
+                
+                <div class="server-address">
+                    <i class="fas fa-cloud"></i> time.gybc.top
+                </div>
+                <div class="server-info">
+                    <strong>位置：</strong>阿里云第三层次服务器<br>
+                    <strong>服务：</strong>IPv4 NTP服务<br>
+                    <strong>用途：</strong>适用于一般时间校准工作，稳定性高，延迟低
+                </div>
+                
+                <div class="server-address">
+                    <i class="fas fa-satellite"></i> time1.gybc.top
+                </div>
+                <div class="server-info">
+                    <strong>位置：</strong>中国西安授时中心第二层次服务器<br>
+                    <strong>服务：</strong>IPv4 NTP服务<br>
+                    <strong>用途：</strong>适用于一般时间校准工作，稳定性高，延迟低
+                </div>
+                
+                <p style="margin-top: 15px; color: #a0ffa0;">
+                    <i class="fas fa-info-circle"></i> 提示：您可以选择其中任意一个服务器进行时间同步
+                </p>
+            </div>
+
+            <!-- 服务介绍 -->
+            <div class="cyber-card">
+                <h3><i class="fas fa-clock"></i> 服务介绍</h3>
+                <p>NTP（Network Time Protocol）是一种旨在将网络上计算机时钟同步到统一时间基准的协议。NTP确保了全球数十亿设备、海底甚至太空设备的可靠性。</p>
+                
+                <p style="margin-top: 15px;">准确的计时对于许多已经革新且对我们日常生活至关重要的应用至关重要：</p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                    <span style="background: rgba(0, 100, 255, 0.2); padding: 5px 10px; border-radius: 3px; border: 1px solid #4444ff;">
+                        <i class="fas fa-satellite"></i> 卫星通信
+                    </span>
+                    <span style="background: rgba(0, 200, 100, 0.2); padding: 5px 10px; border-radius: 3px; border: 1px solid #44ff44;">
+                        <i class="fas fa-map-marker-alt"></i> GPS定位
+                    </span>
+                    <span style="background: rgba(200, 0, 255, 0.2); padding: 5px 10px; border-radius: 3px; border: 1px solid #ff44ff;">
+                        <i class="fas fa-wifi"></i> 5G网络
+                    </span>
+                    <span style="background: rgba(255, 200, 0, 0.2); padding: 5px 10px; border-radius: 3px; border: 1px solid #ffff44;">
+                        <i class="fas fa-chart-line"></i> 金融服务
+                    </span>
+                    <span style="background: rgba(255, 0, 100, 0.2); padding: 5px 10px; border-radius: 3px; border: 1px solid #ff4444;">
+                        <i class="fas fa-heartbeat"></i> 医疗健康
+                    </span>
+                </div>
+                
+                <p style="margin-top: 20px; font-style: italic; color: #a0a0ff;">
+                    "果园编程NTP项目致力于在NTP协议中进行研究与开发，为全球时间同步提供可靠服务。"
+                </p>
+            </div>
+
+            <!-- Windows配置 -->
+            <div class="cyber-card">
+                <h3><i class="fab fa-windows windows os-icon"></i> Windows 7/8/8.1/10 客户端配置</h3>
+                <div class="config-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        打开"控制面板" > "时钟、语言和区域" > "日期和时间"
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        点击"Internet时间"选项卡 > "更改设置"
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        勾选"与 Internet 时间服务器同步"
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        在"服务器"一栏填入：
+                        <div class="server-address" style="margin-top: 10px; font-size: 1rem;">
+                            time.gybc.top
+                        </div>
+                        <div style="text-align: center; margin: 5px 0; color: #ffaa00;">或</div>
+                        <div class="server-address" style="font-size: 1rem;">
+                            time1.gybc.top
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        点击"立即更新" > "确定"保存设置
+                    </div>
+                </div>
+            </div>
+
+            <!-- macOS配置 -->
+            <div class="cyber-card">
+                <h3><i class="fab fa-apple macos os-icon"></i> macOS 配置</h3>
+                <div class="config-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        点击屏幕左上角苹果菜单 > "系统偏好设置"
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        选择"日期与时间"
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        点击锁图标并输入密码以解锁设置
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        在"日期与时间"选项卡中，取消勾选"自动设置日期与时间"
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        点击"时区"选项卡，确保时区设置正确
+                    </div>
+                    <div class="step">
+                        <span class="step-number">6</span>
+                        返回"日期与时间"选项卡，点击"高级"按钮
+                    </div>
+                    <div class="step">
+                        <span class="step-number">7</span>
+                        在NTP服务器字段中填入：
+                        <div class="server-address" style="margin-top: 10px; font-size: 1rem;">
+                            time.gybc.top
+                        </div>
+                        <div style="text-align: center; margin: 5px 0; color: #ffaa00;">或</div>
+                        <div class="server-address" style="font-size: 1rem;">
+                            time1.gybc.top
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">8</span>
+                        勾选"使用网络时间"并设置同步频率
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linux配置 -->
+            <div class="cyber-card">
+                <h3><i class="fab fa-linux linux os-icon"></i> Linux 配置</h3>
+                <p>Linux系统配置NTP客户端有多种方法，具体取决于您使用的发行版和初始化系统。</p>
+                
+                <div style="background: rgba(30, 30, 60, 0.5); padding: 15px; border-radius: 5px; margin-top: 15px; border: 1px solid #4444ff;">
+                    <h4 style="color: #ffff00; margin-bottom: 10px;">常用配置方法：</h4>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: #00ffaa;">1. 使用timedatectl（Systemd系统）</strong>
+                        <div style="background: #000; color: #00ff00; padding: 10px; border-radius: 3px; margin-top: 5px; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+                            sudo timedatectl set-ntp true<br>
+                            sudo timedatectl set-ntp false<br>
+                            sudo timedatectl set-timezone Asia/Shanghai
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: #00ffaa;">2. 编辑ntp.conf文件</strong>
+                        <div style="background: #000; color: #00ff00; padding: 10px; border-radius: 3px; margin-top: 5px; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+                            server time.gybc.top iburst<br>
+                            server time1.gybc.top iburst
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <strong style="color: #00ffaa;">3. 使用chrony（现代推荐）</strong>
+                        <div style="background: #000; color: #00ff00; padding: 10px; border-radius: 3px; margin-top: 5px; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+                            server time.gybc.top iburst<br>
+                            server time1.gybc.top iburst
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; color: #ffaa00;">
+                    <i class="fas fa-lightbulb"></i> 提示：由于Linux系统配置方法多样，建议根据您的具体发行版搜索详细配置教程。能使用Linux的用户通常具备一定的技术能力。
+                </p>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <a href="https://www.google.com/search?q=linux+ntp+客户端配置" target="_blank" class="nav-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        <i class="fas fa-search"></i> 搜索Linux NTP配置
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="cyber-footer">
+            <p>© 2025 果园编程 · 青少年工作室 | 专业时间服务</p>
+            <p>精准同步每一秒，连接数字世界的脉搏</p>
+            
+            <div class="footer-links">
+                <a href="/"><i class="fas fa-home"></i> 返回主页</a>
+            </div>
+            
+            <p style="margin-top: 15px; font-size: 0.8rem; color: #6666aa;">
+                <i class="fas fa-exclamation-circle"></i> 本服务仅供技术交流与学习使用
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有卡片添加点击效果
+            const cards = document.querySelectorAll('.cyber-card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // 当前时间显示
+            function updateTime() {
+                const now = new Date();
+                const timeStr = now.toLocaleString('zh-CN', { 
+                    year: 'numeric', 
+                    month: '2-digit', 
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                
+                // 如果有时间显示元素，更新它
+                const timeElement = document.getElementById('current-time');
+                if (timeElement) {
+                    timeElement.textContent = `当前时间: ${timeStr}`;
+                }
+            }
+            
+            // 创建时间显示元素
+            const timeDisplay = document.createElement('div');
+            timeDisplay.id = 'current-time';
+            timeDisplay.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: rgba(0, 20, 40, 0.8);
+                color: #00ffff;
+                padding: 10px 15px;
+                border-radius: 5px;
+                font-family: 'Courier New', monospace;
+                font-size: 0.9rem;
+                border: 1px solid #00ffff;
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+                z-index: 1000;
+            `;
+            document.body.appendChild(timeDisplay);
+            
+            // 初始更新并设置定时器
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            // 添加服务器状态检查（模拟）
+            const serverAddresses = document.querySelectorAll('.server-address');
+            serverAddresses.forEach(server => {
+                server.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 0 15px rgba(0, 255, 255, 0.7)';
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                server.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 0 10px rgba(0, 100, 255, 0.3)';
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

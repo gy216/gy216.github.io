@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 安全TOTP生成器 (使用网络时间)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #7209b7;
+            --success-color: #4cc9f0;
+            --danger-color: #f72585;
+            --warning-color: #f8961e;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .card {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .secret-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .secret-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        .secret-display {
+            background-color: #f8f9fa;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 1.2rem;
+            word-break: break-all;
+            border: 2px dashed #dee2e6;
+            color: var(--dark-color);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn i {
+            margin-right: 10px;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            background-color: #e8f4ff;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .time-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .time-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            margin-top: 5px;
+        }
+        
+        .time-sync-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .sync-success {
+            background-color: rgba(76, 201, 240, 0.2);
+            color: #4cc9f0;
+        }
+        
+        .sync-warning {
+            background-color: rgba(248, 150, 30, 0.2);
+            color: #f8961e;
+        }
+        
+        .sync-error {
+            background-color: rgba(247, 37, 133, 0.2);
+            color: #f72585;
+        }
+        
+        .totp-display {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f0f4ff, #e3e9ff);
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .totp-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+        
+        .totp-code {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 15px;
+            color: var(--dark-color);
+            font-family: 'Monaco', 'Consolas', monospace;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .time-display {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .time-display i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4cc9f0, var(--primary-color));
+            width: 100%;
+            border-radius: 4px;
+            transition: width 1s linear;
+        }
+        
+        .warning-box {
+            background: linear-gradient(to right, #fff5f5, #ffeaea);
+            border-left: 5px solid var(--danger-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-top: 25px;
+        }
+        
+        .warning-title {
+            display: flex;
+            align-items: center;
+            color: var(--danger-color);
+            margin-bottom: 15px;
+        }
+        
+        .warning-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .warning-list {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .warning-list li {
+            margin-bottom: 8px;
+        }
+        
+        .test-key {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e8f4ff;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+        }
+        
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .copy-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .totp-code {
+                font-size: 3.5rem;
+                letter-spacing: 10px;
+            }
+            
+            .secret-input, .btn {
+                padding: 12px 15px;
+            }
+            
+            .time-info {
+                flex-direction: column;
+            }
+            
+            .time-item {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .totp-code {
+                font-size: 2.8rem;
+                letter-spacing: 5px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-globe"></i>
+            <h1>安全TOTP生成器 (网络时间)</h1>
+            <p>基于网络时间的一次性密码生成工具 | 时间同步更准确</p>
+        </div>
+        
+        <div class="content">
+            <!-- 时间同步信息 -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-clock"></i>
+                    <h2>时间同步状态</h2>
+                </div>
+                
+                <div class="time-info">
+                    <div class="time-item">
+                        <div class="time-value" id="networkTime">--:--:--</div>
+                        <div class="time-label">网络时间 (UTC)</div>
+                    </div>
+                    
+                    <div class="time-item">
+                        <div class="time-value" id="localTime">--:--:--</div>
+                        <div class="time-label">本地时间</div>
+                    </div>
+                    
+                    <div class="time-item">
+                        <div class="time-value" id="timeDiff">0秒</div>
+                        <div class="time-label">时间差</div>
+                    </div>
+                    
+                    <div class="time-item">
+                        <div id="syncStatus" class="time-sync-status sync-warning">同步中...</div>
+                        <div class="time-label">同步状态</div>
+                    </div>
+                </div>
+                
+                <button id="syncTimeBtn" class="btn" style="width: 100%;">
+                    <i class="fas fa-sync-alt"></i> 立即同步网络时间
+                </button>
+            </div>
+            
+            <!-- 密钥输入区域 -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-key"></i>
+                    <h2>密钥设置</h2>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">输入Base32密钥</label>
+                    <input type="text" id="secretInput" class="secret-input" 
+                           value="JBSWY3DPEHPK3PXP" placeholder="在此处输入您的Base32密钥...">
+                </div>
+                
+                <button id="generateBtn" class="btn">
+                    <i class="fas fa-sync-alt"></i> 生成TOTP验证码
+                </button>
+            </div>
+            
+            <!-- TOTP显示区域 -->
+            <div class="totp-display">
+                <div id="codeDisplay" class="totp-code">------</div>
+                <div class="time-display">
+                    <i class="fas fa-clock"></i>
+                    <span id="timeLeft">剩余时间: 30秒</span>
+                </div>
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar" style="width: 100%;"></div>
+                </div>
+            </div>
+            
+            <!-- 测试密钥区域 -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-vial"></i>
+                    <h2>测试密钥</h2>
+                </div>
+                
+                <p style="margin-bottom: 15px;">尝试使用此标准测试密钥进行验证：</p>
+                
+                <div class="secret-display">JBSWY3DPEHPK3PXP</div>
+                
+                <div class="test-key">
+                    <div>
+                        <p style="font-weight: 600; margin-bottom: 5px;">密钥说明</p>
+                        <p style="font-size: 0.9rem; color: var(--gray-color);">
+                            对应字符串 "HelloWorld"，应与Google Authenticator显示相同数字
+                        </p>
+                    </div>
+                    <button id="copyTestKey" class="copy-btn">
+                        <i class="far fa-copy"></i> 复制
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 安全警告区域 -->
+            <div class="warning-box">
+                <div class="warning-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>重要安全警告</h2>
+                </div>
+                
+                <p style="margin-bottom: 15px; font-weight: 600;">
+                    此工具仅用于学习和演示目的，不要在真实账户中使用！
+                </p>
+                
+                <ul class="warning-list">
+                    <li>密钥在URL中可能被泄露（如果分享页面）</li>
+                    <li>浏览器历史记录会保存密钥</li>
+                    <li>恶意浏览器扩展可以窃取密钥</li>
+                    <li>服务器日志可能记录密钥</li>
+                    <li>不支持恢复码、账户锁定等安全功能</li>
+                </ul>
+                
+                <p style="font-size: 0.9rem;">
+                    生产环境请使用专业的认证器应用，如Google Authenticator、Microsoft Authenticator等。
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 纯HTML TOTP生成器 | 使用网络时间 | 仅供学习和演示用途</p>
+        </div>
+    </div>
+
+    <script>
+        // 网络时间同步相关变量
+        let networkTimeOffset = 0; // 网络时间与本地时间的差值（毫秒）
+        let isTimeSynced = false;
+        let lastSyncTime = 0;
+        
+        // 多个NTP服务器列表（增加可靠性）
+        const NTP_SERVERS = [
+            'time.google.com',
+            'time.windows.com',
+            'time.apple.com',
+            'time.cloudflare.com',
+            'pool.ntp.org'
+        ];
+        
+        // 获取网络时间的函数
+        async function getNetworkTime() {
+            const syncStatus = document.getElementById('syncStatus');
+            
+            // 尝试从多个NTP服务器获取时间
+            for (let server of NTP_SERVERS) {
+                try {
+                    const time = await fetchTimeFromServer(server);
+                    if (time) {
+                        networkTimeOffset = time - Date.now();
+                        isTimeSynced = true;
+                        lastSyncTime = Date.now();
+                        syncStatus.textContent = '已同步';
+                        syncStatus.className = 'time-sync-status sync-success';
+                        updateTimeDisplay();
+                        return time;
+                    }
+                } catch (error) {
+                    console.log(`服务器 ${server} 失败:`, error);
+                }
+            }
+            
+            // 所有服务器都失败
+            syncStatus.textContent = '同步失败';
+            syncStatus.className = 'time-sync-status sync-error';
+            isTimeSynced = false;
+            throw new Error('所有时间服务器同步失败');
+        }
+        
+        // 从单个服务器获取时间
+        async function fetchTimeFromServer(server) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('HEAD', `https://${server}/`, true);
+                xhr.timeout = 5000;
+                
+                xhr.onload = function() {
+                    const dateHeader = xhr.getResponseHeader('Date');
+                    if (dateHeader) {
+                        const serverTime = new Date(dateHeader).getTime();
+                        resolve(serverTime);
+                    } else {
+                        reject(new Error('没有Date响应头'));
+                    }
+                };
+                
+                xhr.onerror = reject;
+                xhr.ontimeout = reject;
+                
+                xhr.send();
+            });
+        }
+        
+        // 获取当前时间（优先使用网络时间）
+        function getCurrentTime() {
+            if (isTimeSynced) {
+                // 使用网络时间，考虑从上次同步到现在的时间流逝
+                const timeSinceLastSync = Date.now() - lastSyncTime;
+                return Date.now() + networkTimeOffset + timeSinceLastSync;
+            } else {
+                // 回退到本地时间
+                return Date.now();
+            }
+        }
+        
+        // 更新时间显示
+        function updateTimeDisplay() {
+            const now = new Date(getCurrentTime());
+            const localNow = new Date();
+            
+            // 网络时间显示
+            const networkTimeElement = document.getElementById('networkTime');
+            const localTimeElement = document.getElementById('localTime');
+            const timeDiffElement = document.getElementById('timeDiff');
+            
+            // 格式化时间
+            const formatTime = (date) => {
+                return date.toISOString().substr(11, 8) + ' UTC';
+            };
+            
+            networkTimeElement.textContent = formatTime(now);
+            localTimeElement.textContent = formatTime(localNow);
+            
+            // 计算时间差
+            const diff = Math.abs(now - localNow);
+            const diffSeconds = Math.floor(diff / 1000);
+            timeDiffElement.textContent = `${diffSeconds}秒`;
+            
+            // 根据时间差设置颜色
+            if (diffSeconds < 2) {
+                timeDiffElement.style.color = '#4cc9f0'; // 绿色
+            } else if (diffSeconds < 5) {
+                timeDiffElement.style.color = '#f8961e'; // 橙色
+            } else {
+                timeDiffElement.style.color = '#f72585'; // 红色
+            }
+        }
+        
+        // 完整的TOTP实现（使用网络时间）
+        function base32ToBytes(base32) {
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+            let bits = 0, value = 0, output = [];
+            
+            // 清理输入
+            base32 = base32.toUpperCase().replace(/=+$/, '').replace(/\s/g, '');
+            
+            for (let i = 0; i < base32.length; i++) {
+                const char = base32.charAt(i);
+                const index = alphabet.indexOf(char);
+                if (index === -1) continue;
+                
+                value = (value << 5) | index;
+                bits += 5;
+                
+                if (bits >= 8) {
+                    output.push((value >>> (bits - 8)) & 0xFF);
+                    bits -= 8;
+                }
+            }
+            return new Uint8Array(output);
+        }
+        
+        function updateProgressBar(remainingSeconds) {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (remainingSeconds / 30) * 100;
+            progressBar.style.width = percentage + '%';
+            
+            // 根据剩余时间改变颜色
+            if (remainingSeconds <= 10) {
+                progressBar.style.background = 'linear-gradient(to right, #f72585, #f8961e)';
+            } else if (remainingSeconds <= 20) {
+                progressBar.style.background = 'linear-gradient(to right, #f8961e, #4cc9f0)';
+            } else {
+                progressBar.style.background = 'linear-gradient(to right, #4cc9f0, #4361ee)';
+            }
+        }
+        
+        function generateTOTP() {
+            const secret = document.getElementById('secretInput').value.trim();
+            if (!secret) {
+                alert('请输入密钥');
+                return;
+            }
+            
+            try {
+                // 1. 解码密钥
+                const key = base32ToBytes(secret);
+                
+                // 2. 计算时间步数（30秒为一步）- 使用网络时间
+                const timeStep = 30;
+                const timestamp = Math.floor(getCurrentTime() / 1000);
+                const timeCounter = Math.floor(timestamp / timeStep);
+                
+                // 3. 时间步数转8字节大端序
+                const timeBuffer = new ArrayBuffer(8);
+                const timeView = new DataView(timeBuffer);
+                timeView.setUint32(0, Math.floor(timeCounter / 0x100000000));
+                timeView.setUint32(4, timeCounter & 0xFFFFFFFF);
+                
+                // 4. 使用Web Crypto API进行HMAC-SHA1
+                crypto.subtle.importKey(
+                    'raw', 
+                    key, 
+                    { name: 'HMAC', hash: 'SHA-1' }, 
+                    false, 
+                    ['sign']
+                )
+                .then(cryptoKey => {
+                    return crypto.subtle.sign('HMAC', cryptoKey, timeBuffer);
+                })
+                .then(signature => {
+                    // 5. 动态截断
+                    const hmac = new Uint8Array(signature);
+                    const offset = hmac[hmac.length - 1] & 0x0F;
+                    
+                    // 6. 取4字节
+                    let code = (
+                        ((hmac[offset] & 0x7F) << 24) |
+                        ((hmac[offset + 1] & 0xFF) << 16) |
+                        ((hmac[offset + 2] & 0xFF) << 8) |
+                        (hmac[offset + 3] & 0xFF)
+                    );
+                    
+                    // 7. 取6位数
+                    code = code % 1000000;
+                    
+                    // 8. 格式化输出
+                    const totpCode = code.toString().padStart(6, '0');
+                    const codeDisplay = document.getElementById('codeDisplay');
+                    codeDisplay.textContent = totpCode;
+                    
+                    // 添加脉冲动画
+                    codeDisplay.classList.add('pulse');
+                    setTimeout(() => {
+                        codeDisplay.classList.remove('pulse');
+                    }, 500);
+                    
+                    // 9. 计算剩余时间
+                    const remaining = timeStep - (timestamp % timeStep);
+                    document.getElementById('timeLeft').textContent = 
+                        `剩余时间: ${remaining}秒`;
+                    
+                    // 更新进度条
+                    updateProgressBar(remaining);
+                })
+                .catch(err => {
+                    console.error('生成失败:', err);
+                    document.getElementById('codeDisplay').textContent = '错误';
+                });
+                
+            } catch (err) {
+                alert('密钥格式错误！必须是Base32编码（字母A-Z2-7）');
+            }
+        }
+        
+        // 复制测试密钥
+        document.getElementById('copyTestKey').addEventListener('click', function() {
+            const testKey = 'JBSWY3DPEHPK3PXP';
+            navigator.clipboard.writeText(testKey).then(() => {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                this.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.backgroundColor = '';
+                }, 2000);
+            });
+        });
+        
+        // 页面加载时初始化
+        window.onload = async function() {
+            // 更新时间显示
+            setInterval(updateTimeDisplay, 1000);
+            
+            // 初始同步时间
+            updateTimeDisplay();
+            
+            // 尝试同步网络时间
+            try {
+                await getNetworkTime();
+            } catch (error) {
+                console.warn('网络时间同步失败，使用本地时间:', error);
+            }
+            
+            // 生成初始TOTP
+            generateTOTP();
+            
+            // 绑定生成按钮事件
+            document.getElementById('generateBtn').addEventListener('click', generateTOTP);
+            
+            // 绑定同步按钮事件
+            document.getElementById('syncTimeBtn').addEventListener('click', async function() {
+                const btn = this;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 同步中...';
+                btn.disabled = true;
+                
+                try {
+                    await getNetworkTime();
+                    generateTOTP(); // 重新生成TOTP
+                } catch (error) {
+                    console.error('时间同步失败:', error);
+                } finally {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            });
+            
+            // 每秒更新TOTP（如果需要）
+            setInterval(() => {
+                const timestamp = Math.floor(getCurrentTime() / 1000);
+                if (timestamp % 30 === 0) {
+                    generateTOTP();
+                } else {
+                    // 更新剩余时间显示
+                    const remaining = 30 - (timestamp % 30);
+                    document.getElementById('timeLeft').textContent = 
+                        `剩余时间: ${remaining}秒`;
+                    updateProgressBar(remaining);
+                }
+                
+                // 更新时间显示
+                updateTimeDisplay();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
