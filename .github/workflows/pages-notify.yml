@@ -1,35 +1,39 @@
-name: Pages部署完成邮件通知
+name: Pages部署完成邮件通知(163邮箱)
 on:
-  page_build:
+  page_build: # GitHub Pages构建完毕自动触发
 
 jobs:
-  send-mail:
+  send-notify-mail:
     runs-on: ubuntu-latest
     steps:
-      - name: 获取仓库提交总次数
-        id: get_commit_count
+      # 克隆仓库统计总提交次数
+      - name: 克隆仓库获取总提交数
         run: |
-          git clone https://github.com/${{ github.repository }} repo_tmp
-          cd repo_tmp
-          echo "COMMIT_COUNT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
+          git clone https://github.com/${{ github.repository }} tmp_repo
+          cd tmp_repo
+          echo "TOTAL_COMMIT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
 
-      - name: 发送部署完成通知邮件
+      # 发送163邮箱通知
+      - name: 发送部署完成邮件
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: ${{ secrets.MAIL_SMTP_HOST }}
-          server_port: ${{ secrets.MAIL_SMTP_PORT }}
-          username: ${{ secrets.MAIL_USER }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: GitHub Pages 站点部署完成通知
-          from: ${{ secrets.MAIL_FROM_ADDR }}
-          to: ${{ secrets.MAIL_TO_ADDR }}
+          # 163固定SMTP配置（已填死，无需修改）
+          server_address: smtp.163.com
+          server_port: 465
+          # 以下4项去仓库Secrets填写自己的信息
+          username: ${{ secrets.MAIL_163_USER }}
+          password: ${{ secrets.MAIL_163_AUTH_CODE }}
+          from: ${{ secrets.MAIL_163_SEND_ADDR }}
+          to: ${{ secrets.MAIL_RECV_ADDR }}
+
+          subject: 【通知】GitHub Pages站点部署完成
           body: |
             你的 GitHub 网站已经部署完成
-            ==============================
+            ======================================
             仓库地址：https://github.com/${{ github.repository }}
             本次提交哈希：${{ github.sha }}
             本次提交内容：${{ github.event.head_commit.message }}
             提交人：${{ github.actor }}
-            仓库总提交次数：${{ env.COMMIT_COUNT }}
+            仓库总提交次数：${{ env.TOTAL_COMMIT }}
             
             Cloudflare 缓存已自动清理，请直接访问站点查看最新内容。
