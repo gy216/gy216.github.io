@@ -18,7 +18,7 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
           # 163固定SMTP配置（已填死，无需修改）
-          server_address: smtp.163.com
+          server_address: smtp.126.com
           server_port: 465
           # 以下4项去仓库Secrets填写自己的信息
           username: ${{ secrets.MAIL_163_USER }}
