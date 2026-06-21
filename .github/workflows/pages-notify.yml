@@ -1,0 +1,35 @@
+name: Pages部署完成邮件通知
+on:
+  page_build:
+
+jobs:
+  send-mail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 获取仓库提交总次数
+        id: get_commit_count
+        run: |
+          git clone https://github.com/${{ github.repository }} repo_tmp
+          cd repo_tmp
+          echo "COMMIT_COUNT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
+
+      - name: 发送部署完成通知邮件
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SMTP_HOST }}
+          server_port: ${{ secrets.MAIL_SMTP_PORT }}
+          username: ${{ secrets.MAIL_USER }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: GitHub Pages 站点部署完成通知
+          from: ${{ secrets.MAIL_FROM_ADDR }}
+          to: ${{ secrets.MAIL_TO_ADDR }}
+          body: |
+            你的 GitHub 网站已经部署完成
+            ==============================
+            仓库地址：https://github.com/${{ github.repository }}
+            本次提交哈希：${{ github.sha }}
+            本次提交内容：${{ github.event.head_commit.message }}
+            提交人：${{ github.actor }}
+            仓库总提交次数：${{ env.COMMIT_COUNT }}
+            
+            Cloudflare 缓存已自动清理，请直接访问站点查看最新内容。
