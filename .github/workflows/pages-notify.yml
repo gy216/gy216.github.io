@@ -26,9 +26,9 @@ jobs:
           from: ${{ secrets.MAIL_163_SEND_ADDR }}
           to: ${{ secrets.MAIL_RECV_ADDR }}
 
-          subject: 【通知】GitHub Pages站点部署完成
+          subject: 【网站部署完成-通知】GitHub Pages站点部署完成。
           body: |
-            你的 GitHub 网站已经部署完成
+            宝宝~你的 GitHub 网站已经部署完成了咯
             ======================================
             仓库地址：https://github.com/${{ github.repository }}
             本次提交哈希：${{ github.sha }}
@@ -36,4 +36,5 @@ jobs:
             提交人：${{ github.actor }}
             仓库总提交次数：${{ env.TOTAL_COMMIT }}
             
-            Cloudflare 缓存已自动清理，请直接访问站点查看最新内容。
+            Cloudflare缓存已经让Github Action调取的Cloudflare API帮主人清理干净啦，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
+            （本邮件由Github Action自动调取SMTP发送，请勿回复，你回我我一般也不会回）
