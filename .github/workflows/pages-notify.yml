@@ -13,9 +13,9 @@ jobs:
           cd tmp_repo
           echo "TOTAL_COMMIT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
 
-      # 发送163邮箱通知
+      # 发送163邮箱通知（使用V4）
       - name: 发送部署完成邮件
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v4
         with:
           # 163固定SMTP配置（已填死，无需修改）
           server_address: smtp.126.com
@@ -36,6 +36,6 @@ jobs:
             提交人：${{ github.actor }}
             仓库总提交次数：${{ env.TOTAL_COMMIT }}
             
-            Cloudflare缓存已经让Action让Cloudflare API帮主人清理干净啦，如果那个工作流没报错的话，缓存应该是清理好了，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
+            Cloudflare缓存已经叫Action让Cloudflare API帮宝宝清理干净啦，如果那个工作流没报错的话，缓存应该是清理好了，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
             （本邮件由Github Action自动调取SMTP发送，请勿回复，你回我我一般也不会回）
             果园编程
