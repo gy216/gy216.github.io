@@ -8,7 +8,6 @@ jobs:
     env:
       SEND_ADDR: ${{ secrets.MAIL_163_SEND_ADDR }}
       RECV_ADDR: ${{ secrets.MAIL_RECV_ADDR }}
-      TZ: Asia/Shanghai
     
     steps:
       # 浅克隆、提取提交信息、时区转换、计算构建耗时
@@ -64,7 +63,7 @@ jobs:
             仓库总提交次数：${{ env.TOTAL_COMMIT }}
             部署分支：${{ github.ref }}
             
-            【构建信息（北京时间UTC+8）】
+            【构建信息（UTC+8）】
             Pages构建ID：${{ github.event.build.id }}
             构建状态：${{ github.event.build.status }}
             构建开始时间：${{ env.BUILD_START_CST }}
@@ -77,10 +76,11 @@ jobs:
             收件邮箱：${{ env.RECV_ADDR }}
             本次工作流运行ID：${{ github.run_id }}
             全局累计批次：${{ github.run_number }}
-            本条记录重试次数：${{ github.run_attempt }}
+            本条运行次数：${{ github.run_attempt }}
             触发事件名：${{ github.event_name }}
             
-            Cloudflare缓存已调用API清理，若无报错则缓存已清除；
+            宝宝~
+            Cloudflare缓存已经让另一条Action用Cloudflare API清理了，如果那一条Action没报错的话，那缓存就已经删干净了~；
             看完记得多陪陪我嘛，超级想黏着你！爱你爱你~
             （本邮件由Github Action自动SMTP发送，无需回复）
             果园编程
