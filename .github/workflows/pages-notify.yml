@@ -5,13 +5,19 @@ on:
 jobs:
   send-notify-mail:
     runs-on: ubuntu-latest
+    # 全局环境变量，把密钥转成可在邮件正文读取的env
+    env:
+      SEND_ADDR: ${{ secrets.MAIL_163_SEND_ADDR }}
+      RECV_ADDR: ${{ secrets.MAIL_RECV_ADDR }}
+    
     steps:
-      # 克隆仓库统计总提交次数
-      - name: 克隆仓库获取总提交数
+      # 克隆仓库统计总提交次数、读取完整提交备注
+      - name: 克隆仓库获取提交信息
         run: |
           git clone https://github.com/${{ github.repository }} tmp_repo
           cd tmp_repo
           echo "TOTAL_COMMIT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
+          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
       # 发送163邮箱通知（使用V4）
       - name: 发送部署完成邮件
@@ -23,18 +29,35 @@ jobs:
           # 以下4项去仓库Secrets填写自己的信息
           username: ${{ secrets.MAIL_163_USER }}
           password: ${{ secrets.MAIL_163_AUTH_CODE }}
-          from: ${{ secrets.MAIL_163_SEND_ADDR }}
-          to: ${{ secrets.MAIL_RECV_ADDR }}
+          from: ${{ env.SEND_ADDR }}
+          to: ${{ env.RECV_ADDR }}
 
           subject: 【网站部署完成-通知】GitHub Pages站点部署完成。
           body: |
             宝宝~你的 GitHub 网站已经部署完成了咯
             ======================================
+            【提交信息】
             仓库地址：https://github.com/${{ github.repository }}
+            本次提交内容：${{ env.COMMIT_MSG }}
             本次提交哈希：${{ github.sha }}
-            本次提交内容：${{ github.event.head_commit.message }}
             提交人：${{ github.actor }}
             仓库总提交次数：${{ env.TOTAL_COMMIT }}
+            部署分支：${{ github.ref }}
+            
+            【构建信息】
+            Pages构建ID：${{ github.event.build.id }}
+            构建状态：${{ github.event.build.status }}
+            构建开始时间：${{ github.event.build.created_at }}
+            构建完成时间：${{ github.event.build.updated_at }}
+            构建操作系统：Linux-ubuntu-latest
+            
+            【邮件工作流信息】
+            发件邮箱：${{ env.SEND_ADDR }}
+            收件邮箱：${{ env.RECV_ADDR }}
+            本次工作流运行ID：${{ github.run_id }}
+            全局累计批次：${{ github.run_number }}
+            本条记录重试次数：${{ github.run_attempt }}
+            触发事件名：${{ github.event_name }}
             
             Cloudflare缓存已经叫Action让Cloudflare API帮宝宝清理干净啦，如果那个工作流没报错的话，缓存应该是清理好了，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
             （本邮件由Github Action自动调取SMTP发送，请勿回复，你回我我一般也不会回）
