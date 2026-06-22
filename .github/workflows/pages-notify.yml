@@ -36,5 +36,6 @@ jobs:
             提交人：${{ github.actor }}
             仓库总提交次数：${{ env.TOTAL_COMMIT }}
             
-            Cloudflare缓存已经让Github Action调取的Cloudflare API帮主人清理干净啦，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
+            Cloudflare缓存已经让Action让Cloudflare API帮主人清理干净啦，如果那个工作流没报错的话，缓存应该是清理好了，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
             （本邮件由Github Action自动调取SMTP发送，请勿回复，你回我我一般也不会回）
+            果园编程
