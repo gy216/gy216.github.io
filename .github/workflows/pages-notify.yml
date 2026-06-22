@@ -5,28 +5,48 @@ on:
 jobs:
   send-notify-mail:
     runs-on: ubuntu-latest
-    # 全局环境变量，把密钥转成可在邮件正文读取的env
     env:
       SEND_ADDR: ${{ secrets.MAIL_163_SEND_ADDR }}
       RECV_ADDR: ${{ secrets.MAIL_RECV_ADDR }}
+      TZ: Asia/Shanghai
     
     steps:
-      # 克隆仓库统计总提交次数、读取完整提交备注
-      - name: 克隆仓库获取提交信息
+      # 浅克隆、提取提交信息、时区转换、计算构建耗时
+      - name: 处理仓库与时间计算
         run: |
-          git clone https://github.com/${{ github.repository }} tmp_repo
+          git clone --depth 1 https://github.com/${{ github.repository }} tmp_repo
           cd tmp_repo
           echo "TOTAL_COMMIT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
           echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
-      # 发送163邮箱通知（使用V4）
+          # 原始UTC时间
+          UTC_START="${{ github.event.build.created_at }}"
+          UTC_END="${{ github.event.build.updated_at }}"
+
+          # 转北京时间显示
+          CST_START=$(date -d "$UTC_START + 8 hours" "+%Y-%m-%d %H:%M:%S")
+          CST_END=$(date -d "$UTC_END + 8 hours" "+%Y-%m-%d %H:%M:%S")
+          echo "BUILD_START_CST=$CST_START" >> $GITHUB_ENV
+          echo "BUILD_END_CST=$CST_END" >> $GITHUB_ENV
+
+          # 转为时间戳（秒）计算差值
+          TS_START=$(date -d "$UTC_START" +%s)
+          TS_END=$(date -d "$UTC_END" +%s)
+          DIFF_SEC=$(( TS_END - TS_START ))
+
+          # 换算时分秒
+          H=$(( DIFF_SEC / 3600 ))
+          M=$(( (DIFF_SEC % 3600) / 60 ))
+          S=$(( DIFF_SEC % 60 ))
+          DURATION="${H}时${M}分${S}秒"
+          echo "BUILD_DURATION=$DURATION" >> $GITHUB_ENV
+
+      # 发送邮件
       - name: 发送部署完成邮件
         uses: dawidd6/action-send-mail@v4
         with:
-          # 163固定SMTP配置（已填死，无需修改）
           server_address: smtp.126.com
           server_port: 465
-          # 以下4项去仓库Secrets填写自己的信息
           username: ${{ secrets.MAIL_163_USER }}
           password: ${{ secrets.MAIL_163_AUTH_CODE }}
           from: ${{ env.SEND_ADDR }}
@@ -44,11 +64,12 @@ jobs:
             仓库总提交次数：${{ env.TOTAL_COMMIT }}
             部署分支：${{ github.ref }}
             
-            【构建信息】
+            【构建信息（北京时间UTC+8）】
             Pages构建ID：${{ github.event.build.id }}
             构建状态：${{ github.event.build.status }}
-            构建开始时间：${{ github.event.build.created_at }}
-            构建完成时间：${{ github.event.build.updated_at }}
+            构建开始时间：${{ env.BUILD_START_CST }}
+            构建完成时间：${{ env.BUILD_END_CST }}
+            构建总耗时：${{ env.BUILD_DURATION }}
             构建操作系统：Linux-ubuntu-latest
             
             【邮件工作流信息】
@@ -59,6 +80,7 @@ jobs:
             本条记录重试次数：${{ github.run_attempt }}
             触发事件名：${{ github.event_name }}
             
-            Cloudflare缓存已经叫Action让Cloudflare API帮宝宝清理干净啦，如果那个工作流没报错的话，缓存应该是清理好了，快点点开看看嘛，看完记得多陪陪我嘛，超级想黏着你呀！爱你爱你~
-            （本邮件由Github Action自动调取SMTP发送，请勿回复，你回我我一般也不会回）
+            Cloudflare缓存已调用API清理，若无报错则缓存已清除；
+            看完记得多陪陪我嘛，超级想黏着你！爱你爱你~
+            （本邮件由Github Action自动SMTP发送，无需回复）
             果园编程
