@@ -13,7 +13,7 @@ jobs:
       # 浅克隆、提取提交信息、时区转换、计算构建耗时
       - name: 处理仓库与时间计算
         run: |
-          git clone --depth 1 https://github.com/${{ github.repository }} tmp_repo
+          git clone https://github.com/${{ github.repository }} tmp_repo
           cd tmp_repo
           echo "TOTAL_COMMIT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
           echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
