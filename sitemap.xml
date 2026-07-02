@@ -3,338 +3,344 @@
     <!-- 主页面和核心页面 -->
     <url>
         <loc>https://gybc.top/home/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://gybc.top/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://gybc.top/about/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://gybc.top/my/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://gybc.top/school/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://gybc.top/product/timenotes</loc>
+        <lastmod>2026-07-02</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
     
     <!-- AI 相关 -->
     <url>
         <loc>https://gybc.top/ai/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/ai/translate/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
 
     <!-- API 接口 -->
     <url>
         <loc>https://gybc.top/api/bingimg/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://gybc.top/api/city/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
 
     <!-- 应用和工具 -->
     <url>
         <loc>https://gybc.top/APP/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/tools/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/tools/watermark/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/bk/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
 
     <!-- 学习与资源 -->
     <url>
         <loc>https://gybc.top/study/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/study/becode.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/study/up.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/study/zaixian.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/study/ziyuan.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
 
     <!-- 文档 -->
     <url>
         <loc>https://gybc.top/doc/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://gybc.top/doc/rule/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://gybc.top/doc/xieyi/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
 
     <!-- 服务与支持 -->
     <url>
         <loc>https://gybc.top/fw/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/fw/mail/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://gybc.top/supp/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/join/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
 
     <!-- 游戏中心 (所有游戏) -->
     <url>
         <loc>https://gybc.top/game/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/2048/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/chidouren/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/feijidaz/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/feixingqi/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/flybird/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/guobr/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/maryo/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/saolei/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/tanchishe/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/woodfish/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/wuziqi/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/xiangqi/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/misu7/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/pinbao/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/wuda/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/xiaokl/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/game/IW/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
 
     <!-- 其他重要页面 -->
     <url>
         <loc>https://gybc.top/cloud/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/csr/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/dabao/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/image/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://gybc.top/integrity/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/ling/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/ling/success/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://gybc.top/link/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/new/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://gybc.top/Public-welfare/Leaveyourmarkontheworld/cxy/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://gybc.top/so/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/CDN_resources/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://gybc.top/License-pages/</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.4</priority>
     </url>
 
     <!-- 打包页面 -->
     <url>
         <loc>https://gybc.top/dabao/2.0.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/dabao/2.2.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/dabao/3.0.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/dabao/3.6.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/dabao/3.6gy.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://gybc.top/dabao/3.6pro.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <lastmod>2026-07-02</lastmod>
         <priority>0.5</priority>
     </url>
 </urlset>
