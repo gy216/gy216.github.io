@@ -447,6 +447,22 @@ WebFont.load({
     }
 }
 
+/* ===== BILIBILI
+/* 外层容器控制大小 */
+.bili-player {
+  width: 100%;
+  max-width: 114514px;   /* ← 想要多大就改这里 */
+  margin: 2rem auto;
+}
+
+/* iframe 撑满容器 */
+.bili-player iframe {
+  width: 120%;
+  height: 1024px;     /* ← 高度越大，画面越清晰 */
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+ ===== */
 
         /* ===== 联机服务器板块 ===== */
         #server-info {
@@ -807,12 +823,17 @@ WebFont.load({
 
 <!-- 应用截图 -->
     <section id="screenshot">
-        <h2 class="section-title">应用截图</h2>
+        <h2 class="section-title">应用展示</h2>
         <p class="section-subtitle">沉浸式阅读 · 联机协作 · 文本创作 · 媒体嵌入</p>
         <div class="screenshot">
             <img src="image.png" alt="TimeNotes 应用截图">
         </div>
+         <!-- 联机服务器展示 
+        <div>
+<iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116585360590375&bvid=BV1shLV6WEXd&cid=38386927687&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" ></iframe> 
+	</div>
     </section>
+    -->
     
     <!-- 联机服务器展示 -->
     <section id="server-info">
