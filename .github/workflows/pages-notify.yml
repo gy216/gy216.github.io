@@ -16,8 +16,15 @@ jobs:
           git clone --depth 1 https://github.com/${{ github.repository }} tmp_repo
           cd tmp_repo
           git fetch --unshallow
+          
+          # 1. 总提交数，标准单行写入无问题
           echo "TOTAL_COMMIT=$(git rev-list --count HEAD)" >> $GITHUB_ENV
-          echo "COMMIT_MSG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+          
+          # 2. 关键修复：把提交信息所有换行替换成空格，消除换行导致的env解析报错
+          RAW_MSG=$(git log -1 --pretty=%B)
+          # 将换行符 \n 全部替换为空格，压缩为单行文本
+          SAFE_COMMIT_MSG=$(echo "$RAW_MSG" | tr '\n' ' ')
+          echo "COMMIT_MSG=$SAFE_COMMIT_MSG" >> $GITHUB_ENV
 
           # 原始UTC时间
           UTC_START="${{ github.event.build.created_at }}"
@@ -45,7 +52,7 @@ jobs:
       - name: 发送部署完成邮件
         uses: dawidd6/action-send-mail@v4
         with:
-          server_address: smtp.126.com
+          server_address: smtp.163.com
           server_port: 465
           username: ${{ secrets.MAIL_163_USER }}
           password: ${{ secrets.MAIL_163_AUTH_CODE }}
