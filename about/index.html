@@ -12,7 +12,6 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, 'Courier New', monospace;
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 100%);
             color: #e0e0ff;
             min-height: 100vh;
@@ -399,7 +398,10 @@
     <!-- 页脚 -->
     <footer>
         <div class="container">
-            <p>© 2020-2026 果园编程工作室 版权所有</p>
+            <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
         </div>
     </footer>
 

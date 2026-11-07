@@ -508,7 +508,10 @@
                 <p>成立于2020年2月 | 专注于编程技术研发与创意实现</p>
             </div>
             <div class="copyright">
-                <p>© 2020-2026 果园编程工作室 保留所有权利</p>
+                <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
                 <p>以CCW（共创世界）平台为核心阵地</p>
             </div>
         </footer>

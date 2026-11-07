@@ -890,7 +890,10 @@
                 <p>果园编程工作室 · 青少年编程创新者</p>
             </div>
             <div class="copyright">
-                <p>© 2020-2026 果园编程工作室 版权所有</p>
+                <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
             </div>
         </div>
     </footer>

@@ -763,7 +763,10 @@
                     <p style="color: var(--text-muted); margin-top: 15px; max-width: 300px;">用心每一作，发展每一天。探索编程的无限可能。</p>
                 </div>
             <div class="copyright">
-                <p>&copy; 2020-2026 果园编程工作室 版权所有</p>
+                <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
                 <p style="margin-top: 5px; font-size: 0.8rem;">用心每一作，发展每一天</p>
             </div>
         </div>

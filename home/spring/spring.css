@@ -1,0 +1,117 @@
+/* ===== 春节主题（由 spring.js 在档期内给 <html> 加 data-theme="spring" 激活） =====
+   加载顺序：styles.css → spring.css → index.html 内联 <style>。
+   这里所有选择器都带 html[data-theme="spring"]，特异性高于 :root 和内联样式里的
+   单类选择器，因此即使内联 <style> 写在后面，也能被正确覆盖。 */
+
+html[data-theme="spring"] {
+  --primary-color: #f5222d;      /* 中国红 */
+  --secondary-color: #ffd54f;    /* 金：标题/按钮/数字都是 primary→secondary 渐变，必须一起覆盖 */
+  --primary-glow: rgba(245, 34, 45, 0.6);
+  --accent-color: #ffd54f;
+  --dark-bg: #1a0505;
+  --darker-bg: #0d0202;
+}
+
+/* 全局氛围。background 简写会重置 background-attachment，需显式补回 */
+html[data-theme="spring"] body {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(245, 34, 45, .25), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255, 213, 79, .15), transparent 45%),
+    linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+  background-attachment: fixed;
+}
+
+/* 标题与数字：styles.css 用了 background-clip:text + color:transparent，
+   原版只改 color 完全看不到效果，必须改 background-image。 */
+html[data-theme="spring"] .cyber-title,
+html[data-theme="spring"] .data-number {
+  background-image: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none; /* 透明文字上的旧青色阴影会糊成一片 */
+}
+
+/* 卡片与边框 */
+html[data-theme="spring"] .product-card,
+html[data-theme="spring"] .link-card,
+html[data-theme="spring"] .feature-card,
+html[data-theme="spring"] .grid-item {
+  border-color: rgba(245, 34, 45, .45);
+  box-shadow: 0 0 18px var(--primary-glow);
+}
+
+html[data-theme="spring"] .product-card:hover,
+html[data-theme="spring"] .link-card:hover,
+html[data-theme="spring"] .feature-card:hover,
+html[data-theme="spring"] .grid-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 30px var(--primary-glow);
+}
+
+/* 状态标签：保留"已发布=红 / 开发中=金"的区分 */
+html[data-theme="spring"] .status-RC {
+  color: #ff7875;
+  border-color: #ff7875;
+  background: rgba(245, 34, 45, .18);
+}
+
+html[data-theme="spring"] .status-development {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: rgba(255, 213, 79, .12);
+}
+
+/* styles.css 里写死的青色描边 */
+html[data-theme="spring"] .cyber-nav,
+html[data-theme="spring"] .footer-bottom,
+html[data-theme="spring"] .yi-yan {
+  border-color: rgba(245, 34, 45, .35);
+}
+
+html[data-theme="spring"] .cyber-footer {
+  border-top-color: rgba(245, 34, 45, .4);
+}
+
+/* index.html 内联样式里写死 #00ffe0 的两个按钮 */
+html[data-theme="spring"] .cyber-btn {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+html[data-theme="spring"] .cyber-btn:hover {
+  background: var(--primary-color);
+  color: #1a0505;
+}
+
+/* 顶部飘落装饰：首尾淡入淡出，避免无限循环时的瞬间跳变 */
+html[data-theme="spring"] body::before {
+  content: "🧧 🏮 🧧 🏮 🧧";
+  position: fixed;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  font-size: 24px;
+  letter-spacing: .5em;
+  text-align: center;
+  opacity: 0;
+  animation: springFall 18s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes springFall {
+  0%   { transform: translateY(0);       opacity: 0; }
+  8%   {                                  opacity: .8; }
+  90%  {                                  opacity: .8; }
+  100% { transform: translateY(120vh);  opacity: 0; }
+}
+
+/* 尊重系统的"减少动态效果"设置 */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="spring"] body::before {
+    animation: none;
+    display: none;
+  }
+}

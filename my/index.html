@@ -706,8 +706,11 @@
         </section>
         
         <footer>
-            <p>Copyright © 2026 果园编程. All Rights Reserved.</p>
-            <p>果园编程 版权所有 - 本页面同步自GY-GZW的GIT仓库</p>
+            <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+            <p>本页面同步自GY-GZW的GIT仓库</p>
             <div class="footer-links">
                 <a href="https://gy216.github.io">主站</a> | 
                 <a href="#">项目中心</a> | 

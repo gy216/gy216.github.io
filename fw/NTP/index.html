@@ -518,7 +518,10 @@
 
         <!-- 页脚 -->
         <footer class="cyber-footer">
-            <p>© 2025 果园编程 · 青少年工作室 | 专业时间服务</p>
+            <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
             <p>精准同步每一秒，连接数字世界的脉搏</p>
             
             <div class="footer-links">

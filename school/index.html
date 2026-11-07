@@ -627,7 +627,6 @@
                     
                     <div class="timeline-item">
                         <div class="timeline-year">敬请期待</div>
-                        <p>在毕业照没拍之前，无照片数据，敬请期待。</p>
                         <div class="pulse" style="color: var(--secondary-color); margin-top: 10px;">⌛ 数据更新中...</div>
                     </div>
                 </div>
@@ -1035,7 +1034,11 @@
         <footer class="cyber-footer">
             <div class="footer-content">
                 <div>
-                    <p>© 2025-2026 扬州经济技术开发区实验中学 2023级1班 版权所有</p>
+                    <p>扬州经济技术开发区实验中学 2023级1班 版权所有</p>
+                    <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
                     <p>最后更新：2025年6月20日</p>
                 </div>
                 

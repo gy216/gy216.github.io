@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="normal">
 <head>
     <meta charset="UTF-8">
     <title>果园编程官方网站 | 青少年Scratch编程团队 | 用心每一作，发展每一天</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="styles.css">
+    <!-- 春节主题（2027年自动启用），资源位于 spring/ 目录 -->
+    <link rel="stylesheet" href="spring/spring.css">
+    <script src="spring/spring.js" defer></script>
     <!--用于 移动端适配  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 专门针对 Internet Explorer (IE) 浏览器的兼容性设置 -->
@@ -95,25 +98,7 @@
 	<link rel="preload" href="https://cdn.gybc.top/home/ZCOOLKuaiLe-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
 
-<!--字体，果园创建V2.0  -->
-<style>
-@font-face {
-  font-family: 'ZCOOL KuaiLe';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap; /* 关键：字体没好就用后备字体 */
-  src: url('https://cdn.gybc.top/home/ZCOOLKuaiLe-Regular.woff2') format('woff2');/* 走CDN */
-}
-
-/* 全局使用 */
-body {
-  font-family: 'ZCOOL KuaiLe', Arial, sans-serif;
-}
-</style>
     
-    
-
-
 
     <style>
         /* 通知系统样式 */
@@ -779,12 +764,12 @@ body {
         <div class="footer-section">
             <h3>版本与历史</h3>
             <p><strong>更新日志：</strong><a href="/blog" class="cyber-link">点这里看更新日志</a></p>
-            <p><strong>网站版本：</strong>V6.9.3_260704_02TiAmo</p>
-            <p><strong>最后更新：</strong>2026年06月22日</p>
-            <p><strong>设计语言：</strong>GAutumn Design 20.1.7</p>
-            <p><strong>版本代号：</strong>TiAmo</p>
-            <small>轻量更新/热更新：2026年08月10日更新-26081002</small><br>
-            <small>上次提交SHA：<code>2640d02896fca76f70908c45b29a7a7b8f30eb24</code></small>
+            <p><strong>网站版本：</strong>V7.0.0_261107_01Next</p>
+            <p><strong>最后更新：</strong>2026年7月22日</p>
+            <p><strong>设计语言：</strong>GAutumn Design 26.11</p>
+            <p><strong>版本代号：</strong>Next</p>
+            <small>轻量更新/热更新：GHU-26110700</small><br>
+            <small>上次提交SHA：<code>10b2be22afb9e594d95237da8475a033e472afd2</code></small>
         </div>
 
         <div class="footer-section">
@@ -868,8 +853,12 @@ body {
             果园编程尽全力支持人工智能的发展，因此本站已经注入轻量级 WebMCP 桥接器，使基于浏览器的 AI 智能体可以读取网页并与之交互。
         </p>
 
-        <p>Copyright © 2021–2026 果园编程 版权所有</p>
-        <p>性能和安全由 Cloudflare 提供 | cdn.gybc.top 由腾讯云 EdgeOne 提供 | 字体为 ZCOOL-Kuaile</p>
+        <p>| 性能和安全由 Cloudflare 提供 | cdn.gybc.top 由腾讯云 EdgeOne 提供 | esa.gybc.top 由阿里云 边缘安全加速 ESA 提供 | s.gybc.top 由雨云提供云计算服务 | </p>
+
+        <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
 
         <p>
             <a href="https://icp.gov.moe/?keyword=20260216" target="_blank">萌ICP备20260216号</a>
@@ -981,3 +970,4 @@ document.getElementById('legalToggle').addEventListener('click', () => togglePan
 <!-- 宝宝你说过你要对我好的，你骗我，宝宝你骗我！我讨厌你！-->
 <!--宝宝你为什么总是爱答不理，我…… -->
 <!--26-05-10我讨厌你！SB东西，凭什么这么对我！！！ -->
+<!--26-11-07嘿嘿，我已经想开了~ -->

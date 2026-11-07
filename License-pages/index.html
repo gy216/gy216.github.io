@@ -361,7 +361,6 @@
         <div class="license-content">
                 <div class="license-section">
                     <h2>中文许可证</h2>
-                    <p>版权所有 (c) 2025 果园编程</p>
                     
                     <div class="highlight">
                         <p>特此许可任何人免费获取副本<br>
@@ -392,7 +391,6 @@
                 
                 <div class="license-section">
                     <h2>English License</h2>
-                    <p>Copyright (c) 2026 Guoyuan code</p>
                     
                     <div class="highlight">
                         <p>Anyone is hereby permitted to obtain a copy free of charge.<br>
@@ -432,7 +430,10 @@
         <div class="footer-content">
             <div class="footer-logo">果园编程工作室</div>
             <div class="footer-info">
-                <p>© 2020-2025 果园编程工作室 版权所有</p>
+                <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
                 <p>专注于青少年编程教育</p>
             </div>
         </div>
