@@ -763,13 +763,16 @@
 
         <div class="footer-section">
             <h3>版本与历史</h3>
-            <p><strong>更新日志：</strong><a href="https://blog.gybc.top/tag/%E6%9E%9C%E5%9B%AD%E7%BD%91%E7%AB%99%E6%9B%B4%E6%96%B0/" class="cyber-link">点这里看更新日志</a></p>
+            <p><strong>更新日志：</strong><a href="https://blog.gybc.top/tag/%E6%9E%9C%E5%9B%AD%E7%BD%91%E7%AB%99%E6%9B%B4%E6%96%B0" class="cyber-link">点这里看更新日志</a></p>
             <p><strong>网站版本：</strong>V7.0.0_261107_01Next</p>
-            <p><strong>最后更新：</strong>2026年7月22日</p>
+            <p><strong>最后更新：</strong>2026年11月07日</p>
             <p><strong>设计语言：</strong>GAutumn Design 26.11</p>
             <p><strong>版本代号：</strong>Next</p>
-            <small>轻量更新/热更新：GHU-26110701</small><br>
-            <small>上次提交SHA：<code>10b2be22afb9e594d95237da8475a033e472afd2</code></small>
+            <small>轻量更新/热更新：GHU-26111401</small><br>
+            <small>安全更新：GSU-2611-1（CVE-2026-109618 与 CVE-2026-109619）</small><br>
+            <small>部署框架：Jekyll</small><br>
+            <small>部署方式：Github Action</small><br>
+            <small>上次提交SHA：<code>7727d129622652e8ac780cabaefe6449f2a06c87</code></small>
         </div>
 
         <div class="footer-section">
@@ -796,9 +799,9 @@
             <a href="https://www.china-ipv6.cn" class="cyber-link" target="_blank">国家IPv6发展平台</a>
         </p>
 
-        <script src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+        <script async src="https://busuanzi.icodeq.com/busuanzi.pure.mini.js"></script>
         <p>
-            今日总访问量 <span id="busuanzi_today_pv"><i class="fa fa-spinner fa-spin"></i></span> 次（数据来源：不蒜子）<br>
+            今日总访问量 <span id="busuanzi_today_pv"><i class="fa fa-spinner fa-spin"></i></span> 次（数据来源：Zkeq的不蒜子服务）<br>
             本站总访问量 <span id="busuanzi_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次（自26年04月19日开始统计）
         </p>
 
@@ -835,7 +838,7 @@
             </p>
 
             <p>
-                果园编程工作室®、果园编程®、果园 Logo、GAutumn Design、Glyphix、果园页面专用许可证、果园AI HUB、物理旅行者和果园标志为果园编程的商标。
+                果园编程工作室、果园编程、果园 Logo、GAutumn Design、Glyphix、果园页面专用许可证、物理旅行者和果园标志为果园编程的商标。
             </p>
 
             <p>
@@ -853,7 +856,16 @@
             果园编程尽全力支持人工智能的发展，因此本站已经注入轻量级 WebMCP 桥接器，使基于浏览器的 AI 智能体可以读取网页并与之交互。
         </p>
 
-        <p>| 性能和安全由 Cloudflare 提供 | cdn.gybc.top 由腾讯云 EdgeOne 提供 | esa.gybc.top 由阿里云 边缘安全加速 ESA 提供 | s.gybc.top 由雨云提供云计算服务 | </p>
+        <p>
+        | 源站托管于 Github Pages，由 Fastly 进行提供内容分发网络支持 | 
+        <br/>
+        | 本站性能和安全由 Cloudflare 提供，部分动态页面由 Cloudflare Workers 提供无服务器边缘计算服务 | 
+        <br/>
+        | 本站 cdn.gybc.top 由 TencentCloud EdgeOne 提供 |
+        <br/>
+        | 本站 esa.gybc.top 由阿里云边缘安全加速 Edge Security Acceleration（ESA）提供 | 
+        <br/>
+        | 本站 s.gybc.top 等其他的动态服务由雨云提供云计算服务 | </p>
 
         <p>Copyright © 2021–<span id="year"></span> 果园编程工作室 版权所有</p>
         <script>
@@ -955,6 +967,7 @@ document.getElementById('legalToggle').addEventListener('click', () => togglePan
 <script src="js/console.js"></script>
 <script src="js/coloregg.js"></script>
 <script src="js/others.js"></script>
+<script src="js/mouse.js"></script>
 
 <!--好玩的地方！-->
 <!--嘿嘿-->
