@@ -18,6 +18,12 @@ class OptimizedHTTPHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.wbufsize = 4096  # 增大写缓冲区
+        
+        
+class OptimizedHTTPHandler(http.server.SimpleHTTPRequestHandler):
+    def send_response(self, code, message=None):
+        super().send_response(code, message)
+        self.send_header('Server', 'GYBC')  # 伪装服务器
 
 # 使用线程池
 PORT = 9178
