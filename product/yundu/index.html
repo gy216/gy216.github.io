@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>百川云渡 · 果园编程</title>
+<style>
+  :root{
+    --bg:#07070d;--bg2:#0d0d16;--card:rgba(18,18,30,.72);
+    --line:rgba(0,238,255,.28);--cyan:#00eeff;--pink:#ff00c8;
+    --violet:#7a00ff;--green:#39ff88;--txt:#e6f1ff;--muted:#8ea3c0;
+    --mono:"JetBrains Mono","Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(1000px 600px at 15% -10%, rgba(122,0,255,.18), transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, rgba(0,238,255,.12), transparent 60%),
+      linear-gradient(180deg,var(--bg),var(--bg2));
+    color:var(--txt);font-family:var(--mono);min-height:100vh;overflow-x:hidden;
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,238,255,.035) 2px 4px);mix-blend-mode:screen}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+    background-image:linear-gradient(rgba(0,238,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,0,200,.05) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(circle at 50% 30%,#000 40%,transparent 85%)}
+  .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 20px}
+  nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);background:rgba(7,7,13,.72);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-weight:800;letter-spacing:.14em;color:#fff;text-shadow:0 0 10px var(--cyan),0 0 24px rgba(0,238,255,.5)}
+  .brand span{color:var(--pink);text-shadow:0 0 10px var(--pink)}
+  .home-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);color:var(--cyan);text-decoration:none;font-size:13px;background:rgba(0,238,255,.06);
+    clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:.2s}
+  .home-btn:hover{background:rgba(0,238,255,.16);box-shadow:0 0 18px rgba(0,238,255,.35)}
+  header{padding:76px 0 54px}
+  .tag{display:inline-block;font-size:12px;letter-spacing:.22em;color:var(--green);border:1px solid rgba(57,255,136,.35);padding:6px 12px;margin-bottom:18px;background:rgba(57,255,136,.06)}
+  h1{font-size:clamp(38px,7vw,76px);line-height:1.05;font-weight:900;letter-spacing:-.02em;
+    background:linear-gradient(90deg,#fff,var(--cyan) 45%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;filter:contrast(1.15)}
+  .glitch{position:relative;display:inline-block}
+  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+  .glitch::before{color:var(--pink);transform:translateX(-2px);opacity:.65;clip-path:inset(0 0 55% 0)}
+  .glitch::after{color:var(--cyan);transform:translateX(2px);opacity:.65;clip-path:inset(55% 0 0 0)}
+  .sub{margin-top:20px;max-width:760px;color:var(--muted);font-size:clamp(15px,2.2vw,18px);line-height:1.8}
+  .sub b{color:var(--txt);font-weight:600}
+  .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{padding:14px 26px;border:1px solid var(--cyan);color:#001018;background:var(--cyan);font-weight:800;letter-spacing:.08em;text-decoration:none;cursor:pointer;
+    clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));box-shadow:0 0 22px rgba(0,238,255,.35);transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(0,238,255,.6)}
+  .btn.ghost{background:transparent;color:var(--pink);border-color:var(--pink);box-shadow:0 0 18px rgba(255,0,200,.25)}
+  .btn.ghost:hover{background:rgba(255,0,200,.1)}
+  .terminal{margin-top:38px;border:1px solid var(--line);background:rgba(5,6,12,.85);box-shadow:0 0 0 1px rgba(255,0,200,.08),0 20px 60px rgba(0,0,0,.6)}
+  .bar{display:flex;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(0,238,255,.05)}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--pink)}
+  .dot:nth-child(2){background:var(--cyan)}.dot:nth-child(3){background:var(--green)}
+  .term-body{padding:18px;font-size:13px;line-height:1.9;color:#bfe9ff;white-space:pre-wrap}
+  .term-body .ok{color:var(--green)}.term-body .warn{color:#ffd23f}.term-body .cmd{color:var(--pink)}
+  section{padding:64px 0}
+  .sec-title{font-size:clamp(24px,4vw,38px);margin-bottom:10px;color:#fff;text-shadow:0 0 18px rgba(0,238,255,.35)}
+  .sec-sub{color:var(--muted);margin-bottom:32px;max-width:780px;line-height:1.8}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{border:1px solid var(--line);background:var(--card);padding:22px;
+    clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));transition:.25s;position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(0,238,255,.07));pointer-events:none}
+  .card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 0 28px rgba(0,238,255,.22)}
+  .card h3{color:var(--cyan);font-size:17px;margin-bottom:10px;letter-spacing:.04em}
+  .card p{color:var(--muted);font-size:14px;line-height:1.75}
+  .num{position:absolute;right:14px;top:10px;font-size:42px;color:rgba(255,0,200,.12);font-weight:900}
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+  .step{border-left:2px solid var(--pink);padding:14px 16px;background:rgba(255,0,200,.05)}
+  .step b{display:block;color:#fff;margin-bottom:6px;font-size:14px}
+  .step span{color:var(--muted);font-size:13px;line-height:1.6}
+  .legal{border:1px dashed rgba(57,255,136,.4);background:rgba(57,255,136,.05);padding:18px 20px;color:#bff5d3;font-size:14px;line-height:1.8}
+  .legal b{color:var(--green)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+  .stat{border:1px solid var(--line);padding:18px;text-align:center;background:rgba(0,238,255,.04)}
+  .stat strong{display:block;font-size:28px;color:var(--cyan);text-shadow:0 0 14px rgba(0,238,255,.5)}
+  .stat span{font-size:12px;color:var(--muted);letter-spacing:.1em}
+  code.inline{background:rgba(0,238,255,.08);border:1px solid var(--line);padding:1px 6px;color:var(--cyan);font-size:13px}
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px;text-align:center;background:rgba(7,7,13,.6)}
+  @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){header{padding:48px 0 36px}.grid,.flow,.stats{grid-template-columns:1fr}.nav-in{flex-direction:column;align-items:flex-start}.cta .btn{width:100%;text-align:center}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="brand">果园编程<span>//</span>百川云渡</div>
+    <a class="home-btn" href="/">← 返回主页</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <span class="tag">WARP LOCAL PROXY · ANYCAST EDGE · HTTP3/QUIC · 2026</span>
+    <h1><span class="glitch" data-text="百川云渡">百川云渡</span><br/>更安全的本地代理</h1>
+    <p class="sub">
+      基于 <b>Cloudflare WARP 本地代理模式</b> 的出站隧道方案：本机应用 → 系统/浏览器代理 → WARP 客户端 →
+      <b>Cloudflare Anycast 边缘</b> → 目标公网服务。只代理显式配置的应用，不全局劫持、不改路由表，
+      适合开发联调、API 自检、校园网/办公网内合规使用 WARP 客户端的场景。
+    </p>
+    <p class="sub">
+      获取 百川云渡 请添加果园QQ：386498317
+      </p>
+    <p class="sub">
+      百川云渡将会一直更新，更新日志见：<a href="https://blog.gybc.top/tag/%E7%99%BE%E5%B7%9D%E4%BA%91%E6%B8%A1%E6%9B%B4%E6%96%B0" class="cyber-link">果园百川云渡更新日志</a>
+      </p>
+    <div class="cta">
+      <a class="btn" href="#why">为什么走 WARP</a>
+      <a class="btn ghost" href="#how">链路原理</a>
+    </div>
+
+    <div class="terminal">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+      <div class="term-body"><span class="cmd">$ warp-cli proxy --port 10808 --mode socks5</span>
+<span class="ok">[ok]</span> 本地 SOCKS5 监听 127.0.0.1:10808
+<span class="ok">[ok]</span> WARP 隧道握手 … Anycast 边缘（就近节点）
+<span class="ok">[ok]</span> 设备↔CF 段加密已建立（WireGuard over QUIC）
+<span class="warn">[info]</span> 仅浏览器 / 配置代理的 App 走隧道，系统其余流量不动
+<span class="cmd">$ curl -sS -o /dev/null -w '%{http_code} %{time_total}\n' https://speedtest-http.gybc.top/204</span>
+<span class="ok">204</span> 0.082s   <span class="warn"># 连通性 + 边缘延迟自检</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <h2 class="sec-title">走 WARP 的三个硬优势</h2>
+    <p class="sec-sub">不是“翻墙器”，是把出站出口收敛到 Cloudflare 边缘的正向代理用法。</p>
+    <div class="grid">
+      <div class="card"><span class="num">01</span><h3>走 WARP，更安全</h3><p>设备到 Cloudflare 边缘之间由 WARP 客户端建立加密隧道（WireGuard 内核），公网 Wi-Fi / 校园网下避免明文裸奔；边缘侧再按目标站 HTTPS 走标准 TLS。</p></div>
+      <div class="card"><span class="num">02</span><h3>支持 HTTP/3 / QUIC</h3><p>WARP 边缘与客户端之间支持 QUIC 传输，弱网、高丢包、移动网络下握手更快；对已启用 HTTP/3 的目标站可端到端享受 0-RTT 优势。</p></div>
+      <div class="card"><span class="num">03</span><h3>204 测速自检</h3><p>内置探测端点 <code class="inline">https://speedtest-http.gybc.top/204</code>，一键看隧道是否通、Anycast 节点延迟多少，不下载大文件、不耗流量。</p></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong>SOCKS5</strong><span>LOCAL PORT</span></div>
+      <div class="stat"><strong>QUIC</strong><span>WARP TRANSPORT</span></div>
+      <div class="stat"><strong>Anycast</strong><span>EDGE ENTRY</span></div>
+      <div class="stat"><strong>204</strong><span>HEALTHCHECK</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2 class="sec-title">链路怎么走</h2>
+    <p class="sec-sub">你的机器 → 系统代理 → CF Warp → 公网。和 frp 正好反过来：frp 管“别人进来”，百川云渡管“你出去”。</p>
+    <div class="flow">
+      <div class="step"><b>① 应用设代理</b><span>浏览器 / CLI 指向 127.0.0.1:10808（SOCKS5）或 HTTPS 代理端口</span></div>
+      <div class="step"><b>② WARP 客户端</b><span>本机 warp-cli 把流量封进 WARP 隧道，仅代理态生效</span></div>
+      <div class="step"><b>③ Anycast 边缘</b><span>BGP 就近落到 Cloudflare 边缘节点，QUIC/WireGuard 加密</span></div>
+      <div class="step"><b>④ 出公网</b><span>边缘代你访问目标站，响应原路回本机应用</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">和 frp 是什么关系</h2>
+    <div class="grid">
+      <div class="card"><h3>frp（反向 / 入站）</h3><p>内网服务端口 → 公网 VPS → 外部访客。解决“没公网 IP 怎么让人访问我”。</p></div>
+      <div class="card"><h3>百川云渡（正向 / 出站）</h3><p>本机应用 → WARP 边缘 → 目标公网。解决“我的出口怎么更稳更近更加密”。</p></div>
+      <div class="card"><h3>共同点</h3><p>都是客户端主动外连、不依赖入站端口、不碰系统路由表，属于合法网络工具范畴。</p></div>
+    </div>
+
+    <div style="margin-top:26px" class="legal">
+      <b>合规声明：</b>百川云渡是<strong>基于 Cloudflare WARP 本地代理模式的合法出站代理工具</strong>，
+      用于开发调试、接口联调、边缘连通性自检，以及<strong>在所在网络（含校园网 / 办公网）允许使用 WARP 客户端的前提下</strong>正常使用网络。
+      不提供绕过国家网络监管的能力，不替代跨境专线，不承诺匿名。
+      使用者须遵守所在地法律、所在网络管理规定与目标平台条款，果园编程不对违规使用承担责任。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span id="foot-text"></span> · 百川云渡 Baichuan WARP Proxy · 果园编程工作室出品
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var y = new Date().getFullYear();
+    document.getElementById('foot-text').textContent = '果园编程工作室 版权所有，2020-' + y;
+  })();
+  document.querySelectorAll('.card').forEach(function(el){
+    el.addEventListener('click', function(){
+      el.style.boxShadow='0 0 34px rgba(255,0,200,.35)';
+      setTimeout(function(){el.style.boxShadow='';},420);
+    });
+  });
+</script>
+</body>
+</html>
